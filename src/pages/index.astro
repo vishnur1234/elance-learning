@@ -1,17 +1,2632 @@
 ---
-
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
 ---
 
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+		<title>Elance – India's Most Trusted Commerce Institute</title>
+		<meta
+			name="description"
+			content="From Learner to Leader. Build your career with globally recognized programs in CMA (US) and ACCA – designed for future commerce leaders."
+		/>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,600&family=Outfit:wght@300;400;500;600;700;800;900&display=swap"
+			rel="stylesheet"
+		/>
 	</head>
 	<body>
-		<h1>Astro</h1>
+		<Nav />
+
+		<!-- ===================== HERO ===================== -->
+		<section class="hero">
+			<div class="hero-container">
+				<div class="hero-content">
+					<p class="hero-eyebrow">
+						From Learner to Leader Starts Here
+					</p>
+					<h1 class="hero-heading">
+						India's Most Trusted<br />
+						<span class="hero-blue">Commerce Institute</span>
+					</h1>
+					<div class="hero-btns">
+						<a href="#courses" class="btn-blue-pill"
+							>Explore Courses</a
+						>
+						<a href="#" class="btn-outline-pill"
+							>Speak to a Counsellor</a
+						>
+					</div>
+					<div class="alumni-section">
+						<p class="alumni-text">
+							Our <span class="alumni-word">alumni</span> work at
+						</p>
+						<div class="alumni-ticker-wrap">
+							<div class="alumni-ticker">
+								<!-- Set 1 -->
+								<img
+									src="/src/Assets/deloitte.png"
+									alt="Deloitte"
+									class="alumni-logo alumni-logo-deloitte"
+								/>
+								<img
+									src="/src/Assets/ey.png"
+									alt="EY"
+									class="alumni-logo alumni-logo-ey"
+								/>
+								<img
+									src="/src/Assets/pwc.png"
+									alt="PwC"
+									class="alumni-logo alumni-logo-pwc"
+								/>
+								<img
+									src="/src/Assets/223x53-16.png"
+									alt="Grant Thornton"
+									class="alumni-logo alumni-logo-gt"
+								/>
+								<!-- Set 2 – duplicate for seamless loop -->
+								<img
+									src="/src/Assets/deloitte.png"
+									alt="Deloitte"
+									class="alumni-logo alumni-logo-deloitte"
+									aria-hidden="true"
+								/>
+								<img
+									src="/src/Assets/ey.png"
+									alt="EY"
+									class="alumni-logo alumni-logo-ey"
+									aria-hidden="true"
+								/>
+								<img
+									src="/src/Assets/pwc.png"
+									alt="PwC"
+									class="alumni-logo alumni-logo-pwc"
+									aria-hidden="true"
+								/>
+								<img
+									src="/src/Assets/223x53-16.png"
+									alt="Grant Thornton"
+									class="alumni-logo alumni-logo-gt"
+									aria-hidden="true"
+								/>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="hero-visual">
+					<img
+						src="/src/Assets/hero-bg-shape-big.png"
+						alt=""
+						class="hero-shape-big"
+						aria-hidden="true"
+					/>
+					<img
+						src="/src/Assets/hero-bg-shape-small.webp"
+						alt=""
+						class="hero-shape-small"
+						aria-hidden="true"
+					/>
+					<img
+						src="/src/Assets/mammooty-new7.webp"
+						alt="Brand Ambassador"
+						class="hero-person"
+					/>
+				</div>
+			</div>
+		</section>
+
+		<!-- ===================== COURSES ===================== -->
+		<section class="courses" id="courses">
+			<div class="section-container">
+				<h2 class="section-title">
+					Pick the <span class="text-blue">Course</span> That Fits Your
+					Dream
+				</h2>
+				<p class="section-subtitle">
+					Build your career with globally recognized programs in CMA
+					(US),<br />
+					and ACCA — designed for future commerce leaders.
+				</p>
+				<div class="courses-wrap">
+					<div class="funnel-bg"></div>
+					<div class="courses-grid">
+						<!-- ACCA -->
+						<div class="course-card">
+							<img
+								src="/src/Assets/accaimage-300x300.png"
+								alt="ACCA"
+								class="course-logo-img"
+							/>
+							<h3 class="course-card-title-plain">ACCA</h3>
+							<p class="course-desc">
+								Qualify for ACCA and get access to the world of
+								professional accounting which gives an offer to
+								work globally across 180+ countries with high
+								demand and good remuneration.
+							</p>
+							<div class="course-btns">
+								<a href="#" class="btn-blue-pill">Brochure</a>
+								<a href="#" class="btn-outline-pill"
+									>Know more</a
+								>
+							</div>
+						</div>
+
+						<!-- CMA USA -->
+						<div class="course-card">
+							<img
+								src="/src/Assets/cmaimage-300x300.png"
+								alt="CMA USA"
+								class="course-logo-img"
+							/>
+							<div class="course-name-badge">CMA USA</div>
+							<p class="course-desc">
+								Skill up your current working career by becoming
+								a Certified Management Accountant and feel the
+								advancement of professional accounting.
+							</p>
+							<div class="course-btns">
+								<a href="#" class="btn-blue-pill">Brochure</a>
+								<a href="#" class="btn-outline-pill"
+									>Know more</a
+								>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ===================== COMMERCE CAREER STEPS ===================== -->
+		<section class="steps-section">
+			<div class="section-container">
+				<h2 class="section-title">
+					Your <span class="text-blue">Commerce Career</span> Starts Here
+				</h2>
+				<div class="steps-grid">
+					<div class="step-item">
+						<span class="step-number">01</span>
+						<div class="step-icon-wrap">
+							<img
+								src="/src/Assets/home-cta-icon1.webp"
+								alt="Learn"
+								class="step-icon"
+							/>
+						</div>
+						<p class="step-label">Learn</p>
+					</div>
+					<div class="step-dots"></div>
+					<div class="step-item">
+						<span class="step-number">02</span>
+						<div class="step-icon-wrap">
+							<img
+								src="/src/Assets/home-cta-icon2.webp"
+								alt="Perform"
+								class="step-icon"
+							/>
+						</div>
+						<p class="step-label">Perform</p>
+					</div>
+					<div class="step-dots"></div>
+					<div class="step-item">
+						<span class="step-number">03</span>
+						<div class="step-icon-wrap">
+							<img
+								src="/src/Assets/home-cta-icon3.webp"
+								alt="Get A Job"
+								class="step-icon"
+							/>
+						</div>
+						<p class="step-label">Get A Job</p>
+					</div>
+				</div>
+				<div class="steps-cta">
+					<a href="#" class="btn-blue-pill">Reach Us Anytime</a>
+				</div>
+			</div>
+		</section>
+
+		<!-- ===================== TESTIMONIALS ===================== -->
+		<section class="testimonials-section">
+			<div class="section-container testimonials-layout">
+				<!-- Left -->
+				<div class="testimonials-left">
+					<div class="quote-bg-decor">“</div>
+					<p class="testimonials-eyebrow">Testimonials</p>
+					<h2 class="testimonials-title">
+						<span class="text-blue">Hear From</span> Our<br />
+						Previous <span class="text-blue">Students</span>
+					</h2>
+					<p class="testimonials-desc">
+						Elance envisions the courses for everyone to fuel the
+						advancement of skills and make you capable of conquering
+						your dream career
+					</p>
+					<a href="#" class="btn-blue-pill">View More</a>
+				</div>
+				<!-- Right – Testimonial Cards -->
+				<div class="testimonials-right">
+					<!-- Card 1 -->
+					<div class="testimonial-card">
+						<span class="testimonial-badge">ACCA</span>
+						<p class="testimonial-quote">
+							"We always believed in our son, and with the support
+							of the Elance's faculty, he made his ACCA dream come
+							true."
+						</p>
+						<div class="testimonial-author">
+							<img
+								src="/src/Assets/Abhiram-testi.jpg"
+								alt="Jiyas V H"
+								class="testimonial-avatar"
+							/>
+							<div>
+								<p class="testimonial-name">Jiyas V H</p>
+								<p class="testimonial-course">
+									Analytics Arabia
+								</p>
+							</div>
+						</div>
+					</div>
+
+					<!-- Card 2 -->
+					<div class="testimonial-card">
+						<span class="testimonial-badge">CA</span>
+						<p class="testimonial-quote">
+							"All my papers were done online at Elance, with
+							wonderful support from the faculty and staff. "
+						</p>
+						<div class="testimonial-author">
+							<img
+								src="/src/Assets/Anagha-Anand-150x150.webp"
+								alt="Anagha Anand"
+								class="testimonial-avatar"
+							/>
+							<div>
+								<p class="testimonial-name">Anagha Anand</p>
+								<p class="testimonial-course">
+									Elance CA Student
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ===================== FOR STUDENTS / PROFESSIONALS ===================== -->
+		<section class="audience-section">
+			<div class="audience-grid">
+				<!-- Left Card: Students -->
+				<div class="audience-card students-card">
+					<img
+						src="/src/Assets/Studentsai1.jpg"
+						alt="For Students"
+						class="audience-img"
+					/>
+					<div class="audience-info-box">
+						<h3 class="audience-info-title">For Students</h3>
+						<p class="audience-info-desc">
+							Offering top-tier commerce professional courses like
+							ACCA and CMA to propel you into the future of
+							finance with high-paying global career opportunities
+						</p>
+						<a href="#" class="btn-blue-pill-small">Get Started</a>
+					</div>
+				</div>
+
+				<!-- Right Card: Professionals -->
+				<div class="audience-card professionals-card">
+					<img
+						src="/src/Assets/WorkingProfessionalsai.jpg"
+						alt="For Working Professionals"
+						class="audience-img"
+					/>
+					<div class="audience-overlay">
+						<p class="audience-overlay-text">
+							<span class="label-light">For</span> Working<br
+							/>Professionals
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ===================== PROMO CTA BANNER ===================== -->
+		<section class="promo-cta-section">
+			<div class="section-container">
+				<div class="promo-card">
+					<div class="promo-card-decor-1"></div>
+					<div class="promo-card-decor-2"></div>
+					<h2 class="promo-title">
+						Make the Smart Move for a<br />
+						Commerce Career<br />
+						That Matters!
+					</h2>
+					<a href="#" class="btn-white-pill">Download Brochure</a>
+				</div>
+			</div>
+		</section>
+
+		<!-- ===================== STUDENT FEEDBACK ===================== -->
+		<section class="feedback-section">
+			<div class="section-container feedback-layout">
+				<!-- Left -->
+				<div class="feedback-left">
+					<h2 class="feedback-title">
+						Our Students <span class="text-blue">Feedback</span>
+					</h2>
+					<p class="feedback-desc">
+						Hear from our students as they share their incredible
+						journeys of growth, success, and accomplishments with
+						Elance!
+					</p>
+					<div class="feedback-arrows">
+						<button class="arrow-btn" aria-label="Previous">
+							<svg
+								viewBox="0 0 24 24"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path
+									d="M15 19l-7-7 7-7"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"></path>
+							</svg>
+						</button>
+						<button class="arrow-btn" aria-label="Next">
+							<svg
+								viewBox="0 0 24 24"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path
+									d="M9 5l7 7-7 7"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"></path>
+							</svg>
+						</button>
+					</div>
+				</div>
+				<!-- Right – Feedback Image -->
+				<div class="feedback-right">
+					<div class="feedback-img-wrap">
+						<img
+							src="/src/Assets/Jahana-Sherin.webp"
+							alt="Jahana Sherin – Student Feedback"
+							class="feedback-img"
+						/>
+						<button class="play-btn" aria-label="Play video">
+							<svg
+								viewBox="0 0 24 24"
+								fill="white"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path d="M8 5v14l11-7L8 5z"></path>
+							</svg>
+						</button>
+					</div>
+				</div>
+			</div>
+
+			<!-- What our Students think about us Banner -->
+			<div class="section-container">
+				<div class="think-banner">
+					<div class="think-banner-left">
+						<h2 class="think-title">
+							What our<br />
+							<span class="text-blue">Students think</span><br />
+							about us?
+						</h2>
+					</div>
+					<div class="think-banner-right">
+						<div class="think-avatars">
+							<img
+								src="/src/Assets/i1.jpg"
+								alt="Student 1"
+								class="think-avatar"
+							/>
+							<img
+								src="/src/Assets/i2.jpg"
+								alt="Student 2"
+								class="think-avatar"
+							/>
+							<img
+								src="/src/Assets/Abhiram-testi.jpg"
+								alt="Student 3"
+								class="think-avatar"
+							/>
+						</div>
+						<div class="think-arrows">
+							<button
+								class="arrow-btn-small"
+								aria-label="Previous"
+							>
+								<svg
+									viewBox="0 0 24 24"
+									fill="none"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<path
+										d="M15 19l-7-7 7-7"
+										stroke="currentColor"
+										stroke-width="2.5"
+										stroke-linecap="round"
+										stroke-linejoin="round"></path>
+								</svg>
+							</button>
+							<button class="arrow-btn-small" aria-label="Next">
+								<svg
+									viewBox="0 0 24 24"
+									fill="none"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<path
+										d="M9 5l7 7-7 7"
+										stroke="currentColor"
+										stroke-width="2.5"
+										stroke-linecap="round"
+										stroke-linejoin="round"></path>
+								</svg>
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ===================== ACHIEVEMENTS ===================== -->
+		<section class="achievements-section">
+			<div class="section-container">
+				<h2 class="achievements-title">Achievements</h2>
+				<p class="achievements-subtitle">
+					With immense pride, we underscore our outstanding results, a
+					testament to Elance's legacy since its inception. In just
+					four years, Elance has consistently delivered unmatched
+					results, guiding students towards their dream careers as
+					top-class commerce professionals. These achievements aren't
+					just milestones; they represent our unwavering dedication to
+					nurturing the future leaders of the industry.
+				</p>
+				<div class="achievements-grid">
+					<!-- Left Card -->
+					<div class="achievement-card blue-grad-1">
+						<div class="achievement-shine"></div>
+						<div class="achievement-num">53</div>
+						<div class="achievement-label">World Ranks</div>
+					</div>
+					<!-- Right Card -->
+					<div class="achievement-card blue-grad-2">
+						<div class="achievement-shine"></div>
+						<div class="achievement-num">80</div>
+						<div class="achievement-label">National Ranks</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ===================== PARTNERS / CAREER ===================== -->
+		<section class="career-section">
+			<div class="section-container">
+				<h2 class="career-title">
+					Begin Your <span class="text-blue">Dream Career</span><br
+					/>with Us
+				</h2>
+				<div class="career-layout">
+					<!-- Left: Ambassador -->
+					<div class="career-left">
+						<div class="career-shape-bg"></div>
+						<img
+							src="/src/Assets/mamu-sec.webp"
+							alt="Brand Ambassador"
+							class="career-person-img"
+						/>
+					</div>
+					<!-- Right: Listings -->
+					<div class="career-right">
+						<!-- Item 1 -->
+						<div class="partner-item">
+							<div class="partner-logo-wrap">
+								<img
+									src="/src/Assets/ACCA-Platinum.png"
+									alt="Platinum Approved Partner of ACCA"
+									class="partner-logo"
+								/>
+							</div>
+							<div class="partner-content">
+								<h3 class="partner-name">
+									Platinum Approved Partner of ACCA
+								</h3>
+								<p class="partner-desc">
+									Elance Proudly stands as one of the top
+									Platinum Approved Partners of ACCA, a
+									testament to our exceptional commitment to
+									top-tier accounting education and excellent
+									academic standards.
+								</p>
+							</div>
+						</div>
+						<!-- Item 2 -->
+						<div class="partner-item">
+							<div class="partner-logo-wrap">
+								<img
+									src="/src/Assets/CMA-gold-1-e1762840636945.png"
+									alt="Gold CMA Course Provider approved by IMA"
+									class="partner-logo"
+								/>
+							</div>
+							<div class="partner-content">
+								<h3 class="partner-name">
+									Gold CMA Course Provider approved by IMA
+								</h3>
+								<p class="partner-desc">
+									Highlighting a commitment to excellence in
+									management accounting education, Elance is
+									being recognised as a Gold CMA Course
+									Provider approved by IMA.
+								</p>
+							</div>
+						</div>
+						<!-- Item 3 -->
+						<div class="partner-item">
+							<div class="partner-logo-wrap">
+								<img
+									src="/src/Assets/CBE-Center.png"
+									alt="ACCA Approved CBE Centre"
+									class="partner-logo"
+								/>
+							</div>
+							<div class="partner-content">
+								<h3 class="partner-name">
+									ACCA Approved CBE Centre
+								</h3>
+								<p class="partner-desc">
+									Elance is an ACCA-approved CBE Centre. This
+									license grants our campus the authorization
+									to conduct ACCA fundamentals at our Calicut
+									campus itself..
+								</p>
+							</div>
+						</div>
+						<!-- Item 4 -->
+						<div class="partner-item">
+							<div class="partner-logo-wrap">
+								<img
+									src="/src/Assets/Hock.png"
+									alt="Approved Partner of HOCK INTERNATIONAL"
+									class="partner-logo"
+								/>
+							</div>
+							<div class="partner-content">
+								<h3 class="partner-name">
+									Approved Partner of HOCK INTERNATIONAL
+								</h3>
+								<p class="partner-desc">
+									Hock International for CMA USA collaborates
+									closely with Elance, ensuring top-notch
+									instruction using authentic learning
+									materials supporting guidance to conquer
+									doubts, master the syllabus, and excel in
+									certification exams.
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ===================== LIFE AT ELANCE ===================== -->
+		<section class="life-section">
+			<div class="section-container">
+				<h2 class="life-title">
+					Life at <span class="text-blue">Elance</span>
+				</h2>
+				<div class="life-slider-wrap">
+					<!-- Left Navigation Arrow -->
+					<button
+						class="life-arrow-btn prev-btn"
+						aria-label="Previous"
+					>
+						<svg
+							viewBox="0 0 24 24"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<path
+								d="M15 19l-7-7 7-7"
+								stroke="currentColor"
+								stroke-width="2.5"
+								stroke-linecap="round"
+								stroke-linejoin="round"></path>
+						</svg>
+					</button>
+
+					<!-- Cards Container -->
+					<div class="life-grid" id="life-grid">
+						<!-- Card 1: Orientation Day -->
+						<div class="life-card">
+							<img
+								src="/src/Assets/Resize-09.jpg"
+								alt="Elance Orientation Day"
+								class="life-card-img"
+							/>
+							<div class="life-card-overlay">
+								<h3 class="life-card-title">
+									Elance Orientation Day
+								</h3>
+								<p class="life-card-desc">
+									A warm welcome for new students with
+									inspiring sessions and shared experiences to
+									kickstart their journey at Elance.
+								</p>
+							</div>
+						</div>
+
+						<!-- Card 2: Health Camps -->
+						<div class="life-card">
+							<img
+								src="/src/Assets/ReSize-03.jpg"
+								alt="Health Camps and Check Up at Elance"
+								class="life-card-img"
+							/>
+							<div class="life-card-overlay">
+								<h3 class="life-card-title">
+									Health Camps and Check Up
+								</h3>
+								<p class="life-card-desc">
+									In addition to academic excellence, we try
+									to support students by organizing health
+									checkups and placing focus on their
+									well-being.
+								</p>
+							</div>
+						</div>
+					</div>
+
+					<!-- Right Navigation Arrow -->
+					<button class="life-arrow-btn next-btn" aria-label="Next">
+						<svg
+							viewBox="0 0 24 24"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<path
+								d="M9 5l7 7-7 7"
+								stroke="currentColor"
+								stroke-width="2.5"
+								stroke-linecap="round"
+								stroke-linejoin="round"></path>
+						</svg>
+					</button>
+				</div>
+			</div>
+		</section>
+
+		<script>
+			const grid = document.getElementById("life-grid");
+			const prevBtn = document.querySelector(
+				".life-slider-wrap .prev-btn",
+			);
+			const nextBtn = document.querySelector(
+				".life-slider-wrap .next-btn",
+			);
+
+			if (grid && prevBtn && nextBtn) {
+				prevBtn.addEventListener("click", () => {
+					grid.scrollBy({ left: -450, behavior: "smooth" });
+				});
+				nextBtn.addEventListener("click", () => {
+					grid.scrollBy({ left: 450, behavior: "smooth" });
+				});
+			}
+		</script>
+
+		<!-- ===================== WE'RE FEATURED ON ===================== -->
+		<section class="featured-section">
+			<div class="section-container">
+				<h2 class="featured-title">
+					We're <span class="text-blue">Featured</span> On
+				</h2>
+				<p class="featured-subtitle">
+					Recognized by leading media houses for our commitment to
+					quality education and student success.
+				</p>
+				<div class="featured-ticker-wrap">
+					<div class="featured-ticker">
+						<!-- Set 1 -->
+						<div class="featured-logo-item">
+							<img
+								src="/src/Assets/media-05.png"
+								alt="Mathrubhumi"
+								class="featured-logo-img"
+							/>
+						</div>
+						<div class="featured-logo-item">
+							<img
+								src="/src/Assets/media-06.png"
+								alt="Madhyamam"
+								class="featured-logo-img"
+							/>
+						</div>
+						<div class="featured-logo-item">
+							<img
+								src="/src/Assets/deshabhimani.png"
+								alt="Deshabhimani"
+								class="featured-logo-img"
+							/>
+						</div>
+						<div class="featured-logo-item">
+							<img
+								src="/src/Assets/mnnews.png"
+								alt="Metro News"
+								class="featured-logo-img"
+							/>
+						</div>
+						<div class="featured-logo-item">
+							<img
+								src="/src/Assets/223x53-4.webp"
+								alt="Asianet News"
+								class="featured-logo-img"
+							/>
+						</div>
+						<div class="featured-logo-item">
+							<img
+								src="/src/Assets/deepika.png"
+								alt="Deepika"
+								class="featured-logo-img"
+							/>
+						</div>
+
+						<!-- Set 2 -->
+						<div class="featured-logo-item">
+							<img
+								src="/src/Assets/media-05.png"
+								alt="Mathrubhumi"
+								class="featured-logo-img"
+							/>
+						</div>
+						<div class="featured-logo-item">
+							<img
+								src="/src/Assets/media-06.png"
+								alt="Madhyamam"
+								class="featured-logo-img"
+							/>
+						</div>
+						<div class="featured-logo-item">
+							<img
+								src="/src/Assets/deshabhimani.png"
+								alt="Deshabhimani"
+								class="featured-logo-img"
+							/>
+						</div>
+						<div class="featured-logo-item">
+							<img
+								src="/src/Assets/mnnews.png"
+								alt="Metro News"
+								class="featured-logo-img"
+							/>
+						</div>
+						<div class="featured-logo-item">
+							<img
+								src="/src/Assets/223x53-4.webp"
+								alt="Asianet News"
+								class="featured-logo-img"
+							/>
+						</div>
+						<div class="featured-logo-item">
+							<img
+								src="/src/Assets/deepika.png"
+								alt="Deepika"
+								class="featured-logo-img"
+							/>
+						</div>
+
+						<!-- Set 3 -->
+						<div class="featured-logo-item">
+							<img
+								src="/src/Assets/media-05.png"
+								alt="Mathrubhumi"
+								class="featured-logo-img"
+							/>
+						</div>
+						<div class="featured-logo-item">
+							<img
+								src="/src/Assets/media-06.png"
+								alt="Madhyamam"
+								class="featured-logo-img"
+							/>
+						</div>
+						<div class="featured-logo-item">
+							<img
+								src="/src/Assets/deshabhimani.png"
+								alt="Deshabhimani"
+								class="featured-logo-img"
+							/>
+						</div>
+						<div class="featured-logo-item">
+							<img
+								src="/src/Assets/mnnews.png"
+								alt="Metro News"
+								class="featured-logo-img"
+							/>
+						</div>
+						<div class="featured-logo-item">
+							<img
+								src="/src/Assets/223x53-4.webp"
+								alt="Asianet News"
+								class="featured-logo-img"
+							/>
+						</div>
+						<div class="featured-logo-item">
+							<img
+								src="/src/Assets/deepika.png"
+								alt="Deepika"
+								class="featured-logo-img"
+							/>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<Footer />
+
+		<!-- ===================== WHATSAPP BUBBLE ===================== -->
+		<div class="wa-widget" id="wa-widget">
+			<button class="wa-dismiss" id="wa-dismiss" aria-label="Close"
+				>×</button
+			>
+			<div class="wa-callout" id="wa-callout">
+				<p>
+					Hey there! Got a question?<br />We're just a message away!
+				</p>
+			</div>
+			<a
+				href="https://wa.me/919000000000"
+				target="_blank"
+				rel="noopener"
+				class="wa-icon"
+				aria-label="Chat on WhatsApp"
+			>
+				<svg
+					viewBox="0 0 32 32"
+					xmlns="http://www.w3.org/2000/svg"
+					fill="white"
+				>
+					<path
+						d="M16 0C7.163 0 0 7.163 0 16c0 2.822.736 5.472 2.027 7.773L0 32l8.418-2.004A15.944 15.944 0 0016 32c8.837 0 16-7.163 16-16S24.837 0 16 0zm0 29.333a13.28 13.28 0 01-6.79-1.857l-.487-.29-5.001 1.192 1.221-4.866-.318-.5A13.27 13.27 0 012.667 16C2.667 8.636 8.636 2.667 16 2.667S29.333 8.636 29.333 16 23.364 29.333 16 29.333zm7.289-9.897c-.399-.2-2.361-1.165-2.727-1.298-.365-.133-.631-.2-.897.2-.266.399-1.031 1.298-1.264 1.564-.233.266-.465.3-.864.1-2.362-1.181-3.913-2.108-5.468-4.782-.413-.71.413-.66.1179-2.362-.131.399-.266 1.031-.266 1.364 0 .332.066.7.199 1.032.266.665 1.032 1.464 1.298 1.73.266.266.399.532.133.798-.266.266-1.031 1.031-1.231 1.231-.2.2-.399.233-.731.066-.332-.166-1.364-.5-2.595-1.596-1.298-1.156-2.231-2.627-2.229-3.859-.001-.332.133-.631.4-.864.266-.233.531-.465.798-.665.266-.2.4-.399.531-.665.133-.266.066-.499-.066-.732-.133-.233-1.165-2.827-1.597-3.859-.432-1.03-.865-.865-1.164-.865-.3 0-.598-.033-.897-.033s-.831.133-1.264.632c-.432.498-1.664 1.631-1.664 3.976s1.697 4.607 1.93 4.924c.232.316 3.329 5.088 8.073 7.134 4.743 2.047 4.743 1.364 5.595 1.298.852-.066 2.727-1.114 3.127-2.195.398-1.081.398-2.012.266-2.195-.133-.182-.399-.299-.798-.499z"
+					></path>
+				</svg>
+				<span class="wa-badge">1</span>
+			</a>
+		</div>
 	</body>
 </html>
+
+<script>
+	const dismiss = document.getElementById("wa-dismiss");
+	const callout = document.getElementById("wa-callout");
+	if (dismiss && callout) {
+		dismiss.addEventListener("click", () => {
+			callout.style.display = "none";
+			dismiss.style.display = "none";
+		});
+	}
+</script>
+
+<style>
+	*,
+	*::before,
+	*::after {
+		box-sizing: border-box;
+		margin: 0;
+		padding: 0;
+	}
+
+	html, body {
+		font-family: "Outfit", sans-serif;
+		font-weight: 400;
+	}
+
+	body {
+		font-family: "Outfit", sans-serif !important;
+		background: #ffffff;
+		color: #111827;
+		line-height: 1.6;
+		overflow-x: hidden !important;
+	}
+
+	/* ── Shared ── */
+	.section-container {
+		max-width: 1100px;
+		margin: 0 auto;
+		padding: 0 40px;
+	}
+
+	.section-title {
+		font-size: 2.1rem;
+		font-weight: 900;
+		color: #111827;
+		text-align: center;
+		margin-bottom: 12px;
+	}
+
+	.section-subtitle {
+		font-size: 0.95rem;
+		color: #6b7280;
+		text-align: center;
+		line-height: 1.8;
+		margin-bottom: 56px;
+	}
+
+	.text-blue {
+		color: #3b9fe8;
+	}
+
+	/* Buttons */
+	.btn-blue-pill {
+		display: inline-block;
+		background: #3b9fe8;
+		color: #fff;
+		font-size: 0.875rem;
+		font-weight: 600;
+		padding: 11px 28px;
+		border-radius: 100px;
+		text-decoration: none;
+		transition:
+			background 0.2s,
+			transform 0.15s;
+		box-shadow: 0 4px 14px rgba(59, 159, 232, 0.25);
+	}
+	.btn-blue-pill:hover {
+		background: #2486d0;
+		transform: translateY(-1px);
+	}
+
+	.btn-outline-pill {
+		display: inline-block;
+		background: transparent;
+		color: #374151;
+		font-size: 0.875rem;
+		font-weight: 600;
+		padding: 10px 24px;
+		border-radius: 100px;
+		border: 1.5px solid #d1d5db;
+		text-decoration: none;
+		transition:
+			border-color 0.2s,
+			color 0.2s;
+	}
+	.btn-outline-pill:hover {
+		border-color: #3b9fe8;
+		color: #3b9fe8;
+	}
+
+	/* ── HERO ── */
+	.hero {
+		background: #ffffff;
+		overflow: hidden;
+		min-height: 70vh;
+		display: flex;
+		align-items: stretch;
+	}
+
+	.hero-container {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 0 40px;
+		display: flex;
+		align-items: center;
+		gap: 40px;
+		width: 100%;
+	}
+
+	.hero-content {
+		flex: 1;
+		padding: 60px 0;
+	}
+
+	.hero-eyebrow {
+		font-size: 35px;
+		font-weight: 550;
+		color: #3b9fe8;
+		margin-bottom: 18px;
+	}
+
+	.hero-heading {
+		font-size: clamp(2.4rem, 4.5vw, 3.6rem);
+		font-weight: 900;
+		color: #111827;
+		line-height: 1.1;
+		margin-bottom: 32px;
+	}
+
+	.hero-blue {
+		color: #3b9fe8;
+		display: block;
+	}
+
+	.hero-btns {
+		display: flex;
+		gap: 14px;
+		flex-wrap: wrap;
+		margin-bottom: 40px;
+	}
+
+	.alumni-section {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 16px;
+		margin-top: 40px;
+		width: 100%;
+	}
+
+	.alumni-text {
+		font-size: 1rem;
+		font-weight: 700;
+		color: #111827;
+		flex-shrink: 0;
+	}
+
+	.alumni-word {
+		color: #3b9fe8;
+		font-style: italic;
+	}
+
+	.alumni-logos {
+		display: flex;
+		align-items: center;
+		gap: 28px;
+		flex-wrap: wrap;
+	}
+
+	/* Alumni ticker */
+	.alumni-ticker-wrap {
+		overflow: hidden;
+		width: 100%;
+		max-width: 100%;
+		mask-image: linear-gradient(
+			to right,
+			transparent,
+			black 8%,
+			black 92%,
+			transparent
+		);
+		-webkit-mask-image: linear-gradient(
+			to right,
+			transparent,
+			black 8%,
+			black 92%,
+			transparent
+		);
+	}
+
+	.alumni-ticker {
+		display: flex;
+		align-items: center;
+		gap: 16px;
+		width: max-content;
+		animation: ticker-scroll 15s linear infinite;
+	}
+
+	.alumni-ticker:hover {
+		animation-play-state: paused;
+	}
+
+	@keyframes ticker-scroll {
+		0% {
+			transform: translateX(0);
+		}
+		100% {
+			transform: translateX(-50%);
+		}
+	}
+
+	.alumni-card {
+		border: 1px solid #e5e7eb;
+		border-radius: 12px;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding: 8px 24px;
+		height: 48px;
+		flex-shrink: 0;
+	}
+
+	.alumni-logo {
+		flex-shrink: 0;
+		height: auto;
+		width: auto;
+		max-height: 100%;
+		max-width: 100%;
+		object-fit: contain;
+		opacity: 0.85;
+		transition: opacity 0.2s;
+	}
+	.alumni-logo:hover {
+		opacity: 1;
+	}
+
+	.alumni-logo-deloitte {
+		max-height: 18px;
+		max-width: 90px;
+	}
+	.alumni-logo-ey {
+		max-height: 24px;
+		max-width: 44px;
+	}
+	.alumni-logo-pwc {
+		max-height: 30px;
+		max-width: 55px;
+	}
+	.alumni-logo-gt {
+		max-height: 18px;
+		max-width: 120px;
+	}
+
+	/* Hero visual */
+	.hero-visual {
+		flex-shrink: 0;
+		position: relative;
+		width: 460px;
+		display: flex;
+		align-items: flex-end;
+		justify-content: center;
+		align-self: stretch;
+	}
+
+	.hero-shape-big {
+		position: absolute;
+		bottom: 120px;
+		left: 40;
+		width: 390px;
+		height: auto;
+		z-index: 0;
+		opacity: 0.95;
+	}
+
+	.hero-shape-small {
+		position: absolute;
+		top: 140px;
+		right: 30px;
+		width: 140px;
+		height: auto;
+		z-index: 1;
+		opacity: 0.95;
+	}
+
+	.hero-person {
+		position: absolute;
+		bottom: 0;
+		z-index: 2;
+		width: 100%;
+		max-width: 440px;
+		object-fit: contain;
+		display: block;
+	}
+
+	/* ── COURSES ── */
+	.courses {
+		padding: 100px 0 40px;
+		background: #fff;
+		min-height: 85vh;
+		display: flex;
+		align-items: center;
+		position: relative;
+	}
+
+	.courses .section-container {
+		width: 100%;
+		max-width: 1200px;
+	}
+
+	.courses .section-title {
+		font-size: clamp(2.2rem, 3.8vw, 2.7rem);
+		margin-bottom: 16px;
+	}
+
+	.courses-wrap {
+		position: relative;
+		width: 100%;
+	}
+
+	.funnel-bg {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 100%;
+		max-width: 800px;
+		height: 100%;
+		max-height: 520px;
+		background: url("/src/Assets/hero-bg-shape-big.png") no-repeat center
+			center;
+		background-size: contain;
+		pointer-events: none;
+		z-index: 0;
+		opacity: 0.9;
+	}
+
+	.courses-grid {
+		position: relative;
+		z-index: 1;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 40px;
+	}
+
+	.course-card {
+		padding: 50px 45px 54px;
+		background: rgba(255, 255, 255, 0.75);
+		backdrop-filter: blur(12px);
+		-webkit-backdrop-filter: blur(12px);
+		border-radius: 20px;
+		box-shadow: 0 12px 40px rgba(0, 0, 0, 0.04);
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		border: 1px solid rgba(255, 255, 255, 0.4);
+		min-height: 480px;
+	}
+
+	.course-logo-img {
+		width: 68px;
+		height: 68px;
+		object-fit: contain;
+		margin-bottom: 24px;
+	}
+
+	.course-card-title-plain {
+		font-size: 1.25rem;
+		font-weight: 800;
+		color: #111827;
+		margin-bottom: 16px;
+		margin-top: 4px;
+	}
+
+	.course-name-badge {
+		display: inline-block;
+		background: #fff;
+		color: #111827;
+		font-size: 0.875rem;
+		font-weight: 700;
+		padding: 6px 20px;
+		border-radius: 100px;
+		border: 1.5px solid #e5e7eb;
+		margin-bottom: 16px;
+		width: fit-content;
+	}
+
+	.course-desc {
+		font-size: 0.875rem;
+		color: #4b5563;
+		line-height: 1.75;
+		margin-bottom: 32px;
+		flex-grow: 1;
+	}
+
+	.course-btns {
+		display: flex;
+		gap: 12px;
+		flex-wrap: wrap;
+	}
+
+	.course-card .btn-outline-pill {
+		color: #3b9fe8;
+		border-color: #3b9fe8;
+	}
+
+	.course-card .btn-outline-pill:hover {
+		background-color: #3b9fe8;
+		color: #ffffff;
+	}
+
+	/* ── STEPS ── */
+	.steps-section {
+		padding: 40px 0 100px;
+		background: #fff;
+		min-height: 75vh;
+		display: flex;
+		align-items: center;
+	}
+
+	.steps-section .section-container {
+		width: 100%;
+	}
+
+	.steps-section .section-title {
+		font-size: clamp(2.4rem, 4.5vw, 3.3rem);
+		margin-bottom: 56px;
+	}
+
+	.steps-grid {
+		display: flex;
+		align-items: flex-start;
+		justify-content: center;
+		gap: 0;
+		margin-bottom: 56px;
+		max-width: 980px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.step-item {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 16px;
+		flex: 1;
+	}
+
+	.step-number {
+		font-size: 1.4rem;
+		font-weight: 700;
+		color: #cbd5e1;
+	}
+
+	.step-icon-wrap {
+		width: 116px;
+		height: 116px;
+		background: linear-gradient(135deg, #4fa8ec, #1a6dbf);
+		border-radius: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		overflow: hidden;
+		box-shadow: 0 8px 24px rgba(59, 159, 232, 0.2);
+		transition: transform 0.25s ease;
+	}
+
+	.step-icon-wrap:hover {
+		transform: translateY(-4px) scale(1.03);
+	}
+
+	.step-icon {
+		width: 60px;
+		height: 60px;
+		object-fit: contain;
+		filter: brightness(0) invert(1);
+	}
+
+	.step-label {
+		font-size: 1.25rem;
+		font-weight: 700;
+		color: #111827;
+	}
+
+	.step-dots {
+		flex: 0 0 110px;
+		height: 2px;
+		border-top: 2px dashed #cbd5e1;
+		margin-top: 94px;
+		align-self: flex-start;
+	}
+
+	.steps-cta {
+		text-align: center;
+		margin-top: 28px;
+	}
+
+	/* ── TESTIMONIALS ── */
+	.testimonials-section {
+		padding: 100px 0 80px;
+		background: #fff;
+		position: relative;
+		overflow: hidden;
+	}
+
+	.testimonials-layout {
+		display: grid;
+		grid-template-columns: 0.95fr 1.05fr;
+		gap: 60px;
+		align-items: center;
+		margin-bottom: 48px;
+	}
+
+	.testimonials-left {
+		position: relative;
+	}
+
+	.testimonials-left::before {
+		content: "";
+		position: absolute;
+		bottom: -90px;
+		left: -120px;
+		width: 480px;
+		height: 480px;
+		background: radial-gradient(
+			circle,
+			rgba(238, 247, 255, 0.85) 0%,
+			rgba(255, 255, 255, 0) 70%
+		);
+		z-index: 0;
+		pointer-events: none;
+	}
+
+	.quote-bg-decor {
+		position: absolute;
+		bottom: -110px;
+		left: -80px;
+		font-size: 26rem;
+		font-family: Georgia, serif;
+		color: #ffffff;
+		line-height: 1;
+		pointer-events: none;
+		z-index: 1;
+		font-weight: 900;
+		text-shadow: 0 10px 40px rgba(0, 0, 0, 0.02);
+	}
+
+	.testimonials-eyebrow,
+	.testimonials-title,
+	.testimonials-desc,
+	.testimonials-left .btn-blue-pill {
+		position: relative;
+		z-index: 2;
+	}
+
+	.testimonials-eyebrow {
+		font-size: 0.95rem;
+		font-weight: 700;
+		color: #3b9fe8;
+		margin-bottom: 12px;
+		letter-spacing: 0.3px;
+	}
+
+	.testimonials-title {
+		font-size: 2.7rem;
+		font-weight: 900;
+		color: #111827;
+		line-height: 1.2;
+		margin-bottom: 20px;
+	}
+
+	.testimonials-desc {
+		font-size: 0.95rem;
+		color: #4b5563;
+		line-height: 1.8;
+		margin-bottom: 32px;
+	}
+
+	.testimonials-right {
+		border-left: 1.5px solid #e5e7eb;
+		padding-left: 50px;
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		gap: 28px;
+		z-index: 2;
+	}
+
+	.testimonials-right::before {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: -1.5px;
+		width: 3px;
+		height: 70px;
+		background: #3b9fe8;
+		border-radius: 2px;
+	}
+
+	/* Testimonial card */
+	.testimonial-card {
+		background: #ffffff;
+		border: 1px solid #e5e7eb;
+		border-radius: 20px;
+		padding: 32px;
+		color: #1f2937;
+		box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+		transition:
+			transform 0.25s,
+			box-shadow 0.25s;
+	}
+
+	.testimonial-card:hover {
+		transform: translateY(-2px);
+		box-shadow: 0 12px 35px rgba(0, 0, 0, 0.04);
+	}
+
+	.testimonial-badge {
+		display: inline-block;
+		background: #3b9fe8;
+		color: #ffffff;
+		font-size: 0.75rem;
+		font-weight: 700;
+		padding: 6px 16px;
+		border-radius: 6px;
+		margin-bottom: 18px;
+	}
+
+	.testimonial-quote {
+		font-size: 0.95rem;
+		line-height: 1.7;
+		color: #4b5563;
+		margin-bottom: 24px;
+		font-weight: 500;
+	}
+
+	.testimonial-author {
+		display: flex;
+		align-items: center;
+		gap: 12px;
+	}
+
+	.testimonial-avatar {
+		width: 48px;
+		height: 48px;
+		border-radius: 50%;
+		object-fit: cover;
+		border: 2px solid #eef5fb;
+	}
+
+	.testimonial-name {
+		font-weight: 800;
+		font-size: 0.95rem;
+		color: #111827;
+		margin-bottom: 2px;
+	}
+
+	.testimonial-course {
+		font-size: 0.8rem;
+		color: #3b9fe8;
+		font-weight: 600;
+	}
+
+	/* ── AUDIENCE ── */
+	.audience-section {
+		padding: 80px 0;
+		background: #fff;
+	}
+
+	.audience-grid {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 0 40px;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 28px;
+	}
+
+	.audience-card {
+		position: relative;
+		border-radius: 20px;
+		overflow: hidden;
+		box-shadow: 0 12px 35px rgba(0, 0, 0, 0.05);
+	}
+
+	.audience-img {
+		width: 100%;
+		height: 460px;
+		object-fit: cover;
+		display: block;
+	}
+
+	/* Students card info overlay */
+	.students-card .audience-info-box {
+		position: absolute;
+		bottom: 24px;
+		left: 24px;
+		right: 24px;
+		background: #ffffff;
+		border-radius: 16px;
+		padding: 24px 28px;
+		box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+		z-index: 10;
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		border: none;
+	}
+
+	.students-card .audience-info-title {
+		font-size: 1.45rem;
+		font-weight: 800;
+		color: #111827;
+	}
+
+	.students-card .audience-info-desc {
+		font-size: 0.85rem;
+		color: #4b5563;
+		line-height: 1.55;
+		margin-bottom: 8px;
+	}
+
+	.btn-blue-pill-small {
+		display: inline-block;
+		background: #3b9fe8;
+		color: #fff;
+		font-size: 0.85rem;
+		font-weight: 600;
+		padding: 9px 24px;
+		border-radius: 100px;
+		text-decoration: none;
+		width: fit-content;
+		transition: background-color 0.2s;
+	}
+
+	.btn-blue-pill-small:hover {
+		background-color: #2486d0;
+	}
+
+	/* Professionals card overlays */
+	.professionals-card::after {
+		content: "";
+		position: absolute;
+		inset: 0;
+		background: linear-gradient(
+			to top,
+			rgba(0, 0, 0, 0.65) 0%,
+			rgba(0, 0, 0, 0.1) 60%
+		);
+		z-index: 1;
+	}
+
+	.professionals-card .audience-overlay {
+		position: absolute;
+		bottom: 36px;
+		left: 36px;
+		color: #ffffff;
+		z-index: 2;
+	}
+
+	.audience-overlay-text {
+		font-size: 2.1rem;
+		font-weight: 900;
+		line-height: 1.15;
+		color: #ffffff;
+	}
+
+	.audience-overlay-text .label-light {
+		font-size: 1.45rem;
+		font-weight: 500;
+		opacity: 0.95;
+		margin-right: 4px;
+	}
+
+	/* ── PROMO CTA BANNER ── */
+	.promo-cta-section {
+		padding: 40px 0 80px;
+		background: #fff;
+	}
+
+	.promo-card {
+		background: linear-gradient(135deg, #3b9fe8 0%, #1c66b8 100%);
+		border-radius: 24px;
+		padding: 64px 40px;
+		text-align: center;
+		position: relative;
+		overflow: hidden;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 28px;
+		box-shadow: 0 12px 40px rgba(28, 102, 184, 0.15);
+	}
+
+	.promo-card-decor-1 {
+		position: absolute;
+		width: 350px;
+		height: 350px;
+		background: rgba(255, 255, 255, 0.08);
+		border-radius: 50%;
+		top: -100px;
+		left: -120px;
+		filter: blur(40px);
+		pointer-events: none;
+	}
+
+	.promo-card-decor-2 {
+		position: absolute;
+		width: 350px;
+		height: 350px;
+		background: rgba(255, 255, 255, 0.07);
+		border-radius: 50%;
+		bottom: -120px;
+		right: -100px;
+		filter: blur(50px);
+		pointer-events: none;
+	}
+
+	.promo-title {
+		font-size: clamp(1.8rem, 4vw, 2.6rem);
+		font-weight: 800;
+		color: #ffffff;
+		line-height: 1.3;
+		position: relative;
+		z-index: 2;
+	}
+
+	.btn-white-pill {
+		display: inline-block;
+		background: #ffffff;
+		color: #3b9fe8;
+		font-size: 0.95rem;
+		font-weight: 700;
+		padding: 14px 36px;
+		border-radius: 100px;
+		text-decoration: none;
+		position: relative;
+		z-index: 2;
+		transition:
+			transform 0.2s,
+			box-shadow 0.2s;
+		box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+	}
+
+	.btn-white-pill:hover {
+		transform: translateY(-1px);
+		box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+		background: #fbfbfb;
+	}
+
+	/* ── STUDENT FEEDBACK ── */
+	.feedback-section {
+		padding: 80px 0;
+		background: #fff;
+	}
+
+	.feedback-layout {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 60px;
+		align-items: center;
+	}
+
+	.feedback-title {
+		font-size: 2.4rem;
+		font-weight: 900;
+		color: #111827;
+		margin-bottom: 20px;
+		line-height: 1.2;
+	}
+
+	.feedback-desc {
+		font-size: 0.95rem;
+		color: #6b7280;
+		line-height: 1.75;
+		margin-bottom: 36px;
+	}
+
+	.feedback-arrows {
+		display: flex;
+		gap: 12px;
+	}
+
+	.arrow-btn {
+		width: 44px;
+		height: 44px;
+		border-radius: 50%;
+		border: none;
+		background: #eef5fb;
+		color: #3b9fe8;
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		transition:
+			background 0.2s,
+			color 0.2s;
+	}
+
+	.arrow-btn:hover {
+		background: #3b9fe8;
+		color: #fff;
+	}
+
+	.arrow-btn svg {
+		width: 18px;
+		height: 18px;
+	}
+
+	.feedback-img-wrap {
+		position: relative;
+		border-radius: 20px;
+		overflow: hidden;
+		box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+	}
+
+	.feedback-img {
+		width: 100%;
+		height: 380px;
+		object-fit: cover;
+		display: block;
+		border-radius: 20px;
+	}
+
+	/* Think Banner */
+	.think-banner {
+		position: relative;
+		background: #ffffff;
+		border-radius: 24px;
+		box-shadow: 0 15px 45px rgba(0, 0, 0, 0.04);
+		padding: 40px 60px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		overflow: hidden;
+		margin-top: 60px;
+		border: 1px solid rgba(229, 231, 235, 0.5);
+	}
+
+	.think-banner::before {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 320px;
+		height: 100%;
+		background: linear-gradient(
+			135deg,
+			rgba(238, 247, 255, 0.8) 0%,
+			rgba(255, 255, 255, 0) 80%
+		);
+		z-index: 0;
+		clip-path: polygon(0 0, 100% 0, 75% 100%, 0 100%);
+		pointer-events: none;
+	}
+
+	.think-banner-left,
+	.think-banner-right {
+		position: relative;
+		z-index: 2;
+	}
+
+	.think-title {
+		font-size: 1.8rem;
+		font-weight: 800;
+		color: #111827;
+		line-height: 1.25;
+	}
+
+	.think-banner-right {
+		display: flex;
+		align-items: center;
+		gap: 40px;
+	}
+
+	.think-avatars {
+		display: flex;
+		align-items: center;
+	}
+
+	.think-avatar {
+		width: 48px;
+		height: 48px;
+		border-radius: 50%;
+		object-fit: cover;
+		border: 2.5px solid #ffffff;
+		box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+	}
+
+	.think-avatar:not(:first-child) {
+		margin-left: -12px;
+	}
+
+	.think-arrows {
+		display: flex;
+		gap: 12px;
+	}
+
+	.arrow-btn-small {
+		width: 40px;
+		height: 40px;
+		border-radius: 50%;
+		border: none;
+		background: #eef5fb;
+		color: #3b9fe8;
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		transition:
+			background-color 0.2s,
+			color 0.2s;
+	}
+
+	.arrow-btn-small:hover {
+		background: #3b9fe8;
+		color: #ffffff;
+	}
+
+	.arrow-btn-small svg {
+		width: 16px;
+		height: 16px;
+	}
+
+	.play-btn {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 52px;
+		height: 52px;
+		border-radius: 50%;
+		background: rgba(255, 255, 255, 0.85);
+		border: none;
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		transition:
+			background 0.2s,
+			transform 0.2s;
+	}
+	.play-btn:hover {
+		background: #fff;
+		transform: translate(-50%, -50%) scale(1.08);
+	}
+	.play-btn svg {
+		width: 22px;
+		height: 22px;
+		fill: #3b9fe8;
+		margin-left: 2px;
+	}
+
+	/* ── WHATSAPP ── */
+	.wa-widget {
+		position: fixed;
+		bottom: 24px;
+		right: 24px;
+		z-index: 9999;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-end;
+		gap: 10px;
+	}
+
+	.wa-dismiss {
+		position: absolute;
+		top: 0;
+		right: 0;
+		background: #9ca3af;
+		color: #fff;
+		border: none;
+		border-radius: 50%;
+		width: 20px;
+		height: 20px;
+		font-size: 0.8rem;
+		line-height: 1;
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		z-index: 10;
+	}
+
+	.wa-callout {
+		background: #fff;
+		border-radius: 12px 12px 0 12px;
+		padding: 12px 16px;
+		box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+		font-size: 0.8rem;
+		color: #374151;
+		line-height: 1.55;
+		max-width: 190px;
+		text-align: right;
+	}
+
+	.wa-icon {
+		width: 52px;
+		height: 52px;
+		background: #25d366;
+		border-radius: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		text-decoration: none;
+		box-shadow: 0 4px 16px rgba(37, 211, 102, 0.4);
+		position: relative;
+		transition: transform 0.2s;
+	}
+	.wa-icon:hover {
+		transform: scale(1.08);
+	}
+	.wa-icon svg {
+		width: 28px;
+		height: 28px;
+	}
+
+	.wa-badge {
+		position: absolute;
+		top: -4px;
+		right: -4px;
+		background: #ef4444;
+		color: #fff;
+		font-size: 0.65rem;
+		font-weight: 700;
+		width: 18px;
+		height: 18px;
+		border-radius: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	/* ── ACHIEVEMENTS ── */
+	.achievements-section {
+		padding: 80px 0 100px;
+		background: linear-gradient(180deg, #ffffff 0%, #eef5fb 100%);
+		position: relative;
+	}
+
+	.achievements-title {
+		font-size: 2.5rem;
+		font-weight: 800;
+		text-align: center;
+		color: #111827;
+		margin-bottom: 24px;
+	}
+
+	.achievements-subtitle {
+		font-size: 0.95rem;
+		line-height: 1.8;
+		text-align: center;
+		color: #4b5563;
+		max-width: 900px;
+		margin: 0 auto 56px;
+	}
+
+	.achievements-grid {
+		display: flex;
+		gap: 32px;
+		justify-content: center;
+		align-items: center;
+		max-width: 720px;
+		margin: 0 auto;
+	}
+
+	.achievement-card {
+		position: relative;
+		overflow: hidden;
+		border-radius: 24px;
+		padding: 48px 40px;
+		text-align: center;
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		min-height: 240px;
+		box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+		transition:
+			transform 0.25s,
+			box-shadow 0.25s;
+	}
+
+	.achievement-card:hover {
+		transform: translateY(-3px);
+		box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
+	}
+
+	.blue-grad-1 {
+		background: linear-gradient(135deg, #4086bf 0%, #1e528b 100%);
+	}
+
+	.blue-grad-2 {
+		background: linear-gradient(135deg, #1d4d80 0%, #5d97cc 100%);
+	}
+
+	.achievement-shine {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: linear-gradient(
+			135deg,
+			rgba(255, 255, 255, 0.22) 0%,
+			rgba(255, 255, 255, 0) 60%
+		);
+		pointer-events: none;
+		z-index: 1;
+	}
+
+	.achievement-num {
+		font-size: 5.5rem;
+		font-weight: 800;
+		color: #ffffff;
+		line-height: 1.1;
+		margin-bottom: 8px;
+		font-family: "Inter", sans-serif;
+		letter-spacing: -1px;
+		position: relative;
+		z-index: 2;
+	}
+
+	.achievement-label {
+		font-size: 1.25rem;
+		font-weight: 700;
+		color: #ffffff;
+		opacity: 0.95;
+		letter-spacing: 0.5px;
+		position: relative;
+		z-index: 2;
+	}
+
+	/* ── CAREER / PARTNERS ── */
+	.career-section {
+		padding: 80px 0 100px;
+		background: #ffffff;
+		position: relative;
+	}
+
+	.career-title {
+		font-size: 2.5rem;
+		font-weight: 800;
+		text-align: center;
+		color: #111827;
+		margin-bottom: 56px;
+		line-height: 1.25;
+	}
+
+	.career-layout {
+		display: grid;
+		grid-template-columns: 1fr 1.2fr;
+		gap: 60px;
+		align-items: center;
+	}
+
+	.career-left {
+		position: relative;
+		display: flex;
+		justify-content: center;
+		align-items: flex-end;
+		min-height: 480px;
+	}
+
+	.career-shape-bg {
+		position: absolute;
+		bottom: 20px;
+		left: 50%;
+		transform: translateX(-50%);
+		width: 90%;
+		height: 80%;
+		background: url("/src/Assets/hero-bg-shape-small.webp") no-repeat center
+			bottom;
+		background-size: contain;
+		z-index: 0;
+		pointer-events: none;
+	}
+
+	.career-person-img {
+		position: relative;
+		z-index: 1;
+		width: 100%;
+		max-width: 380px;
+		object-fit: contain;
+		display: block;
+	}
+
+	.career-right {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.partner-item {
+		display: flex;
+		gap: 24px;
+		padding: 24px 0;
+		border-bottom: 1.5px solid #f3f4f6;
+		align-items: flex-start;
+	}
+
+	.partner-item:first-child {
+		padding-top: 0;
+	}
+
+	.partner-item:last-child {
+		border-bottom: none;
+		padding-bottom: 0;
+	}
+
+	.partner-logo-wrap {
+		flex: 0 0 64px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin-top: 4px;
+	}
+
+	.partner-logo {
+		width: 100%;
+		max-height: 48px;
+		object-fit: contain;
+		display: block;
+	}
+
+	.partner-content {
+		flex: 1;
+	}
+
+	.partner-name {
+		font-size: 1.2rem;
+		font-weight: 800;
+		color: #111827;
+		margin-bottom: 8px;
+		line-height: 1.3;
+	}
+
+	.partner-desc {
+		font-size: 0.875rem;
+		color: #4b5563;
+		line-height: 1.65;
+	}
+
+	/* ── LIFE AT ELANCE ── */
+	.life-section {
+		padding: 80px 0 100px;
+		background: #ffffff;
+		position: relative;
+	}
+
+	.life-title {
+		font-size: 2.5rem;
+		font-weight: 800;
+		text-align: center;
+		color: #111827;
+		margin-bottom: 56px;
+		line-height: 1.25;
+	}
+
+	.life-slider-wrap {
+		position: relative;
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 0;
+	}
+
+	.life-arrow-btn {
+		width: 52px;
+		height: 52px;
+		border-radius: 50%;
+		border: none;
+		background: #eef5fb;
+		color: #3b9fe8;
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		transition:
+			background 0.2s,
+			color 0.2s,
+			transform 0.2s;
+		flex-shrink: 0;
+		box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
+		z-index: 10;
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+
+	.life-arrow-btn:hover {
+		background: #3b9fe8;
+		color: #ffffff;
+		transform: translateY(-50%) scale(1.05);
+	}
+
+	.life-arrow-btn.prev-btn {
+		left: -64px;
+	}
+
+	.life-arrow-btn.next-btn {
+		right: -64px;
+	}
+
+	.life-arrow-btn svg {
+		width: 22px;
+		height: 22px;
+	}
+
+	.life-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 40px;
+		width: 100%;
+	}
+
+	.life-card {
+		position: relative;
+		border-radius: 24px;
+		overflow: hidden;
+		box-shadow: 0 12px 35px rgba(0, 0, 0, 0.06);
+		width: 100%;
+		aspect-ratio: 1.58;
+	}
+
+	.life-card-img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		display: block;
+		transition: transform 0.3s ease;
+	}
+
+	.life-card:hover .life-card-img {
+		transform: scale(1.03);
+	}
+
+	.life-card-overlay {
+		position: absolute;
+		inset: 0;
+		background: linear-gradient(
+			to top,
+			rgba(0, 0, 0, 0.85) 0%,
+			rgba(0, 0, 0, 0.1) 75%
+		);
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-end;
+		padding: 40px;
+		z-index: 2;
+	}
+
+	.life-card-title {
+		font-size: 1.65rem;
+		font-weight: 800;
+		color: #ffffff;
+		margin-bottom: 14px;
+	}
+
+	.life-card-desc {
+		font-size: 0.875rem;
+		color: #ffffff;
+		line-height: 1.65;
+		opacity: 0.95;
+	}
+
+	/* ── WE'RE FEATURED ON ── */
+	.featured-section {
+		padding: 80px 0;
+		background: #ffffff;
+		position: relative;
+	}
+
+	.featured-title {
+		font-size: 2.5rem;
+		font-weight: 800;
+		text-align: center;
+		color: #111827;
+		margin-bottom: 16px;
+		line-height: 1.25;
+	}
+
+	.featured-subtitle {
+		font-size: 0.95rem;
+		line-height: 1.6;
+		text-align: center;
+		color: #6b7280;
+		max-width: 800px;
+		margin: 0 auto 48px;
+	}
+
+	.featured-ticker-wrap {
+		overflow: hidden;
+		width: 100%;
+		max-width: 100%;
+		mask-image: linear-gradient(
+			to right,
+			transparent,
+			black 15%,
+			black 85%,
+			transparent
+		);
+		-webkit-mask-image: linear-gradient(
+			to right,
+			transparent,
+			black 15%,
+			black 85%,
+			transparent
+		);
+		margin-top: 20px;
+	}
+
+	.featured-ticker {
+		display: flex;
+		align-items: center;
+		gap: 64px;
+		width: max-content;
+		animation: featured-ticker-scroll 25s linear infinite;
+	}
+
+	.featured-ticker:hover {
+		animation-play-state: paused;
+	}
+
+	.featured-logo-item {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		filter: grayscale(100%);
+		opacity: 0.55;
+		transition:
+			opacity 0.25s,
+			filter 0.25s,
+			transform 0.25s;
+	}
+
+	.featured-logo-item:hover {
+		filter: grayscale(0%);
+		opacity: 1;
+		transform: translateY(-2px);
+	}
+
+	.featured-logo-img {
+		max-height: 38px;
+		max-width: 140px;
+		object-fit: contain;
+		display: block;
+	}
+
+	@keyframes featured-ticker-scroll {
+		0% {
+			transform: translateX(0);
+		}
+		100% {
+			transform: translateX(-33.333%);
+		}
+	}
+
+	/* ── RESPONSIVE ── */
+	@media (max-width: 768px) {
+		.hero-container {
+			flex-direction: column;
+			padding: 0 24px;
+			gap: 20px;
+		}
+		.hero-visual {
+			width: 100%;
+			height: 350px;
+		}
+		.hero-heading {
+			font-size: 2.2rem;
+		}
+		.alumni-section {
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 12px;
+		}
+		.alumni-ticker-wrap {
+			max-width: 100%;
+		}
+		.courses-grid {
+			grid-template-columns: 1fr;
+		}
+		.courses-divider {
+			width: 100%;
+			height: 1px;
+			margin: 0;
+		}
+		.steps-grid {
+			flex-direction: column;
+			align-items: center;
+			gap: 16px;
+		}
+		.step-dots {
+			width: 2px;
+			height: 40px;
+			border-top: none;
+			border-left: 2px dashed #cbd5e1;
+			margin-top: 8px;
+			margin-bottom: 8px;
+			margin-left: 0;
+			flex: none;
+		}
+		.testimonials-layout {
+			grid-template-columns: 1fr;
+			gap: 40px;
+		}
+		.testimonials-right {
+			border-left: none;
+			padding-left: 0;
+		}
+		.testimonials-right::before {
+			display: none;
+		}
+		.audience-grid {
+			grid-template-columns: 1fr;
+			padding: 0 24px;
+			gap: 20px;
+		}
+		.audience-img {
+			height: 380px;
+		}
+		.promo-card {
+			padding: 44px 20px;
+		}
+		.feedback-layout {
+			grid-template-columns: 1fr;
+			gap: 32px;
+		}
+		.think-banner {
+			flex-direction: column;
+			align-items: flex-start;
+			padding: 30px 24px;
+			gap: 24px;
+		}
+		.think-banner-right {
+			width: 100%;
+			justify-content: space-between;
+			gap: 20px;
+		}
+		.achievements-grid {
+			flex-direction: column;
+			gap: 20px;
+		}
+		.achievement-card {
+			width: 100%;
+			min-height: 200px;
+			padding: 36px 20px;
+		}
+		.achievement-num {
+			font-size: 4.5rem;
+		}
+		.career-layout {
+			grid-template-columns: 1fr;
+			gap: 40px;
+		}
+		.career-left {
+			min-height: 360px;
+		}
+		.career-person-img {
+			max-width: 280px;
+		}
+		.partner-item {
+			padding: 20px 0;
+			gap: 16px;
+		}
+		.partner-logo-wrap {
+			flex: 0 0 48px;
+		}
+		.partner-name {
+			font-size: 1.05rem;
+		}
+		.life-slider-wrap {
+			padding: 0 20px;
+		}
+		.life-grid {
+			flex-direction: column;
+			gap: 20px;
+		}
+		.life-arrow-btn {
+			display: none;
+		}
+		.life-card {
+			flex: 0 0 auto;
+			width: 100%;
+			min-height: 280px;
+		}
+		.life-card-overlay {
+			padding: 24px;
+		}
+		.life-card-title {
+			font-size: 1.35rem;
+			margin-bottom: 8px;
+		}
+		.life-card-desc {
+			font-size: 0.8rem;
+		}
+		.featured-ticker {
+			gap: 40px;
+		}
+		.featured-logo-img {
+			max-height: 28px;
+			max-width: 100px;
+		}
+		.section-container {
+			padding: 0 24px;
+		}
+	}
+</style>

@@ -1,0 +1,255 @@
+---
+
+---
+
+<nav class="navbar">
+    <div class="nav-container">
+        <!-- Logo -->
+        <a href="/" class="nav-logo">
+            <img
+                src="/src/Assets/elancewebIcon.svg"
+                alt="ELANCE"
+                class="logo-img"
+            />
+        </a>
+
+        <!-- Navigation Links in Pill -->
+        <div class="nav-menu-wrapper">
+            <ul class="nav-links">
+                <li><a href="#" class="nav-link active-link">Home</a></li>
+                <li class="has-dropdown">
+                    <a href="#" class="nav-link">
+                        Courses
+                        <svg
+                            class="chevron"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                d="M6 9l6 6 6-6"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"></path>
+                        </svg>
+                    </a>
+                </li>
+                <li class="has-dropdown">
+                    <a href="#" class="nav-link">
+                        Our Centers
+                        <svg
+                            class="chevron"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                d="M6 9l6 6 6-6"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"></path>
+                        </svg>
+                    </a>
+                </li>
+                <li class="has-dropdown">
+                    <a href="#" class="nav-link">
+                        About Us
+                        <svg
+                            class="chevron"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                d="M6 9l6 6 6-6"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"></path>
+                        </svg>
+                    </a>
+                </li>
+                <li><a href="#" class="nav-link">Contact Us</a></li>
+            </ul>
+        </div>
+
+        <!-- CTA -->
+        <a href="#" class="btn-get-in-touch">Get in Touch</a>
+
+        <!-- Mobile Hamburger -->
+        <button class="hamburger" id="hamburger" aria-label="Open Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</nav>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    .navbar {
+        position: relative;
+        z-index: 1000;
+        background: #ffffff;
+        box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
+        font-family:
+            "Inter",
+            -apple-system,
+            sans-serif;
+    }
+
+    .nav-container {
+        display: -webkit-flex;
+        display: -webkit-box;
+        display: -moz-flex;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 90px !important;
+        transition: all 0.2s ease-in-out;
+        -webkit-transition: all 0.2s ease-in-out;
+        width: 100%;
+        max-width: 1600px;
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: auto;
+        margin-left: auto;
+        gap: 24px;
+    }
+
+    @media (min-width: 992px) {
+        .nav-container {
+            max-width: 1300px !important;
+        }
+    }
+
+    @media (max-width: 1200px) {
+        .nav-container {
+            max-width: 960px;
+        }
+    }
+
+    /* Logo */
+    .nav-logo {
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        flex-shrink: 0;
+    }
+
+    .logo-img {
+        height: 36px;
+        width: auto;
+        object-fit: contain;
+    }
+
+    /* Pill Nav Menu */
+    .nav-menu-wrapper {
+        display: flex;
+        align-items: center;
+        flex: 1;
+        max-width: 720px;
+    }
+
+    .nav-links {
+        display: flex;
+        list-style: none;
+        margin: 0;
+        padding: 0 16px;
+        background: #fafafa;
+        border-radius: 100px;
+        align-items: center;
+        width: 100%;
+        justify-content: space-between;
+        height: 56px;
+    }
+
+    .nav-link {
+        text-decoration: none;
+        color: #212529;
+        font-family: "Outfit", sans-serif;
+        font-size: 16px;
+        font-weight: 500;
+        padding: 8px 16px;
+        display: flex;
+        align-items: center;
+        gap: 3px;
+        white-space: nowrap;
+    }
+
+    .nav-link:hover,
+    .active-link {
+        color: #3b9fe8;
+    }
+
+    .chevron {
+        width: 14px;
+        height: 14px;
+        flex-shrink: 0;
+        color: inherit;
+        opacity: 0.8;
+    }
+
+    /* CTA Button */
+    .btn-get-in-touch {
+        text-decoration: none;
+        color: #ffffff;
+        font-family: "Outfit", sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        height: 50px;
+        padding: 0 40px;
+        margin: 0 40px 0 20px;
+        background: #519fde;
+        border-radius: 100px;
+        white-space: nowrap;
+        flex-shrink: 0;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        transition:
+            background 0.2s,
+            transform 0.15s;
+    }
+
+    .btn-get-in-touch:hover {
+        background: #3989c9;
+        transform: translateY(-1px);
+    }
+
+    /* Hamburger */
+    .hamburger {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 4px;
+    }
+
+    .hamburger span {
+        display: block;
+        width: 22px;
+        height: 2px;
+        background: #334155;
+        border-radius: 2px;
+    }
+
+    @media (max-width: 900px) {
+        .nav-menu-wrapper {
+            display: none;
+        }
+        .btn-get-in-touch {
+            display: none;
+        }
+        .hamburger {
+            display: flex;
+        }
+    }
+</style>

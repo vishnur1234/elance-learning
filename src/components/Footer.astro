@@ -1,0 +1,356 @@
+---
+---
+
+<footer class="footer">
+    <div class="footer-container">
+        <!-- ===================== BLUE BANNER CTA ===================== -->
+        <div class="cta-card">
+            <img
+                src="/src/Assets/elance-trigon.png"
+                alt="Students classroom"
+                class="cta-image"
+            />
+            <div class="cta-content">
+                <h2 class="cta-title">
+                    Your Career Deserves<br />More Than Ordinary.<br />Choose Elance.
+                </h2>
+                <a href="#" class="btn-cta">Make Yours Now!</a>
+            </div>
+        </div>
+
+        <!-- ===================== MAIN FOOTER LINKS ===================== -->
+        <div class="footer-links-grid">
+            <!-- Brand Column -->
+            <div class="footer-brand-col">
+                <a href="/" class="footer-logo">
+                    <img
+                        src="/src/Assets/elanceIcon.png"
+                        alt="ELANCE"
+                        class="footer-logo-img"
+                    />
+                </a>
+            </div>
+
+            <!-- Main Column -->
+            <div class="footer-col">
+                <h3 class="footer-heading">Main</h3>
+                <ul class="footer-menu">
+                    <li><a href="#" class="footer-link">Home</a></li>
+                    <li><a href="#" class="footer-link">Blog</a></li>
+                    <li><a href="#" class="footer-link">Contact Us</a></li>
+                    <li><a href="#" class="footer-link">Career</a></li>
+                </ul>
+            </div>
+
+            <!-- Courses Column -->
+            <div class="footer-col">
+                <h3 class="footer-heading">Courses</h3>
+                <ul class="footer-menu">
+                    <li><a href="#" class="footer-link">ACCA</a></li>
+                    <li><a href="#" class="footer-link">CMA</a></li>
+                </ul>
+            </div>
+
+            <!-- Connect Column -->
+            <div class="footer-col">
+                <h3 class="footer-heading">Connect</h3>
+                <ul class="footer-menu">
+                    <li><a href="#" class="footer-link">Call Us</a></li>
+                    <li><a href="#" class="footer-link">Ask Us</a></li>
+                    <li><a href="#" class="footer-link">Students Policy</a></li>
+                </ul>
+            </div>
+
+            <!-- Social Column -->
+            <div class="footer-col social-col">
+                <h3 class="footer-heading">Our Social Media Platforms</h3>
+                <div class="social-links">
+                    <a href="#" class="social-btn" aria-label="Facebook">
+                        <img src="/src/Assets/fb.svg" alt="Facebook" />
+                    </a>
+                    <a href="#" class="social-btn" aria-label="LinkedIn">
+                        <img src="/src/Assets/li.svg" alt="LinkedIn" />
+                    </a>
+                    <a href="#" class="social-btn" aria-label="Instagram">
+                        <img src="/src/Assets/ins.svg" alt="Instagram" />
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===================== FOOTER BOTTOM COPYRIGHT ===================== -->
+        <div class="footer-bottom">
+            <p class="copyright-text">
+                2026 ELANCE LEARNING PROVIDER PRIVATE LIMITED. ALL RIGHTS RESERVED.
+            </p>
+            <div class="footer-policy-links">
+                <a href="#" class="policy-link">PRIVACY POLICY</a>
+                <a href="#" class="policy-link">TERMS AND CONDITIONS</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<style>
+    .footer {
+        background: #ffffff;
+        padding: 60px 0 40px;
+        font-family:
+            "Inter",
+            -apple-system,
+            BlinkMacSystemFont,
+            sans-serif;
+    }
+
+    .footer-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 40px;
+    }
+
+    /* ── CTA Banner Card ── */
+    .cta-card {
+        background: linear-gradient(108deg, #3b9fe8 0%, #15457a 100%);
+        border-radius: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        position: relative;
+        min-height: 290px;
+        padding: 40px 80px;
+        overflow: hidden;
+        margin-bottom: 80px;
+        box-shadow: 0 10px 30px rgba(59, 159, 232, 0.15);
+    }
+
+    .cta-image {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 100%;
+        width: auto;
+        object-fit: cover;
+        object-position: left bottom;
+        z-index: 1;
+    }
+
+    .cta-content {
+        width: 55%;
+        z-index: 2;
+        color: #ffffff;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 24px;
+    }
+
+    .cta-title {
+        font-size: 2.2rem;
+        font-weight: 800;
+        line-height: 1.25;
+        color: #ffffff;
+        margin: 0;
+    }
+
+    .btn-cta {
+        display: inline-block;
+        background: #ffffff;
+        color: #3b9fe8;
+        font-size: 0.9rem;
+        font-weight: 700;
+        padding: 14px 36px;
+        border-radius: 100px;
+        text-decoration: none;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+        transition:
+            background 0.2s,
+            transform 0.15s,
+            box-shadow 0.2s;
+    }
+
+    .btn-cta:hover {
+        background: #f8fafc;
+        transform: translateY(-1px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    /* ── Main Links Grid ── */
+    .footer-links-grid {
+        display: grid;
+        grid-template-columns: 1.2fr 1fr 1fr 1fr 1.5fr;
+        gap: 40px;
+        margin-bottom: 60px;
+    }
+
+    .footer-brand-col {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .footer-logo-img {
+        height: 32px;
+        width: auto;
+        object-fit: contain;
+    }
+
+    .footer-heading {
+        font-size: 0.95rem;
+        font-weight: 800;
+        color: #111827;
+        margin-bottom: 24px;
+    }
+
+    .footer-menu {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .footer-link {
+        text-decoration: none;
+        color: #6b7280;
+        font-size: 0.875rem;
+        font-weight: 500;
+        transition: color 0.15s;
+    }
+
+    .footer-link:hover {
+        color: #3b9fe8;
+    }
+
+    /* Social Column */
+    .social-col {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .social-links {
+        display: flex;
+        gap: 12px;
+    }
+
+    .social-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 38px;
+        height: 38px;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        transition:
+            border-color 0.2s,
+            background-color 0.2s,
+            transform 0.15s;
+        text-decoration: none;
+        background: transparent;
+    }
+
+    .social-btn:hover {
+        border-color: #3b9fe8;
+        background-color: #f8fafc;
+        transform: translateY(-1px);
+    }
+
+    .social-btn img {
+        width: 16px;
+        height: 16px;
+        object-fit: contain;
+    }
+
+    /* ── Footer Bottom Copyright ── */
+    .footer-bottom {
+        border-top: 1px solid #e5e7eb;
+        padding-top: 28px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .copyright-text {
+        font-size: 0.72rem;
+        font-weight: 700;
+        color: #9ca3af;
+        letter-spacing: 0.05em;
+        margin: 0;
+    }
+
+    .footer-policy-links {
+        display: flex;
+        gap: 28px;
+    }
+
+    .policy-link {
+        text-decoration: none;
+        color: #9ca3af;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        transition: color 0.15s;
+    }
+
+    .policy-link:hover {
+        color: #3b9fe8;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 992px) {
+        .footer-links-grid {
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+        .footer-brand-col {
+            grid-column: span 2;
+            margin-bottom: 20px;
+        }
+        .social-col {
+            grid-column: span 2;
+            margin-top: 20px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .footer-container {
+            padding: 0 24px;
+        }
+
+        .cta-card {
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 40px 32px;
+            min-height: auto;
+        }
+
+        .cta-image {
+            position: relative;
+            width: 100%;
+            height: auto;
+            max-height: 200px;
+            margin-bottom: 24px;
+        }
+
+        .cta-content {
+            width: 100%;
+        }
+
+        .cta-title {
+            font-size: 1.8rem;
+        }
+
+        .footer-bottom {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 16px;
+        }
+
+        .footer-policy-links {
+            flex-direction: column;
+            gap: 12px;
+        }
+    }
+</style>
