@@ -1,5 +1,6 @@
 ---
-
+const pathname = new URL(Astro.request.url).pathname;
+const currentPath = pathname.replace(/\/$/, "");
 ---
 
 <nav class="navbar">
@@ -16,9 +17,9 @@
         <!-- Navigation Links in Pill -->
         <div class="nav-menu-wrapper">
             <ul class="nav-links">
-                <li><a href="/" class="nav-link active-link">Home</a></li>
+                <li><a href="/" class={`nav-link ${currentPath === "" ? "active-link" : ""}`}>Home</a></li>
                 <li class="has-dropdown">
-                    <a href="/courses" class="nav-link">
+                    <a href="/courses" class={`nav-link ${currentPath === "/courses" ? "active-link" : ""}`}>
                         Courses
                         <svg
                             class="chevron"
