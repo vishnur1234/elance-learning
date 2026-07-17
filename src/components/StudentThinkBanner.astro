@@ -1,0 +1,475 @@
+---
+// StudentThinkBanner.astro
+// Component representing the "What our Students think about us" header banner.
+---
+
+<section class="think-section">
+	<div class="section-container">
+		<div class="think-banner">
+			<!-- Left side with title -->
+			<div class="think-banner-left">
+				<h2 class="think-title">
+					What our<br />
+					Students
+					<svg class="elance-logo-mark" viewBox="0 0 30 20" aria-label="Elance Logo Mark">
+						<rect x="0" y="2" width="28" height="4" fill="#3b9fe8" rx="2"/>
+						<rect x="0" y="8" width="20" height="4" fill="#3b9fe8" rx="2"/>
+						<rect x="0" y="14" width="12" height="4" fill="#3b9fe8" rx="2"/>
+					</svg>
+					think<br />
+					about us?
+				</h2>
+			</div>
+
+			<!-- Right side with testimonials, avatars, and controls -->
+			<div class="think-banner-right">
+				<!-- Top row of the right side -->
+				<div class="think-right-header">
+					<div class="think-avatars">
+						<div class="avatar-ring bg-blue" data-index="0">
+							<img
+								src="/src/Assets/i1.jpg"
+								alt="Student 1"
+								class="think-avatar"
+							/>
+						</div>
+						<div class="avatar-ring bg-purple" data-index="1">
+							<img
+								src="/src/Assets/i2.jpg"
+								alt="Student 2"
+								class="think-avatar"
+							/>
+						</div>
+						<div class="avatar-ring bg-cyan" data-index="2">
+							<img
+								src="/src/Assets/Abhiram-testi.jpg"
+								alt="Student 3"
+								class="think-avatar"
+							/>
+						</div>
+					</div>
+
+					<div class="think-arrows">
+						<button
+							class="arrow-btn-small btn-prev"
+							id="prev-testimonial"
+							aria-label="Previous testimonial"
+						>
+							<svg
+								viewBox="0 0 24 24"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path
+									d="M15 19l-7-7 7-7"
+									stroke="currentColor"
+									stroke-width="2.5"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								></path>
+							</svg>
+						</button>
+						<button
+							class="arrow-btn-small btn-next"
+							id="next-testimonial"
+							aria-label="Next testimonial"
+						>
+							<svg
+								viewBox="0 0 24 24"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path
+									d="M9 5l7 7-7 7"
+									stroke="currentColor"
+									stroke-width="2.5"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								></path>
+							</svg>
+						</button>
+					</div>
+				</div>
+
+				<!-- Testimonial Content Box -->
+				<div class="think-testimonial-content">
+					<p class="think-quote" id="testimonial-quote">
+						"With Elance, you won't feel like you're missing out on the college vibe."
+					</p>
+					<h4 class="think-author" id="testimonial-author">
+						Shringa Surendran
+					</h4>
+					<p class="think-company" id="testimonial-company">
+						KPMG
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- Script for dynamic testimonial slider -->
+<script>
+	const testimonials = [
+		{
+			quote: '"With Elance, you won\'t feel like you\'re missing out on the college vibe."',
+			author: "Shringa Surendran",
+			company: "KPMG"
+		},
+		{
+			quote: '"The faculty at Elance is extremely supportive, guiding me at every step of my ACCA journey."',
+			author: "Vaishnav Unny",
+			company: "PwC"
+		},
+		{
+			quote: '"Elance provided me with the resources and confidence to clear my papers on the first attempt."',
+			author: "Siya Sabu",
+			company: "EY"
+		}
+	];
+
+	let currentIndex = 0;
+
+	const quoteEl = document.getElementById("testimonial-quote");
+	const authorEl = document.getElementById("testimonial-author");
+	const companyEl = document.getElementById("testimonial-company");
+	const prevBtn = document.getElementById("prev-testimonial");
+	const nextBtn = document.getElementById("next-testimonial");
+	const rings = document.querySelectorAll(".avatar-ring");
+
+	function updateTestimonial(index) {
+		if (!quoteEl || !authorEl || !companyEl) return;
+
+		// Fade out content slightly
+		quoteEl.style.opacity = "0";
+		authorEl.style.opacity = "0";
+		companyEl.style.opacity = "0";
+
+		setTimeout(() => {
+			quoteEl.textContent = testimonials[index].quote;
+			authorEl.textContent = testimonials[index].author;
+			companyEl.textContent = testimonials[index].company;
+
+			// Fade back in
+			quoteEl.style.opacity = "1";
+			authorEl.style.opacity = "1";
+			companyEl.style.opacity = "1";
+		}, 200);
+
+		// Update active state of avatar rings
+		rings.forEach((ring, rIndex) => {
+			if (rIndex === index) {
+				ring.classList.add("active");
+				(ring as HTMLElement).style.transform = "scale(1.15)";
+				(ring as HTMLElement).style.zIndex = "5";
+				(ring as HTMLElement).style.opacity = "1";
+			} else {
+				ring.classList.remove("active");
+				(ring as HTMLElement).style.transform = "scale(1)";
+				(ring as HTMLElement).style.zIndex = (3 - Math.abs(rIndex - index)).toString();
+				(ring as HTMLElement).style.opacity = "0.7";
+			}
+		});
+	}
+
+	if (prevBtn && nextBtn) {
+		prevBtn.addEventListener("click", () => {
+			currentIndex = (currentIndex - 1 + testimonials.length) % testimonials.length;
+			updateTestimonial(currentIndex);
+		});
+
+		nextBtn.addEventListener("click", () => {
+			currentIndex = (currentIndex + 1) % testimonials.length;
+			updateTestimonial(currentIndex);
+		});
+		
+		// Add click listeners to avatars themselves
+		rings.forEach((ring, index) => {
+			ring.addEventListener("click", () => {
+				currentIndex = index;
+				updateTestimonial(currentIndex);
+			});
+		});
+
+		// Initialize first testimonial state
+		updateTestimonial(0);
+	}
+</script>
+
+<style>
+	.think-section {
+		padding: 60px 0;
+		background-color: #e6f0fa; /* soft light blue section background */
+		width: 100%;
+	}
+
+	.section-container {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 0 40px;
+		width: 100%;
+		box-sizing: border-box;
+	}
+
+	/* Think Banner Container */
+	.think-banner {
+		position: relative;
+		background: #ffffff;
+		border-radius: 32px; /* rounded box corners exactly like screenshot */
+		box-shadow: 
+			0 20px 50px rgba(37, 99, 235, 0.04), 
+			0 4px 15px rgba(0, 0, 0, 0.01);
+		padding: 60px 80px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		overflow: hidden;
+		border: 1px solid rgba(229, 231, 235, 0.4);
+	}
+
+	/* Wedge shape in background using you-bg.png from assets */
+	.think-banner::before {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 350px;
+		height: 100%;
+		background-image: url("/src/Assets/you-bg.png");
+		background-size: contain;
+		background-repeat: no-repeat;
+		background-position: left center;
+		z-index: 0;
+		pointer-events: none;
+	}
+
+	.think-banner-left {
+		width: 42%;
+		position: relative;
+		z-index: 2;
+	}
+
+	.think-banner-right {
+		width: 52%;
+		position: relative;
+		z-index: 2;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 28px;
+	}
+
+	/* Title styling */
+	.think-title {
+		font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+		font-weight: 800;
+		color: #1e293b;
+		line-height: 1.25;
+		margin: 0;
+		font-family: "Outfit", sans-serif;
+	}
+
+	.elance-logo-mark {
+		display: inline-block;
+		vertical-align: middle;
+		margin: 0 4px;
+		height: 22px;
+		width: auto;
+	}
+
+	/* Controls block top row */
+	.think-right-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		width: 100%;
+	}
+
+	/* Avatars Stack */
+	.think-avatars {
+		display: flex;
+		align-items: center;
+	}
+
+	.avatar-ring {
+		width: 52px;
+		height: 52px;
+		border-radius: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 2.5px;
+		box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
+		transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
+		cursor: pointer;
+		opacity: 0.7;
+	}
+
+	.avatar-ring.active {
+		transform: scale(1.15);
+		opacity: 1;
+		z-index: 5;
+	}
+
+	/* Background rings around avatars */
+	.avatar-ring.bg-blue {
+		background-color: #3b9fe8;
+	}
+
+	.avatar-ring.bg-purple {
+		background-color: #a855f7;
+	}
+
+	.avatar-ring.bg-cyan {
+		background-color: #06b6d4;
+	}
+
+	.think-avatar {
+		width: 100%;
+		height: 100%;
+		border-radius: 50%;
+		object-fit: cover;
+		border: 2px solid #ffffff;
+	}
+
+	.avatar-ring:not(:first-child) {
+		margin-left: -14px;
+	}
+
+	/* Buttons styling */
+	.think-arrows {
+		display: flex;
+		gap: 16px;
+	}
+
+	.arrow-btn-small {
+		width: 48px;
+		height: 48px;
+		border-radius: 50%;
+		border: none;
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		transition: all 0.25s ease;
+	}
+
+	/* Left (Previous) button */
+	.btn-prev {
+		background: #bae6fd;
+		color: #0284c7;
+		opacity: 0.85;
+	}
+
+	/* Right (Next) button */
+	.btn-next {
+		background: #3b9fe8;
+		color: #ffffff;
+		box-shadow: 0 4px 12px rgba(59, 159, 232, 0.25);
+	}
+
+	.arrow-btn-small:hover {
+		transform: scale(1.05);
+		box-shadow: 0 6px 16px rgba(59, 159, 232, 0.35);
+	}
+
+	.arrow-btn-small svg {
+		width: 20px;
+		height: 20px;
+	}
+
+	/* Testimonial Content Box styling */
+	.think-testimonial-content {
+		width: 100%;
+		text-align: left;
+		margin-top: 4px;
+	}
+
+	.think-quote {
+		font-size: 1.15rem;
+		font-style: italic;
+		font-weight: 700;
+		color: #1e293b;
+		line-height: 1.45;
+		margin: 0 0 24px 0;
+		transition: opacity 0.25s ease;
+	}
+
+	.think-author {
+		font-size: 1.1rem;
+		font-weight: 700;
+		color: #0f172a;
+		margin: 0 0 4px 0;
+		transition: opacity 0.25s ease;
+	}
+
+	.think-company {
+		font-size: 0.9rem;
+		font-weight: 600;
+		color: #64748b;
+		margin: 0;
+		text-transform: uppercase;
+		letter-spacing: 0.5px;
+		transition: opacity 0.25s ease;
+	}
+
+	/* Responsive overrides */
+	@media (max-width: 992px) {
+		.think-banner {
+			padding: 40px 50px;
+		}
+		.think-banner-left {
+			width: 45%;
+		}
+		.think-banner-right {
+			width: 50%;
+		}
+	}
+
+	@media (max-width: 768px) {
+		.think-banner {
+			flex-direction: column;
+			gap: 40px;
+			text-align: center;
+			padding: 40px 30px;
+		}
+		.think-banner-left {
+			width: 100%;
+		}
+		.think-banner-right {
+			width: 100%;
+			gap: 24px;
+			align-items: center;
+		}
+		.think-testimonial-content {
+			text-align: center;
+		}
+		.think-quote {
+			margin-bottom: 16px;
+		}
+		.think-banner::before {
+			width: 100%;
+			background-position: center top;
+		}
+	}
+
+	@media (max-width: 480px) {
+		.think-banner-right {
+			gap: 20px;
+		}
+		.think-right-header {
+			flex-direction: column;
+			gap: 20px;
+		}
+		.think-arrows {
+			width: 100%;
+			justify-content: center;
+		}
+		.think-avatars {
+			justify-content: center;
+		}
+		.think-section {
+			padding: 40px 0;
+		}
+	}
+</style>

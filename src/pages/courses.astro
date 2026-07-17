@@ -1,6 +1,7 @@
 ---
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
+import FeaturedOn from "../components/FeaturedOn.astro";
 ---
 
 <html lang="en">
@@ -92,8 +93,231 @@ import Footer from "../components/Footer.astro";
 						>
 					</div>
 				</div>
+
+				<!-- Area 1: Why Choose Cards (Dark Blue) -->
+				<div class="why-choose-grid">
+					<div class="why-card">
+						<h3>Relevant in Today's <br />Job Market</h3>
+						<p>These certifications are built around current industry demands, making you job-ready from day one.</p>
+					</div>
+					<div class="why-card">
+						<h3>Practical & Global</h3>
+						<p>They combine real-world applications with global recognition, opening doors across countries and industries.</p>
+					</div>
+					<div class="why-card">
+						<h3>Trusted by <br />Employers</h3>
+						<p>Top companies value professionals with specialised, updated skills —not just theoretical knowledge.</p>
+					</div>
+					<div class="why-card">
+						<h3>Career-Focused</h3>
+						<p>Designed for faster career progression, better roles, and leadership tracks.</p>
+					</div>
+				</div>
 			</div>
 		</section>
+
+		<!-- ===================== OPPORTUNITIES SECTION ===================== -->
+		<section class="opportunities-section">
+			<div class="section-container opportunities-container">
+				<div class="opportunities-left">
+					<h2 class="opportunities-title">Opportunities with <br/>Commerce <br/>Professional <br/>Courses</h2>
+					<p class="opportunities-desc">
+						Commerce professional certifications are increasingly becoming the benchmark for hiring in finance, accounting, and business roles. Designed in line with global standards, these qualifications equip individuals with practical, up-to-date skills that meet the evolving needs of modern industries.
+					</p>
+					<div class="opportunities-logos">
+						<img src="/src/Assets/courses/trust.svg" alt="ACCA Platinum Learning Partner" class="partner-logo" />
+						<img src="/src/Assets/courses/Silver-CMA.png" alt="Silver CMA Course Provider IMA" class="partner-logo" />
+						<img src="/src/Assets/courses/CBE-Center.png" alt="Licensed ACCA CBE Centre" class="partner-logo" />
+					</div>
+				</div>
+				<div class="opportunities-right">
+					<div class="opportunities-col">
+						<div class="opportunity-card">
+							<h3>Global <br/>Recognition</h3>
+							<p>Commerce professional certifications like ACCA and CMA USA are recognised worldwide, giving professionals the flexibility to work abroad or with international firms operating in India.</p>
+						</div>
+						<div class="opportunity-card">
+							<h3>Diverse Job <br/>Roles</h3>
+							<p>The commerce professional courses open doors to roles like Financial Analyst, Auditor, Tax Consultant, Risk Manager, and even CFO across both national and international markets.</p>
+						</div>
+					</div>
+					<div class="opportunities-col offset-col">
+						<div class="opportunity-card">
+							<h3>Higher Earning <br/>Potential</h3>
+							<p>Certified commerce professionals in India typically earn 30-60% more than their non-certified peers. Entry-level salaries range from ₹6-10 LPA, with mid- to senior-level roles offering packages of ₹15-40 LPA and beyond, depending on the role and experience.</p>
+						</div>
+						<div class="opportunity-card">
+							<h3>Career <br/>Versatility</h3>
+							<p>Certified professionals are eligible for roles across various sectors including banking, consulting, fintech, corporate finance, and public practice.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ===================== COURSES WE OFFER SECTION ===================== -->
+		<section class="courses-offer-section" id="courses">
+			<div class="section-container">
+				<h2 class="courses-offer-title">Courses we offer at Elance</h2>
+				<div class="courses-offer-grid">
+					<div class="course-offer-card" id="acca">
+						<img src="/src/Assets/accaimage-300x300.png" alt="ACCA" class="course-offer-logo" />
+						<p class="course-offer-desc">
+							ACCA is one of the world's most respected accounting qualifications, recognised in 180+ countries and trusted by over 7,600 approved employers globally. With a curriculum built around international standards, ethics, and digital finance, ACCA prepares professionals for high-impact roles in auditing, taxation, risk management, and financial strategy.
+						</p>
+						<a href="#" class="course-offer-link">Learn More &rarr;</a>
+					</div>
+					
+					<div class="course-offer-card" id="cma">
+						<img src="/src/Assets/cmaimage-300x300.png" alt="CMA USA" class="course-offer-logo" />
+						<p class="course-offer-desc">
+							CMA USA is a globally recognised certification in management accounting, awarded by the Institute of Management Accountants (IMA). Recognised in 150+ countries and preferred by Fortune 500 companies, the CMA credential focuses on financial strategy, cost control, and performance analysis—making it ideal for professionals aiming for leadership roles in finance.
+						</p>
+						<a href="#" class="course-offer-link">Learn More &rarr;</a>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ===================== VIDEO BANNER SECTION ===================== -->
+		<section class="video-banner-section">
+			<video autoplay loop muted playsinline class="video-banner-bg">
+				<source src="/src/Assets/mp4/CALICUT.mp4" type="video/mp4" />
+			</video>
+			<div class="video-banner-overlay"></div>
+			<div class="section-container video-banner-content">
+				<h2 class="video-banner-title">
+					Step Into a Future-Ready Finance <br />Career. <br />Choose Elance
+				</h2>
+				<p class="video-banner-subtitle">Begin your career now</p>
+			</div>
+		</section>
+
+		<!-- ===================== ACCREDITATIONS & STATS SECTION ===================== -->
+		<section class="stats-grid-section">
+			<div class="section-container stats-grid-container">
+				<div class="stats-card">
+					<img src="/src/Assets/courses/trophy.svg" alt="Trophy Icon" class="stats-card-icon" />
+					<p class="stats-card-text">44 World Ranks & 68 <br>National Ranks</p>
+				</div>
+				
+				<div class="stats-card">
+					<img src="/src/Assets/courses/trust.svg" alt="ACCA Platinum Logo" class="stats-card-icon" />
+					<p class="stats-card-text">Platinum Approved <br>Partner of ACCA</p>
+				</div>
+				
+				<div class="stats-card">
+					<img src="/src/Assets/courses/Silver-CMA.png" alt="Silver CMA Logo" class="stats-card-icon" />
+					<p class="stats-card-text">Silver CMA Course <br>Provider by IMA</p>
+				</div>
+				
+				<div class="stats-card">
+					<img src="/src/Assets/courses/CBE-Center.png" alt="ACCA CBE Centre" class="stats-card-icon" />
+					<p class="stats-card-text">ACCA Approved <br>CBE Centre</p>
+				</div>
+				
+				<div class="stats-card">
+					<img src="/src/Assets/courses/Hock.png" alt="Hock International Logo" class="stats-card-icon hock-logo" />
+					<p class="stats-card-text">Approved Partner of <br>HOCK International</p>
+				</div>
+				
+				<div class="stats-card">
+					<img src="/src/Assets/courses/faculty.svg" alt="Faculty Icon" class="stats-card-icon" />
+					<p class="stats-card-text">India's No 1 <br>Faculty Line-Up</p>
+				</div>
+				
+				<div class="stats-card">
+					<img src="/src/Assets/courses/100.svg" alt="100 Percent Icon" class="stats-card-icon" />
+					<p class="stats-card-text">100/100 in FR <br>(ACCA Dec ‘24 <br>Session)</p>
+				</div>
+				
+				<div class="stats-card">
+					<img src="/src/Assets/courses/pass.svg" alt="Pass Icon" class="stats-card-icon" />
+					<p class="stats-card-text">5000+ Passes in the <br>Past 1 Year</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- ===================== FAQ SECTION ===================== -->
+		<section class="faq-section">
+			<div class="section-container">
+				<h2 class="faq-title">Frequently Asked Questions</h2>
+				<div class="faq-accordion">
+					<details class="faq-item">
+						<summary class="faq-summary">
+							<span class="faq-question">Is professional certification better than a degree?</span>
+							<span class="faq-icon"></span>
+						</summary>
+						<div class="faq-content">
+							<p>While a university degree provides a broad academic foundation, professional certifications like ACCA and CMA USA focus on specialized, practical knowledge that is directly applicable to the workplace. Many employers prefer certified professionals because they are job-ready from day one, often leading to better roles and faster career progression.</p>
+						</div>
+					</details>
+
+					<details class="faq-item">
+						<summary class="faq-summary">
+							<span class="faq-question">Which certification is most suitable for a finance career?</span>
+							<span class="faq-icon"></span>
+						</summary>
+						<div class="faq-content">
+							<p>It depends on your career goals. If you want to specialize in global accounting, auditing, and taxation, ACCA is highly respected worldwide. If your focus is on management accounting, financial analysis, corporate finance, and strategic planning, CMA USA is the ideal choice.</p>
+						</div>
+					</details>
+
+					<details class="faq-item">
+						<summary class="faq-summary">
+							<span class="faq-question">Will a certification impact my salary?</span>
+							<span class="faq-icon"></span>
+						</summary>
+						<div class="faq-content">
+							<p>Yes, certified commerce professionals typically earn significantly more than their non-certified peers. In India, entry-level salaries for ACCA or CMA professionals range from ₹6–10 LPA, while experienced senior roles can offer packages of ₹15–40 LPA and beyond.</p>
+						</div>
+					</details>
+
+					<details class="faq-item">
+						<summary class="faq-summary">
+							<span class="faq-question">Can I pursue these certifications along with college or a job?</span>
+							<span class="faq-icon"></span>
+						</summary>
+						<div class="faq-content">
+							<p>Absolutely. Both ACCA and CMA USA offer flexible exam schedules and study options. You can prepare for the papers at your own pace, making it highly feasible to balance your study with college graduation (like B.Com) or full-time employment.</p>
+						</div>
+					</details>
+
+					<details class="faq-item">
+						<summary class="faq-summary">
+							<span class="faq-question">Which is the Best Institute to study ACCA in Calicut?</span>
+							<span class="faq-icon"></span>
+						</summary>
+						<div class="faq-content">
+							<p>Elance Learning is recognized as one of the premier learning institutes for ACCA in Calicut. With platinum-approved learning partner status, expert faculty, and high pass rates, we provide comprehensive training and placement support to ensure your success.</p>
+						</div>
+					</details>
+
+					<details class="faq-item">
+						<summary class="faq-summary">
+							<span class="faq-question">How long does it take to complete ACCA and CMA USA?</span>
+							<span class="faq-icon"></span>
+						</summary>
+						<div class="faq-content">
+							<p>CMA USA can typically be completed in 12 to 18 months as it consists of only 2 exam parts. ACCA, which has up to 13 papers depending on exemptions, generally takes 2 to 3 years to complete.</p>
+						</div>
+					</details>
+
+					<details class="faq-item">
+						<summary class="faq-summary">
+							<span class="faq-question">What makes Elance a leading ACCA institute in Kochi?</span>
+							<span class="faq-icon"></span>
+						</summary>
+						<div class="faq-content">
+							<p>Elance's Kochi campus offers state-of-the-art classroom facilities, direct mentorship programs, industry-aligned course material, and an active placement cell. Our status as a Licensed CBE Centre also allows students to take exams locally and conveniently.</p>
+						</div>
+					</details>
+				</div>
+			</div>
+		</section>
+
+		<!-- ===================== WE'RE FEATURED ON ===================== -->
+		<FeaturedOn />
 
 		<Footer />
 	</body>
@@ -231,6 +455,8 @@ import Footer from "../components/Footer.astro";
 	.why-choose-section {
 		padding: 20px 0 80px;
 		background: #ffffff;
+		margin-top: -60px;
+		z-index: 20;
 	}
 
 	.choose-card {
@@ -344,6 +570,378 @@ import Footer from "../components/Footer.astro";
 		transform: translateY(-2px);
 	}
 
+	/* ── WHY CHOOSE GRID (DARK BLUE CARDS) ── */
+	.why-choose-grid {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 24px;
+		margin-top: 50px;
+	}
+
+	.why-card {
+		background-color: #0b4a8f;
+		border-radius: 24px;
+		padding: 40px 32px;
+		color: #ffffff;
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+		transition: transform 0.3s ease, box-shadow 0.3s ease;
+	}
+
+	.why-card:hover {
+		transform: translateY(-6px);
+		box-shadow: 0 12px 30px rgba(11, 74, 143, 0.25);
+	}
+
+	.why-card h3 {
+		font-size: 1.35rem;
+		font-weight: 700;
+		line-height: 1.3;
+		color: #ffffff;
+	}
+
+	.why-card p {
+		font-size: 0.95rem;
+		line-height: 1.6;
+		color: rgba(255, 255, 255, 0.9);
+	}
+
+	/* ── OPPORTUNITIES SECTION ── */
+	.opportunities-section {
+		padding: 100px 0;
+		background-color: #f7f9fb;
+	}
+
+	.opportunities-container {
+		display: grid;
+		grid-template-columns: 0.95fr 1.05fr;
+		gap: 60px;
+		align-items: center;
+	}
+
+	.opportunities-left {
+		display: flex;
+		flex-direction: column;
+		gap: 24px;
+	}
+
+	.opportunities-title {
+		font-size: clamp(2rem, 3.5vw, 2.75rem);
+		font-weight: 800;
+		color: #1e293b;
+		line-height: 1.15;
+	}
+
+	.opportunities-desc {
+		font-size: 1.05rem;
+		color: #4b5563;
+		line-height: 1.65;
+	}
+
+	.opportunities-logos {
+		display: flex;
+		gap: 24px;
+		align-items: center;
+		margin-top: 16px;
+	}
+
+	.partner-logo {
+		height: 64px;
+		width: auto;
+		object-fit: contain;
+	}
+
+	.opportunities-right {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 24px;
+		align-items: start;
+	}
+
+	.opportunities-col {
+		display: flex;
+		flex-direction: column;
+		gap: 24px;
+	}
+
+	.opportunities-col.offset-col {
+		margin-top: 40px;
+	}
+
+	.opportunity-card {
+		background-color: #eef5fb;
+		border-radius: 24px;
+		padding: 32px;
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+		transition: transform 0.3s ease, box-shadow 0.3s ease;
+	}
+
+	.opportunity-card:hover {
+		transform: translateY(-6px);
+		box-shadow: 0 12px 30px rgba(59, 159, 232, 0.15);
+	}
+
+	.opportunity-card h3 {
+		font-size: 1.25rem;
+		font-weight: 700;
+		color: #1e293b;
+	}
+
+	.opportunity-card p {
+		font-size: 0.95rem;
+		color: #4b5563;
+		line-height: 1.6;
+	}
+
+	/* ── COURSES WE OFFER SECTION ── */
+	.courses-offer-section {
+		padding: 100px 0;
+		background-color: #ffffff;
+	}
+
+	.courses-offer-title {
+		font-size: clamp(2rem, 3.5vw, 2.5rem);
+		font-weight: 800;
+		color: #1e293b;
+		text-align: center;
+		margin-bottom: 50px;
+	}
+
+	.courses-offer-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 32px;
+	}
+
+	.course-offer-card {
+		background-color: #eef5fb;
+		border-radius: 12px;
+		padding: 40px;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	.course-offer-logo {
+		width: 96px;
+		height: 96px;
+		border-radius: 0;
+		object-fit: contain;
+		margin-bottom: 24px;
+	}
+
+	.course-offer-desc {
+		font-size: 0.95rem;
+		color: #334155;
+		line-height: 1.65;
+		margin-bottom: 24px;
+	}
+
+	.course-offer-link {
+		font-size: 0.95rem;
+		font-weight: 700;
+		color: #1e293b;
+		text-decoration: none;
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+		transition: opacity 0.2s ease;
+	}
+
+	.course-offer-link:hover {
+		opacity: 0.8;
+	}
+
+	/* ── VIDEO BANNER SECTION ── */
+	.video-banner-section {
+		position: relative;
+		width: 100%;
+		height: 440px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		overflow: hidden;
+	}
+
+	.video-banner-bg {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		min-width: 100%;
+		min-height: 100%;
+		width: auto;
+		height: auto;
+		transform: translate(-50%, -50%);
+		object-fit: cover;
+		z-index: 1;
+	}
+
+	.video-banner-overlay {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: rgba(26, 158, 229, 0.6); /* Brand sky-blue overlay with exact opacity */
+		z-index: 2;
+	}
+
+	.video-banner-content {
+		position: relative;
+		z-index: 3;
+		text-align: center;
+		color: #ffffff;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.video-banner-title {
+		font-family: "Outfit", sans-serif;
+		font-size: clamp(1.8rem, 3.8vw, 2.8rem);
+		font-weight: 800;
+		line-height: 1.25;
+		color: #ffffff;
+		text-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+	}
+
+	.video-banner-subtitle {
+		font-size: 0.95rem;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.95);
+		margin-top: 40px; /* Exact spacing from the screenshot */
+		letter-spacing: 0.5px;
+		text-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+	}
+
+	/* ── ACCREDITATIONS & STATS SECTION ── */
+	.stats-grid-section {
+		padding: 80px 0;
+		background-color: #f7f9fb; /* light gray/blue background */
+	}
+
+	.stats-grid-container {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 20px;
+	}
+
+	.stats-card {
+		background-color: #ffffff; /* white card background */
+		border: 1px solid #e5eff8; /* thin clean border */
+		border-radius: 16px;
+		padding: 40px 20px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		justify-content: center;
+		transition: transform 0.3s ease, box-shadow 0.3s ease;
+	}
+
+	.stats-card:hover {
+		transform: translateY(-5px);
+		box-shadow: 0 10px 25px rgba(25, 160, 230, 0.05); /* very soft hover shadow */
+	}
+
+	.stats-card-icon {
+		height: 52px;
+		width: auto;
+		object-fit: contain;
+		margin-bottom: 24px;
+	}
+
+	.stats-card-icon.hock-logo {
+		height: 36px;
+		margin-bottom: 40px; /* offset bottom margin since Hock logo is wider and less tall */
+	}
+
+	.stats-card-text {
+		font-size: 1.05rem;
+		font-weight: 700;
+		color: #1e293b;
+		line-height: 1.35;
+	}
+
+	/* ── FAQ SECTION ── */
+	.faq-section {
+		padding: 100px 0;
+		background-color: #f7f9fb;
+	}
+
+	.faq-title {
+		font-family: "Outfit", sans-serif;
+		font-size: clamp(2.2rem, 3.5vw, 2.5rem);
+		font-weight: 800;
+		color: #1e293b;
+		text-align: center;
+		margin-bottom: 60px;
+	}
+
+	.faq-accordion {
+		max-width: 900px;
+		margin: 0 auto;
+		border: 1px solid #111111; /* Pitch black border outline */
+		border-radius: 0; /* Perfectly sharp corners */
+		background-color: #ffffff;
+	}
+
+	.faq-item {
+		border-bottom: 1px solid #111111; /* Divider matches outline */
+	}
+
+	.faq-item:last-child {
+		border-bottom: none;
+	}
+
+	.faq-summary {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 24px 32px; /* Generous padding as shown in screenshot */
+		cursor: pointer;
+		user-select: none;
+		list-style: none;
+	}
+
+	.faq-summary::-webkit-details-marker {
+		display: none;
+	}
+
+	.faq-question {
+		font-family: "Outfit", sans-serif;
+		font-weight: 600; /* Semi-bold weight as in screenshot */
+		font-size: 1.05rem;
+		color: #111111; /* Pitch black text */
+		padding-right: 20px;
+	}
+
+	.faq-icon::after {
+		content: "+";
+		font-size: 1.6rem;
+		font-weight: 400;
+		color: #111111;
+		line-height: 1;
+	}
+
+	details[open] .faq-icon::after {
+		content: "−";
+	}
+
+	.faq-content {
+		padding: 0 32px 24px;
+	}
+
+	.faq-content p {
+		font-size: 0.95rem;
+		color: #4b5563;
+		line-height: 1.65;
+	}
+
 	/* ── RESPONSIVE ── */
 	@media (max-width: 992px) {
 		.courses-hero {
@@ -409,6 +1007,143 @@ import Footer from "../components/Footer.astro";
 
 		.choose-title {
 			font-size: 1.5rem;
+		}
+
+		/* ── RESPONSIVE NEW SECTIONS ── */
+		.why-choose-grid {
+			grid-template-columns: repeat(2, 1fr);
+			gap: 16px;
+		}
+
+		.opportunities-section {
+			padding: 60px 0;
+		}
+
+		.opportunities-container {
+			grid-template-columns: 1fr;
+			gap: 40px;
+		}
+
+		.opportunities-logos {
+			justify-content: flex-start;
+			gap: 20px;
+			flex-wrap: wrap;
+		}
+
+		.partner-logo {
+			height: 50px;
+		}
+
+		.opportunities-col.offset-col {
+			margin-top: 0;
+		}
+
+		/* ── RESPONSIVE NEW SECTIONS ── */
+		.courses-offer-section {
+			padding: 60px 0;
+		}
+
+		.courses-offer-grid {
+			grid-template-columns: 1fr;
+			gap: 24px;
+		}
+
+		.course-offer-card {
+			padding: 32px;
+		}
+
+		.video-banner-section {
+			height: 420px;
+		}
+
+		/* ── RESPONSIVE STATS SECTION ── */
+		.stats-grid-section {
+			padding: 60px 0;
+		}
+
+		.stats-grid-container {
+			grid-template-columns: repeat(2, 1fr);
+			gap: 16px;
+		}
+
+		.stats-card {
+			padding: 32px 16px;
+		}
+
+		/* ── RESPONSIVE FAQ SECTION ── */
+		.faq-section {
+			padding: 60px 0 80px;
+		}
+
+		.faq-summary {
+			padding: 20px;
+		}
+
+		.faq-content {
+			padding: 0 20px 20px;
+		}
+	}
+
+	@media (max-width: 600px) {
+		.why-choose-grid {
+			grid-template-columns: 1fr;
+		}
+		
+		.why-card {
+			padding: 32px 24px;
+		}
+
+		.opportunities-right {
+			grid-template-columns: 1fr;
+			gap: 16px;
+		}
+
+		.opportunities-col {
+			gap: 16px;
+		}
+
+		.opportunity-card {
+			padding: 24px;
+		}
+
+		.course-offer-card {
+			padding: 24px;
+		}
+
+		.course-offer-logo {
+			width: 80px;
+			height: 80px;
+			border-radius: 0;
+			margin-bottom: 16px;
+		}
+
+		.course-offer-desc {
+			margin-bottom: 20px;
+		}
+
+		.video-banner-section {
+			height: 320px;
+		}
+
+		.stats-grid-container {
+			grid-template-columns: 1fr;
+		}
+
+		.stats-card {
+			padding: 28px 16px;
+		}
+
+		/* ── RESPONSIVE FAQ SECTION MOBILE ── */
+		.faq-summary {
+			padding: 16px;
+		}
+
+		.faq-content {
+			padding: 0 16px 16px;
+		}
+
+		.faq-question {
+			font-size: 0.95rem;
 		}
 	}
 </style>

@@ -1,0 +1,1699 @@
+---
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import StudentPlacements from "../components/StudentPlacements.astro";
+import StudentThinkBanner from "../components/StudentThinkBanner.astro";
+import AchievementsSection from "../components/AchievementsSection.astro";
+import CareerAndWhyElance from "../components/CareerAndWhyElance.astro";
+import AccaFaculties from "../components/AccaFaculties.astro";
+import AccaLearningAndSyllabus from "../components/AccaLearningAndSyllabus.astro";
+import AccaFaq from "../components/AccaFaq.astro";
+import FeaturedOn from "../components/FeaturedOn.astro";
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>
+			Accelerate your journey to Career Excellence With ACCA | Elance
+		</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,600&family=Outfit:wght@300;400;500;600;700;800;900&display=swap"
+			rel="stylesheet"
+		/>
+	</head>
+	<body>
+		<Nav />
+
+		<!-- ===================== TOP BANNER ===================== -->
+		<div class="enrollment-banner">
+			<div class="banner-badge">Enrollment closes soon</div>
+		</div>
+
+		<!-- ===================== MORPHING WRAPPER ===================== -->
+		<div class="morphing-wrapper">
+			<!-- Hero Section -->
+			<section class="acca-hero-section">
+				<div class="section-container acca-hero-container">
+					<div class="hero-left">
+						<h1 class="hero-title">
+							Accelerate your <br />
+							journey to <span class="text-blue"
+								>Career <br />
+								Excellence With <br />
+								ACCA.</span
+							>
+						</h1>
+
+						<div class="stats-row">
+							<div class="accreditations-badges">
+								<img
+									src="/src/Assets/courses/trust.svg"
+									alt="ACCA Approved Learning Partner"
+									class="badge-img"
+								/>
+								<img
+									src="/src/Assets/courses/CBE-Center.png"
+									alt="ACCA CBE Centre"
+									class="badge-img"
+								/>
+							</div>
+							<div class="student-proof">
+								<p class="proof-label">
+									TRUSTED BY OVER <span class="highlight-blue"
+										>25,000</span
+									>
+									<br />
+									STUDENTS GLOBALLY FOR EXCELLENCE!
+								</p>
+								<div class="avatar-stack">
+									<img
+										src="/src/Assets/Ajsal-E.webp"
+										alt="Student"
+										class="avatar-img"
+									/>
+									<img
+										src="/src/Assets/Anuradha.webp"
+										alt="Student"
+										class="avatar-img"
+									/>
+									<img
+										src="/src/Assets/Bijini-Koshi.webp"
+										alt="Student"
+										class="avatar-img"
+									/>
+									<img
+										src="/src/Assets/Jishana-T.webp"
+										alt="Student"
+										class="avatar-img"
+									/>
+									<img
+										src="/src/Assets/Kashinath.webp"
+										alt="Student"
+										class="avatar-img"
+									/>
+									<img
+										src="/src/Assets/Thanha-Kadeeja-K.webp"
+										alt="Student"
+										class="avatar-img"
+									/>
+								</div>
+							</div>
+						</div>
+
+						<div class="corporate-logos-row">
+							<span class="corp-logo-text corp-ey-logo">e.</span>
+							<img
+								src="/src/Assets/pwc.png"
+								alt="PwC"
+								class="corp-logo"
+							/>
+							<span class="corp-logo-text infosys-text"
+								>Infosys</span
+							>
+							<span class="corp-logo-text kpmg-text">KPMG</span>
+							<img
+								src="/src/Assets/deloitte.png"
+								alt="Deloitte"
+								class="corp-logo"
+							/>
+						</div>
+					</div>
+
+					<div class="hero-right">
+						<div class="video-placeholder"></div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Target Banner Area for Expanded State -->
+			<section class="video-expanded-section">
+				<div class="section-container">
+					<div class="expanded-video-target"></div>
+				</div>
+			</section>
+
+			<!-- Morphing Video Element -->
+			<div class="video-circle-wrapper">
+				<iframe
+					src="https://www.youtube.com/embed/IkMjDiSgEuw?autoplay=1&mute=1&loop=1&playlist=IkMjDiSgEuw"
+					title="YouTube video player"
+					frameborder="0"
+					allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+					allowfullscreen
+					class="youtube-circle-iframe"
+				>
+				</iframe>
+			</div>
+		</div>
+
+		<!-- Script for Scroll Parallax Morphing -->
+		<script>
+			const wrapper = document.querySelector(
+				".morphing-wrapper",
+			) as HTMLElement;
+			const placeholder = document.querySelector(
+				".video-placeholder",
+			) as HTMLElement;
+			const target = document.querySelector(
+				".expanded-video-target",
+			) as HTMLElement;
+			const video = document.querySelector(
+				".video-circle-wrapper",
+			) as HTMLElement;
+			const iframe = document.querySelector(
+				".youtube-circle-iframe",
+			) as HTMLElement;
+			const leftCol = document.querySelector(".hero-left") as HTMLElement;
+
+			function updateMorph() {
+				if (!wrapper || !placeholder || !target || !video || !iframe)
+					return;
+
+				if (window.innerWidth <= 992) {
+					// Reset inline styling layout for responsive/mobile/tablet
+					video.style.position = "relative";
+					video.style.left = "";
+					video.style.top = "";
+					video.style.width = "";
+					video.style.height = "";
+					video.style.borderRadius = "";
+					video.style.transform = "none";
+					iframe.style.width = "";
+					iframe.style.height = "";
+					if (leftCol) {
+						leftCol.style.opacity = "";
+						leftCol.style.transform = "";
+						leftCol.style.visibility = "";
+					}
+					return;
+				}
+
+				// Enable absolute positioning relative to morphing-wrapper
+				video.style.position = "absolute";
+
+				const wrapperRect = wrapper.getBoundingClientRect();
+				const placeholderRect = placeholder.getBoundingClientRect();
+				const targetRect = target.getBoundingClientRect();
+
+				// Absolute Start offset values inside wrapper
+				const startLeft = placeholderRect.left - wrapperRect.left;
+				const startTop = placeholderRect.top - wrapperRect.top;
+				const startWidth = placeholderRect.offsetWidth;
+				const startHeight = placeholderRect.offsetHeight;
+
+				// Absolute End offset values inside wrapper
+				const endLeft = targetRect.left - wrapperRect.left;
+				const endTop = targetRect.top - wrapperRect.top;
+				const endWidth = targetRect.offsetWidth;
+				const endHeight = targetRect.offsetHeight;
+
+				// Calculate progress purely based on viewport rect offsets to be 100% device & scroll container independent
+				const currentScroll = -wrapperRect.top;
+				const totalScroll = targetRect.top - 140 + currentScroll;
+
+				let progress = 0;
+				if (totalScroll > 0) {
+					progress = currentScroll / totalScroll;
+				}
+				if (progress < 0) progress = 0;
+				if (progress > 1) progress = 1;
+
+				// 1. Interpolate left, top, width, height coordinate bounds
+				const currentLeft =
+					startLeft + (endLeft - startLeft) * progress;
+				const currentTop = startTop + (endTop - startTop) * progress;
+				const currentWidth =
+					startWidth + (endWidth - startWidth) * progress;
+				const currentHeight =
+					startHeight + (endHeight - startHeight) * progress;
+
+				video.style.left = `${currentLeft}px`;
+				video.style.top = `${currentTop}px`;
+				video.style.width = `${currentWidth}px`;
+				video.style.height = `${currentHeight}px`;
+
+				// 2. Morph border radius: keep it as a capsule/pill (height / 2) for longer, transitioning to 32px near the end
+				const currentCapsuleRadius = currentHeight / 2;
+				const endRadius = 32; // target corner radius (32px)
+				const radiusProgress = Math.pow(progress, 2.5); // non-linear transition to keep it capsule-like longer
+				const currentRadius =
+					currentCapsuleRadius +
+					(endRadius - currentCapsuleRadius) * radiusProgress;
+
+				// Set border radius on container and directly on iframe to ensure browser clipping handles iframe content correctly
+				video.style.borderRadius = `${currentRadius}px`;
+				iframe.style.borderRadius = `${currentRadius}px`;
+
+				// 3. Keep the video centered and cropping like object-fit: cover for a 16:9 ratio to avoid any black bars
+				const containerRatio = currentWidth / currentHeight;
+				const targetRatio = 16 / 9;
+				if (containerRatio > targetRatio) {
+					iframe.style.width = "100%";
+					iframe.style.height = `${(containerRatio / targetRatio) * 100}%`;
+				} else {
+					iframe.style.width = `${(targetRatio / containerRatio) * 100}%`;
+					iframe.style.height = "100%";
+				}
+			}
+
+			let ticking = false;
+			function onScroll() {
+				if (!ticking) {
+					window.requestAnimationFrame(() => {
+						updateMorph();
+						ticking = false;
+					});
+					ticking = true;
+				}
+			}
+
+			// Listen to window scrolling, resizing, and loading
+			window.addEventListener("scroll", onScroll, { passive: true });
+			window.addEventListener("resize", onScroll, { passive: true });
+			window.addEventListener("load", updateMorph);
+
+			// Call updateMorph on page load
+			updateMorph();
+			window.addEventListener("DOMContentLoaded", updateMorph);
+			setTimeout(updateMorph, 200);
+		</script>
+
+		<!-- ===================== STATS CARDS SECTION ===================== -->
+		<section class="stats-cards-section">
+			<div class="section-container stats-cards-container">
+				<div class="stat-card-box">
+					<div class="stat-num">7+</div>
+					<div class="stat-label">Years</div>
+				</div>
+				<div class="stat-card-box">
+					<div class="stat-num">53</div>
+					<div class="stat-label">World Ranks</div>
+				</div>
+				<div class="stat-card-box">
+					<div class="stat-num">80</div>
+					<div class="stat-label">National Ranks</div>
+				</div>
+				<div class="stat-card-box">
+					<div class="stat-num">5000+</div>
+					<div class="stat-label">Affiliates</div>
+				</div>
+				<div class="stat-card-box">
+					<div class="stat-num">25000+</div>
+					<div class="stat-label">Students</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ===================== PROFESSIONAL WORLD SECTION ===================== -->
+		<section class="professional-world-section">
+			<div class="section-container professional-world-container">
+				<div class="world-left">
+					<h2 class="world-title">
+						Be the <span class="highlight-slate">Professional</span> the
+						<br />
+						World Is <span class="highlight-slate"
+							>Looking For!</span
+						>
+					</h2>
+					<div class="world-logos">
+						<img
+							src="/src/Assets/ACCA-Platinum.png"
+							alt="ACCA Platinum Approved Partner"
+							class="world-logo-img"
+						/>
+						<img
+							src="/src/Assets/CBE-Center.png"
+							alt="Licensed ACCA CBE Centre"
+							class="world-logo-img"
+						/>
+					</div>
+				</div>
+				<div class="world-right">
+					<ul class="world-list">
+						<li class="world-list-item">
+							<span class="icon-wrap">
+								<svg
+									class="check-icon"
+									viewBox="0 0 24 24"
+									width="26"
+									height="26"
+								>
+									<circle
+										cx="12"
+										cy="12"
+										r="10"
+										fill="#e0effe"></circle>
+									<path
+										d="M8.5 12.5l2 2 5-5"
+										stroke="#2e80ec"
+										stroke-width="2.2"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										fill="none"></path>
+								</svg>
+							</span>
+							<span class="item-text"
+								>Recognition in over 180 countries globally.</span
+							>
+						</li>
+						<li class="world-list-item">
+							<span class="icon-wrap">
+								<svg
+									class="check-icon"
+									viewBox="0 0 24 24"
+									width="26"
+									height="26"
+								>
+									<circle
+										cx="12"
+										cy="12"
+										r="10"
+										fill="#e0effe"></circle>
+									<path
+										d="M8.5 12.5l2 2 5-5"
+										stroke="#2e80ec"
+										stroke-width="2.2"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										fill="none"></path>
+								</svg>
+							</span>
+							<span class="item-text"
+								>Access to a network of 200,000+ members.</span
+							>
+						</li>
+						<li class="world-list-item">
+							<span class="icon-wrap">
+								<svg
+									class="check-icon"
+									viewBox="0 0 24 24"
+									width="26"
+									height="26"
+								>
+									<circle
+										cx="12"
+										cy="12"
+										r="10"
+										fill="#e0effe"></circle>
+									<path
+										d="M8.5 12.5l2 2 5-5"
+										stroke="#2e80ec"
+										stroke-width="2.2"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										fill="none"></path>
+								</svg>
+							</span>
+							<span class="item-text"
+								>Fuel your career growth with eligibility to
+								join top MNCs.</span
+							>
+						</li>
+						<li class="world-list-item">
+							<span class="icon-wrap">
+								<svg
+									class="check-icon"
+									viewBox="0 0 24 24"
+									width="26"
+									height="26"
+								>
+									<circle
+										cx="12"
+										cy="12"
+										r="10"
+										fill="#e0effe"></circle>
+									<path
+										d="M8.5 12.5l2 2 5-5"
+										stroke="#2e80ec"
+										stroke-width="2.2"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										fill="none"></path>
+								</svg>
+							</span>
+							<span class="item-text"
+								>High earning potential from ₹6 LPA to ₹20 LPA.</span
+							>
+						</li>
+						<li class="world-list-item">
+							<span class="icon-wrap">
+								<svg
+									class="check-icon"
+									viewBox="0 0 24 24"
+									width="26"
+									height="26"
+								>
+									<circle
+										cx="12"
+										cy="12"
+										r="10"
+										fill="#e0effe"></circle>
+									<path
+										d="M8.5 12.5l2 2 5-5"
+										stroke="#2e80ec"
+										stroke-width="2.2"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										fill="none"></path>
+								</svg>
+							</span>
+							<span class="item-text"
+								>Stay in demand with skills valued
+								internationally.</span
+							>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</section>
+
+		<!-- ===================== TOP PERFORMERS SECTION ===================== -->
+		<section class="performers-section">
+			<div class="section-container performers-container">
+				<h2 class="performers-title">
+					Our Top <span class="text-blue">Performers</span>
+				</h2>
+				<p class="performers-subtitle">
+					Raising the Bar, Setting the Standard
+				</p>
+
+				<div class="carousel-wrapper">
+					<button
+						class="carousel-btn btn-left"
+						id="prev-performer"
+						aria-label="Previous Performer"
+					>
+						<svg
+							viewBox="0 0 24 24"
+							width="20"
+							height="20"
+							stroke="currentColor"
+							stroke-width="2.5"
+							fill="none"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						>
+							<line x1="19" y1="12" x2="5" y2="12"></line>
+							<polyline points="12 19 5 12 12 5"></polyline>
+						</svg>
+					</button>
+
+					<div class="carousel-track-container">
+						<div class="carousel-track" id="performers-track">
+							<!-- Card 1: Siya Sabu -->
+							<div class="performer-card">
+								<div class="card-image-wrapper">
+									<div class="decor-circle"></div>
+									<svg
+										class="decor-triangle"
+										viewBox="0 0 100 100"
+									>
+										<polygon
+											points="50,15 90,80 10,80"
+											fill="none"
+											stroke="rgba(59, 159, 232, 0.25)"
+											stroke-width="3"
+										></polygon>
+									</svg>
+									<!-- Subtle curved shape in background -->
+									<div class="decor-curve"></div>
+									<img
+										src="/src/Assets/Bijini-Koshi.webp"
+										alt="Siya Sabu"
+										class="student-photo"
+									/>
+								</div>
+								<div class="card-info">
+									<div class="card-name-row">
+										<h3 class="student-name">Siya Sabu</h3>
+										<svg
+											class="medal-icon"
+											viewBox="0 0 24 24"
+											width="24"
+											height="24"
+										>
+											<path
+												d="M9 11v7l3-2 3 2v-7H9z"
+												fill="#ef4444"
+											></path>
+											<path
+												d="M12 11v7l1.5-1 1.5 1v-7h-3z"
+												fill="#3b82f6"
+												opacity="0.8"
+											></path>
+											<circle
+												cx="12"
+												cy="9"
+												r="6"
+												fill="#fbbf24"
+												stroke="#f59e0b"
+												stroke-width="1.2"
+											></circle>
+											<circle
+												cx="12"
+												cy="9"
+												r="4.5"
+												fill="#f59e0b"
+											></circle>
+											<polygon
+												points="12,6.5 13.2,8.8 15.8,9 13.8,10.7 14.5,13.2 12,11.8 9.5,13.2 10.2,10.7 8.2,9 10.8,8.8"
+												fill="#ffffff"
+											></polygon>
+										</svg>
+									</div>
+									<p class="exam-tag">((SBR)Sep 2020)</p>
+									<hr class="card-divider" />
+									<div class="rank-row">
+										<div class="rank-item">
+											Global Rank <strong>4</strong>
+										</div>
+										<div class="rank-divider"></div>
+										<div class="rank-item">
+											India Rank <strong>1</strong>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<!-- Card 2: Vaishnav Unny -->
+							<div class="performer-card">
+								<div class="card-image-wrapper">
+									<div class="decor-circle"></div>
+									<svg
+										class="decor-triangle"
+										viewBox="0 0 100 100"
+									>
+										<polygon
+											points="50,15 90,80 10,80"
+											fill="none"
+											stroke="rgba(59, 159, 232, 0.25)"
+											stroke-width="3"
+										></polygon>
+									</svg>
+									<div class="decor-curve"></div>
+									<img
+										src="/src/Assets/Kashinath.webp"
+										alt="Vaishnav Unny"
+										class="student-photo"
+									/>
+								</div>
+								<div class="card-info">
+									<div class="card-name-row">
+										<h3 class="student-name">
+											Vaishnav Unny
+										</h3>
+										<svg
+											class="medal-icon"
+											viewBox="0 0 24 24"
+											width="24"
+											height="24"
+										>
+											<path
+												d="M9 11v7l3-2 3 2v-7H9z"
+												fill="#ef4444"
+											></path>
+											<path
+												d="M12 11v7l1.5-1 1.5 1v-7h-3z"
+												fill="#3b82f6"
+												opacity="0.8"
+											></path>
+											<circle
+												cx="12"
+												cy="9"
+												r="6"
+												fill="#fbbf24"
+												stroke="#f59e0b"
+												stroke-width="1.2"
+											></circle>
+											<circle
+												cx="12"
+												cy="9"
+												r="4.5"
+												fill="#f59e0b"
+											></circle>
+											<polygon
+												points="12,6.5 13.2,8.8 15.8,9 13.8,10.7 14.5,13.2 12,11.8 9.5,13.2 10.2,10.7 8.2,9 10.8,8.8"
+												fill="#ffffff"
+											></polygon>
+										</svg>
+									</div>
+									<p class="exam-tag">((AAA)Sep 2023)</p>
+									<hr class="card-divider" />
+									<div class="rank-row">
+										<div class="rank-item">
+											Global Rank <strong>5</strong>
+										</div>
+										<div class="rank-divider"></div>
+										<div class="rank-item">
+											India Rank <strong>2</strong>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<!-- Card 3: Zinsil Shan -->
+							<div class="performer-card">
+								<div class="card-image-wrapper">
+									<div class="decor-circle"></div>
+									<svg
+										class="decor-triangle"
+										viewBox="0 0 100 100"
+									>
+										<polygon
+											points="50,15 90,80 10,80"
+											fill="none"
+											stroke="rgba(59, 159, 232, 0.25)"
+											stroke-width="3"
+										></polygon>
+									</svg>
+									<div class="decor-curve"></div>
+									<img
+										src="/src/Assets/Sidharth-Menon.webp"
+										alt="Zinsil Shan"
+										class="student-photo"
+									/>
+								</div>
+								<div class="card-info">
+									<div class="card-name-row">
+										<h3 class="student-name">
+											Zinsil Shan
+										</h3>
+										<svg
+											class="medal-icon"
+											viewBox="0 0 24 24"
+											width="24"
+											height="24"
+										>
+											<path
+												d="M9 11v7l3-2 3 2v-7H9z"
+												fill="#ef4444"
+											></path>
+											<path
+												d="M12 11v7l1.5-1 1.5 1v-7h-3z"
+												fill="#3b82f6"
+												opacity="0.8"
+											></path>
+											<circle
+												cx="12"
+												cy="9"
+												r="6"
+												fill="#fbbf24"
+												stroke="#f59e0b"
+												stroke-width="1.2"
+											></circle>
+											<circle
+												cx="12"
+												cy="9"
+												r="4.5"
+												fill="#f59e0b"
+											></circle>
+											<polygon
+												points="12,6.5 13.2,8.8 15.8,9 13.8,10.7 14.5,13.2 12,11.8 9.5,13.2 10.2,10.7 8.2,9 10.8,8.8"
+												fill="#ffffff"
+											></polygon>
+										</svg>
+									</div>
+									<p class="exam-tag">((FM)Dec 2022)</p>
+									<hr class="card-divider" />
+									<div class="rank-row">
+										<div class="rank-item">
+											Global Rank <strong>1</strong>
+										</div>
+										<div class="rank-divider"></div>
+										<div class="rank-item">
+											India Rank <strong>1</strong>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<!-- Card 4: Anaam Abdul Salam -->
+							<div class="performer-card">
+								<div class="card-image-wrapper">
+									<div class="decor-circle"></div>
+									<svg
+										class="decor-triangle"
+										viewBox="0 0 100 100"
+									>
+										<polygon
+											points="50,15 90,80 10,80"
+											fill="none"
+											stroke="rgba(59, 159, 232, 0.25)"
+											stroke-width="3"
+										></polygon>
+									</svg>
+									<div class="decor-curve"></div>
+									<img
+										src="/src/Assets/Anaam-Abdul-Salam.webp"
+										alt="Anaam Abdul Salam"
+										class="student-photo"
+									/>
+								</div>
+								<div class="card-info">
+									<div class="card-name-row">
+										<h3 class="student-name">
+											Anaam Abdul Salam
+										</h3>
+										<svg
+											class="medal-icon"
+											viewBox="0 0 24 24"
+											width="24"
+											height="24"
+										>
+											<path
+												d="M9 11v7l3-2 3 2v-7H9z"
+												fill="#ef4444"
+											></path>
+											<path
+												d="M12 11v7l1.5-1 1.5 1v-7h-3z"
+												fill="#3b82f6"
+												opacity="0.8"
+											></path>
+											<circle
+												cx="12"
+												cy="9"
+												r="6"
+												fill="#fbbf24"
+												stroke="#f59e0b"
+												stroke-width="1.2"
+											></circle>
+											<circle
+												cx="12"
+												cy="9"
+												r="4.5"
+												fill="#f59e0b"
+											></circle>
+											<polygon
+												points="12,6.5 13.2,8.8 15.8,9 13.8,10.7 14.5,13.2 12,11.8 9.5,13.2 10.2,10.7 8.2,9 10.8,8.8"
+												fill="#ffffff"
+											></polygon>
+										</svg>
+									</div>
+									<p class="exam-tag">((SBL)Dec 2021)</p>
+									<hr class="card-divider" />
+									<div class="rank-row">
+										<div class="rank-item">
+											Global Rank <strong>3</strong>
+										</div>
+										<div class="rank-divider"></div>
+										<div class="rank-item">
+											India Rank <strong>1</strong>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<!-- Card 5: Ann Mary -->
+							<div class="performer-card">
+								<div class="card-image-wrapper">
+									<div class="decor-circle"></div>
+									<svg
+										class="decor-triangle"
+										viewBox="0 0 100 100"
+									>
+										<polygon
+											points="50,15 90,80 10,80"
+											fill="none"
+											stroke="rgba(59, 159, 232, 0.25)"
+											stroke-width="3"
+										></polygon>
+									</svg>
+									<div class="decor-curve"></div>
+									<img
+										src="/src/Assets/Ann-Mary.webp"
+										alt="Ann Mary"
+										class="student-photo"
+									/>
+								</div>
+								<div class="card-info">
+									<div class="card-name-row">
+										<h3 class="student-name">Ann Mary</h3>
+										<svg
+											class="medal-icon"
+											viewBox="0 0 24 24"
+											width="24"
+											height="24"
+										>
+											<path
+												d="M9 11v7l3-2 3 2v-7H9z"
+												fill="#ef4444"
+											></path>
+											<path
+												d="M12 11v7l1.5-1 1.5 1v-7h-3z"
+												fill="#3b82f6"
+												opacity="0.8"
+											></path>
+											<circle
+												cx="12"
+												cy="9"
+												r="6"
+												fill="#fbbf24"
+												stroke="#f59e0b"
+												stroke-width="1.2"
+											></circle>
+											<circle
+												cx="12"
+												cy="9"
+												r="4.5"
+												fill="#f59e0b"
+											></circle>
+											<polygon
+												points="12,6.5 13.2,8.8 15.8,9 13.8,10.7 14.5,13.2 12,11.8 9.5,13.2 10.2,10.7 8.2,9 10.8,8.8"
+												fill="#ffffff"
+											></polygon>
+										</svg>
+									</div>
+									<p class="exam-tag">((TX)Mar 2023)</p>
+									<hr class="card-divider" />
+									<div class="rank-row">
+										<div class="rank-item">
+											Global Rank <strong>7</strong>
+										</div>
+										<div class="rank-divider"></div>
+										<div class="rank-item">
+											India Rank <strong>2</strong>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<button
+						class="carousel-btn btn-right"
+						id="next-performer"
+						aria-label="Next Performer"
+					>
+						<svg
+							viewBox="0 0 24 24"
+							width="20"
+							height="20"
+							stroke="currentColor"
+							stroke-width="2.5"
+							fill="none"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						>
+							<line x1="5" y1="12" x2="19" y2="12"></line>
+							<polyline points="12 5 19 12 12 19"></polyline>
+						</svg>
+					</button>
+				</div>
+			</div>
+		</section>
+
+		<!-- Script for Top Performers Carousel -->
+		<script>
+			const track = document.getElementById("performers-track");
+			const prevBtn = document.getElementById("prev-performer");
+			const nextBtn = document.getElementById("next-performer");
+
+			if (track && prevBtn && nextBtn) {
+				const cardWidth = 340 + 24; // Card width + gap
+				prevBtn.addEventListener("click", () => {
+					track.scrollBy({ left: -cardWidth, behavior: "smooth" });
+				});
+				nextBtn.addEventListener("click", () => {
+					track.scrollBy({ left: cardWidth, behavior: "smooth" });
+				});
+			}
+		</script>
+
+		<StudentPlacements />
+
+		<StudentThinkBanner />
+
+		<AchievementsSection />
+
+		<CareerAndWhyElance />
+
+		<AccaFaculties />
+
+		<AccaLearningAndSyllabus />
+
+		<AccaFaq />
+
+		<FeaturedOn />
+
+		<Footer />
+	</body>
+</html>
+
+<style>
+	*,
+	*::before,
+	*::after {
+		box-sizing: border-box;
+		margin: 0;
+		padding: 0;
+	}
+
+	html,
+	body {
+		font-family: "Outfit", sans-serif;
+		background: #ffffff;
+		color: #212529;
+		line-height: 1.6;
+		overflow-x: hidden;
+	}
+
+	.section-container {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 0 40px;
+		width: 100%;
+	}
+
+	/* ── ENROLLMENT BANNER ── */
+	.enrollment-banner {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		margin-top: 24px;
+		margin-bottom: 24px;
+		padding: 0 40px;
+	}
+
+	.banner-badge {
+		background-color: #eef5fb; /* soft blue/grey banner background */
+		color: #1e293b;
+		font-size: 1.1rem;
+		font-weight: 600;
+		padding: 14px 0;
+		width: 100%;
+		max-width: 1200px;
+		text-align: center;
+		border-radius: 8px;
+		font-family: "Outfit", sans-serif;
+	}
+
+	/* ── MORPHING TRACKS ── */
+	.morphing-wrapper {
+		position: relative;
+		width: 100%;
+	}
+
+	/* ── ACCA HERO LAYOUT ── */
+	.acca-hero-section {
+		padding: 80px 0 60px;
+		background-color: #ffffff;
+	}
+
+	.acca-hero-container {
+		display: grid;
+		grid-template-columns: 1.15fr 0.85fr;
+		gap: 40px;
+		align-items: center;
+		width: 100%;
+		position: relative;
+	}
+
+	.video-placeholder {
+		width: 480px;
+		height: 480px;
+		border-radius: 50%;
+		visibility: hidden;
+	}
+
+	.video-expanded-section {
+		padding: 60px 0 100px;
+		background-color: #ffffff;
+		display: flex;
+		justify-content: center;
+	}
+
+	.expanded-video-target {
+		width: 100%;
+		max-width: 1200px;
+		height: 675px; /* Perfect 16:9 widescreen ratio */
+		border-radius: 32px; /* Matching the widescreen corner radius in second screenshot */
+		visibility: hidden;
+	}
+
+	.hero-left {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.hero-title {
+		font-size: clamp(2.4rem, 4.8vw, 3.8rem);
+		font-weight: 800;
+		color: #1e293b;
+		line-height: 1.15;
+		letter-spacing: -0.02em;
+	}
+
+	.text-blue {
+		color: #3b9fe8;
+	}
+
+	/* Badges and Student proof layout */
+	.stats-row {
+		display: flex;
+		align-items: flex-start;
+		gap: 32px;
+		margin-top: 40px;
+	}
+
+	.accreditations-badges {
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+		align-items: center;
+		flex-shrink: 0;
+	}
+
+	.badge-img {
+		height: 60px;
+		width: auto;
+		object-fit: contain;
+	}
+
+	.student-proof {
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+		margin-top: 4px;
+	}
+
+	.proof-label {
+		font-size: 0.85rem;
+		font-weight: 800;
+		color: #6b7280;
+		letter-spacing: 0.8px;
+		line-height: 1.4;
+		font-family: "Outfit", sans-serif;
+	}
+
+	.highlight-blue {
+		color: #3b9fe8;
+	}
+
+	.avatar-stack {
+		display: flex;
+		align-items: center;
+	}
+
+	.avatar-img {
+		width: 44px;
+		height: 44px;
+		border-radius: 50%;
+		border: 3px solid #ffffff;
+		object-fit: cover;
+		margin-right: -12px;
+		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+	}
+
+	.avatar-img:last-child {
+		margin-right: 0;
+	}
+
+	/* Partner Logos Row */
+	.corporate-logos-row {
+		display: flex;
+		align-items: center;
+		gap: 28px;
+		margin-top: 48px;
+		filter: grayscale(100%);
+		opacity: 0.45;
+	}
+
+	.corp-logo {
+		height: 20px;
+		width: auto;
+		object-fit: contain;
+	}
+
+	.corp-logo-text {
+		font-size: 20px;
+		font-weight: 700;
+		color: #4b5563;
+		letter-spacing: -0.5px;
+	}
+
+	.corp-ey-logo {
+		font-size: 24px;
+		font-weight: 800;
+		letter-spacing: -1.5px;
+	}
+
+	.infosys-text {
+		font-family: Arial, sans-serif;
+		letter-spacing: -1px;
+	}
+
+	.kpmg-text {
+		font-family: Impact, sans-serif;
+		text-transform: uppercase;
+		font-size: 22px;
+		letter-spacing: 0.5px;
+	}
+
+	/* ── VIDEO CIRCLE ── */
+	.hero-right {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.video-circle-wrapper {
+		width: 480px;
+		height: 480px;
+		border-radius: 50%;
+		overflow: hidden;
+		position: absolute;
+		box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+		background-color: #000000;
+		z-index: 50;
+		/* Force WebKit clipping and hardware acceleration on nested iframe */
+		-webkit-mask-image: -webkit-radial-gradient(white, black);
+		transform: translate3d(0, 0, 0);
+		-webkit-transform: translate3d(0, 0, 0);
+		will-change: border-radius, width, height, left, top;
+	}
+
+	.youtube-circle-iframe {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 177.77777778%; /* cover 16:9 ratio in 1:1 wrapper */
+		height: 100%;
+		transform: translate(-50%, -50%);
+		border: none;
+	}
+
+	/* ── STATS CARDS SECTION ── */
+	.stats-cards-section {
+		padding: 100px 0 60px;
+		background-color: #ffffff;
+		position: relative;
+	}
+
+	.stats-cards-container {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 24px;
+	}
+
+	.stat-card-box {
+		background: #ffffff;
+		border-radius: 0;
+		width: 200px;
+		aspect-ratio: 0.85 / 1;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		justify-content: center;
+		padding: 40px 16px;
+		box-shadow:
+			0 20px 50px rgba(37, 99, 235, 0.07),
+			0 4px 15px rgba(0, 0, 0, 0.02);
+		border: 1px solid rgba(37, 99, 235, 0.04);
+		transition:
+			transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1),
+			box-shadow 0.3s ease;
+	}
+
+	.stat-card-box:hover {
+		transform: translateY(-8px);
+		box-shadow:
+			0 30px 60px rgba(37, 99, 235, 0.12),
+			0 8px 25px rgba(0, 0, 0, 0.04);
+	}
+
+	.stat-num {
+		font-size: clamp(2.5rem, 3.8vw, 3.8rem);
+		font-weight: 700;
+		color: #2563eb;
+		line-height: 1;
+		margin: 0;
+		letter-spacing: -0.03em;
+	}
+
+	.stat-label {
+		font-size: 1.25rem;
+		font-weight: 700;
+		color: #0f172a;
+		text-align: center;
+		line-height: 1.25;
+		margin-top: 16px;
+	}
+
+	/* ── PROFESSIONAL WORLD SECTION ── */
+	.professional-world-section {
+		padding: 60px 0 120px;
+		background-color: #ffffff;
+		position: relative;
+	}
+
+	.professional-world-container {
+		display: grid;
+		grid-template-columns: 1.15fr 0.85fr;
+		gap: 80px;
+		align-items: center;
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 0 24px;
+	}
+
+	.world-left {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	.world-title {
+		font-size: clamp(2rem, 3.5vw, 3.25rem);
+		font-weight: 700;
+		color: #0f172a;
+		line-height: 1.25;
+		margin: 0 0 32px 0;
+		letter-spacing: -0.02em;
+	}
+
+	.world-title .highlight-slate {
+		color: #70849a;
+	}
+
+	.world-logos {
+		display: flex;
+		gap: 20px;
+		align-items: center;
+	}
+
+	.world-logo-img {
+		height: clamp(60px, 8vw, 85px);
+		width: auto;
+		object-fit: contain;
+	}
+
+	.world-right {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.world-list {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+
+	.world-list-item {
+		display: flex;
+		align-items: center;
+		gap: 18px;
+		padding: 22px 0;
+		border-bottom: 1px solid #e9eff6;
+	}
+
+	.world-list-item .icon-wrap {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-shrink: 0;
+	}
+
+	.world-list-item .item-text {
+		font-size: 1.125rem;
+		font-weight: 500;
+		color: #0f172a;
+		line-height: 1.4;
+	}
+
+	/* ── RESPONSIVE ── */
+	@media (max-width: 992px) {
+		.acca-hero-container {
+			grid-template-columns: 1fr;
+			gap: 60px;
+			text-align: center;
+		}
+
+		.hero-left {
+			align-items: center;
+		}
+
+		.stats-row {
+			justify-content: center;
+		}
+
+		.corporate-logos-row {
+			justify-content: center;
+		}
+
+		.video-circle-wrapper {
+			width: 400px;
+			height: 400px;
+		}
+
+		.stats-cards-container {
+			gap: 20px;
+		}
+
+		.stat-card-box {
+			width: 220px;
+		}
+
+		.professional-world-container {
+			grid-template-columns: 1fr;
+			gap: 50px;
+		}
+
+		.world-title {
+			text-align: left;
+		}
+	}
+
+	@media (max-width: 600px) {
+		.banner-badge {
+			font-size: 0.95rem;
+			padding: 12px 16px;
+		}
+
+		.hero-title {
+			font-size: 2.2rem;
+		}
+
+		.stats-row {
+			flex-direction: column;
+			align-items: center;
+			gap: 24px;
+		}
+
+		.accreditations-badges {
+			flex-direction: row;
+			gap: 20px;
+		}
+
+		.student-proof {
+			align-items: center;
+		}
+
+		.video-circle-wrapper {
+			width: 290px;
+			height: 290px;
+		}
+
+		.corporate-logos-row {
+			gap: 16px;
+			flex-wrap: wrap;
+			justify-content: center;
+		}
+
+		.stats-cards-container {
+			gap: 16px;
+		}
+
+		.stat-card-box {
+			width: calc(50% - 8px);
+			padding: 24px 16px;
+		}
+
+		.stat-num {
+			font-size: 2rem;
+		}
+
+		.stat-label {
+			font-size: 1rem;
+			margin-top: 8px;
+		}
+
+		.professional-world-section {
+			padding: 40px 0 80px;
+		}
+
+		.world-title {
+			font-size: 2rem;
+		}
+
+		.world-logos {
+			gap: 16px;
+		}
+
+		.world-logo-img {
+			height: 55px;
+		}
+
+		.world-list-item {
+			padding: 16px 0;
+			gap: 14px;
+		}
+
+		.world-list-item .item-text {
+			font-size: 1rem;
+		}
+	}
+
+	/* ── TOP PERFORMERS SECTION ── */
+	.performers-section {
+		padding: 80px 0;
+		background-color: #fafbfc; /* light grey background like in screenshot */
+		overflow: hidden;
+	}
+
+	.performers-container {
+		text-align: center;
+		position: relative;
+	}
+
+	.performers-title {
+		font-size: clamp(2rem, 3.5vw, 3.25rem);
+		font-weight: 800;
+		color: #1e293b;
+		margin-bottom: 8px;
+		font-family: "Outfit", sans-serif;
+	}
+
+	.performers-subtitle {
+		font-size: 1.15rem;
+		font-weight: 700;
+		color: #1e293b;
+		margin-bottom: 48px;
+		letter-spacing: -0.2px;
+	}
+
+	.carousel-wrapper {
+		position: relative;
+		width: 100%;
+		max-width: 1160px; /* fit 3 cards exactly: 3 * 340 + 2 * 24 = 1068px */
+		margin: 0 auto;
+		padding: 0 60px;
+	}
+
+	.carousel-track-container {
+		overflow: hidden;
+		width: 100%;
+	}
+
+	.carousel-track {
+		display: flex;
+		gap: 24px;
+		overflow-x: auto;
+		scroll-behavior: smooth;
+		scroll-snap-type: x mandatory;
+		padding: 20px 0;
+		/* hide scrollbar */
+		scrollbar-width: none;
+		-ms-overflow-style: none;
+	}
+
+	.carousel-track::-webkit-scrollbar {
+		display: none;
+	}
+
+	.performer-card {
+		flex: 0 0 340px;
+		scroll-snap-align: start;
+		background: #ffffff;
+		border-radius: 0;
+		overflow: hidden;
+		box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02);
+		border: 1px solid rgba(0, 0, 0, 0.03);
+		transition: transform 0.3s ease, box-shadow 0.3s ease;
+	}
+
+	.performer-card:hover {
+		transform: translateY(-6px);
+		box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+	}
+
+	.card-image-wrapper {
+		position: relative;
+		width: 100%;
+		height: 230px;
+		background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+		overflow: hidden;
+		display: flex;
+		justify-content: center;
+		align-items: flex-end;
+	}
+
+	.decor-circle {
+		position: absolute;
+		top: -30px;
+		right: -30px;
+		width: 120px;
+		height: 120px;
+		border-radius: 50%;
+		border: 3px solid rgba(59, 159, 232, 0.15);
+	}
+
+	.decor-curve {
+		position: absolute;
+		top: 20px;
+		left: -40px;
+		width: 150px;
+		height: 150px;
+		border-radius: 50%;
+		border: 3px solid rgba(59, 159, 232, 0.12);
+	}
+
+	.decor-triangle {
+		position: absolute;
+		bottom: 20px;
+		left: 20px;
+		width: 130px;
+		height: 130px;
+		transform: rotate(-10deg);
+	}
+
+	.student-photo {
+		height: 92%;
+		width: auto;
+		object-fit: contain;
+		position: relative;
+		z-index: 2;
+		filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.1));
+	}
+
+	.card-info {
+		padding: 24px 28px;
+		background: #ffffff;
+		text-align: left;
+	}
+
+	.card-name-row {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 6px;
+	}
+
+	.student-name {
+		font-size: 1.35rem;
+		font-weight: 700;
+		color: #0f172a;
+		margin: 0;
+	}
+
+	.exam-tag {
+		font-size: 0.95rem;
+		font-weight: 700;
+		color: #475569;
+		margin: 0 0 16px 0;
+	}
+
+	.card-divider {
+		border: 0;
+		border-top: 1px solid #f1f5f9;
+		margin: 0 0 16px 0;
+	}
+
+	.rank-row {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	.rank-item {
+		font-size: 0.95rem;
+		font-weight: 600;
+		color: #334155;
+	}
+
+	.rank-item strong {
+		font-size: 1.1rem;
+		font-weight: 800;
+		color: #0f172a;
+		margin-left: 4px;
+	}
+
+	.rank-divider {
+		width: 1px;
+		height: 18px;
+		background-color: #cbd5e1;
+	}
+
+	.carousel-btn {
+		position: absolute;
+		top: 55%;
+		transform: translateY(-50%);
+		width: 50px;
+		height: 50px;
+		border-radius: 50%;
+		background-color: #bae6fd; /* light blue circle */
+		border: none;
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: #0369a1; /* darker blue arrow */
+		z-index: 10;
+		box-shadow: 0 4px 12px rgba(3, 105, 161, 0.12);
+		transition: all 0.25s ease;
+	}
+
+	.carousel-btn:hover {
+		background-color: #3b9fe8;
+		color: #ffffff;
+		box-shadow: 0 6px 18px rgba(59, 159, 232, 0.3);
+	}
+
+	.btn-left {
+		left: 0;
+	}
+
+	.btn-right {
+		right: 0;
+	}
+
+	/* Responsive overrides for performers section */
+	@media (max-width: 992px) {
+		.carousel-wrapper {
+			padding: 0 20px;
+		}
+		.carousel-btn {
+			display: none; /* Swipe natively on mobile/tablet */
+		}
+	}
+
+	@media (max-width: 600px) {
+		.performers-section {
+			padding: 60px 0;
+		}
+		.performers-subtitle {
+			margin-bottom: 32px;
+		}
+		.performer-card {
+			flex: 0 0 290px; /* slightly smaller cards on mobile */
+		}
+		.card-image-wrapper {
+			height: 200px;
+		}
+		.card-info {
+			padding: 20px 22px;
+		}
+		.student-name {
+			font-size: 1.2rem;
+		}
+		.exam-tag {
+			font-size: 0.85rem;
+		}
+	}
+</style>

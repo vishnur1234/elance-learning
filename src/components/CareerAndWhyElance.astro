@@ -1,0 +1,762 @@
+---
+// CareerAndWhyElance.astro
+// Component containing the "Land your Dream Career" section (accordion + contact form) and the "Why Elance?" section.
+---
+
+<div class="career-page-wrapper">
+	<!-- ===================== LAND YOUR DREAM CAREER SECTION ===================== -->
+	<section class="dream-career-section">
+		<div class="section-container dream-career-container">
+			<!-- Left side: Career accordion -->
+			<div class="career-left">
+				<h2 class="career-heading">
+					Land your <span class="text-blue">Dream Career</span>
+				</h2>
+
+				<div class="career-accordion">
+					<!-- Item 1 (Expanded by default) -->
+					<div class="accordion-item active">
+						<button class="accordion-header" aria-expanded="true">
+							<span class="accordion-icon">
+								<!-- Minus icon -->
+								<svg class="icon-minus" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none">
+									<line x1="5" y1="12" x2="19" y2="12"></line>
+								</svg>
+								<!-- Plus icon -->
+								<svg class="icon-plus" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none">
+									<line x1="12" y1="5" x2="12" y2="19"></line>
+									<line x1="5" y1="12" x2="19" y2="12"></line>
+								</svg>
+							</span>
+							<span class="accordion-title">Financial Controller</span>
+						</button>
+						<div class="accordion-content">
+							<p>
+								As a financial controller, ACCA graduates oversee financial reporting, budgeting, and strategic planning, ensuring the financial health and compliance of an organization while providing key insights for decision-making.
+							</p>
+						</div>
+					</div>
+
+					<!-- Item 2 -->
+					<div class="accordion-item">
+						<button class="accordion-header" aria-expanded="false">
+							<span class="accordion-icon">
+								<svg class="icon-minus" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none">
+									<line x1="5" y1="12" x2="19" y2="12"></line>
+								</svg>
+								<svg class="icon-plus" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none">
+									<line x1="12" y1="5" x2="12" y2="19"></line>
+									<line x1="5" y1="12" x2="19" y2="12"></line>
+								</svg>
+							</span>
+							<span class="accordion-title">Audit Manager</span>
+						</button>
+						<div class="accordion-content">
+							<p>
+								Audit Managers oversee internal and external audits, ensuring financial statements comply with regulatory standards and identifying operational efficiencies and risk management opportunities.
+							</p>
+						</div>
+					</div>
+
+					<!-- Item 3 -->
+					<div class="accordion-item">
+						<button class="accordion-header" aria-expanded="false">
+							<span class="accordion-icon">
+								<svg class="icon-minus" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none">
+									<line x1="5" y1="12" x2="19" y2="12"></line>
+								</svg>
+								<svg class="icon-plus" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none">
+									<line x1="12" y1="5" x2="12" y2="19"></line>
+									<line x1="5" y1="12" x2="19" y2="12"></line>
+								</svg>
+							</span>
+							<span class="accordion-title">Tax Consultant</span>
+						</button>
+						<div class="accordion-content">
+							<p>
+								Tax Consultants provide advisory and compliance services, helping clients minimize tax liabilities and navigate complex local and international tax regulations.
+							</p>
+						</div>
+					</div>
+
+					<!-- Item 4 -->
+					<div class="accordion-item">
+						<button class="accordion-header" aria-expanded="false">
+							<span class="accordion-icon">
+								<svg class="icon-minus" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none">
+									<line x1="5" y1="12" x2="19" y2="12"></line>
+								</svg>
+								<svg class="icon-plus" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none">
+									<line x1="12" y1="5" x2="12" y2="19"></line>
+									<line x1="5" y1="12" x2="19" y2="12"></line>
+								</svg>
+							</span>
+							<span class="accordion-title">Management Accountant</span>
+						</button>
+						<div class="accordion-content">
+							<p>
+								Management Accountants analyze financial information to support internal business planning, forecasting, budgeting, and strategic decision-making by managers.
+							</p>
+						</div>
+					</div>
+
+					<!-- Item 5 -->
+					<div class="accordion-item">
+						<button class="accordion-header" aria-expanded="false">
+							<span class="accordion-icon">
+								<svg class="icon-minus" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none">
+									<line x1="5" y1="12" x2="19" y2="12"></line>
+								</svg>
+								<svg class="icon-plus" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none">
+									<line x1="12" y1="5" x2="12" y2="19"></line>
+									<line x1="5" y1="12" x2="19" y2="12"></line>
+								</svg>
+							</span>
+							<span class="accordion-title">Business Consultant</span>
+						</button>
+						<div class="accordion-content">
+							<p>
+								Business Consultants analyze business operations, identify problems, and recommend solutions to improve efficiency, profitability, and growth.
+							</p>
+						</div>
+					</div>
+
+					<!-- Item 6 -->
+					<div class="accordion-item">
+						<button class="accordion-header" aria-expanded="false">
+							<span class="accordion-icon">
+								<svg class="icon-minus" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none">
+									<line x1="5" y1="12" x2="19" y2="12"></line>
+								</svg>
+								<svg class="icon-plus" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none">
+									<line x1="12" y1="5" x2="12" y2="19"></line>
+									<line x1="5" y1="12" x2="19" y2="12"></line>
+								</svg>
+							</span>
+							<span class="accordion-title">Financial Advisor</span>
+						</button>
+						<div class="accordion-content">
+							<p>
+								Financial Advisors help individuals and organizations manage their finances, invest wisely, and plan for future financial goals.
+							</p>
+						</div>
+					</div>
+
+					<!-- Item 7 -->
+					<div class="accordion-item">
+						<button class="accordion-header" aria-expanded="false">
+							<span class="accordion-icon">
+								<svg class="icon-minus" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none">
+									<line x1="5" y1="12" x2="19" y2="12"></line>
+								</svg>
+								<svg class="icon-plus" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none">
+									<line x1="12" y1="5" x2="12" y2="19"></line>
+									<line x1="5" y1="12" x2="19" y2="12"></line>
+								</svg>
+							</span>
+							<span class="accordion-title">Finance Manager</span>
+						</button>
+						<div class="accordion-content">
+							<p>
+								Finance Managers oversee the financial operations of an organization, managing budgets, financial planning, and investment strategies to ensure long-term stability.
+							</p>
+						</div>
+					</div>
+
+					<!-- Item 8 -->
+					<div class="accordion-item">
+						<button class="accordion-header" aria-expanded="false">
+							<span class="accordion-icon">
+								<svg class="icon-minus" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none">
+									<line x1="5" y1="12" x2="19" y2="12"></line>
+								</svg>
+								<svg class="icon-plus" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none">
+									<line x1="12" y1="5" x2="12" y2="19"></line>
+									<line x1="5" y1="12" x2="19" y2="12"></line>
+								</svg>
+							</span>
+							<span class="accordion-title">Investment Analyst</span>
+						</button>
+						<div class="accordion-content">
+							<p>
+								Investment Analysts research financial information and market trends to provide investment recommendations and support asset management decisions.
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Right side: Contact form -->
+			<div class="career-right">
+				<div class="contact-form-box">
+					<form id="download-brochure-form" class="career-form">
+						<!-- Full Name -->
+						<div class="form-group">
+							<label for="fullName">Full Name</label>
+							<input type="text" id="fullName" name="fullName" required placeholder="Enter your full name" />
+						</div>
+
+						<!-- Email -->
+						<div class="form-group">
+							<label for="email">Email</label>
+							<input type="email" id="email" name="email" required placeholder="Enter your email address" />
+						</div>
+
+						<!-- Mobile -->
+						<div class="form-group">
+							<label for="mobile">Mobile</label>
+							<input type="tel" id="mobile" name="mobile" required placeholder="Enter your mobile number" />
+						</div>
+
+						<!-- Message -->
+						<div class="form-group">
+							<label for="message">Message</label>
+							<textarea id="message" name="message" rows="4" placeholder="Enter your message"></textarea>
+						</div>
+
+						<!-- Consent Checkbox -->
+						<div class="consent-group">
+							<label class="custom-checkbox">
+								<input type="checkbox" id="consent" name="consent" required />
+								<span class="checkmark"></span>
+								<span class="consent-text">
+									I authorise Elance Learning and its representatives to contact me with updates and notifications via Email, SMS, WhatsApp, and phone calls. This consent overrides DND/NDNC preferences. I have read and agree to the Terms & Conditions and Privacy Policy.
+								</span>
+							</label>
+						</div>
+
+						<!-- Download Button -->
+						<button type="submit" class="submit-btn">Download Brochure</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- ===================== WHY ELANCE? SECTION ===================== -->
+	<section class="why-elance-section">
+		<div class="why-elance-outer">
+			<div class="why-elance-card">
+				<!-- Decorative shape top-right -->
+				<div class="why-decor-blob"></div>
+				<!-- Decorative circle bottom-left -->
+				<div class="why-decor-circle"></div>
+
+				<h2 class="why-title">Why Elance?</h2>
+
+				<div class="why-list">
+					<div class="why-list-item">
+						<span class="why-chevron">
+							<svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="3" fill="none"><polyline points="9 18 15 12 9 6"></polyline></svg>
+						</span>
+						<span class="why-text">Exceptional Faculty Standards With 13+ Years of Experience</span>
+					</div>
+					<div class="why-list-item">
+						<span class="why-chevron">
+							<svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="3" fill="none"><polyline points="9 18 15 12 9 6"></polyline></svg>
+						</span>
+						<span class="why-text">Outstanding Track Record of Achievements</span>
+					</div>
+					<div class="why-list-item">
+						<span class="why-chevron">
+							<svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="3" fill="none"><polyline points="9 18 15 12 9 6"></polyline></svg>
+						</span>
+						<span class="why-text">ACCA Platinum Accredited Partner</span>
+					</div>
+					<div class="why-list-item">
+						<span class="why-chevron">
+							<svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="3" fill="none"><polyline points="9 18 15 12 9 6"></polyline></svg>
+						</span>
+						<span class="why-text">Official CBE Centre</span>
+					</div>
+					<div class="why-list-item">
+						<span class="why-chevron">
+							<svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="3" fill="none"><polyline points="9 18 15 12 9 6"></polyline></svg>
+						</span>
+						<span class="why-text">Guaranteed Placement Assistance</span>
+					</div>
+					<div class="why-list-item">
+						<span class="why-chevron">
+							<svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="3" fill="none"><polyline points="9 18 15 12 9 6"></polyline></svg>
+						</span>
+						<span class="why-text">Comprehensive Support from Faculties, Mentors & Coordinators</span>
+					</div>
+					<div class="why-list-item">
+						<span class="why-chevron">
+							<svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="3" fill="none"><polyline points="9 18 15 12 9 6"></polyline></svg>
+						</span>
+						<span class="why-text">Offline, Online & Hybrid Classes</span>
+					</div>
+					<div class="why-list-item">
+						<span class="why-chevron">
+							<svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="3" fill="none"><polyline points="9 18 15 12 9 6"></polyline></svg>
+						</span>
+						<span class="why-text">24/7 Access to Elance Learning App</span>
+					</div>
+					<div class="why-list-item">
+						<span class="why-chevron">
+							<svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="3" fill="none"><polyline points="9 18 15 12 9 6"></polyline></svg>
+						</span>
+						<span class="why-text">Access To Study Buddy to Connect with Likeminded Students</span>
+					</div>
+					<div class="why-list-item">
+						<span class="why-chevron">
+							<svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="3" fill="none"><polyline points="9 18 15 12 9 6"></polyline></svg>
+						</span>
+						<span class="why-text">Study Planner App for organized preparation</span>
+					</div>
+					<div class="why-list-item">
+						<span class="why-chevron">
+							<svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="3" fill="none"><polyline points="9 18 15 12 9 6"></polyline></svg>
+						</span>
+						<span class="why-text">Prime & Prime + Programs for Advanced Learning</span>
+					</div>
+					<div class="why-list-item">
+						<span class="why-chevron">
+							<svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="3" fill="none"><polyline points="9 18 15 12 9 6"></polyline></svg>
+						</span>
+						<span class="why-text">Hassle-free Hostel Facility and Safe Transportation Service</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>
+
+<!-- JavaScript for accordion actions -->
+<script>
+	const accordionHeaders = document.querySelectorAll(".accordion-header");
+
+	accordionHeaders.forEach((header) => {
+		header.addEventListener("click", () => {
+			const currentItem = header.parentElement;
+			if (!currentItem) return;
+
+			const isActive = currentItem.classList.contains("active");
+
+			// Collapse all accordion items
+			document.querySelectorAll(".accordion-item").forEach((item) => {
+				item.classList.remove("active");
+				const itemHeader = item.querySelector(".accordion-header");
+				if (itemHeader) {
+					itemHeader.setAttribute("aria-expanded", "false");
+				}
+			});
+
+			// If it wasn't active, expand it
+			if (!isActive) {
+				currentItem.classList.add("active");
+				header.setAttribute("aria-expanded", "true");
+			}
+		});
+	});
+</script>
+
+<style>
+	.career-page-wrapper {
+		background-color: #f8fafc; /* matching the screenshots background */
+		width: 100%;
+	}
+
+	.section-container {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 0 40px;
+		width: 100%;
+		box-sizing: border-box;
+	}
+
+	/* ── LAND YOUR DREAM CAREER SECTION ── */
+	.dream-career-section {
+		padding: 80px 0 60px;
+	}
+
+	.dream-career-container {
+		display: grid;
+		grid-template-columns: 1.15fr 0.85fr;
+		gap: 60px;
+		align-items: start;
+	}
+
+	.career-heading {
+		font-size: clamp(2rem, 3.8vw, 3rem);
+		font-weight: 800;
+		color: #1e293b;
+		margin: 0 0 40px 0;
+		font-family: "Outfit", sans-serif;
+	}
+
+	.text-blue {
+		color: #3b9fe8;
+	}
+
+	/* Accordion styles */
+	.career-accordion {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.accordion-item {
+		border-bottom: 1px solid #e2e8f0;
+		padding: 16px 0;
+	}
+
+	.accordion-item:first-child {
+		padding-top: 0;
+	}
+
+	.accordion-header {
+		width: 100%;
+		background: none;
+		border: none;
+		display: flex;
+		align-items: center;
+		gap: 20px;
+		text-align: left;
+		cursor: pointer;
+		padding: 8px 0;
+		color: #1e293b;
+		transition: color 0.2s ease;
+	}
+
+	.accordion-header:hover {
+		color: #3b9fe8;
+	}
+
+	.accordion-icon {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 36px;
+		height: 36px;
+		border-radius: 50%;
+		border: 1px solid #cbd5e1;
+		color: #475569;
+		flex-shrink: 0;
+		transition: all 0.25s ease;
+		background: #ffffff;
+	}
+
+	.accordion-header:hover .accordion-icon {
+		border-color: #3b9fe8;
+		color: #3b9fe8;
+	}
+
+	.accordion-title {
+		font-size: 1.25rem;
+		font-weight: 700;
+		font-family: "Outfit", sans-serif;
+	}
+
+	/* Icon switches */
+	.accordion-icon .icon-minus {
+		display: none;
+	}
+	.accordion-icon .icon-plus {
+		display: block;
+	}
+
+	.accordion-item.active .accordion-icon {
+		background-color: #cbd5e1;
+		border-color: #cbd5e1;
+		color: #0f172a;
+	}
+
+	.accordion-item.active .accordion-icon .icon-minus {
+		display: block;
+	}
+	.accordion-item.active .accordion-icon .icon-plus {
+		display: none;
+	}
+
+	/* Content */
+	.accordion-content {
+		max-height: 0;
+		overflow: hidden;
+		transition: max-height 0.3s cubic-bezier(0, 1, 0, 1);
+		padding-left: 56px;
+	}
+
+	.accordion-item.active .accordion-content {
+		max-height: 500px; /* high enough limit */
+		transition: max-height 0.3s cubic-bezier(0.85, 0, 0.15, 1);
+	}
+
+	.accordion-content p {
+		margin: 12px 0 8px 0;
+		font-size: 1.05rem;
+		color: #475569;
+		line-height: 1.6;
+	}
+
+	/* Contact Form styles */
+	.contact-form-box {
+		background: #ffffff;
+		border-radius: 28px; /* matching the screenshot rounded form container */
+		box-shadow: 
+			0 20px 50px rgba(37, 99, 235, 0.04), 
+			0 4px 20px rgba(0, 0, 0, 0.02);
+		padding: 48px 40px;
+		border: 1px solid rgba(229, 231, 235, 0.5);
+	}
+
+	.career-form {
+		display: flex;
+		flex-direction: column;
+		gap: 24px;
+	}
+
+	.form-group {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		text-align: left;
+	}
+
+	.form-group label {
+		font-size: 1.05rem;
+		font-weight: 700;
+		color: #1e293b;
+		font-family: "Outfit", sans-serif;
+	}
+
+	.form-group input,
+	.form-group textarea {
+		width: 100%;
+		border: 1.5px solid #bae6fd; /* light blue border */
+		border-radius: 12px; /* rounded fields */
+		padding: 14px 18px;
+		font-size: 1rem;
+		font-family: "Outfit", sans-serif;
+		color: #0f172a;
+		background: #ffffff;
+		box-sizing: border-box;
+		transition: border-color 0.2s ease, box-shadow 0.2s ease;
+	}
+
+	.form-group input:focus,
+	.form-group textarea:focus {
+		outline: none;
+		border-color: #3b9fe8;
+		box-shadow: 0 0 0 4px rgba(59, 159, 232, 0.15);
+	}
+
+	/* Custom Checkbox */
+	.consent-group {
+		margin-top: 4px;
+		text-align: left;
+	}
+
+	.custom-checkbox {
+		display: flex;
+		gap: 14px;
+		cursor: pointer;
+		position: relative;
+		user-select: none;
+	}
+
+	.custom-checkbox input {
+		position: absolute;
+		opacity: 0;
+		cursor: pointer;
+		height: 0;
+		width: 0;
+	}
+
+	.checkmark {
+		height: 24px;
+		width: 24px;
+		border: 1.5px solid #3b9fe8;
+		border-radius: 50%; /* circular outline style checkbox */
+		display: inline-block;
+		flex-shrink: 0;
+		transition: all 0.2s ease;
+		background: #ffffff;
+		position: relative;
+	}
+
+	.custom-checkbox:hover input ~ .checkmark {
+		background-color: #f0f9ff;
+	}
+
+	.custom-checkbox input:checked ~ .checkmark {
+		background-color: #3b9fe8;
+	}
+
+	/* Add a small white dot/check in center of checkmark */
+	.checkmark:after {
+		content: "";
+		position: absolute;
+		display: none;
+	}
+
+	.custom-checkbox input:checked ~ .checkmark:after {
+		display: block;
+	}
+
+	.custom-checkbox .checkmark:after {
+		left: 8px;
+		top: 8px;
+		width: 8px;
+		height: 8px;
+		border-radius: 50%;
+		background: white;
+	}
+
+	.consent-text {
+		font-size: 0.85rem;
+		line-height: 1.55;
+		color: #1e293b;
+		font-weight: 700;
+	}
+
+	/* Submit Button */
+	.submit-btn {
+		background-color: #3b9fe8;
+		color: #ffffff;
+		border: none;
+		border-radius: 12px;
+		padding: 16px;
+		font-size: 1.15rem;
+		font-weight: 700;
+		font-family: "Outfit", sans-serif;
+		cursor: pointer;
+		transition: all 0.25s ease;
+		box-shadow: 0 4px 12px rgba(59, 159, 232, 0.2);
+	}
+
+	.submit-btn:hover {
+		background-color: #2563eb;
+		transform: translateY(-2px);
+		box-shadow: 0 6px 20px rgba(37, 99, 235, 0.3);
+	}
+
+	/* ── WHY ELANCE? SECTION ── */
+	.why-elance-section {
+		padding: 40px 0 80px;
+		background-color: #f0f4f8; /* light grey-blue matching screenshot right side */
+	}
+
+	/* Full-bleed outer wrapper so card sits on the left naturally */
+	.why-elance-outer {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 0 40px;
+		width: 100%;
+		box-sizing: border-box;
+	}
+
+	.why-elance-card {
+		position: relative;
+		overflow: hidden;
+		background: linear-gradient(160deg, #5b8fc9 0%, #3a70a8 40%, #2b5a8f 100%);
+		border-radius: 24px;
+		padding: 52px 56px 60px 56px;
+		max-width: 580px; /* left-side card width like screenshot */
+		width: 100%;
+		box-shadow: 
+			0 12px 40px rgba(30, 82, 139, 0.18), 
+			0 4px 12px rgba(0, 0, 0, 0.06);
+	}
+
+	/* Decorative blob - lighter circle top-right inside card */
+	.why-decor-blob {
+		position: absolute;
+		top: -30px;
+		right: -30px;
+		width: 180px;
+		height: 180px;
+		border-radius: 50%;
+		background: rgba(255, 255, 255, 0.08);
+		pointer-events: none;
+	}
+
+	/* Decorative circle - bottom-left */
+	.why-decor-circle {
+		position: absolute;
+		bottom: -60px;
+		left: -30px;
+		width: 200px;
+		height: 200px;
+		border-radius: 50%;
+		background: rgba(255, 255, 255, 0.05);
+		pointer-events: none;
+	}
+
+	.why-title {
+		font-size: clamp(2rem, 3.5vw, 2.6rem);
+		font-weight: 800;
+		color: #ffffff;
+		margin: 0 0 36px 0;
+		text-align: left;
+		font-family: "Outfit", sans-serif;
+	}
+
+	.why-list {
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+	}
+
+	.why-list-item {
+		display: flex;
+		align-items: flex-start;
+		gap: 14px;
+	}
+
+	.why-chevron {
+		color: #ffffff;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-shrink: 0;
+		margin-top: 2px;
+	}
+
+	.why-text {
+		font-size: 1rem;
+		font-weight: 700;
+		color: #ffffff;
+		line-height: 1.45;
+		font-family: "Outfit", sans-serif;
+	}
+
+	/* Responsive overrides */
+	@media (max-width: 992px) {
+		.dream-career-container {
+			grid-template-columns: 1fr;
+			gap: 50px;
+		}
+		.why-elance-card {
+			padding: 44px 40px;
+			max-width: 100%;
+		}
+	}
+
+	@media (max-width: 768px) {
+		.why-title {
+			margin-bottom: 28px;
+		}
+		.why-elance-card {
+			padding: 36px 28px;
+		}
+		.contact-form-box {
+			padding: 36px 24px;
+		}
+	}
+
+	@media (max-width: 480px) {
+		.dream-career-section {
+			padding: 60px 0 40px;
+		}
+		.why-elance-section {
+			padding: 40px 0 60px;
+		}
+		.accordion-content {
+			padding-left: 24px;
+		}
+		.why-text {
+			font-size: 0.95rem;
+		}
+	}
+</style>

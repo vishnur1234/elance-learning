@@ -1,0 +1,330 @@
+---
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Our Centers | Elance</title>
+		<meta
+			name="description"
+			content="India's Most Trusted Commerce Institute. Explore Elance's Kochi and Calicut campuses."
+		/>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,600&family=Outfit:wght@300;400;500;600;700;800;900&display=swap"
+			rel="stylesheet"
+		/>
+	</head>
+	<body>
+		<Nav />
+
+		<!-- ===================== HERO ===================== -->
+		<section class="oc-hero-section">
+			<div class="oc-hero-card">
+				<div class="oc-hero-left">
+					<p class="oc-eyebrow">Welcome to</p>
+					<h1 class="oc-hero-title">
+						India's Most Trusted<br />
+						Commerce Institute
+					</h1>
+					<p class="oc-hero-desc">
+						Begin your journey in a space alive with ambition, connection, and
+						opportunity. Whether you're at our vibrant Calicut campus or the
+						dynamic Kochi campus, every moment at Elance invites you to grow
+						your skills, build meaningful relationships, and enjoy the spirited
+						pulse of campus life. Here, education goes beyond the classroom—
+						offering professional commerce qualifications that empowers your
+						career while creating memories that last a lifetime.
+					</p>
+					<a href="#" class="oc-btn-primary">Begin your career now</a>
+				</div>
+				<div class="oc-hero-right">
+					<img src="demoImg" alt="Elance campus with brand ambassador" class="oc-hero-img" />
+				</div>
+			</div>
+		</section>
+
+		<!-- ===================== CAMPUS CARDS ===================== -->
+		<section class="oc-campus-section">
+			<div class="oc-campus-grid">
+
+				<!-- Kochi Campus -->
+				<div class="oc-campus-card">
+					<h2 class="oc-campus-title">Elance Kochi Campus</h2>
+					<p class="oc-campus-desc">
+						Our Kochi campus blends focus with freshness! A space where
+						ambition excels alongside friendly faces, coffee breaks, and
+						real-world learning. From expert-led sessions to campus moments
+						you'll always remember, it's where growth feels good.
+					</p>
+					<a href="#" class="oc-btn-outline">Know more</a>
+
+					<div class="oc-video-thumb">
+						<img src="demoImg" alt="Elance Kochi campus" class="oc-video-img" />
+						<button class="oc-play-btn" aria-label="Play Kochi campus video">
+							<svg viewBox="0 0 24 24" width="22" height="22" fill="#fff">
+								<path d="M8 5v14l11-7z"></path>
+							</svg>
+						</button>
+					</div>
+				</div>
+
+				<!-- Calicut Campus -->
+				<div class="oc-campus-card">
+					<h2 class="oc-campus-title">Elance Calicut Campus</h2>
+					<p class="oc-campus-desc">
+						At our Calicut campus, learning is just one part of the
+						experience. It's a space filled with energy, connection, and the
+						kind of support that helps you grow inside the classroom and
+						beyond. Here, every day brings new ideas and memorable moments.
+					</p>
+					<a href="#" class="oc-btn-outline">Know more</a>
+
+					<div class="oc-video-thumb">
+						<img src="demoImg" alt="Elance Calicut campus" class="oc-video-img" />
+						<button class="oc-play-btn" aria-label="Play Calicut campus video">
+							<svg viewBox="0 0 24 24" width="22" height="22" fill="#fff">
+								<path d="M8 5v14l11-7z"></path>
+							</svg>
+						</button>
+					</div>
+				</div>
+
+			</div>
+		</section>
+
+		<Footer />
+	</body>
+</html>
+
+<style>
+	* {
+		box-sizing: border-box;
+		margin: 0;
+		padding: 0;
+	}
+
+	body {
+		font-family: "Outfit", "Inter", sans-serif;
+		background-color: #f8fafc;
+		color: #1e293b;
+	}
+
+	a {
+		text-decoration: none;
+	}
+
+	/* ─────────────────────────────────────────
+	   HERO
+	───────────────────────────────────────── */
+	.oc-hero-section {
+		padding: 40px 40px 0;
+		max-width: 1400px;
+		margin: 0 auto;
+	}
+
+	.oc-hero-card {
+		background: linear-gradient(135deg, #e2effa 0%, #dbe9f6 100%);
+		border-radius: 28px;
+		display: grid;
+		grid-template-columns: 1.05fr 0.95fr;
+		align-items: center;
+		overflow: hidden;
+		min-height: 460px;
+	}
+
+	.oc-hero-left {
+		padding: 56px 20px 56px 64px;
+	}
+
+	.oc-eyebrow {
+		font-size: 1.1rem;
+		font-weight: 600;
+		color: #1e293b;
+		margin-bottom: 10px;
+	}
+
+	.oc-hero-title {
+		font-size: clamp(2.2rem, 3.4vw, 3rem);
+		font-weight: 800;
+		line-height: 1.2;
+		color: #1c4e8f;
+		font-family: "Outfit", sans-serif;
+		margin-bottom: 24px;
+	}
+
+	.oc-hero-desc {
+		font-size: 1.05rem;
+		line-height: 1.7;
+		color: #334155;
+		max-width: 520px;
+		margin-bottom: 32px;
+	}
+
+	.oc-btn-primary {
+		display: inline-block;
+		background: #123a72;
+		color: #fff;
+		font-weight: 700;
+		font-size: 1.05rem;
+		padding: 16px 32px;
+		border-radius: 999px;
+		font-family: "Outfit", sans-serif;
+	}
+
+	.oc-btn-primary:hover {
+		background: #0d2c57;
+	}
+
+	.oc-hero-right {
+		height: 100%;
+		display: flex;
+		align-items: flex-end;
+		justify-content: center;
+		position: relative;
+		align-self: stretch;
+	}
+
+	.oc-hero-img {
+		width: 100%;
+		height: 100%;
+		max-height: 460px;
+		object-fit: contain;
+		object-position: bottom;
+		display: block;
+	}
+
+	/* ─────────────────────────────────────────
+	   CAMPUS CARDS
+	───────────────────────────────────────── */
+	.oc-campus-section {
+		padding: 60px 40px 100px;
+		max-width: 1400px;
+		margin: 0 auto;
+	}
+
+	.oc-campus-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 32px;
+	}
+
+	.oc-campus-card {
+		background: #f1f5f9;
+		border-radius: 24px;
+		padding: 48px;
+	}
+
+	.oc-campus-title {
+		font-size: 2rem;
+		font-weight: 800;
+		color: #1e293b;
+		font-family: "Outfit", sans-serif;
+		margin-bottom: 20px;
+	}
+
+	.oc-campus-desc {
+		font-size: 1.05rem;
+		line-height: 1.7;
+		color: #334155;
+		margin-bottom: 28px;
+	}
+
+	.oc-btn-outline {
+		display: inline-block;
+		border: 1.5px solid #123a72;
+		color: #123a72;
+		font-weight: 700;
+		font-size: 1.05rem;
+		padding: 14px 30px;
+		border-radius: 999px;
+		font-family: "Outfit", sans-serif;
+		margin-bottom: 36px;
+	}
+
+	.oc-btn-outline:hover {
+		background: #123a72;
+		color: #fff;
+	}
+
+	.oc-video-thumb {
+		position: relative;
+		border-radius: 18px;
+		overflow: hidden;
+		aspect-ratio: 16 / 9;
+		background: #0f172a;
+	}
+
+	.oc-video-img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		display: block;
+	}
+
+	.oc-play-btn {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 64px;
+		height: 46px;
+		border-radius: 10px;
+		background: #ff0000;
+		border: none;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		cursor: pointer;
+		box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+	}
+
+	.oc-play-btn:hover {
+		background: #e60000;
+	}
+
+	/* ── RESPONSIVE ── */
+	@media (max-width: 1024px) {
+		.oc-hero-card {
+			grid-template-columns: 1fr;
+			min-height: auto;
+		}
+
+		.oc-hero-left {
+			padding: 40px 32px;
+		}
+
+		.oc-hero-right {
+			min-height: 320px;
+		}
+
+		.oc-campus-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	@media (max-width: 600px) {
+		.oc-hero-section,
+		.oc-campus-section {
+			padding-left: 20px;
+			padding-right: 20px;
+		}
+
+		.oc-hero-left {
+			padding: 32px 24px;
+		}
+
+		.oc-campus-card {
+			padding: 32px 24px;
+		}
+
+		.oc-hero-title {
+			font-size: 1.9rem;
+		}
+	}
+</style>

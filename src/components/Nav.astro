@@ -17,9 +17,17 @@ const currentPath = pathname.replace(/\/$/, "");
         <!-- Navigation Links in Pill -->
         <div class="nav-menu-wrapper">
             <ul class="nav-links">
-                <li><a href="/" class={`nav-link ${currentPath === "" ? "active-link" : ""}`}>Home</a></li>
+                <li>
+                    <a
+                        href="/"
+                        class={`nav-link ${currentPath === "" ? "active-link" : ""}`}
+                        >Home</a>
+                </li>
                 <li class="has-dropdown">
-                    <a href="/courses" class={`nav-link ${currentPath === "/courses" ? "active-link" : ""}`}>
+                    <a
+                        href="/courses"
+                        class={`nav-link ${currentPath === "/courses" ? "active-link" : ""}`}
+                    >
                         Courses
                         <svg
                             class="chevron"
@@ -35,9 +43,13 @@ const currentPath = pathname.replace(/\/$/, "");
                                 stroke-linejoin="round"></path>
                         </svg>
                     </a>
+                    <div class="dropdown-menu">
+                        <a href="/acca" class="dropdown-item">ACCA</a>
+                        <a href="/cma" class="dropdown-item">CMA</a>
+                    </div>
                 </li>
                 <li class="has-dropdown">
-                    <a href="#" class="nav-link">
+                    <a href="/ourcenters" class="nav-link">
                         Our Centers
                         <svg
                             class="chevron"
@@ -53,6 +65,11 @@ const currentPath = pathname.replace(/\/$/, "");
                                 stroke-linejoin="round"></path>
                         </svg>
                     </a>
+                        <div class="dropdown-menu">
+                        <a href="/acca" class="dropdown-item">Calicut</a>
+                        <a href="/cma" class="dropdown-item">Kochi</a>
+                         <a href="/cma" class="dropdown-item">Kannur</a>
+                    </div>
                 </li>
                 <li class="has-dropdown">
                     <a href="#" class="nav-link">
@@ -188,12 +205,71 @@ const currentPath = pathname.replace(/\/$/, "");
         color: #3b9fe8;
     }
 
+    .has-dropdown:hover > .nav-link {
+        color: #212529; /* Matches exact screenshot color - parent remains black when menu is open */
+    }
+
     .chevron {
-        width: 14px;
-        height: 14px;
+        width: 12px;
+        height: 12px;
         flex-shrink: 0;
         color: inherit;
         opacity: 0.8;
+        transition: transform 0.2s ease;
+    }
+
+    /* Dropdown styles */
+    .has-dropdown {
+        position: relative;
+    }
+
+    .dropdown-menu {
+        position: absolute;
+        top: 100%;
+        left: -16px; /* Offset slightly left to match screenshot */
+        transform: translateY(22px);
+        background: #ffffff;
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        padding: 24px 32px; /* Generous padding as shown in screenshot */
+        display: flex;
+        flex-direction: column;
+        gap: 16px; /* Spacing between menu items */
+        min-width: 220px; /* Wide dropdown container as shown in screenshot */
+        z-index: 1010;
+        opacity: 0;
+        visibility: hidden;
+        transition:
+            opacity 0.25s ease,
+            visibility 0.25s ease,
+            transform 0.25s ease;
+        pointer-events: none;
+    }
+
+    .has-dropdown:hover .dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(12px); /* 12px gap below navigation pill */
+        pointer-events: auto;
+    }
+
+    .has-dropdown:hover .chevron {
+        transform: rotate(180deg);
+    }
+
+    .dropdown-item {
+        text-decoration: none;
+        color: #111111;
+        font-family: "Outfit", sans-serif;
+        font-size: 16px;
+        font-weight: 700;
+        transition: color 0.2s ease;
+        text-align: left;
+        display: block;
+    }
+
+    .dropdown-item:hover {
+        color: #3b9fe8;
     }
 
     /* CTA Button */

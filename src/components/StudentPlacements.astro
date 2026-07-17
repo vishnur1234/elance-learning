@@ -1,0 +1,209 @@
+---
+// StudentPlacements.astro
+// Component representing corporate placement logos of students.
+---
+
+<section class="placements-section">
+	<div class="section-container placements-container">
+		<h2 class="placements-title">
+			Our Students Made It – <span class="text-blue">Now It's Your Turn!</span>
+		</h2>
+
+		<div class="placements-grid">
+			<!-- Row 1, Col 1: Baker Tilly -->
+			<div class="placement-box">
+				<svg viewBox="0 0 160 50" class="logo-svg" aria-label="Baker Tilly Logo">
+					<g fill="#212529">
+						<!-- Spiral/Abstract concentric arches logo mark -->
+						<path d="M22 14c-4.4 0-8 3.6-8 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zm0 12c-2.2 0-4-1.8-4-4s1.8-4 4-4 4 1.8 4 4-1.8 4-4 4z" opacity="0.85"/>
+						<path d="M22 6C13.2 6 6 13.2 6 22s7.2 16 16 16 16-7.2 16-16S30.8 6 22 6zm0 28c-6.6 0-12-5.4-12-12S15.4 10 22 10s12 5.4 12 12-5.4 12-12 12z" opacity="0.6"/>
+						<!-- Text wordmark -->
+						<text x="46" y="29" font-family="'Inter', sans-serif" font-weight="700" font-size="19" letter-spacing="-0.5px">bakertilly</text>
+					</g>
+				</svg>
+			</div>
+
+			<!-- Row 1, Col 2: RSM -->
+			<div class="placement-box">
+				<svg viewBox="0 0 160 50" class="logo-svg" aria-label="RSM Logo">
+					<!-- RSM Blocks and text -->
+					<rect x="25" y="15" width="10" height="5" fill="#4ea74e" />
+					<rect x="25" y="22" width="15" height="13" fill="#888888" />
+					<rect x="38" y="15" width="22" height="4" fill="#00a3e0" />
+					<text x="63" y="34" font-family="'Inter', sans-serif" font-weight="800" font-size="20" fill="#4b5563" letter-spacing="0.5px">RSM</text>
+				</svg>
+			</div>
+
+			<!-- Row 1, Col 3: BDO -->
+			<div class="placement-box">
+				<svg viewBox="0 0 160 50" class="logo-svg" aria-label="BDO Logo">
+					<!-- Blue wordmark with red underline -->
+					<text x="45" y="28" font-family="'Inter', sans-serif" font-weight="800" font-size="26" fill="#003594" letter-spacing="0.5px">BDO</text>
+					<rect x="42" y="32" width="76" height="3" fill="#ff0000" />
+				</svg>
+			</div>
+
+			<!-- Row 1, Col 4: Grant Thornton -->
+			<div class="placement-box">
+				<img src="/grant-thornton.png" alt="Grant Thornton Logo" class="placement-img img-gt" />
+			</div>
+
+			<!-- Row 1, Col 5: Deloitte -->
+			<div class="placement-box">
+				<img src="/src/Assets/deloitte.png" alt="Deloitte Logo" class="placement-img img-deloitte" />
+			</div>
+
+			<!-- Row 2, Col 1: KPMG -->
+			<div class="placement-box">
+				<svg viewBox="0 0 160 50" class="logo-svg" aria-label="KPMG Logo">
+					<!-- Four slanted blue rectangle outlines -->
+					<rect x="44" y="10" width="14" height="8" fill="none" stroke="#00338d" stroke-width="1.5" />
+					<rect x="62" y="10" width="14" height="8" fill="none" stroke="#00338d" stroke-width="1.5" />
+					<rect x="80" y="10" width="14" height="8" fill="none" stroke="#00338d" stroke-width="1.5" />
+					<rect x="98" y="10" width="14" height="8" fill="none" stroke="#00338d" stroke-width="1.5" />
+					<text x="42" y="38" font-family="'Inter', sans-serif" font-weight="900" font-size="24" fill="#00338d" font-style="italic" letter-spacing="1px">KPMG</text>
+				</svg>
+			</div>
+
+			<!-- Row 2, Col 2: EY -->
+			<div class="placement-box">
+				<img src="/src/Assets/ey.png" alt="EY Logo" class="placement-img img-ey" />
+			</div>
+
+			<!-- Row 2, Col 3: PwC -->
+			<div class="placement-box">
+				<img src="/src/Assets/pwc.png" alt="PwC Logo" class="placement-img img-pwc" />
+			</div>
+
+			<!-- Row 2, Col 4: Citibank -->
+			<div class="placement-box">
+				<svg viewBox="0 0 160 50" class="logo-svg" aria-label="Citibank Logo">
+					<!-- Red arch and blue wordmark -->
+					<path d="M72 17 C78 12, 88 12, 94 17" stroke="#ff0000" stroke-width="3" fill="none" stroke-linecap="round" />
+					<text x="35" y="34" font-family="'Inter', sans-serif" font-weight="700" font-size="22" fill="#002d62" letter-spacing="-0.5px">citibank</text>
+				</svg>
+			</div>
+
+			<!-- Row 2, Col 5: Accenture -->
+			<div class="placement-box">
+				<svg viewBox="0 0 160 50" class="logo-svg" aria-label="Accenture Logo">
+					<text x="32" y="33" font-family="'Inter', sans-serif" font-weight="800" font-size="22" fill="#000000" letter-spacing="-0.5px">accenture</text>
+					<!-- Purple chevron above text -->
+					<path d="M110 16 L115 19 L110 22" fill="none" stroke="#a100ff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+				</svg>
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+	.placements-section {
+		padding: 80px 0;
+		background-color: #ffffff;
+	}
+
+	.placements-container {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 0 40px;
+		width: 100%;
+		text-align: center;
+		box-sizing: border-box;
+	}
+
+	.placements-title {
+		font-size: clamp(1.8rem, 3.2vw, 2.8rem);
+		font-weight: 800;
+		color: #1e293b;
+		margin-bottom: 48px;
+		font-family: "Outfit", sans-serif;
+	}
+
+	.text-blue {
+		color: #3b9fe8;
+	}
+
+	.placements-grid {
+		display: grid;
+		grid-template-columns: repeat(5, 1fr);
+		gap: 20px;
+		width: 100%;
+	}
+
+	.placement-box {
+		background-color: #eef5fc; /* light blue-grey box background */
+		border-radius: 0;
+		height: 144px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 16px 28px;
+		transition: transform 0.25s ease, box-shadow 0.25s ease;
+		box-sizing: border-box;
+	}
+
+	.placement-box:hover {
+		transform: translateY(-4px);
+		box-shadow: 0 12px 24px rgba(37, 99, 235, 0.06);
+	}
+
+	.logo-svg {
+		width: 100%;
+		height: 100%;
+		max-height: 66px;
+		object-fit: contain;
+	}
+
+	.placement-img {
+		max-height: 60px;
+		max-width: 85%;
+		object-fit: contain;
+		filter: grayscale(0%);
+		transition: filter 0.25s ease;
+	}
+
+	/* Specific sizes for raster images to make them visually balanced */
+	.img-gt {
+		max-height: 42px;
+	}
+
+	.img-deloitte {
+		max-height: 34px;
+	}
+
+	.img-ey {
+		max-height: 50px;
+	}
+
+	.img-pwc {
+		max-height: 52px;
+	}
+
+	/* Responsive breakpoints */
+	@media (max-width: 992px) {
+		.placements-grid {
+			grid-template-columns: repeat(3, 1fr);
+			gap: 16px;
+		}
+		.placement-box {
+			height: 120px;
+		}
+	}
+
+	@media (max-width: 600px) {
+		.placements-grid {
+			grid-template-columns: repeat(2, 1fr);
+			gap: 12px;
+		}
+		.placement-box {
+			height: 106px;
+			padding: 8px 12px;
+		}
+		.placements-section {
+			padding: 60px 0;
+		}
+		.placements-title {
+			margin-bottom: 32px;
+		}
+	}
+</style>
