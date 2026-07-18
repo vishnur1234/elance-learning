@@ -379,15 +379,22 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 						journeys of growth, success, and accomplishments with
 						Elance!
 					</p>
-					
+
 					<!-- Active Student Info (Dynamic) -->
 					<div class="feedback-info">
-						<h3 class="feedback-student-name" id="feedback-name">Kasinath</h3>
-						<p class="feedback-student-role" id="feedback-role">Elance CA Student</p>
+						<h3 class="feedback-student-name" id="feedback-name">
+							Kasinath
+						</h3>
+						<p class="feedback-student-role" id="feedback-role">
+							Elance CA Student
+						</p>
 					</div>
 
 					<div class="feedback-arrows">
-						<button class="arrow-btn prev-feedback-btn" aria-label="Previous">
+						<button
+							class="arrow-btn prev-feedback-btn"
+							aria-label="Previous"
+						>
 							<svg
 								viewBox="0 0 24 24"
 								fill="none"
@@ -401,7 +408,10 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 									stroke-linejoin="round"></path>
 							</svg>
 						</button>
-						<button class="arrow-btn next-feedback-btn" aria-label="Next">
+						<button
+							class="arrow-btn next-feedback-btn"
+							aria-label="Next"
+						>
 							<svg
 								viewBox="0 0 24 24"
 								fill="none"
@@ -421,7 +431,11 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 				<div class="feedback-right">
 					<div class="feedback-stack-container" id="feedback-stack">
 						<!-- Card 1 -->
-						<div class="feedback-card" data-name="Kasinath" data-role="Elance CA Student">
+						<div
+							class="feedback-card"
+							data-name="Kasinath"
+							data-role="Elance CA Student"
+						>
 							<img
 								src="/images/Ajsal-E.webp"
 								alt="Kasinath – Student Feedback"
@@ -438,7 +452,11 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 							</button>
 						</div>
 						<!-- Card 2 -->
-						<div class="feedback-card" data-name="Anaam Abdul Salam" data-role="Elance ACCA Student">
+						<div
+							class="feedback-card"
+							data-name="Anaam Abdul Salam"
+							data-role="Elance ACCA Student"
+						>
 							<img
 								src="/images/Anaam-Abdul-Salam.webp"
 								alt="Anaam Abdul Salam – Student Feedback"
@@ -455,7 +473,11 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 							</button>
 						</div>
 						<!-- Card 3 -->
-						<div class="feedback-card" data-name="Ann Mary" data-role="Elance CMA Student">
+						<div
+							class="feedback-card"
+							data-name="Ann Mary"
+							data-role="Elance CMA Student"
+						>
 							<img
 								src="/images/Ann-Mary.webp"
 								alt="Ann Mary – Student Feedback"
@@ -472,7 +494,11 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 							</button>
 						</div>
 						<!-- Card 4 -->
-						<div class="feedback-card" data-name="Anuradha" data-role="Elance CA Student">
+						<div
+							class="feedback-card"
+							data-name="Anuradha"
+							data-role="Elance CA Student"
+						>
 							<img
 								src="/images/Anuradha.webp"
 								alt="Anuradha – Student Feedback"
@@ -489,7 +515,11 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 							</button>
 						</div>
 						<!-- Card 5 -->
-						<div class="feedback-card" data-name="Ayshath Shahma" data-role="Elance ACCA Student">
+						<div
+							class="feedback-card"
+							data-name="Ayshath Shahma"
+							data-role="Elance ACCA Student"
+						>
 							<img
 								src="/images/Ayshath-Shahma.webp"
 								alt="Ayshath Shahma – Student Feedback"
@@ -506,7 +536,11 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 							</button>
 						</div>
 						<!-- Card 6 -->
-						<div class="feedback-card" data-name="Bijini Koshi" data-role="Elance CMA Student">
+						<div
+							class="feedback-card"
+							data-name="Bijini Koshi"
+							data-role="Elance CMA Student"
+						>
 							<img
 								src="/images/Bijini-Koshi.webp"
 								alt="Bijini Koshi – Student Feedback"
@@ -529,6 +563,9 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 			<!-- What our Students think about us Banner -->
 			<div class="section-container">
 				<div class="think-banner">
+					<!-- Decor shape behind left side using you-bg.png -->
+					<div class="think-banner-decor"></div>
+
 					<div class="think-banner-left">
 						<h2 class="think-title">
 							What our<br />
@@ -536,56 +573,108 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 							about us?
 						</h2>
 					</div>
+
 					<div class="think-banner-right">
-						<div class="think-avatars">
-							<img
-								src="/images/i1.jpg"
-								alt="Student 1"
-								class="think-avatar"
-							/>
-							<img
-								src="/images/i2.jpg"
-								alt="Student 2"
-								class="think-avatar"
-							/>
-							<img
-								src="/images/Abhiram-testi.jpg"
-								alt="Student 3"
-								class="think-avatar"
-							/>
+						<div class="think-header-row">
+							<div class="think-avatars-wrap">
+								<!-- Avatar 1 -->
+								<div
+									class="think-avatar-container avatar-0 active"
+									data-index="0"
+								>
+									<div class="avatar-backdrop bg-blue"></div>
+									<img
+										src="/images/i1.jpg"
+										alt="Student 1"
+										class="think-avatar-img"
+									/>
+								</div>
+								<!-- Avatar 2 -->
+								<div
+									class="think-avatar-container avatar-1"
+									data-index="1"
+								>
+									<div class="avatar-backdrop bg-purple">
+									</div>
+									<img
+										src="/images/i2.jpg"
+										alt="Student 2"
+										class="think-avatar-img"
+									/>
+								</div>
+								<!-- Avatar 3 -->
+								<div
+									class="think-avatar-container avatar-2"
+									data-index="2"
+								>
+									<div class="avatar-backdrop bg-skyblue">
+									</div>
+									<img
+										src="/images/Abhiram-testi.jpg"
+										alt="Student 3"
+										class="think-avatar-img"
+									/>
+								</div>
+							</div>
+
+							<div class="think-arrows">
+								<button
+									class="think-arrow-btn prev-think-btn"
+									aria-label="Previous"
+								>
+									<svg
+										viewBox="0 0 24 24"
+										fill="none"
+										xmlns="http://www.w3.org/2000/svg"
+									>
+										<path
+											d="M15 19l-7-7 7-7"
+											stroke="currentColor"
+											stroke-width="2.5"
+											stroke-linecap="round"
+											stroke-linejoin="round"></path>
+									</svg>
+								</button>
+								<button
+									class="think-arrow-btn next-think-btn"
+									aria-label="Next"
+								>
+									<svg
+										viewBox="0 0 24 24"
+										fill="none"
+										xmlns="http://www.w3.org/2000/svg"
+									>
+										<path
+											d="M9 5l7 7-7 7"
+											stroke="currentColor"
+											stroke-width="2.5"
+											stroke-linecap="round"
+											stroke-linejoin="round"></path>
+									</svg>
+								</button>
+							</div>
 						</div>
-						<div class="think-arrows">
-							<button
-								class="arrow-btn-small"
-								aria-label="Previous"
+
+						<!-- Testimonial Content (Dynamic) -->
+						<div class="think-content">
+							<blockquote
+								class="think-quote"
+								id="think-quote-text"
 							>
-								<svg
-									viewBox="0 0 24 24"
-									fill="none"
-									xmlns="http://www.w3.org/2000/svg"
+								"With Elance, you won't feel like you're missing
+								out on the college vibe."
+							</blockquote>
+							<div class="think-student-info">
+								<cite
+									class="think-student-name"
+									id="think-quote-name"
+									>Shringa Surendran</cite
 								>
-									<path
-										d="M15 19l-7-7 7-7"
-										stroke="currentColor"
-										stroke-width="2.5"
-										stroke-linecap="round"
-										stroke-linejoin="round"></path>
-								</svg>
-							</button>
-							<button class="arrow-btn-small" aria-label="Next">
-								<svg
-									viewBox="0 0 24 24"
-									fill="none"
-									xmlns="http://www.w3.org/2000/svg"
+								<span
+									class="think-student-company"
+									id="think-quote-company">KPMG</span
 								>
-									<path
-										d="M9 5l7 7-7 7"
-										stroke="currentColor"
-										stroke-width="2.5"
-										stroke-linecap="round"
-										stroke-linejoin="round"></path>
-								</svg>
-							</button>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -632,7 +721,6 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 				<div class="career-layout">
 					<!-- Left: Ambassador -->
 					<div class="career-left">
-						<div class="career-shape-bg"></div>
 						<img
 							src="/images/mamu-sec.webp"
 							alt="Brand Ambassador"
@@ -840,7 +928,9 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 			}
 
 			// Student Feedback stack slider
-			const feedbackCards = Array.from(document.querySelectorAll(".feedback-card"));
+			const feedbackCards = Array.from(
+				document.querySelectorAll(".feedback-card"),
+			);
 			const feedbackName = document.getElementById("feedback-name");
 			const feedbackRole = document.getElementById("feedback-role");
 			const feedbackPrev = document.querySelector(".prev-feedback-btn");
@@ -852,15 +942,18 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 
 				const updateStack = () => {
 					feedbackCards.forEach((card, index) => {
-						const relativeIndex = (index - activeIndex + total) % total;
-						
+						const relativeIndex =
+							(index - activeIndex + total) % total;
+
 						card.className = "feedback-card"; // Reset classes
 
 						if (relativeIndex === 0) {
 							card.classList.add("card-0");
 							if (feedbackName && feedbackRole) {
-								feedbackName.textContent = card.getAttribute("data-name") || "";
-								feedbackRole.textContent = card.getAttribute("data-role") || "";
+								feedbackName.textContent =
+									card.getAttribute("data-name") || "";
+								feedbackRole.textContent =
+									card.getAttribute("data-role") || "";
 							}
 						} else if (relativeIndex === 1) {
 							card.classList.add("card-1");
@@ -887,6 +980,88 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 
 				// Init
 				updateStack();
+			}
+
+			// Think Banner Testimonials Slider
+			const thinkAvatars = Array.from(
+				document.querySelectorAll(".think-avatar-container"),
+			);
+			const thinkQuoteText = document.getElementById("think-quote-text");
+			const thinkQuoteName = document.getElementById("think-quote-name");
+			const thinkQuoteCompany = document.getElementById(
+				"think-quote-company",
+			);
+			const thinkPrevBtn = document.querySelector(".prev-think-btn");
+			const thinkNextBtn = document.querySelector(".next-think-btn");
+
+			const testimonials = [
+				{
+					quote: "\"With Elance, you won't feel like you're missing out on the college vibe.\"",
+					name: "Shringa Surendran",
+					company: "KPMG",
+					avatarIndex: 0,
+				},
+				{
+					quote: '"Flexible classes and amazing mock exams. Elance is the best choice for professional finance courses."',
+					name: "Anagha Anand",
+					company: "Deloitte",
+					avatarIndex: 1,
+				},
+				{
+					quote: '"The placement support and faculty mentoring at Elance are unmatched in professional coaching."',
+					name: "Abhiram",
+					company: "EY",
+					avatarIndex: 2,
+				},
+			];
+
+			if (thinkAvatars.length > 0) {
+				let currentIndex = 0;
+
+				const updateTestimonial = (index) => {
+					currentIndex = index;
+
+					// Update active class on avatars
+					thinkAvatars.forEach((avatar, idx) => {
+						if (idx === index) {
+							avatar.classList.add("active");
+						} else {
+							avatar.classList.remove("active");
+						}
+					});
+
+					// Update text content
+					const item = testimonials[index];
+					if (thinkQuoteText && thinkQuoteName && thinkQuoteCompany) {
+						thinkQuoteText.textContent = item.quote;
+						thinkQuoteName.textContent = item.name;
+						thinkQuoteCompany.textContent = item.company;
+					}
+				};
+
+				// Add click listeners to avatars
+				thinkAvatars.forEach((avatar, idx) => {
+					avatar.addEventListener("click", () => {
+						updateTestimonial(idx);
+					});
+				});
+
+				// Arrow buttons
+				if (thinkPrevBtn && thinkNextBtn) {
+					thinkPrevBtn.addEventListener("click", () => {
+						let prevIdx =
+							(currentIndex - 1 + testimonials.length) %
+							testimonials.length;
+						updateTestimonial(prevIdx);
+					});
+					thinkNextBtn.addEventListener("click", () => {
+						let nextIdx = (currentIndex + 1) % testimonials.length;
+						updateTestimonial(nextIdx);
+					});
+				}
+
+				// Init
+				updateTestimonial(0);
 			}
 		</script>
 
@@ -1836,7 +2011,9 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 		align-items: center;
 		justify-content: center;
 		box-shadow: 0 4px 14px rgba(80, 181, 255, 0.25);
-		transition: background-color 0.2s, transform 0.2s;
+		transition:
+			background-color 0.2s,
+			transform 0.2s;
 	}
 
 	.arrow-btn:hover {
@@ -1870,7 +2047,10 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 		border-radius: 24px;
 		overflow: hidden;
 		box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
-		transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.4s ease, z-index 0.4s ease;
+		transition:
+			transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1),
+			opacity 0.4s ease,
+			z-index 0.4s ease;
 		background: #fff;
 	}
 
@@ -1936,7 +2116,9 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 		align-items: center;
 		justify-content: center;
 		cursor: pointer;
-		transition: transform 0.2s, background-color 0.2s;
+		transition:
+			transform 0.2s,
+			background-color 0.2s;
 		z-index: 12;
 	}
 
@@ -1963,7 +2145,7 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 		background: #ffffff;
 		border-radius: 24px;
 		box-shadow: 0 15px 45px rgba(0, 0, 0, 0.04);
-		padding: 40px 60px;
+		padding: 48px 64px;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
@@ -1972,58 +2154,100 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 		border: 1px solid rgba(229, 231, 235, 0.5);
 	}
 
-	.think-banner::before {
-		content: "";
+	.think-banner-decor {
 		position: absolute;
-		top: 0;
-		left: 0;
+		top: -40px;
+		left: -20px;
 		width: 320px;
-		height: 100%;
-		background: linear-gradient(
-			135deg,
-			rgba(238, 247, 255, 0.8) 0%,
-			rgba(255, 255, 255, 0) 80%
-		);
-		z-index: 0;
-		clip-path: polygon(0 0, 100% 0, 75% 100%, 0 100%);
+		height: 320px;
+		background: url("/images/you-bg.png") no-repeat center center;
+		background-size: contain;
+		opacity: 0.18;
+		transform: rotate(40deg);
 		pointer-events: none;
+		z-index: 1;
 	}
 
-	.think-banner-left,
-	.think-banner-right {
+	.think-banner-left {
+		flex: 0 0 35%;
 		position: relative;
 		z-index: 2;
 	}
 
+	.think-banner-right {
+		flex: 0 0 55%;
+		position: relative;
+		z-index: 2;
+		display: flex;
+		flex-direction: column;
+		gap: 24px;
+	}
+
 	.think-title {
-		font-size: 1.8rem;
+		font-family: "outfit", sans-serif;
+		font-size: 2.1rem;
 		font-weight: 800;
 		color: #111827;
 		line-height: 1.25;
 	}
 
-	.think-banner-right {
+	.think-header-row {
 		display: flex;
+		justify-content: space-between;
 		align-items: center;
-		gap: 40px;
+		width: 100%;
 	}
 
-	.think-avatars {
+	.think-avatars-wrap {
 		display: flex;
-		align-items: center;
+		gap: 18px;
 	}
 
-	.think-avatar {
+	.think-avatar-container {
+		position: relative;
+		width: 48px;
+		height: 48px;
+		cursor: pointer;
+		transition: transform 0.2s;
+	}
+
+	.think-avatar-container:hover,
+	.think-avatar-container.active {
+		transform: scale(1.1);
+	}
+
+	.avatar-backdrop {
+		position: absolute;
+		top: 4px;
+		left: -4px;
+		width: 48px;
+		height: 48px;
+		border-radius: 50%;
+		z-index: 1;
+		opacity: 0.5;
+	}
+
+	.avatar-backdrop.bg-blue {
+		background: #50b5ff;
+	}
+
+	.avatar-backdrop.bg-purple {
+		background: #b1a0f5;
+	}
+
+	.avatar-backdrop.bg-skyblue {
+		background: #a0dcf5;
+	}
+
+	.think-avatar-img {
+		position: relative;
 		width: 48px;
 		height: 48px;
 		border-radius: 50%;
 		object-fit: cover;
-		border: 2.5px solid #ffffff;
-		box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-	}
-
-	.think-avatar:not(:first-child) {
-		margin-left: -12px;
+		border: 2px solid #ffffff;
+		z-index: 2;
+		box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
 	}
 
 	.think-arrows {
@@ -2031,30 +2255,68 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 		gap: 12px;
 	}
 
-	.arrow-btn-small {
-		width: 40px;
-		height: 40px;
+	.think-arrow-btn {
+		width: 44px;
+		height: 44px;
 		border-radius: 50%;
 		border: none;
-		background: #eef5fb;
-		color: #3b9fe8;
+		background: #50b5ff;
+		color: #111827;
 		cursor: pointer;
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		box-shadow: 0 4px 12px rgba(80, 181, 255, 0.2);
 		transition:
 			background-color 0.2s,
-			color 0.2s;
+			transform 0.2s;
 	}
 
-	.arrow-btn-small:hover {
-		background: #3b9fe8;
-		color: #ffffff;
+	.think-arrow-btn:hover {
+		background: #35a4ee;
+		transform: scale(1.05);
 	}
 
-	.arrow-btn-small svg {
+	.think-arrow-btn svg {
 		width: 16px;
 		height: 16px;
+	}
+
+	.think-content {
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+	}
+
+	.think-quote {
+		font-family: "outfit", sans-serif;
+		font-size: 1.2rem;
+		font-weight: 600;
+		color: #111827;
+		line-height: 1.5;
+		font-style: italic;
+		margin: 0;
+	}
+
+	.think-student-info {
+		display: flex;
+		flex-direction: column;
+		gap: 2px;
+	}
+
+	.think-student-name {
+		font-family: "outfit", sans-serif;
+		font-size: 1.05rem;
+		font-weight: 700;
+		color: #111827;
+		font-style: normal;
+	}
+
+	.think-student-company {
+		font-family: "outfit", sans-serif;
+		font-size: 0.9rem;
+		font-weight: 600;
+		color: #4b5563;
 	}
 
 	.play-btn {
@@ -2232,17 +2494,26 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 
 	.achievement-shine {
 		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		background: linear-gradient(
-			135deg,
-			rgba(255, 255, 255, 0.22) 0%,
-			rgba(255, 255, 255, 0) 60%
-		);
+		width: 180px;
+		height: 180px;
+		background: url("/images/you-bg.png") no-repeat center center;
+		background-size: contain;
 		pointer-events: none;
 		z-index: 1;
+	}
+
+	.blue-grad-1 .achievement-shine {
+		top: -40px;
+		left: -40px;
+		transform: rotate(-20deg);
+		opacity: 0.22;
+	}
+
+	.blue-grad-2 .achievement-shine {
+		bottom: -40px;
+		right: -40px;
+		transform: rotate(155deg);
+		opacity: 0.25;
 	}
 
 	.achievement-num {
@@ -2575,8 +2846,12 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 			padding: 30px 24px;
 			gap: 24px;
 		}
+		.think-banner-left,
 		.think-banner-right {
+			flex: 0 0 100%;
 			width: 100%;
+		}
+		.think-banner-right {
 			justify-content: space-between;
 			gap: 20px;
 		}
