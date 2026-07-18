@@ -988,11 +988,16 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 		opacity: 1;
 	}
 
-	.alumni-logo-deloitte {}
-	.alumni-logo-kpmg {}
-	.alumni-logo-ey {}
-	.alumni-logo-pwc {}
-	.alumni-logo-gt {}
+	.alumni-logo-deloitte {
+	}
+	.alumni-logo-kpmg {
+	}
+	.alumni-logo-ey {
+	}
+	.alumni-logo-pwc {
+	}
+	.alumni-logo-gt {
+	}
 
 	/* Hero visual */
 	.hero-visual {
@@ -1248,7 +1253,7 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 		display: grid;
 		grid-template-columns: 0.95fr 1.05fr;
 		gap: 60px;
-		align-items: center;
+		align-items: flex-start;
 		margin-bottom: 48px;
 	}
 
@@ -1278,7 +1283,7 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 		left: -80px;
 		font-size: 26rem;
 		font-family: Georgia, serif;
-		color: #ffffff;
+		color: rgba(59, 159, 232, 0.08); /* Changed from white to soft blue to match screenshot */
 		line-height: 1;
 		pointer-events: none;
 		z-index: 1;
@@ -1292,6 +1297,7 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 	.testimonials-left .btn-blue-pill {
 		position: relative;
 		z-index: 2;
+		font-family: "outfit", sans-serif;
 	}
 
 	.testimonials-eyebrow {
@@ -1303,7 +1309,8 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 	}
 
 	.testimonials-title {
-		font-size: 2.7rem;
+		font-family: "outfit", sans-serif;
+		font-size: 50px;
 		font-weight: 900;
 		color: #111827;
 		line-height: 1.2;
@@ -1349,6 +1356,7 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 		transition:
 			transform 0.25s,
 			box-shadow 0.25s;
+		font-family: "outfit", sans-serif;
 	}
 
 	.testimonial-card:hover {
