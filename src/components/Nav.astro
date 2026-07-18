@@ -21,7 +21,8 @@ const currentPath = pathname.replace(/\/$/, "");
                     <a
                         href="/"
                         class={`nav-link ${currentPath === "" ? "active-link" : ""}`}
-                        >Home</a>
+                        >Home</a
+                    >
                 </li>
                 <li class="has-dropdown">
                     <a
@@ -65,10 +66,12 @@ const currentPath = pathname.replace(/\/$/, "");
                                 stroke-linejoin="round"></path>
                         </svg>
                     </a>
-                        <div class="dropdown-menu">
-                        <a href="/calicutcenter" class="dropdown-item">Calicut</a>
+                    <div class="dropdown-menu">
+                        <a href="/calicutcenter" class="dropdown-item"
+                            >Calicut</a
+                        >
                         <a href="/kochicenter" class="dropdown-item">Kochi</a>
-                         <a href="/kannurcenter" class="dropdown-item">Kannur</a>
+                        <a href="/kannurcenter" class="dropdown-item">Kannur</a>
                     </div>
                 </li>
                 <li class="has-dropdown">
@@ -89,10 +92,12 @@ const currentPath = pathname.replace(/\/$/, "");
                         </svg>
                     </a>
 
-                        <div class="dropdown-menu">
+                    <div class="dropdown-menu">
                         <a href="/about" class="dropdown-item">About</a>
                         <a href="/gallery" class="dropdown-item">Gallery</a>
-                         <a href="/hiringpartners" class="dropdown-item">Our Hiring Partners</a>
+                        <a href="/hiringpartners" class="dropdown-item"
+                            >Our Hiring Partners</a
+                        >
                     </div>
                 </li>
                 <li><a href="/contact" class="nav-link">Contact Us</a></li>
@@ -100,7 +105,12 @@ const currentPath = pathname.replace(/\/$/, "");
         </div>
 
         <!-- CTA -->
-        <a href="https://api.whatsapp.com/send?phone=917025107070&text=Hi%20from%20website" target="_blank" rel="noopener noreferrer" class="btn-get-in-touch">Get in Touch</a>
+        <a
+            href="https://api.whatsapp.com/send?phone=917025107070&text=Hi%20from%20website"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-get-in-touch">Get in Touch</a
+        >
 
         <!-- Mobile Hamburger -->
         <button class="hamburger" id="hamburger" aria-label="Open Menu">
@@ -233,30 +243,44 @@ const currentPath = pathname.replace(/\/$/, "");
         position: absolute;
         top: 100%;
         left: -16px; /* Offset slightly left to match screenshot */
-        transform: translateY(22px);
+        transform: translateY(14px); /* Starts closer for a tighter animation */
         background: #ffffff;
         border-radius: 16px;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-        padding: 12px; /* Padding inside the dropdown container */
+        padding: 8px; /* Reduced from 12px to make card compact */
         display: flex;
         flex-direction: column;
-        gap: 4px; /* Spacing between menu items */
-        min-width: 220px; /* Wide dropdown container as shown in screenshot */
+        gap: 2px; /* Reduced vertical spacing between options */
+        min-width: 160px; /* Base minimum width */
+        width: max-content; /* Auto grows to fit the longest option text */
         z-index: 1010;
         opacity: 0;
         visibility: hidden;
         transition:
-            opacity 0.25s ease,
-            visibility 0.25s ease,
-            transform 0.25s ease;
+            opacity 0.2s ease,
+            visibility 0.2s ease,
+            transform 0.2s ease;
+        transition-delay: 0.15s; /* Short delay on mouse-out so dropdown stays open during transition */
         pointer-events: none;
+    }
+
+    /* Invisible bridge to fill the gap between navigation links and dropdown options */
+    .dropdown-menu::before {
+        content: "";
+        position: absolute;
+        top: -24px;
+        left: 0;
+        right: 0;
+        height: 24px;
+        background: transparent;
     }
 
     .has-dropdown:hover .dropdown-menu {
         opacity: 1;
         visibility: visible;
-        transform: translateY(12px); /* 12px gap below navigation pill */
+        transform: translateY(6px); /* Reduced gap from 12px to 6px below navigation pill */
         pointer-events: auto;
+        transition-delay: 0s; /* Dropdown appears instantly on hover */
     }
 
     .has-dropdown:hover .chevron {
@@ -267,13 +291,16 @@ const currentPath = pathname.replace(/\/$/, "");
         text-decoration: none;
         color: #111111;
         font-family: "Outfit", sans-serif;
-        font-size: 16px;
-        font-weight: 700;
-        padding: 10px 16px; /* Padding for the hover container */
+        font-size: 14px;
+        font-weight: 500;
+        padding: 6px 12px; /* Tighter padding for a smaller vertical gap */
         border-radius: 10px; /* Rounded corners for the hover container */
-        transition: background-color 0.2s ease, color 0.2s ease;
+        transition:
+            background-color 0.2s ease,
+            color 0.2s ease;
         text-align: left;
         display: block;
+        white-space: nowrap; /* Prevent long text items like "Our Hiring Partners" from wrapping */
     }
 
     .dropdown-item:hover {
