@@ -379,8 +379,15 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 						journeys of growth, success, and accomplishments with
 						Elance!
 					</p>
+					
+					<!-- Active Student Info (Dynamic) -->
+					<div class="feedback-info">
+						<h3 class="feedback-student-name" id="feedback-name">Kasinath</h3>
+						<p class="feedback-student-role" id="feedback-role">Elance CA Student</p>
+					</div>
+
 					<div class="feedback-arrows">
-						<button class="arrow-btn" aria-label="Previous">
+						<button class="arrow-btn prev-feedback-btn" aria-label="Previous">
 							<svg
 								viewBox="0 0 24 24"
 								fill="none"
@@ -394,7 +401,7 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 									stroke-linejoin="round"></path>
 							</svg>
 						</button>
-						<button class="arrow-btn" aria-label="Next">
+						<button class="arrow-btn next-feedback-btn" aria-label="Next">
 							<svg
 								viewBox="0 0 24 24"
 								fill="none"
@@ -410,23 +417,111 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 						</button>
 					</div>
 				</div>
-				<!-- Right – Feedback Image -->
+				<!-- Right – Feedback Image Stack -->
 				<div class="feedback-right">
-					<div class="feedback-img-wrap">
-						<img
-							src="/images/Jahana-Sherin.webp"
-							alt="Jahana Sherin – Student Feedback"
-							class="feedback-img"
-						/>
-						<button class="play-btn" aria-label="Play video">
-							<svg
-								viewBox="0 0 24 24"
-								fill="white"
-								xmlns="http://www.w3.org/2000/svg"
-							>
-								<path d="M8 5v14l11-7L8 5z"></path>
-							</svg>
-						</button>
+					<div class="feedback-stack-container" id="feedback-stack">
+						<!-- Card 1 -->
+						<div class="feedback-card" data-name="Kasinath" data-role="Elance CA Student">
+							<img
+								src="/images/Ajsal-E.webp"
+								alt="Kasinath – Student Feedback"
+								class="feedback-img"
+							/>
+							<button class="play-btn" aria-label="Play video">
+								<svg
+									viewBox="0 0 24 24"
+									fill="white"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<path d="M8 5v14l11-7L8 5z"></path>
+								</svg>
+							</button>
+						</div>
+						<!-- Card 2 -->
+						<div class="feedback-card" data-name="Anaam Abdul Salam" data-role="Elance ACCA Student">
+							<img
+								src="/images/Anaam-Abdul-Salam.webp"
+								alt="Anaam Abdul Salam – Student Feedback"
+								class="feedback-img"
+							/>
+							<button class="play-btn" aria-label="Play video">
+								<svg
+									viewBox="0 0 24 24"
+									fill="white"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<path d="M8 5v14l11-7L8 5z"></path>
+								</svg>
+							</button>
+						</div>
+						<!-- Card 3 -->
+						<div class="feedback-card" data-name="Ann Mary" data-role="Elance CMA Student">
+							<img
+								src="/images/Ann-Mary.webp"
+								alt="Ann Mary – Student Feedback"
+								class="feedback-img"
+							/>
+							<button class="play-btn" aria-label="Play video">
+								<svg
+									viewBox="0 0 24 24"
+									fill="white"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<path d="M8 5v14l11-7L8 5z"></path>
+								</svg>
+							</button>
+						</div>
+						<!-- Card 4 -->
+						<div class="feedback-card" data-name="Anuradha" data-role="Elance CA Student">
+							<img
+								src="/images/Anuradha.webp"
+								alt="Anuradha – Student Feedback"
+								class="feedback-img"
+							/>
+							<button class="play-btn" aria-label="Play video">
+								<svg
+									viewBox="0 0 24 24"
+									fill="white"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<path d="M8 5v14l11-7L8 5z"></path>
+								</svg>
+							</button>
+						</div>
+						<!-- Card 5 -->
+						<div class="feedback-card" data-name="Ayshath Shahma" data-role="Elance ACCA Student">
+							<img
+								src="/images/Ayshath-Shahma.webp"
+								alt="Ayshath Shahma – Student Feedback"
+								class="feedback-img"
+							/>
+							<button class="play-btn" aria-label="Play video">
+								<svg
+									viewBox="0 0 24 24"
+									fill="white"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<path d="M8 5v14l11-7L8 5z"></path>
+								</svg>
+							</button>
+						</div>
+						<!-- Card 6 -->
+						<div class="feedback-card" data-name="Bijini Koshi" data-role="Elance CMA Student">
+							<img
+								src="/images/Bijini-Koshi.webp"
+								alt="Bijini Koshi – Student Feedback"
+								class="feedback-img"
+							/>
+							<button class="play-btn" aria-label="Play video">
+								<svg
+									viewBox="0 0 24 24"
+									fill="white"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<path d="M8 5v14l11-7L8 5z"></path>
+								</svg>
+							</button>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -726,6 +821,7 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 		</section>
 
 		<script>
+			// Life at Elance slider
 			const grid = document.getElementById("life-grid");
 			const prevBtn = document.querySelector(
 				".life-slider-wrap .prev-btn",
@@ -741,6 +837,56 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 				nextBtn.addEventListener("click", () => {
 					grid.scrollBy({ left: 450, behavior: "smooth" });
 				});
+			}
+
+			// Student Feedback stack slider
+			const feedbackCards = Array.from(document.querySelectorAll(".feedback-card"));
+			const feedbackName = document.getElementById("feedback-name");
+			const feedbackRole = document.getElementById("feedback-role");
+			const feedbackPrev = document.querySelector(".prev-feedback-btn");
+			const feedbackNext = document.querySelector(".next-feedback-btn");
+
+			if (feedbackCards.length > 0) {
+				let activeIndex = 0;
+				const total = feedbackCards.length;
+
+				const updateStack = () => {
+					feedbackCards.forEach((card, index) => {
+						const relativeIndex = (index - activeIndex + total) % total;
+						
+						card.className = "feedback-card"; // Reset classes
+
+						if (relativeIndex === 0) {
+							card.classList.add("card-0");
+							if (feedbackName && feedbackRole) {
+								feedbackName.textContent = card.getAttribute("data-name") || "";
+								feedbackRole.textContent = card.getAttribute("data-role") || "";
+							}
+						} else if (relativeIndex === 1) {
+							card.classList.add("card-1");
+						} else if (relativeIndex === 2) {
+							card.classList.add("card-2");
+						} else if (relativeIndex === 3) {
+							card.classList.add("card-3");
+						} else {
+							card.classList.add("card-hidden");
+						}
+					});
+				};
+
+				if (feedbackPrev && feedbackNext) {
+					feedbackPrev.addEventListener("click", () => {
+						activeIndex = (activeIndex - 1 + total) % total;
+						updateStack();
+					});
+					feedbackNext.addEventListener("click", () => {
+						activeIndex = (activeIndex + 1) % total;
+						updateStack();
+					});
+				}
+
+				// Init
+				updateStack();
 			}
 		</script>
 
@@ -1636,7 +1782,8 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 	}
 
 	.feedback-title {
-		font-size: 2.4rem;
+		font-family: "outfit", sans-serif;
+		font-size: 2.7rem;
 		font-weight: 900;
 		color: #111827;
 		margin-bottom: 20px;
@@ -1644,36 +1791,57 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 	}
 
 	.feedback-desc {
+		font-family: "outfit", sans-serif;
 		font-size: 0.95rem;
 		color: #6b7280;
 		line-height: 1.75;
 		margin-bottom: 36px;
 	}
 
+	.feedback-info {
+		margin-top: 24px;
+		margin-bottom: 32px;
+	}
+
+	.feedback-student-name {
+		font-family: "outfit", sans-serif;
+		font-size: 1.85rem;
+		font-weight: 800;
+		color: #111827;
+		margin-bottom: 6px;
+	}
+
+	.feedback-student-role {
+		font-family: "outfit", sans-serif;
+		font-size: 1.05rem;
+		font-weight: 600;
+		color: #3b9fe8;
+	}
+
 	.feedback-arrows {
 		display: flex;
-		gap: 12px;
+		gap: 16px;
+		margin-top: 24px;
 	}
 
 	.arrow-btn {
-		width: 44px;
-		height: 44px;
+		width: 48px;
+		height: 48px;
 		border-radius: 50%;
 		border: none;
-		background: #eef5fb;
-		color: #3b9fe8;
+		background: #50b5ff; /* Sky blue background matching screenshot */
+		color: #111827; /* Dark arrow icons */
 		cursor: pointer;
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		transition:
-			background 0.2s,
-			color 0.2s;
+		box-shadow: 0 4px 14px rgba(80, 181, 255, 0.25);
+		transition: background-color 0.2s, transform 0.2s;
 	}
 
 	.arrow-btn:hover {
-		background: #3b9fe8;
-		color: #fff;
+		background: #35a4ee;
+		transform: scale(1.05);
 	}
 
 	.arrow-btn svg {
@@ -1681,19 +1849,112 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 		height: 18px;
 	}
 
-	.feedback-img-wrap {
+	.feedback-right {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 440px;
 		position: relative;
-		border-radius: 20px;
+	}
+
+	.feedback-stack-container {
+		position: relative;
+		width: 320px;
+		height: 420px; /* Increased from 380px to show more of the image's height */
+	}
+
+	.feedback-card {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		border-radius: 24px;
 		overflow: hidden;
-		box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+		box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+		transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.4s ease, z-index 0.4s ease;
+		background: #fff;
 	}
 
 	.feedback-img {
 		width: 100%;
-		height: 380px;
+		height: 100%;
 		object-fit: cover;
 		display: block;
-		border-radius: 20px;
+		pointer-events: none;
+		border-radius: 24px; /* Ensure images themselves are rounded in all browsers */
+	}
+
+	/* Stack states (shifted left and slightly up) */
+	.feedback-card.card-0 {
+		transform: translate(0, 0) scale(1);
+		z-index: 5;
+		opacity: 1;
+		pointer-events: auto;
+	}
+
+	.feedback-card.card-1 {
+		transform: translate(-16px, -12px) scale(0.96);
+		z-index: 4;
+		opacity: 0.95;
+		pointer-events: none;
+	}
+
+	.feedback-card.card-2 {
+		transform: translate(-32px, -24px) scale(0.92);
+		z-index: 3;
+		opacity: 0.9;
+		pointer-events: none;
+	}
+
+	.feedback-card.card-3 {
+		transform: translate(-48px, -36px) scale(0.88);
+		z-index: 2;
+		opacity: 0.85;
+		pointer-events: none;
+	}
+
+	.feedback-card.card-hidden {
+		transform: translate(-64px, -48px) scale(0.84);
+		z-index: 1;
+		opacity: 0;
+		pointer-events: none;
+	}
+
+	/* Play button */
+	.play-btn {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 60px;
+		height: 60px;
+		background: rgba(255, 255, 255, 0.45);
+		backdrop-filter: blur(8px);
+		-webkit-backdrop-filter: blur(8px);
+		border-radius: 50%;
+		border: 1px solid rgba(255, 255, 255, 0.6);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		cursor: pointer;
+		transition: transform 0.2s, background-color 0.2s;
+		z-index: 12;
+	}
+
+	.play-btn:hover {
+		transform: translate(-50%, -50%) scale(1.08);
+		background: rgba(255, 255, 255, 0.6);
+	}
+
+	.play-btn svg {
+		width: 24px;
+		height: 24px;
+		fill: #ffffff;
+		margin-left: 2px;
+	}
+
+	.feedback-card:not(.card-0) .play-btn {
+		opacity: 0;
+		pointer-events: none;
 	}
 
 	/* Think Banner */
