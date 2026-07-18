@@ -1,6 +1,8 @@
 ---
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
+import StudentPlacements from "../components/StudentPlacements.astro";
+import CareerAndWhyElance from "../components/CareerAndWhyElance.astro";
 ---
 
 <html lang="en">
@@ -144,38 +146,105 @@ import Footer from "../components/Footer.astro";
 			</div>
 		</section>
 
-		<!-- ===================== STATS SECTION ===================== -->
-		<section class="cma-stats-section">
-			<div class="cma-stats-container">
-				<div class="stat-card">
-					<span class="stat-num"
-						>25<span class="stat-plus">K+</span></span
-					>
-					<span class="stat-label">Students Enrolled</span>
+
+
+		<!-- ===================== ACHIEVEMENTS STATS CARDS ===================== -->
+		<section class="cma-achievements-cards-section">
+			<div class="cma-achievements-cards-container">
+				<div class="cma-ach-card">
+					<span class="cma-ach-num">5</span>
+					<span class="cma-ach-label">Years</span>
 				</div>
-				<div class="stat-divider"></div>
-				<div class="stat-card">
-					<span class="stat-num"
-						>13<span class="stat-plus">+</span></span
-					>
-					<span class="stat-label">Years of Excellence</span>
+				<div class="cma-ach-card">
+					<span class="cma-ach-num">49</span>
+					<span class="cma-ach-label">World Ranks</span>
 				</div>
-				<div class="stat-divider"></div>
-				<div class="stat-card">
-					<span class="stat-num"
-						>98<span class="stat-plus">%</span></span
-					>
-					<span class="stat-label">Pass Rate</span>
+				<div class="cma-ach-card">
+					<span class="cma-ach-num">76</span>
+					<span class="cma-ach-label">National Ranks</span>
 				</div>
-				<div class="stat-divider"></div>
-				<div class="stat-card">
-					<span class="stat-num"
-						>500<span class="stat-plus">+</span></span
-					>
-					<span class="stat-label">CMA Qualified</span>
+				<div class="cma-ach-card">
+					<span class="cma-ach-num">5000+</span>
+					<span class="cma-ach-label">Affiliates</span>
+				</div>
+				<div class="cma-ach-card">
+					<span class="cma-ach-num">25,000</span>
+					<span class="cma-ach-label">Students</span>
 				</div>
 			</div>
 		</section>
+
+		<!-- ===================== BE THE PROFESSIONAL THE WORLD IS LOOKING FOR ===================== -->
+		<section class="cma-professional-section">
+			<div class="cma-professional-container">
+				<!-- Left: Heading and Badges -->
+				<div class="cma-prof-left">
+					<h2 class="cma-prof-title">
+						Be the <span class="text-slate">Professional</span> the<br />
+						World Is <span class="text-slate">Looking For!</span>
+					</h2>
+					<div class="cma-prof-badges">
+						<img
+							src="/src/Assets/CMA-gold-1-e1762840636945.png"
+							alt="Gold CMA Course Provider"
+							class="cma-prof-badge-img gold-badge-img"
+						/>
+						<img
+							src="/src/Assets/courses/Silver-CMA.png"
+							alt="IMA Logo"
+							class="cma-prof-badge-img ima-badge-img"
+						/>
+					</div>
+				</div>
+				<!-- Right: Bullet checklist -->
+				<div class="cma-prof-right">
+					<div class="cma-bullet-item">
+						<div class="cma-bullet-icon">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+								<polyline points="20 6 9 17 4 12"></polyline>
+							</svg>
+						</div>
+						<p class="cma-bullet-text">Recognition in over 160 countries world-wide.</p>
+					</div>
+					<div class="cma-bullet-item">
+						<div class="cma-bullet-icon">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+								<polyline points="20 6 9 17 4 12"></polyline>
+							</svg>
+						</div>
+						<p class="cma-bullet-text">Join a network of influential finance professionals.</p>
+					</div>
+					<div class="cma-bullet-item">
+						<div class="cma-bullet-icon">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+								<polyline points="20 6 9 17 4 12"></polyline>
+							</svg>
+						</div>
+						<p class="cma-bullet-text">Stay in demand with skills valued internationally.</p>
+					</div>
+					<div class="cma-bullet-item">
+						<div class="cma-bullet-icon">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+								<polyline points="20 6 9 17 4 12"></polyline>
+							</svg>
+						</div>
+						<p class="cma-bullet-text">Upskill your way to a leadership role in the finance industry.</p>
+					</div>
+					<div class="cma-bullet-item">
+						<div class="cma-bullet-icon">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+								<polyline points="20 6 9 17 4 12"></polyline>
+							</svg>
+						</div>
+						<p class="cma-bullet-text">High earning potential from ₹4 LPA to ₹20LPA.</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<StudentPlacements />
+
+		<CareerAndWhyElance />
 
 		<Footer />
 	</body>
@@ -550,6 +619,181 @@ import Footer from "../components/Footer.astro";
 
 		.corporate-logos-row {
 			gap: 12px;
+		}
+	}
+
+	/* ── NEW CMA PAGE SECTIONS ── */
+	.cma-achievements-cards-section {
+		padding: 80px 40px 40px;
+		background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+	}
+
+	.cma-achievements-cards-container {
+		max-width: 1200px;
+		margin: 0 auto;
+		display: grid;
+		grid-template-columns: repeat(5, 1fr);
+		gap: 20px;
+	}
+
+	.cma-ach-card {
+		background: #ffffff;
+		border-radius: 16px;
+		padding: 40px 24px;
+		text-align: left;
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		border: 1px solid #f1f5f9;
+		box-shadow: 0 10px 30px rgba(15, 23, 42, 0.03);
+		transition: transform 0.2s ease, box-shadow 0.2s ease;
+	}
+
+	.cma-ach-card:hover {
+		transform: translateY(-3px);
+		box-shadow: 0 16px 36px rgba(15, 23, 42, 0.06);
+	}
+
+	.cma-ach-num {
+		font-size: clamp(2rem, 4.5vw, 3.2rem);
+		font-weight: 800;
+		color: #3b9fe8;
+		font-family: "Outfit", sans-serif;
+		line-height: 1.1;
+		margin-bottom: 12px;
+	}
+
+	.cma-ach-label {
+		font-size: 0.95rem;
+		font-weight: 700;
+		color: #1e293b;
+		font-family: "Outfit", sans-serif;
+	}
+
+	.cma-professional-section {
+		padding: 80px 40px;
+		background: #ffffff;
+	}
+
+	.cma-professional-container {
+		max-width: 1200px;
+		margin: 0 auto;
+		display: grid;
+		grid-template-columns: 1.1fr 0.9fr;
+		gap: 60px;
+		align-items: center;
+	}
+
+	.cma-prof-left {
+		display: flex;
+		flex-direction: column;
+		gap: 40px;
+	}
+
+	.cma-prof-title {
+		font-size: clamp(2rem, 4.5vw, 3rem);
+		font-weight: 800;
+		color: #1e293b;
+		line-height: 1.25;
+		font-family: "Outfit", sans-serif;
+	}
+
+	.text-slate {
+		color: #64748b;
+	}
+
+	.cma-prof-badges {
+		display: flex;
+		align-items: center;
+		gap: 24px;
+	}
+
+	.cma-prof-badge-img {
+		object-fit: contain;
+		display: block;
+	}
+
+	.gold-badge-img {
+		height: 80px;
+		width: auto;
+	}
+
+	.ima-badge-img {
+		height: 52px;
+		width: auto;
+		border: 1.5px solid #e2e8f0;
+		border-radius: 8px;
+		padding: 4px 12px;
+		background: #ffffff;
+	}
+
+	.cma-prof-right {
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+	}
+
+	.cma-bullet-item {
+		display: flex;
+		align-items: flex-start;
+		gap: 16px;
+		padding: 16px 0;
+		border-bottom: 1px solid #f1f5f9;
+	}
+
+	.cma-bullet-item:last-child {
+		border-bottom: none;
+	}
+
+	.cma-bullet-icon {
+		width: 32px;
+		height: 32px;
+		border-radius: 50%;
+		background: #e0f2fe;
+		color: #0284c7;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-shrink: 0;
+		margin-top: 2px;
+	}
+
+	.cma-bullet-icon svg {
+		width: 14px;
+		height: 14px;
+	}
+
+	.cma-bullet-text {
+		font-size: 1.05rem;
+		font-weight: 500;
+		color: #334155;
+		line-height: 1.45;
+		font-family: "Outfit", sans-serif;
+	}
+
+	@media (max-width: 1024px) {
+		.cma-achievements-cards-container {
+			grid-template-columns: repeat(3, 1fr);
+		}
+
+		.cma-professional-container {
+			grid-template-columns: 1fr;
+			gap: 40px;
+		}
+	}
+
+	@media (max-width: 640px) {
+		.cma-achievements-cards-container {
+			grid-template-columns: 1fr;
+			gap: 16px;
+		}
+
+		.cma-ach-card {
+			padding: 28px 20px;
+		}
+
+		.cma-prof-left {
+			gap: 28px;
 		}
 	}
 </style>

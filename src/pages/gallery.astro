@@ -1,0 +1,549 @@
+---
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import FeaturedOn from "../components/FeaturedOn.astro";
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Gallery | Life at Elance</title>
+		<meta
+			name="description"
+			content="Explore life at Elance through our gallery – placement training, campus events, Onam celebrations, ACCA sessions, Edge summits and more."
+		/>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,600&family=Outfit:wght@300;400;500;600;700;800;900&display=swap"
+			rel="stylesheet"
+		/>
+	</head>
+	<body>
+		<Nav />
+
+		<!-- ===================== HERO ===================== -->
+		<section class="gl-hero">
+			<div class="gl-hero-inner">
+				<h1 class="gl-hero-title">Life At Elance</h1>
+				<p class="gl-hero-desc">
+					Elance, India's premium commerce platform, excels in delivering esteemed professional
+					accounting courses, such as ACCA &amp; CMA USA. Supported by a team of highly skilled
+					educators, our platform's core ethos revolves around accessibility and excellence in
+					commerce education. Our remarkable growth trajectory, surging from 22 students in
+					2018 to nurturing a global cohort exceeding 25,000, is a testament to our unwavering
+					dedication to providing exceptional educational opportunities. Elance proudly stands
+					as the foremost platform for those seeking top-tier finance certifications and a
+					comprehensive learning experience in commerce.
+				</p>
+			</div>
+		</section>
+
+		<!-- ===================== FILTER TABS ===================== -->
+		<section class="gl-filters-section">
+			<div class="gl-filters-inner">
+				<div class="gl-tabs" id="gl-tabs">
+					<button class="gl-tab active" data-filter="all" id="tab-all">Placement Training</button>
+					<button class="gl-tab" data-filter="onam" id="tab-onam">Onam</button>
+					<button class="gl-tab" data-filter="acca" id="tab-acca">Let's Think Ahead With ACCA</button>
+					<button class="gl-tab" data-filter="hifi" id="tab-hifi">Elance HiFi Personal Finance Summit</button>
+					<button class="gl-tab" data-filter="edge" id="tab-edge">Edge'2024</button>
+					<button class="gl-tab" data-filter="cxo" id="tab-cxo">CXO's Talk</button>
+					<button class="gl-tab" data-filter="cma" id="tab-cma">CMA Crossroads</button>
+					<button class="gl-tab" data-filter="campus" id="tab-campus">Campus Life</button>
+					<button class="gl-tab" data-filter="affiliate" id="tab-affiliate">Affiliate Ceremony</button>
+				</div>
+			</div>
+		</section>
+
+		<!-- ===================== GALLERY GRID ===================== -->
+		<section class="gl-grid-section">
+			<div class="gl-grid-inner">
+				<div class="gl-grid" id="gl-grid">
+					<!-- All images tagged with data-category -->
+					<div class="gl-item" data-category="all">
+						<img src="/src/Assets/gallery/DSC05995-scaled-1-1024x576.jpg" alt="Placement Training – session 1" loading="lazy" />
+						<div class="gl-overlay"><span class="gl-zoom">+</span></div>
+					</div>
+					<div class="gl-item" data-category="all">
+						<img src="/src/Assets/gallery/DSC05997-scaled-1-1024x576.jpg" alt="Placement Training – session 2" loading="lazy" />
+						<div class="gl-overlay"><span class="gl-zoom">+</span></div>
+					</div>
+					<div class="gl-item" data-category="all">
+						<img src="/src/Assets/gallery/DSC06004-scaled-1-1024x576.jpg" alt="Placement Training – session 3" loading="lazy" />
+						<div class="gl-overlay"><span class="gl-zoom">+</span></div>
+					</div>
+					<div class="gl-item" data-category="all">
+						<img src="/src/Assets/gallery/DSC06017-scaled-1-1024x576.jpg" alt="Placement Training – session 4" loading="lazy" />
+						<div class="gl-overlay"><span class="gl-zoom">+</span></div>
+					</div>
+					<div class="gl-item" data-category="all">
+						<img src="/src/Assets/gallery/DSC06029-scaled-1-1024x576.jpg" alt="Placement Training – session 5" loading="lazy" />
+						<div class="gl-overlay"><span class="gl-zoom">+</span></div>
+					</div>
+					<div class="gl-item" data-category="all">
+						<img src="/src/Assets/gallery/DSC06039-scaled-1-1024x576.jpg" alt="Placement Training – session 6" loading="lazy" />
+						<div class="gl-overlay"><span class="gl-zoom">+</span></div>
+					</div>
+					<div class="gl-item" data-category="all">
+						<img src="/src/Assets/gallery/DSC06040-scaled-1-1024x576.jpg" alt="Placement Training – session 7" loading="lazy" />
+						<div class="gl-overlay"><span class="gl-zoom">+</span></div>
+					</div>
+					<div class="gl-item" data-category="all">
+						<img src="/src/Assets/gallery/DSC06043-scaled-1-1024x576.jpg" alt="Placement Training – session 8" loading="lazy" />
+						<div class="gl-overlay"><span class="gl-zoom">+</span></div>
+					</div>
+					<div class="gl-item" data-category="all">
+						<img src="/src/Assets/gallery/DSC06073-scaled-1-1024x683.jpg" alt="Placement Training – session 9" loading="lazy" />
+						<div class="gl-overlay"><span class="gl-zoom">+</span></div>
+					</div>
+					<div class="gl-item" data-category="all">
+						<img src="/src/Assets/gallery/DSC06074-scaled-1-1024x683.jpg" alt="Placement Training – session 10" loading="lazy" />
+						<div class="gl-overlay"><span class="gl-zoom">+</span></div>
+					</div>
+					<div class="gl-item" data-category="all">
+						<img src="/src/Assets/gallery/DSC06076-scaled-1.jpg" alt="Placement Training – session 11" loading="lazy" />
+						<div class="gl-overlay"><span class="gl-zoom">+</span></div>
+					</div>
+					<div class="gl-item" data-category="all">
+						<img src="/src/Assets/gallery/DSC06082-scaled-1.jpg" alt="Placement Training – session 12" loading="lazy" />
+						<div class="gl-overlay"><span class="gl-zoom">+</span></div>
+					</div>
+					<div class="gl-item" data-category="all">
+						<img src="/src/Assets/gallery/DSC06090-scaled-1.jpg" alt="Placement Training – session 13" loading="lazy" />
+						<div class="gl-overlay"><span class="gl-zoom">+</span></div>
+					</div>
+					<div class="gl-item" data-category="all">
+						<img src="/src/Assets/gallery/DSC06095-scaled-1.jpg" alt="Placement Training – session 14" loading="lazy" />
+						<div class="gl-overlay"><span class="gl-zoom">+</span></div>
+					</div>
+					<div class="gl-item" data-category="all">
+						<img src="/src/Assets/gallery/DSC06107-scaled-1-1024x576.jpg" alt="Placement Training – session 15" loading="lazy" />
+						<div class="gl-overlay"><span class="gl-zoom">+</span></div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ===================== LIGHTBOX ===================== -->
+		<div class="gl-lightbox" id="gl-lightbox" aria-hidden="true">
+			<button class="gl-lightbox-close" id="gl-lightbox-close" aria-label="Close lightbox">&times;</button>
+			<button class="gl-lightbox-prev" id="gl-lightbox-prev" aria-label="Previous image">&#8249;</button>
+			<button class="gl-lightbox-next" id="gl-lightbox-next" aria-label="Next image">&#8250;</button>
+			<div class="gl-lightbox-content">
+				<img src="" alt="" id="gl-lightbox-img" />
+			</div>
+		</div>
+
+		<FeaturedOn />
+		<Footer />
+	</body>
+</html>
+
+<style>
+	* {
+		box-sizing: border-box;
+		margin: 0;
+		padding: 0;
+	}
+
+	body {
+		font-family: "Outfit", "Inter", sans-serif;
+		background-color: #ffffff;
+		color: #1e293b;
+	}
+
+	a {
+		text-decoration: none;
+	}
+
+	/* ─────────────────────────────────────────
+	   HERO
+	───────────────────────────────────────── */
+	.gl-hero {
+		padding: 64px 40px 48px;
+		text-align: center;
+		max-width: 900px;
+		margin: 0 auto;
+	}
+
+	.gl-hero-title {
+		font-size: clamp(2.4rem, 6vw, 4.5rem);
+		font-weight: 900;
+		color: #1e293b;
+		font-family: "Outfit", sans-serif;
+		line-height: 1.1;
+		margin-bottom: 28px;
+	}
+
+	.gl-hero-desc {
+		font-size: 1rem;
+		line-height: 1.75;
+		color: #475569;
+		font-family: "Outfit", sans-serif;
+		max-width: 820px;
+		margin: 0 auto;
+	}
+
+	/* ─────────────────────────────────────────
+	   FILTER TABS
+	───────────────────────────────────────── */
+	.gl-filters-section {
+		padding: 20px 40px 0;
+		max-width: 1300px;
+		margin: 0 auto;
+	}
+
+	.gl-filters-inner {
+		overflow-x: auto;
+		scrollbar-width: none;
+	}
+
+	.gl-filters-inner::-webkit-scrollbar {
+		display: none;
+	}
+
+	.gl-tabs {
+		display: flex;
+		gap: 10px;
+		flex-wrap: wrap;
+		padding-bottom: 12px;
+	}
+
+	.gl-tab {
+		display: inline-block;
+		padding: 10px 20px;
+		border: 1.5px solid #cbd5e1;
+		border-radius: 8px;
+		background: transparent;
+		color: #334155;
+		font-size: 0.9rem;
+		font-weight: 600;
+		font-family: "Outfit", sans-serif;
+		cursor: pointer;
+		white-space: nowrap;
+		transition: all 0.2s ease;
+	}
+
+	.gl-tab:hover {
+		border-color: #3b9fe8;
+		color: #3b9fe8;
+	}
+
+	.gl-tab.active {
+		background: #3b9fe8;
+		border-color: #3b9fe8;
+		color: #ffffff;
+	}
+
+	/* ─────────────────────────────────────────
+	   GALLERY GRID
+	───────────────────────────────────────── */
+	.gl-grid-section {
+		padding: 36px 40px 80px;
+		max-width: 1300px;
+		margin: 0 auto;
+	}
+
+	.gl-grid-inner {
+		width: 100%;
+	}
+
+	.gl-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 16px;
+	}
+
+	.gl-item {
+		position: relative;
+		border-radius: 14px;
+		overflow: hidden;
+		aspect-ratio: 16 / 10;
+		cursor: pointer;
+		background: #e2e8f0;
+	}
+
+	.gl-item img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		display: block;
+		transition: transform 0.4s ease;
+	}
+
+	.gl-item:hover img {
+		transform: scale(1.05);
+	}
+
+	.gl-overlay {
+		position: absolute;
+		inset: 0;
+		background: rgba(30, 58, 112, 0.3);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		opacity: 0;
+		transition: opacity 0.3s ease;
+	}
+
+	.gl-item:hover .gl-overlay {
+		opacity: 1;
+	}
+
+	.gl-zoom {
+		width: 44px;
+		height: 44px;
+		border-radius: 50%;
+		border: 2px solid #fff;
+		background: rgba(255, 255, 255, 0.15);
+		color: #fff;
+		font-size: 1.6rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-weight: 300;
+		line-height: 1;
+	}
+
+	/* hidden items when filtered */
+	.gl-item.hidden {
+		display: none;
+	}
+
+	/* ─────────────────────────────────────────
+	   LIGHTBOX
+	───────────────────────────────────────── */
+	.gl-lightbox {
+		position: fixed;
+		inset: 0;
+		background: rgba(5, 15, 35, 0.92);
+		z-index: 9999;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		opacity: 0;
+		visibility: hidden;
+		transition: opacity 0.3s ease, visibility 0.3s ease;
+	}
+
+	.gl-lightbox.open {
+		opacity: 1;
+		visibility: visible;
+	}
+
+	.gl-lightbox-content {
+		max-width: 90vw;
+		max-height: 85vh;
+		border-radius: 12px;
+		overflow: hidden;
+	}
+
+	.gl-lightbox-content img {
+		max-width: 90vw;
+		max-height: 85vh;
+		width: auto;
+		height: auto;
+		display: block;
+		border-radius: 12px;
+		object-fit: contain;
+	}
+
+	.gl-lightbox-close {
+		position: fixed;
+		top: 20px;
+		right: 28px;
+		background: none;
+		border: none;
+		color: #fff;
+		font-size: 2.4rem;
+		cursor: pointer;
+		line-height: 1;
+		z-index: 10000;
+		opacity: 0.8;
+		transition: opacity 0.2s;
+	}
+
+	.gl-lightbox-close:hover {
+		opacity: 1;
+	}
+
+	.gl-lightbox-prev,
+	.gl-lightbox-next {
+		position: fixed;
+		top: 50%;
+		transform: translateY(-50%);
+		background: rgba(255, 255, 255, 0.12);
+		border: 1.5px solid rgba(255, 255, 255, 0.25);
+		color: #fff;
+		font-size: 2rem;
+		width: 52px;
+		height: 52px;
+		border-radius: 50%;
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		z-index: 10000;
+		transition: background 0.2s;
+	}
+
+	.gl-lightbox-prev {
+		left: 20px;
+	}
+
+	.gl-lightbox-next {
+		right: 20px;
+	}
+
+	.gl-lightbox-prev:hover,
+	.gl-lightbox-next:hover {
+		background: rgba(255, 255, 255, 0.25);
+	}
+
+	/* ─────────────────────────────────────────
+	   RESPONSIVE
+	───────────────────────────────────────── */
+	@media (max-width: 1024px) {
+		.gl-grid {
+			grid-template-columns: repeat(2, 1fr);
+		}
+
+		.gl-hero {
+			padding: 48px 32px 36px;
+		}
+
+		.gl-filters-section {
+			padding: 20px 32px 0;
+		}
+
+		.gl-grid-section {
+			padding: 32px 32px 60px;
+		}
+	}
+
+	@media (max-width: 600px) {
+		.gl-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.gl-hero {
+			padding: 40px 20px 28px;
+		}
+
+		.gl-filters-section {
+			padding: 16px 20px 0;
+		}
+
+		.gl-grid-section {
+			padding: 24px 20px 48px;
+		}
+
+		.gl-hero-title {
+			font-size: 2.2rem;
+		}
+	}
+</style>
+
+<script>
+	// ── Filter tabs ──────────────────────────────────────────────
+	const tabs = document.querySelectorAll<HTMLButtonElement>(".gl-tab");
+	const items = document.querySelectorAll<HTMLElement>(".gl-item");
+
+	tabs.forEach((tab) => {
+		tab.addEventListener("click", () => {
+			tabs.forEach((t) => t.classList.remove("active"));
+			tab.classList.add("active");
+
+			const filter = tab.dataset.filter!;
+			items.forEach((item) => {
+				if (filter === "all" || item.dataset.category === filter) {
+					item.classList.remove("hidden");
+				} else {
+					item.classList.add("hidden");
+				}
+			});
+
+			updateLightboxImages();
+		});
+	});
+
+	// ── Lightbox ─────────────────────────────────────────────────
+	const lightbox = document.getElementById("gl-lightbox")!;
+	const lightboxImg = document.getElementById("gl-lightbox-img") as HTMLImageElement;
+	const closeBtn = document.getElementById("gl-lightbox-close")!;
+	const prevBtn = document.getElementById("gl-lightbox-prev")!;
+	const nextBtn = document.getElementById("gl-lightbox-next")!;
+
+	let visibleImages: { src: string; alt: string }[] = [];
+	let currentIndex = 0;
+
+	function updateLightboxImages() {
+		visibleImages = Array.from(
+			document.querySelectorAll<HTMLElement>(".gl-item:not(.hidden) img")
+		).map((img) => ({
+			src: (img as HTMLImageElement).src,
+			alt: (img as HTMLImageElement).alt,
+		}));
+	}
+
+	function openLightbox(index: number) {
+		currentIndex = index;
+		lightboxImg.src = visibleImages[currentIndex].src;
+		lightboxImg.alt = visibleImages[currentIndex].alt;
+		lightbox.classList.add("open");
+		lightbox.setAttribute("aria-hidden", "false");
+		document.body.style.overflow = "hidden";
+	}
+
+	function closeLightbox() {
+		lightbox.classList.remove("open");
+		lightbox.setAttribute("aria-hidden", "true");
+		document.body.style.overflow = "";
+	}
+
+	function showPrev() {
+		currentIndex = (currentIndex - 1 + visibleImages.length) % visibleImages.length;
+		lightboxImg.src = visibleImages[currentIndex].src;
+		lightboxImg.alt = visibleImages[currentIndex].alt;
+	}
+
+	function showNext() {
+		currentIndex = (currentIndex + 1) % visibleImages.length;
+		lightboxImg.src = visibleImages[currentIndex].src;
+		lightboxImg.alt = visibleImages[currentIndex].alt;
+	}
+
+	// Attach click to gallery items
+	document.querySelectorAll<HTMLElement>(".gl-item").forEach((item, idx) => {
+		item.addEventListener("click", () => {
+			updateLightboxImages();
+			// Find this item's index among visible ones
+			const visibleItems = Array.from(
+				document.querySelectorAll<HTMLElement>(".gl-item:not(.hidden)")
+			);
+			const visIndex = visibleItems.indexOf(item);
+			if (visIndex !== -1) openLightbox(visIndex);
+		});
+	});
+
+	closeBtn.addEventListener("click", closeLightbox);
+	prevBtn.addEventListener("click", showPrev);
+	nextBtn.addEventListener("click", showNext);
+
+	lightbox.addEventListener("click", (e) => {
+		if (e.target === lightbox) closeLightbox();
+	});
+
+	document.addEventListener("keydown", (e) => {
+		if (!lightbox.classList.contains("open")) return;
+		if (e.key === "Escape") closeLightbox();
+		if (e.key === "ArrowLeft") showPrev();
+		if (e.key === "ArrowRight") showNext();
+	});
+
+	// Initialize
+	updateLightboxImages();
+</script>
