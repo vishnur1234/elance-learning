@@ -1283,7 +1283,12 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 		left: -80px;
 		font-size: 26rem;
 		font-family: Georgia, serif;
-		color: rgba(59, 159, 232, 0.08); /* Changed from white to soft blue to match screenshot */
+		color: rgba(
+			59,
+			159,
+			232,
+			0.08
+		); /* Changed from white to soft blue to match screenshot */
 		line-height: 1;
 		pointer-events: none;
 		z-index: 1;
@@ -1432,34 +1437,41 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 		box-shadow: 0 12px 35px rgba(0, 0, 0, 0.05);
 	}
 
+	.students-card {
+		overflow: visible; /* Let the info box hang off the bottom */
+	}
+
 	.audience-img {
 		width: 100%;
 		height: 460px;
 		object-fit: cover;
 		display: block;
+		border-radius: 20px; /* Force image rounding when parent overflow is visible */
 	}
 
 	/* Students card info overlay */
 	.students-card .audience-info-box {
 		position: absolute;
-		bottom: 24px;
+		bottom: -55px; /* Positioned to hang off the bottom of the card */
 		left: 24px;
 		right: 24px;
 		background: #ffffff;
 		border-radius: 16px;
 		padding: 24px 28px;
-		box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+		box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
 		z-index: 10;
 		display: flex;
 		flex-direction: column;
 		gap: 8px;
 		border: none;
+		font-family: "outfit", sans-serif;
 	}
 
 	.students-card .audience-info-title {
 		font-size: 1.45rem;
 		font-weight: 800;
 		color: #111827;
+		font-family: "outfit", sans-serif;
 	}
 
 	.students-card .audience-info-desc {
@@ -1467,6 +1479,7 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 		color: #4b5563;
 		line-height: 1.55;
 		margin-bottom: 8px;
+		font-family: "outfit", sans-serif;
 	}
 
 	.btn-blue-pill-small {
@@ -1512,6 +1525,7 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 		font-weight: 900;
 		line-height: 1.15;
 		color: #ffffff;
+		font-family: "outfit", sans-serif;
 	}
 
 	.audience-overlay-text .label-light {
@@ -1519,6 +1533,7 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 		font-weight: 500;
 		opacity: 0.95;
 		margin-right: 4px;
+		font-family: "outfit", sans-serif;
 	}
 
 	/* ── PROMO CTA BANNER ── */
@@ -1527,8 +1542,12 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 		background: #fff;
 	}
 
+	.promo-cta-section .section-container {
+		max-width: 1200px;
+	}
+
 	.promo-card {
-		background: linear-gradient(135deg, #3b9fe8 0%, #1c66b8 100%);
+		background: linear-gradient(135deg, #479ee0 0%, #3b5878 100%);
 		border-radius: 24px;
 		padding: 64px 40px;
 		text-align: center;
@@ -1545,27 +1564,32 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 		position: absolute;
 		width: 350px;
 		height: 350px;
-		background: rgba(255, 255, 255, 0.08);
-		border-radius: 50%;
-		top: -100px;
-		left: -120px;
-		filter: blur(40px);
+		background: url("/images/you-bg.png") no-repeat center center;
+		background-size: contain;
+		top: -80px;
+		left: -80px;
+		transform: rotate(-25deg);
+		opacity: 0.16;
 		pointer-events: none;
+		z-index: 1;
 	}
 
 	.promo-card-decor-2 {
 		position: absolute;
-		width: 350px;
-		height: 350px;
-		background: rgba(255, 255, 255, 0.07);
-		border-radius: 50%;
-		bottom: -120px;
+		width: 400px;
+		height: 400px;
+		background: url("/images/you-bg.png") no-repeat center center;
+		background-size: contain;
+		bottom: -100px;
 		right: -100px;
-		filter: blur(50px);
+		transform: rotate(145deg);
+		opacity: 0.16;
 		pointer-events: none;
+		z-index: 1;
 	}
 
 	.promo-title {
+		font-family: "outfit", sans-serif;
 		font-size: clamp(1.8rem, 4vw, 2.6rem);
 		font-weight: 800;
 		color: #ffffff;
@@ -1578,6 +1602,7 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 		display: inline-block;
 		background: #ffffff;
 		color: #3b9fe8;
+		font-family: "outfit", sans-serif;
 		font-size: 0.95rem;
 		font-weight: 700;
 		padding: 14px 36px;
