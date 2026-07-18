@@ -57,6 +57,16 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 									class="alumni-logo alumni-logo-deloitte"
 								/>
 								<img
+									src="/images/223x53-4.webp"
+									alt="KPMG"
+									class="alumni-logo alumni-logo-kpmg"
+								/>
+								<img
+									src="/images/223x53-16.png"
+									alt="Grant Thornton"
+									class="alumni-logo alumni-logo-gt"
+								/>
+								<img
 									src="/images/ey.png"
 									alt="EY"
 									class="alumni-logo alumni-logo-ey"
@@ -66,16 +76,23 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 									alt="PwC"
 									class="alumni-logo alumni-logo-pwc"
 								/>
-								<img
-									src="/images/223x53-16.png"
-									alt="Grant Thornton"
-									class="alumni-logo alumni-logo-gt"
-								/>
 								<!-- Set 2 – duplicate for seamless loop -->
 								<img
 									src="/images/deloitte.png"
 									alt="Deloitte"
 									class="alumni-logo alumni-logo-deloitte"
+									aria-hidden="true"
+								/>
+								<img
+									src="/images/223x53-4.webp"
+									alt="KPMG"
+									class="alumni-logo alumni-logo-kpmg"
+									aria-hidden="true"
+								/>
+								<img
+									src="/images/223x53-16.png"
+									alt="Grant Thornton"
+									class="alumni-logo alumni-logo-gt"
 									aria-hidden="true"
 								/>
 								<img
@@ -879,7 +896,7 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 		flex-direction: column;
 		align-items: flex-start;
 		gap: 16px;
-		margin-top: 40px;
+		margin-top: 26px; /* Reduced from 40px to offset the 14px logo height increase (from 18px to 32px), keeping parent height identical */
 		width: 100%;
 	}
 
@@ -906,8 +923,11 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 	/* Alumni ticker */
 	.alumni-ticker-wrap {
 		overflow: hidden;
-		width: 100%;
+		width: 400px; /* Constrained ticker width to 400px as requested */
 		max-width: 100%;
+		height: 32px; /* Constrain container height to match the new logo height exactly */
+		display: flex;
+		align-items: center;
 		mask-image: linear-gradient(
 			to right,
 			transparent,
@@ -958,10 +978,8 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 
 	.alumni-logo {
 		flex-shrink: 0;
-		height: auto;
+		height: 32px; /* Uniform height for all logo cards */
 		width: auto;
-		max-height: 100%;
-		max-width: 100%;
 		object-fit: contain;
 		opacity: 0.85;
 		transition: opacity 0.2s;
@@ -970,22 +988,11 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 		opacity: 1;
 	}
 
-	.alumni-logo-deloitte {
-		max-height: 18px;
-		max-width: 90px;
-	}
-	.alumni-logo-ey {
-		max-height: 24px;
-		max-width: 44px;
-	}
-	.alumni-logo-pwc {
-		max-height: 30px;
-		max-width: 55px;
-	}
-	.alumni-logo-gt {
-		max-height: 18px;
-		max-width: 120px;
-	}
+	.alumni-logo-deloitte {}
+	.alumni-logo-kpmg {}
+	.alumni-logo-ey {}
+	.alumni-logo-pwc {}
+	.alumni-logo-gt {}
 
 	/* Hero visual */
 	.hero-visual {
