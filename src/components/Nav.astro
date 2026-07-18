@@ -260,7 +260,6 @@ const currentPath = pathname.replace(/\/$/, "");
             opacity 0.2s ease,
             visibility 0.2s ease,
             transform 0.2s ease;
-        transition-delay: 0.15s; /* Short delay on mouse-out so dropdown stays open during transition */
         pointer-events: none;
     }
 
@@ -280,7 +279,6 @@ const currentPath = pathname.replace(/\/$/, "");
         visibility: visible;
         transform: translateY(6px); /* Reduced gap from 12px to 6px below navigation pill */
         pointer-events: auto;
-        transition-delay: 0s; /* Dropdown appears instantly on hover */
     }
 
     .has-dropdown:hover .chevron {
@@ -292,7 +290,7 @@ const currentPath = pathname.replace(/\/$/, "");
         color: #111111;
         font-family: "Outfit", sans-serif;
         font-size: 14px;
-        font-weight: 500;
+        font-weight: 400; /* Set to 400 (Regular) to completely remove bold styling */
         padding: 6px 12px; /* Tighter padding for a smaller vertical gap */
         border-radius: 10px; /* Rounded corners for the hover container */
         transition:
