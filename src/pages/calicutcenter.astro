@@ -198,21 +198,22 @@ import Footer from "../components/Footer.astro";
 
 			</div>
 		</section>
-
 		<!-- ===================== CTA BANNER ===================== -->
-		<section class="cc-cta-banner">
-			<div class="cc-cta-inner">
-				<div class="cc-cta-text">
-					<h2 class="cc-cta-title">India's Most<br />Trusted Commerce Institute</h2>
-					<p class="cc-cta-desc">
-						With a commitment to excellence and industry-relevant training, we empower
-						students with the knowledge, skills, and confidence to excel in global
-						commerce. Join thousands of learners who trust us to shape their future.
-					</p>
+		<div class="cc-cta-banner-wrapper">
+			<section class="cc-cta-banner">
+				<div class="cc-cta-inner">
+					<div class="cc-cta-text">
+						<h2 class="cc-cta-title">India's Most<br />Trusted Commerce Institute</h2>
+						<p class="cc-cta-desc">
+							With a commitment to excellence and industry-relevant training, we empower
+							students with the knowledge, skills, and confidence to excel in global
+							commerce. Join thousands of learners who trust us to shape their future.
+						</p>
+					</div>
+					<a href="/contact" class="cc-cta-btn" id="cta-register-btn">Register Now</a>
 				</div>
-				<a href="/contact" class="cc-cta-btn" id="cta-register-btn">Register Now</a>
-			</div>
-		</section>
+			</section>
+		</div>
 
 		<!-- ===================== 4 PILLARS ===================== -->
 		<section class="cc-pillars">
@@ -616,9 +617,21 @@ import Footer from "../components/Footer.astro";
 	/* ─────────────────────────────────────────
 	   CTA BANNER
 	───────────────────────────────────────── */
+	.cc-cta-banner-wrapper {
+		background: #ffffff;
+		padding: 60px 40px;
+		width: 100%;
+	}
+
 	.cc-cta-banner {
-		background: linear-gradient(120deg, #2d8bc8 0%, #3ba3e0 40%, #5bc4f0 100%);
+		background-image: url('/src/Assets/ourcenter/calicut/Rectangle-72-scaled.jpg');
+		background-size: cover;
+		background-position: center;
 		padding: 64px 60px;
+		border-radius: 32px;
+		max-width: 1200px;
+		margin: 0 auto;
+		box-shadow: 0 10px 30px rgba(45, 139, 200, 0.15);
 	}
 
 	.cc-cta-inner {

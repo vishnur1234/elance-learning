@@ -734,52 +734,9 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 		</script>
 
 		<!-- ===================== WE'RE FEATURED ON ===================== -->
-		<FeaturedOn />
-
 		<Footer />
-
-		<!-- ===================== WHATSAPP BUBBLE ===================== -->
-		<div class="wa-widget" id="wa-widget">
-			<button class="wa-dismiss" id="wa-dismiss" aria-label="Close"
-				>×</button
-			>
-			<div class="wa-callout" id="wa-callout">
-				<p>
-					Hey there! Got a question?<br />We're just a message away!
-				</p>
-			</div>
-			<a
-				href="https://wa.me/919000000000"
-				target="_blank"
-				rel="noopener"
-				class="wa-icon"
-				aria-label="Chat on WhatsApp"
-			>
-				<svg
-					viewBox="0 0 32 32"
-					xmlns="http://www.w3.org/2000/svg"
-					fill="white"
-				>
-					<path
-						d="M16 0C7.163 0 0 7.163 0 16c0 2.822.736 5.472 2.027 7.773L0 32l8.418-2.004A15.944 15.944 0 0016 32c8.837 0 16-7.163 16-16S24.837 0 16 0zm0 29.333a13.28 13.28 0 01-6.79-1.857l-.487-.29-5.001 1.192 1.221-4.866-.318-.5A13.27 13.27 0 012.667 16C2.667 8.636 8.636 2.667 16 2.667S29.333 8.636 29.333 16 23.364 29.333 16 29.333zm7.289-9.897c-.399-.2-2.361-1.165-2.727-1.298-.365-.133-.631-.2-.897.2-.266.399-1.031 1.298-1.264 1.564-.233.266-.465.3-.864.1-2.362-1.181-3.913-2.108-5.468-4.782-.413-.71.413-.66.1179-2.362-.131.399-.266 1.031-.266 1.364 0 .332.066.7.199 1.032.266.665 1.032 1.464 1.298 1.73.266.266.399.532.133.798-.266.266-1.031 1.031-1.231 1.231-.2.2-.399.233-.731.066-.332-.166-1.364-.5-2.595-1.596-1.298-1.156-2.231-2.627-2.229-3.859-.001-.332.133-.631.4-.864.266-.233.531-.465.798-.665.266-.2.4-.399.531-.665.133-.266.066-.499-.066-.732-.133-.233-1.165-2.827-1.597-3.859-.432-1.03-.865-.865-1.164-.865-.3 0-.598-.033-.897-.033s-.831.133-1.264.632c-.432.498-1.664 1.631-1.664 3.976s1.697 4.607 1.93 4.924c.232.316 3.329 5.088 8.073 7.134 4.743 2.047 4.743 1.364 5.595 1.298.852-.066 2.727-1.114 3.127-2.195.398-1.081.398-2.012.266-2.195-.133-.182-.399-.299-.798-.499z"
-					></path>
-				</svg>
-				<span class="wa-badge">1</span>
-			</a>
-		</div>
 	</body>
 </html>
-
-<script>
-	const dismiss = document.getElementById("wa-dismiss");
-	const callout = document.getElementById("wa-callout");
-	if (dismiss && callout) {
-		dismiss.addEventListener("click", () => {
-			callout.style.display = "none";
-			dismiss.style.display = "none";
-		});
-	}
-</script>
 
 <style>
 	*,
@@ -790,7 +747,8 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 		padding: 0;
 	}
 
-	html, body {
+	html,
+	body {
 		font-family: "Outfit", sans-serif;
 		font-weight: 400;
 	}
@@ -894,10 +852,11 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 	}
 
 	.hero-eyebrow {
-		font-size: 35px;
+		font-size: 30px;
 		font-weight: 550;
 		color: #3b9fe8;
 		margin-bottom: 18px;
+		font-family: "outfit", sans-serif;
 	}
 
 	.hero-heading {
