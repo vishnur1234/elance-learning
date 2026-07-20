@@ -30,123 +30,338 @@ import CareerAndWhyElance from "../components/CareerAndWhyElance.astro";
 			<div class="banner-badge">Enrollment closes soon</div>
 		</div>
 
-		<!-- ===================== CMA HERO – STICKY SCROLL ===================== -->
-		<section class="cma-hero-section">
-			<div class="cma-hero-inner">
-				<!-- LEFT: Sticky content -->
-				<div class="cma-hero-left">
-					<h1 class="cma-hero-title">
-						Transform your<br />
-						career and lead the<br />
-						finance world with<br />
-						<span class="text-blue">CMA USA.</span>
-					</h1>
+		<!-- ===================== CMA HERO – STICKY SCROLL (MORPHING VIDEO) ===================== -->
+		<div class="morphing-wrapper">
+			<section class="cma-hero-section">
+				<div class="cma-hero-inner">
+					<!-- LEFT: Sticky content -->
+					<div class="cma-hero-left">
+						<h1 class="cma-hero-title">
+							Transform your<br />
+							career and lead the<br />
+							finance world with<br />
+							<span class="text-blue">CMA USA.</span>
+						</h1>
 
-					<!-- Badges row -->
-					<div class="cma-badges-row">
-						<img
-							src="/images/CMA-gold-1-e1762840636945.png"
-							alt="Gold CMA Course Provider – IMA"
-							class="cma-badge-img gold-badge"
-						/>
-						<img
-							src="/images/courses/Hock.png"
-							alt="HOCK International"
-							class="cma-badge-img hock-badge"
-						/>
-						<img
-							src="/images/aswathi-CMA.jpg"
-							alt="IMA"
-							class="cma-badge-img ima-badge"
-							style="display:none"
-						/>
-					</div>
+						<!-- Badges row -->
+						<div class="cma-badges-row">
+							<img
+								src="/images/CMA-gold-1-e1762840636945.png"
+								alt="Gold CMA Course Provider – IMA"
+								class="cma-badge-img gold-badge"
+							/>
+							<img
+								src="/images/courses/Hock.png"
+								alt="HOCK International"
+								class="cma-badge-img hock-badge"
+							/>
+							<img
+								src="/images/aswathi-CMA.jpg"
+								alt="IMA"
+								class="cma-badge-img ima-badge"
+								style="display:none"
+							/>
+						</div>
 
-					<!-- IMA logo separate row -->
-					<div class="cma-ima-row">
-						<img
-							src="/images/courses/Silver-CMA.png"
-							alt="IMA Authorized Partner"
-							class="ima-logo"
-						/>
-					</div>
+						<!-- IMA logo separate row -->
+						<div class="cma-ima-row">
+							<img
+								src="/images/courses/Silver-CMA.png"
+								alt="IMA Authorized Partner"
+								class="ima-logo"
+							/>
+						</div>
 
-					<!-- Trusted by students -->
-					<div class="student-proof">
-						<p class="proof-label">
-							TRUSTED BY OVER <span class="highlight-blue"
-								>25000</span
-							><br />
-							STUDENTS GLOBALLY FOR EXCELLENCE!
-						</p>
-						<div class="avatar-stack">
+						<!-- Trusted by students -->
+						<div class="student-proof">
+							<p class="proof-label">
+								TRUSTED BY OVER <span class="highlight-blue"
+									>25000</span
+								><br />
+								STUDENTS GLOBALLY FOR EXCELLENCE!
+							</p>
+							<div class="avatar-stack">
+								<img
+									src="/images/Ajsal-E.webp"
+									alt="Student"
+									class="avatar-img"
+								/>
+								<img
+									src="/images/Anuradha.webp"
+									alt="Student"
+									class="avatar-img"
+								/>
+								<img
+									src="/images/Bijini-Koshi.webp"
+									alt="Student"
+									class="avatar-img"
+								/>
+								<img
+									src="/images/Jishana-T.webp"
+									alt="Student"
+									class="avatar-img"
+								/>
+								<img
+									src="/images/Kashinath.webp"
+									alt="Student"
+									class="avatar-img"
+								/>
+								<img
+									src="/images/Thanha-Kadeeja-K.webp"
+									alt="Student"
+									class="avatar-img"
+								/>
+							</div>
+						</div>
+
+						<!-- Corporate logos -->
+						<div class="corporate-logos-row">
+							<span class="corp-logo-text corp-ey-logo">e.</span>
 							<img
-								src="/images/Ajsal-E.webp"
-								alt="Student"
-								class="avatar-img"
+								src="/images/pwc.png"
+								alt="PwC"
+								class="corp-logo"
 							/>
+							<span class="corp-logo-text infosys-text"
+								>Infosys</span
+							>
+							<span class="corp-logo-text kpmg-text">KPMG</span>
 							<img
-								src="/images/Anuradha.webp"
-								alt="Student"
-								class="avatar-img"
-							/>
-							<img
-								src="/images/Bijini-Koshi.webp"
-								alt="Student"
-								class="avatar-img"
-							/>
-							<img
-								src="/images/Jishana-T.webp"
-								alt="Student"
-								class="avatar-img"
-							/>
-							<img
-								src="/images/Kashinath.webp"
-								alt="Student"
-								class="avatar-img"
-							/>
-							<img
-								src="/images/Thanha-Kadeeja-K.webp"
-								alt="Student"
-								class="avatar-img"
+								src="/images/deloitte.png"
+								alt="Deloitte"
+								class="corp-logo"
 							/>
 						</div>
 					</div>
 
-					<!-- Corporate logos -->
-					<div class="corporate-logos-row">
-						<span class="corp-logo-text corp-ey-logo">e.</span>
-						<img
-							src="/images/pwc.png"
-							alt="PwC"
-							class="corp-logo"
-						/>
-						<span class="corp-logo-text infosys-text">Infosys</span>
-						<span class="corp-logo-text kpmg-text">KPMG</span>
-						<img
-							src="/images/deloitte.png"
-							alt="Deloitte"
-							class="corp-logo"
-						/>
+					<!-- RIGHT: Hero Visual (morph start point — stays invisible, just holds the starting size/position) -->
+					<div class="cma-hero-right">
+						<div class="video-placeholder"></div>
 					</div>
 				</div>
+			</section>
 
-				<!-- RIGHT: Hero Visual -->
-				<div class="cma-hero-right">
-					<div class="cma-img-frame circle-frame">
-						<iframe
-							src="https://www.youtube.com/embed/fSmpRKXSJS0?autoplay=1&mute=1&loop=1&playlist=fSmpRKXSJS0&start=5"
-							title="CMA USA – Elance"
-							frameborder="0"
-							allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-							allowfullscreen
-							class="scroll-iframe"></iframe>
-					</div>
+			<!-- Target area the circle morphs into as the user scrolls -->
+			<section class="video-expanded-section">
+				<div class="video-expanded-inner">
+					<div class="expanded-video-target"></div>
 				</div>
+			</section>
+
+			<!-- The actual video element — absolutely positioned and animated between the two targets above -->
+			<div class="video-circle-wrapper">
+				<iframe
+					src="https://www.youtube.com/embed/fSmpRKXSJS0?autoplay=1&mute=1&loop=1&playlist=fSmpRKXSJS0&start=5"
+					title="CMA USA – Elance"
+					frameborder="0"
+					allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+					allowfullscreen
+					class="youtube-circle-iframe"></iframe>
 			</div>
-		</section>
+		</div>
+		<!-- /morphing-wrapper -->
 
+		<!-- Script for Scroll Morphing (circle → full-width video) -->
+		<script>
+			const wrapper = document.querySelector(".morphing-wrapper");
+			const placeholder = document.querySelector(".video-placeholder");
+			const target = document.querySelector(".expanded-video-target");
+			const video = document.querySelector(".video-circle-wrapper");
+			const iframe = document.querySelector(".youtube-circle-iframe");
+			const leftCol = document.querySelector(".cma-hero-left");
 
+			// Cached document-relative metrics. Re-measured on load/resize
+			// and whenever images finish loading (badges/avatars/logos can
+			// shift the layout height after the first paint).
+			let metrics = null;
+			let isMobileLayout = false;
+
+			function measure() {
+				if (!wrapper || !placeholder || !target) return;
+
+				const scrollY = window.scrollY || window.pageYOffset;
+				const wrapperRect = wrapper.getBoundingClientRect();
+				const placeholderRect = placeholder.getBoundingClientRect();
+				const targetRect = target.getBoundingClientRect();
+
+				metrics = {
+					// Document-relative top of the morph wrapper.
+					wrapperDocTop: wrapperRect.top + scrollY,
+					// Circle start position/size, relative to the wrapper.
+					startLeft: placeholderRect.left - wrapperRect.left,
+					startTop: placeholderRect.top - wrapperRect.top,
+					startWidth: placeholderRect.width,
+					startHeight: placeholderRect.height,
+					// Full-width end position/size, relative to the wrapper.
+					endLeft: targetRect.left - wrapperRect.left,
+					endTop: targetRect.top - wrapperRect.top,
+					endWidth: targetRect.width,
+					endHeight: targetRect.height,
+					// Document-relative top of the expanded target — this is
+					// the scroll distance we animate across.
+					targetDocTop: targetRect.top + scrollY,
+				};
+			}
+
+			function updateMorph() {
+				if (!wrapper || !placeholder || !target || !video || !iframe)
+					return;
+
+				isMobileLayout = window.innerWidth <= 1024;
+
+				if (isMobileLayout) {
+					// Reset inline styles so the CSS media-query fallback
+					// (simple static circle) takes over on tablet/mobile.
+					video.style.position = "";
+					video.style.left = "";
+					video.style.top = "";
+					video.style.width = "";
+					video.style.height = "";
+					video.style.borderRadius = "";
+					video.style.transform = "";
+					iframe.style.width = "";
+					iframe.style.height = "";
+					iframe.style.borderRadius = "";
+					if (leftCol) {
+						leftCol.style.opacity = "";
+						leftCol.style.transform = "";
+					}
+					return;
+				}
+
+				if (!metrics) measure();
+				if (!metrics) return;
+
+				const scrollY = window.scrollY || window.pageYOffset;
+
+				// How far we've scrolled since the wrapper reached the top
+				// of the viewport (offset by a small header buffer).
+				const headerOffset = 140;
+				const scrollStart = metrics.wrapperDocTop;
+				const scrollEnd = metrics.targetDocTop - headerOffset;
+				const totalScroll = Math.max(scrollEnd - scrollStart, 1);
+
+				let progress = (scrollY - scrollStart) / totalScroll;
+				progress = Math.min(Math.max(progress, 0), 1);
+
+				// Enable absolute positioning relative to morphing-wrapper
+				video.style.position = "absolute";
+
+				// 1. Interpolate left, top, width, height
+				const currentLeft =
+					metrics.startLeft +
+					(metrics.endLeft - metrics.startLeft) * progress;
+				const currentTop =
+					metrics.startTop +
+					(metrics.endTop - metrics.startTop) * progress;
+				const currentWidth =
+					metrics.startWidth +
+					(metrics.endWidth - metrics.startWidth) * progress;
+				const currentHeight =
+					metrics.startHeight +
+					(metrics.endHeight - metrics.startHeight) * progress;
+
+				video.style.left = `${currentLeft}px`;
+				video.style.top = `${currentTop}px`;
+				video.style.width = `${currentWidth}px`;
+				video.style.height = `${currentHeight}px`;
+
+				// 2. Morph border radius: stay a capsule/pill (height / 2)
+				// for longer, then ease into the rounded-rect corner.
+				const currentCapsuleRadius = currentHeight / 2;
+				const endRadius = 40; // matches this page's .rect-frame corner radius
+				const radiusProgress = Math.pow(progress, 2.5);
+				const currentRadius =
+					currentCapsuleRadius +
+					(endRadius - currentCapsuleRadius) * radiusProgress;
+
+				video.style.borderRadius = `${currentRadius}px`;
+				iframe.style.borderRadius = `${currentRadius}px`;
+
+				// 3. Keep the video centered and cropping like
+				// object-fit: cover for a 16:9 ratio, no black bars.
+				const containerRatio = currentWidth / currentHeight;
+				const targetRatio = 16 / 9;
+				if (containerRatio > targetRatio) {
+					iframe.style.width = "100%";
+					iframe.style.height = `${(containerRatio / targetRatio) * 100}%`;
+				} else {
+					iframe.style.width = `${(targetRatio / containerRatio) * 100}%`;
+					iframe.style.height = "100%";
+				}
+
+				// 4. Fade the hero copy out slightly as the video takes over.
+				if (leftCol) {
+					const fadeProgress = Math.min(progress / 0.6, 1);
+					leftCol.style.opacity = `${1 - fadeProgress * 0.35}`;
+					leftCol.style.transform = `translateY(${fadeProgress * -12}px)`;
+				}
+			}
+
+			let ticking = false;
+			function onScroll() {
+				if (!ticking) {
+					window.requestAnimationFrame(() => {
+						updateMorph();
+						ticking = false;
+					});
+					ticking = true;
+				}
+			}
+
+			function onResize() {
+				measure();
+				updateMorph();
+			}
+
+			// Re-measure once every image inside the wrapper has finished
+			// loading, since late-loading badges/avatars/logos shift the
+			// hero's height and therefore the circle's start position.
+			function watchImages() {
+				const imgs = wrapper
+					? Array.from(wrapper.querySelectorAll("img"))
+					: [];
+				imgs.forEach((img) => {
+					if (img.complete) return;
+					img.addEventListener(
+						"load",
+						() => {
+							measure();
+							updateMorph();
+						},
+						{ once: true },
+					);
+				});
+			}
+
+			window.addEventListener("scroll", onScroll, { passive: true });
+			window.addEventListener("resize", onResize, { passive: true });
+			window.addEventListener("load", () => {
+				measure();
+				updateMorph();
+				watchImages();
+			});
+
+			// Initial measurement/paint as soon as the DOM is ready, so
+			// there's no flash of the circle in the wrong spot.
+			measure();
+			updateMorph();
+			window.addEventListener("DOMContentLoaded", () => {
+				measure();
+				updateMorph();
+			});
+
+			// A couple of safety re-measures shortly after load, in case
+			// web fonts or late layout shifts change element positions.
+			setTimeout(() => {
+				measure();
+				updateMorph();
+			}, 200);
+			setTimeout(() => {
+				measure();
+				updateMorph();
+			}, 800);
+		</script>
 
 		<!-- ===================== ACHIEVEMENTS STATS CARDS ===================== -->
 		<section class="cma-achievements-cards-section">
@@ -180,7 +395,8 @@ import CareerAndWhyElance from "../components/CareerAndWhyElance.astro";
 				<!-- Left: Heading and Badges -->
 				<div class="cma-prof-left">
 					<h2 class="cma-prof-title">
-						Be the <span class="text-slate">Professional</span> the<br />
+						Be the <span class="text-slate">Professional</span> the<br
+						/>
 						World Is <span class="text-slate">Looking For!</span>
 					</h2>
 					<div class="cma-prof-badges">
@@ -200,43 +416,79 @@ import CareerAndWhyElance from "../components/CareerAndWhyElance.astro";
 				<div class="cma-prof-right">
 					<div class="cma-bullet-item">
 						<div class="cma-bullet-icon">
-							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+							<svg
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="3"
+							>
 								<polyline points="20 6 9 17 4 12"></polyline>
 							</svg>
 						</div>
-						<p class="cma-bullet-text">Recognition in over 160 countries world-wide.</p>
+						<p class="cma-bullet-text">
+							Recognition in over 160 countries world-wide.
+						</p>
 					</div>
 					<div class="cma-bullet-item">
 						<div class="cma-bullet-icon">
-							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+							<svg
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="3"
+							>
 								<polyline points="20 6 9 17 4 12"></polyline>
 							</svg>
 						</div>
-						<p class="cma-bullet-text">Join a network of influential finance professionals.</p>
+						<p class="cma-bullet-text">
+							Join a network of influential finance professionals.
+						</p>
 					</div>
 					<div class="cma-bullet-item">
 						<div class="cma-bullet-icon">
-							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+							<svg
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="3"
+							>
 								<polyline points="20 6 9 17 4 12"></polyline>
 							</svg>
 						</div>
-						<p class="cma-bullet-text">Stay in demand with skills valued internationally.</p>
+						<p class="cma-bullet-text">
+							Stay in demand with skills valued internationally.
+						</p>
 					</div>
 					<div class="cma-bullet-item">
 						<div class="cma-bullet-icon">
-							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+							<svg
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="3"
+							>
 								<polyline points="20 6 9 17 4 12"></polyline>
 							</svg>
 						</div>
-						<p class="cma-bullet-text">Upskill your way to a leadership role in the finance industry.</p>
+						<p class="cma-bullet-text">
+							Upskill your way to a leadership role in the finance
+							industry.
+						</p>
 					</div>
 					<div class="cma-bullet-item">
 						<div class="cma-bullet-icon">
-							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+							<svg
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="3"
+							>
 								<polyline points="20 6 9 17 4 12"></polyline>
 							</svg>
 						</div>
-						<p class="cma-bullet-text">High earning potential from ₹4 LPA to ₹20LPA.</p>
+						<p class="cma-bullet-text">
+							High earning potential from ₹4 LPA to ₹20LPA.
+						</p>
 					</div>
 				</div>
 			</div>
@@ -282,6 +534,70 @@ import CareerAndWhyElance from "../components/CareerAndWhyElance.astro";
 		font-weight: 600;
 		color: #1e293b;
 		letter-spacing: 0.2px;
+	}
+
+	/* ─────────────────────────────────────────
+	   MORPHING WRAPPER — circle grows into full-width video
+	───────────────────────────────────────── */
+	.morphing-wrapper {
+		position: relative;
+		width: 100%;
+	}
+
+	/* Invisible stand-in that marks the circle's start position/size */
+	.video-placeholder {
+		width: 420px;
+		height: 420px;
+		border-radius: 50%;
+		visibility: hidden;
+	}
+
+	.video-expanded-section {
+		padding: 60px 0 100px;
+		background-color: #ffffff;
+		display: flex;
+		justify-content: center;
+	}
+
+	.video-expanded-inner {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 0 40px;
+		width: 100%;
+	}
+
+	/* Invisible stand-in that marks the video's full-width end position/size */
+	.expanded-video-target {
+		width: 100%;
+		height: 675px; /* 16:9 at 1200px wide */
+		border-radius: 40px; /* matches .rect-frame's corner radius */
+		visibility: hidden;
+	}
+
+	/* The real video element, absolutely positioned and animated on scroll */
+	.video-circle-wrapper {
+		width: 420px;
+		height: 420px;
+		border-radius: 50%;
+		overflow: hidden;
+		position: absolute;
+		box-shadow: 0 20px 60px rgba(0, 0, 0, 0.14);
+		background-color: #000000;
+		z-index: 50;
+		-webkit-mask-image: -webkit-radial-gradient(white, black);
+		transform: translate3d(0, 0, 0);
+		-webkit-transform: translate3d(0, 0, 0);
+		will-change: border-radius, width, height, left, top;
+	}
+
+	.youtube-circle-iframe {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 177.77777778%; /* cover 16:9 ratio in a 1:1 wrapper */
+		height: 100%;
+		transform: translate(-50%, -50%);
+		border: none;
 	}
 
 	/* ─────────────────────────────────────────
@@ -600,6 +916,22 @@ import CareerAndWhyElance from "../components/CareerAndWhyElance.astro";
 		.scroll-panel {
 			display: none;
 		}
+
+		/* Morph disabled on tablet/mobile — show as a plain static circle */
+		.video-expanded-section {
+			display: none;
+		}
+
+		.video-circle-wrapper {
+			position: relative !important;
+			left: auto !important;
+			top: auto !important;
+			width: 100% !important;
+			max-width: 360px !important;
+			height: 340px !important;
+			border-radius: 50% !important;
+			margin: 0 auto;
+		}
 	}
 
 	@media (max-width: 600px) {
@@ -646,7 +978,9 @@ import CareerAndWhyElance from "../components/CareerAndWhyElance.astro";
 		justify-content: flex-start;
 		border: 1px solid #f1f5f9;
 		box-shadow: 0 10px 30px rgba(15, 23, 42, 0.03);
-		transition: transform 0.2s ease, box-shadow 0.2s ease;
+		transition:
+			transform 0.2s ease,
+			box-shadow 0.2s ease;
 	}
 
 	.cma-ach-card:hover {

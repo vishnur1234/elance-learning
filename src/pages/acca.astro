@@ -153,38 +153,64 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 
 		<!-- Script for Scroll Parallax Morphing -->
 		<script>
-			const wrapper = document.querySelector(
-				".morphing-wrapper",
-			) as HTMLElement;
-			const placeholder = document.querySelector(
-				".video-placeholder",
-			) as HTMLElement;
-			const target = document.querySelector(
-				".expanded-video-target",
-			) as HTMLElement;
-			const video = document.querySelector(
-				".video-circle-wrapper",
-			) as HTMLElement;
-			const iframe = document.querySelector(
-				".youtube-circle-iframe",
-			) as HTMLElement;
-			const leftCol = document.querySelector(".hero-left") as HTMLElement;
+			const wrapper = document.querySelector(".morphing-wrapper");
+			const placeholder = document.querySelector(".video-placeholder");
+			const target = document.querySelector(".expanded-video-target");
+			const video = document.querySelector(".video-circle-wrapper");
+			const iframe = document.querySelector(".youtube-circle-iframe");
+			const leftCol = document.querySelector(".hero-left");
+
+			// Cached document-relative metrics. Re-measured on load/resize
+			// and whenever images finish loading (avatars/badges/logos can
+			// shift the layout height after the first paint).
+			let metrics = null;
+			let isMobileLayout = false;
+
+			function measure() {
+				if (!wrapper || !placeholder || !target) return;
+
+				const scrollY = window.scrollY || window.pageYOffset;
+				const wrapperRect = wrapper.getBoundingClientRect();
+				const placeholderRect = placeholder.getBoundingClientRect();
+				const targetRect = target.getBoundingClientRect();
+
+				metrics = {
+					// Document-relative top of the morph wrapper.
+					wrapperDocTop: wrapperRect.top + scrollY,
+					// Circle start position/size, relative to the wrapper.
+					startLeft: placeholderRect.left - wrapperRect.left,
+					startTop: placeholderRect.top - wrapperRect.top,
+					startWidth: placeholderRect.width,
+					startHeight: placeholderRect.height,
+					// Full-width end position/size, relative to the wrapper.
+					endLeft: targetRect.left - wrapperRect.left,
+					endTop: targetRect.top - wrapperRect.top,
+					endWidth: targetRect.width,
+					endHeight: targetRect.height,
+					// Document-relative top of the expanded target — this is
+					// the scroll distance we animate across.
+					targetDocTop: targetRect.top + scrollY,
+				};
+			}
 
 			function updateMorph() {
 				if (!wrapper || !placeholder || !target || !video || !iframe)
 					return;
 
-				if (window.innerWidth <= 992) {
+				isMobileLayout = window.innerWidth <= 992;
+
+				if (isMobileLayout) {
 					// Reset inline styling layout for responsive/mobile/tablet
-					video.style.position = "relative";
+					video.style.position = "";
 					video.style.left = "";
 					video.style.top = "";
 					video.style.width = "";
 					video.style.height = "";
 					video.style.borderRadius = "";
-					video.style.transform = "none";
+					video.style.transform = "";
 					iframe.style.width = "";
 					iframe.style.height = "";
+					iframe.style.borderRadius = "";
 					if (leftCol) {
 						leftCol.style.opacity = "";
 						leftCol.style.transform = "";
@@ -193,63 +219,57 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 					return;
 				}
 
+				if (!metrics) measure();
+				if (!metrics) return;
+
+				const scrollY = window.scrollY || window.pageYOffset;
+
+				// How far we've scrolled since the wrapper reached the top
+				// of the viewport (offset by a small header buffer).
+				const headerOffset = 140;
+				const scrollStart = metrics.wrapperDocTop;
+				const scrollEnd = metrics.targetDocTop - headerOffset;
+				const totalScroll = Math.max(scrollEnd - scrollStart, 1);
+
+				let progress = (scrollY - scrollStart) / totalScroll;
+				progress = Math.min(Math.max(progress, 0), 1);
+
 				// Enable absolute positioning relative to morphing-wrapper
 				video.style.position = "absolute";
 
-				const wrapperRect = wrapper.getBoundingClientRect();
-				const placeholderRect = placeholder.getBoundingClientRect();
-				const targetRect = target.getBoundingClientRect();
-
-				// Absolute Start offset values inside wrapper
-				const startLeft = placeholderRect.left - wrapperRect.left;
-				const startTop = placeholderRect.top - wrapperRect.top;
-				const startWidth = placeholderRect.offsetWidth;
-				const startHeight = placeholderRect.offsetHeight;
-
-				// Absolute End offset values inside wrapper
-				const endLeft = targetRect.left - wrapperRect.left;
-				const endTop = targetRect.top - wrapperRect.top;
-				const endWidth = targetRect.offsetWidth;
-				const endHeight = targetRect.offsetHeight;
-
-				// Calculate progress purely based on viewport rect offsets to be 100% device & scroll container independent
-				const currentScroll = -wrapperRect.top;
-				const totalScroll = targetRect.top - 140 + currentScroll;
-
-				let progress = 0;
-				if (totalScroll > 0) {
-					progress = currentScroll / totalScroll;
-				}
-				if (progress < 0) progress = 0;
-				if (progress > 1) progress = 1;
-
-				// 1. Interpolate left, top, width, height coordinate bounds
+				// 1. Interpolate left, top, width, height
 				const currentLeft =
-					startLeft + (endLeft - startLeft) * progress;
-				const currentTop = startTop + (endTop - startTop) * progress;
+					metrics.startLeft +
+					(metrics.endLeft - metrics.startLeft) * progress;
+				const currentTop =
+					metrics.startTop +
+					(metrics.endTop - metrics.startTop) * progress;
 				const currentWidth =
-					startWidth + (endWidth - startWidth) * progress;
+					metrics.startWidth +
+					(metrics.endWidth - metrics.startWidth) * progress;
 				const currentHeight =
-					startHeight + (endHeight - startHeight) * progress;
+					metrics.startHeight +
+					(metrics.endHeight - metrics.startHeight) * progress;
 
 				video.style.left = `${currentLeft}px`;
 				video.style.top = `${currentTop}px`;
 				video.style.width = `${currentWidth}px`;
 				video.style.height = `${currentHeight}px`;
 
-				// 2. Morph border radius: keep it as a capsule/pill (height / 2) for longer, transitioning to 32px near the end
+				// 2. Morph border radius: stay a capsule/pill (height / 2)
+				// for longer, then ease into the 32px rounded-rect corner.
 				const currentCapsuleRadius = currentHeight / 2;
-				const endRadius = 32; // target corner radius (32px)
-				const radiusProgress = Math.pow(progress, 2.5); // non-linear transition to keep it capsule-like longer
+				const endRadius = 32;
+				const radiusProgress = Math.pow(progress, 2.5);
 				const currentRadius =
 					currentCapsuleRadius +
 					(endRadius - currentCapsuleRadius) * radiusProgress;
 
-				// Set border radius on container and directly on iframe to ensure browser clipping handles iframe content correctly
 				video.style.borderRadius = `${currentRadius}px`;
 				iframe.style.borderRadius = `${currentRadius}px`;
 
-				// 3. Keep the video centered and cropping like object-fit: cover for a 16:9 ratio to avoid any black bars
+				// 3. Keep the video centered and cropping like
+				// object-fit: cover for a 16:9 ratio, no black bars.
 				const containerRatio = currentWidth / currentHeight;
 				const targetRatio = 16 / 9;
 				if (containerRatio > targetRatio) {
@@ -258,6 +278,14 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 				} else {
 					iframe.style.width = `${(targetRatio / containerRatio) * 100}%`;
 					iframe.style.height = "100%";
+				}
+
+				// 4. Fade the hero copy out slightly as the video takes over,
+				// so the expanding player doesn't visually collide with text.
+				if (leftCol) {
+					const fadeProgress = Math.min(progress / 0.6, 1);
+					leftCol.style.opacity = `${1 - fadeProgress * 0.35}`;
+					leftCol.style.transform = `translateY(${fadeProgress * -12}px)`;
 				}
 			}
 
@@ -272,15 +300,61 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 				}
 			}
 
-			// Listen to window scrolling, resizing, and loading
-			window.addEventListener("scroll", onScroll, { passive: true });
-			window.addEventListener("resize", onScroll, { passive: true });
-			window.addEventListener("load", updateMorph);
+			function onResize() {
+				measure();
+				updateMorph();
+			}
 
-			// Call updateMorph on page load
+			// Re-measure once every image inside the wrapper has finished
+			// loading, since late-loading avatars/badges/logos shift the
+			// hero's height and therefore the circle's start position.
+			function watchImages() {
+				const imgs = wrapper
+					? Array.from(wrapper.querySelectorAll("img"))
+					: [];
+				let remaining = imgs.filter((img) => !img.complete).length;
+				if (remaining === 0) return;
+				imgs.forEach((img) => {
+					if (img.complete) return;
+					img.addEventListener(
+						"load",
+						() => {
+							remaining -= 1;
+							measure();
+							updateMorph();
+						},
+						{ once: true },
+					);
+				});
+			}
+
+			window.addEventListener("scroll", onScroll, { passive: true });
+			window.addEventListener("resize", onResize, { passive: true });
+			window.addEventListener("load", () => {
+				measure();
+				updateMorph();
+				watchImages();
+			});
+
+			// Initial measurement/paint as soon as the DOM is ready, so
+			// there's no flash of the circle in the wrong spot.
+			measure();
 			updateMorph();
-			window.addEventListener("DOMContentLoaded", updateMorph);
-			setTimeout(updateMorph, 200);
+			window.addEventListener("DOMContentLoaded", () => {
+				measure();
+				updateMorph();
+			});
+
+			// A couple of safety re-measures shortly after load, in case
+			// web fonts or late layout shifts change element positions.
+			setTimeout(() => {
+				measure();
+				updateMorph();
+			}, 200);
+			setTimeout(() => {
+				measure();
+				updateMorph();
+			}, 800);
 		</script>
 
 		<!-- ===================== STATS CARDS SECTION ===================== -->
@@ -517,8 +591,7 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 											points="50,15 90,80 10,80"
 											fill="none"
 											stroke="rgba(59, 159, 232, 0.25)"
-											stroke-width="3"
-										></polygon>
+											stroke-width="3"></polygon>
 									</svg>
 									<!-- Subtle curved shape in background -->
 									<div class="decor-curve"></div>
@@ -539,31 +612,26 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 										>
 											<path
 												d="M9 11v7l3-2 3 2v-7H9z"
-												fill="#ef4444"
-											></path>
+												fill="#ef4444"></path>
 											<path
 												d="M12 11v7l1.5-1 1.5 1v-7h-3z"
 												fill="#3b82f6"
-												opacity="0.8"
-											></path>
+												opacity="0.8"></path>
 											<circle
 												cx="12"
 												cy="9"
 												r="6"
 												fill="#fbbf24"
 												stroke="#f59e0b"
-												stroke-width="1.2"
-											></circle>
+												stroke-width="1.2"></circle>
 											<circle
 												cx="12"
 												cy="9"
 												r="4.5"
-												fill="#f59e0b"
-											></circle>
+												fill="#f59e0b"></circle>
 											<polygon
 												points="12,6.5 13.2,8.8 15.8,9 13.8,10.7 14.5,13.2 12,11.8 9.5,13.2 10.2,10.7 8.2,9 10.8,8.8"
-												fill="#ffffff"
-											></polygon>
+												fill="#ffffff"></polygon>
 										</svg>
 									</div>
 									<p class="exam-tag">((SBR)Sep 2020)</p>
@@ -592,8 +660,7 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 											points="50,15 90,80 10,80"
 											fill="none"
 											stroke="rgba(59, 159, 232, 0.25)"
-											stroke-width="3"
-										></polygon>
+											stroke-width="3"></polygon>
 									</svg>
 									<div class="decor-curve"></div>
 									<img
@@ -615,31 +682,26 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 										>
 											<path
 												d="M9 11v7l3-2 3 2v-7H9z"
-												fill="#ef4444"
-											></path>
+												fill="#ef4444"></path>
 											<path
 												d="M12 11v7l1.5-1 1.5 1v-7h-3z"
 												fill="#3b82f6"
-												opacity="0.8"
-											></path>
+												opacity="0.8"></path>
 											<circle
 												cx="12"
 												cy="9"
 												r="6"
 												fill="#fbbf24"
 												stroke="#f59e0b"
-												stroke-width="1.2"
-											></circle>
+												stroke-width="1.2"></circle>
 											<circle
 												cx="12"
 												cy="9"
 												r="4.5"
-												fill="#f59e0b"
-											></circle>
+												fill="#f59e0b"></circle>
 											<polygon
 												points="12,6.5 13.2,8.8 15.8,9 13.8,10.7 14.5,13.2 12,11.8 9.5,13.2 10.2,10.7 8.2,9 10.8,8.8"
-												fill="#ffffff"
-											></polygon>
+												fill="#ffffff"></polygon>
 										</svg>
 									</div>
 									<p class="exam-tag">((AAA)Sep 2023)</p>
@@ -668,8 +730,7 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 											points="50,15 90,80 10,80"
 											fill="none"
 											stroke="rgba(59, 159, 232, 0.25)"
-											stroke-width="3"
-										></polygon>
+											stroke-width="3"></polygon>
 									</svg>
 									<div class="decor-curve"></div>
 									<img
@@ -691,31 +752,26 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 										>
 											<path
 												d="M9 11v7l3-2 3 2v-7H9z"
-												fill="#ef4444"
-											></path>
+												fill="#ef4444"></path>
 											<path
 												d="M12 11v7l1.5-1 1.5 1v-7h-3z"
 												fill="#3b82f6"
-												opacity="0.8"
-											></path>
+												opacity="0.8"></path>
 											<circle
 												cx="12"
 												cy="9"
 												r="6"
 												fill="#fbbf24"
 												stroke="#f59e0b"
-												stroke-width="1.2"
-											></circle>
+												stroke-width="1.2"></circle>
 											<circle
 												cx="12"
 												cy="9"
 												r="4.5"
-												fill="#f59e0b"
-											></circle>
+												fill="#f59e0b"></circle>
 											<polygon
 												points="12,6.5 13.2,8.8 15.8,9 13.8,10.7 14.5,13.2 12,11.8 9.5,13.2 10.2,10.7 8.2,9 10.8,8.8"
-												fill="#ffffff"
-											></polygon>
+												fill="#ffffff"></polygon>
 										</svg>
 									</div>
 									<p class="exam-tag">((FM)Dec 2022)</p>
@@ -744,8 +800,7 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 											points="50,15 90,80 10,80"
 											fill="none"
 											stroke="rgba(59, 159, 232, 0.25)"
-											stroke-width="3"
-										></polygon>
+											stroke-width="3"></polygon>
 									</svg>
 									<div class="decor-curve"></div>
 									<img
@@ -767,31 +822,26 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 										>
 											<path
 												d="M9 11v7l3-2 3 2v-7H9z"
-												fill="#ef4444"
-											></path>
+												fill="#ef4444"></path>
 											<path
 												d="M12 11v7l1.5-1 1.5 1v-7h-3z"
 												fill="#3b82f6"
-												opacity="0.8"
-											></path>
+												opacity="0.8"></path>
 											<circle
 												cx="12"
 												cy="9"
 												r="6"
 												fill="#fbbf24"
 												stroke="#f59e0b"
-												stroke-width="1.2"
-											></circle>
+												stroke-width="1.2"></circle>
 											<circle
 												cx="12"
 												cy="9"
 												r="4.5"
-												fill="#f59e0b"
-											></circle>
+												fill="#f59e0b"></circle>
 											<polygon
 												points="12,6.5 13.2,8.8 15.8,9 13.8,10.7 14.5,13.2 12,11.8 9.5,13.2 10.2,10.7 8.2,9 10.8,8.8"
-												fill="#ffffff"
-											></polygon>
+												fill="#ffffff"></polygon>
 										</svg>
 									</div>
 									<p class="exam-tag">((SBL)Dec 2021)</p>
@@ -820,8 +870,7 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 											points="50,15 90,80 10,80"
 											fill="none"
 											stroke="rgba(59, 159, 232, 0.25)"
-											stroke-width="3"
-										></polygon>
+											stroke-width="3"></polygon>
 									</svg>
 									<div class="decor-curve"></div>
 									<img
@@ -841,31 +890,26 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 										>
 											<path
 												d="M9 11v7l3-2 3 2v-7H9z"
-												fill="#ef4444"
-											></path>
+												fill="#ef4444"></path>
 											<path
 												d="M12 11v7l1.5-1 1.5 1v-7h-3z"
 												fill="#3b82f6"
-												opacity="0.8"
-											></path>
+												opacity="0.8"></path>
 											<circle
 												cx="12"
 												cy="9"
 												r="6"
 												fill="#fbbf24"
 												stroke="#f59e0b"
-												stroke-width="1.2"
-											></circle>
+												stroke-width="1.2"></circle>
 											<circle
 												cx="12"
 												cy="9"
 												r="4.5"
-												fill="#f59e0b"
-											></circle>
+												fill="#f59e0b"></circle>
 											<polygon
 												points="12,6.5 13.2,8.8 15.8,9 13.8,10.7 14.5,13.2 12,11.8 9.5,13.2 10.2,10.7 8.2,9 10.8,8.8"
-												fill="#ffffff"
-											></polygon>
+												fill="#ffffff"></polygon>
 										</svg>
 									</div>
 									<p class="exam-tag">((TX)Mar 2023)</p>
@@ -1038,6 +1082,10 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 	.hero-left {
 		display: flex;
 		flex-direction: column;
+		transition:
+			opacity 0.15s linear,
+			transform 0.15s linear;
+		will-change: opacity, transform;
 	}
 
 	.hero-title {
@@ -1350,6 +1398,7 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 		.video-circle-wrapper {
 			width: 400px;
 			height: 400px;
+			position: relative;
 		}
 
 		.stats-cards-container {
@@ -1513,9 +1562,13 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 		background: #ffffff;
 		border-radius: 0;
 		overflow: hidden;
-		box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02);
+		box-shadow:
+			0 10px 30px rgba(0, 0, 0, 0.04),
+			0 1px 3px rgba(0, 0, 0, 0.02);
 		border: 1px solid rgba(0, 0, 0, 0.03);
-		transition: transform 0.3s ease, box-shadow 0.3s ease;
+		transition:
+			transform 0.3s ease,
+			box-shadow 0.3s ease;
 	}
 
 	.performer-card:hover {
