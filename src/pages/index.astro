@@ -178,7 +178,7 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 								alt="CMA USA"
 								class="course-logo-img"
 							/>
-							<div class="course-name-badge">CMA USA</div>
+							<h3 class="course-name-badge">CMA USA</h3>
 							<p class="course-desc">
 								Skill up your current working career by becoming
 								a Certified Management Accountant and feel the
@@ -353,16 +353,19 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 					/>
 					<div class="audience-overlay">
 						<p class="audience-overlay-text">
-							<span class="label-light">For</span> Working<br />Professionals
+							<span class="label-light">For</span> Working<br
+							/>Professionals
 						</p>
 					</div>
 					<div class="audience-info-box">
-						<h3 class="audience-info-title">For Working Professionals</h3>
+						<h3 class="audience-info-title">
+							For Working Professionals
+						</h3>
 						<p class="audience-info-desc">
-							Our flexible learning solutions—online, offline, and hybrid,
-							are designed for working professionals, to empower and
-							enhance your knowledge and skills, and achieve new
-							career heights.
+							Our flexible learning solutions—online, offline, and
+							hybrid, are designed for working professionals, to
+							empower and enhance your knowledge and skills, and
+							achieve new career heights.
 						</p>
 						<a href="#" class="btn-blue-pill-small">Get Started</a>
 					</div>
@@ -1384,7 +1387,7 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 
 	/* ── COURSES ── */
 	.courses {
-		padding: 100px 0 40px;
+		padding: 100px 0 120px;
 		background: #fff;
 		min-height: 85vh;
 		display: flex;
@@ -1410,17 +1413,21 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 	.funnel-bg {
 		position: absolute;
 		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
+		left: 51%;
+		transform: translate(-50%, -45%) rotate(360deg);
 		width: 100%;
-		max-width: 800px;
-		height: 100%;
-		max-height: 520px;
-		background: url("/images/hero-bg-shape-big.png") no-repeat center center;
+		max-width: 900px;
+		height: 120%;
+		max-height: 600px;
+		background:
+			url("/images/gallery/you-bg.png") no-repeat center center,
+			url("/images/gallery/you-bg.png") no-repeat center center,
+			url("/images/gallery/you-bg.png") no-repeat center center,
+			url("/images/gallery/you-bg.png") no-repeat center center;
 		background-size: contain;
 		pointer-events: none;
 		z-index: 0;
-		opacity: 0.9;
+		opacity: 1;
 	}
 
 	.courses-grid {
@@ -1464,13 +1471,16 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 		display: inline-block;
 		background: #fff;
 		color: #111827;
-		font-size: 0.875rem;
-		font-weight: 700;
+		font-size: 1.25rem;
+		font-weight: 800;
 		padding: 6px 20px;
-		border-radius: 100px;
+		border-radius: 8px;
 		border: 1.5px solid #e5e7eb;
+		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
 		margin-bottom: 16px;
+		margin-top: 4px;
 		width: fit-content;
+		font-family: "Outfit", sans-serif;
 	}
 
 	.course-desc {
@@ -1487,7 +1497,17 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 		flex-wrap: wrap;
 	}
 
+	.course-btns a {
+		padding: 11px 28px;
+		font-size: 0.875rem;
+		font-weight: 700;
+		text-align: center;
+		min-width: 140px;
+		display: inline-block;
+	}
+
 	.course-card .btn-outline-pill {
+		background-color: #ffffff;
 		color: #3b9fe8;
 		border-color: #3b9fe8;
 	}
@@ -1860,13 +1880,19 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 		opacity: 1;
 		visibility: visible;
 		transform: translateY(0);
-		transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+		transition:
+			opacity 0.3s ease,
+			transform 0.3s ease,
+			visibility 0.3s ease;
 	}
 	.students-card .audience-overlay {
 		opacity: 0;
 		visibility: hidden;
 		transform: translateY(15px);
-		transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+		transition:
+			opacity 0.3s ease,
+			transform 0.3s ease,
+			visibility 0.3s ease;
 	}
 	.students-card::after {
 		opacity: 0.3;
@@ -1876,13 +1902,19 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 		opacity: 0;
 		visibility: hidden;
 		transform: translateY(15px);
-		transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+		transition:
+			opacity 0.3s ease,
+			transform 0.3s ease,
+			visibility 0.3s ease;
 	}
 	.professionals-card .audience-overlay {
 		opacity: 1;
 		visibility: visible;
 		transform: translateY(0);
-		transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+		transition:
+			opacity 0.3s ease,
+			transform 0.3s ease,
+			visibility 0.3s ease;
 	}
 	.professionals-card::after {
 		opacity: 1;
@@ -1891,12 +1923,16 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 	/* When hovering Professionals card:
 	   1. Professionals becomes active.
 	   2. Students becomes normal/faint. */
-	.audience-grid:has(.professionals-card:hover) .professionals-card .audience-info-box {
+	.audience-grid:has(.professionals-card:hover)
+		.professionals-card
+		.audience-info-box {
 		opacity: 1;
 		visibility: visible;
 		transform: translateY(0);
 	}
-	.audience-grid:has(.professionals-card:hover) .professionals-card .audience-overlay {
+	.audience-grid:has(.professionals-card:hover)
+		.professionals-card
+		.audience-overlay {
 		opacity: 0;
 		visibility: hidden;
 		transform: translateY(15px);
@@ -1905,12 +1941,16 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 		opacity: 0.3;
 	}
 
-	.audience-grid:has(.professionals-card:hover) .students-card .audience-info-box {
+	.audience-grid:has(.professionals-card:hover)
+		.students-card
+		.audience-info-box {
 		opacity: 0;
 		visibility: hidden;
 		transform: translateY(15px);
 	}
-	.audience-grid:has(.professionals-card:hover) .students-card .audience-overlay {
+	.audience-grid:has(.professionals-card:hover)
+		.students-card
+		.audience-overlay {
 		opacity: 1;
 		visibility: visible;
 		transform: translateY(0);
