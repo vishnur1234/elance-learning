@@ -250,7 +250,12 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 			<div class="section-container testimonials-layout">
 				<!-- Left -->
 				<div class="testimonials-left">
-					<div class="quote-bg-decor">“</div>
+					<img
+						src="/images/lowq-triangle.png"
+						alt=""
+						class="testimonials-triangle-bg"
+						aria-hidden="true"
+					/>
 					<p class="testimonials-eyebrow">Testimonials</p>
 					<h2 class="testimonials-title">
 						<span class="text-blue">Hear From</span> Our<br />
@@ -1584,39 +1589,14 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 		position: relative;
 	}
 
-	.testimonials-left::before {
-		content: "";
+	.testimonials-triangle-bg {
 		position: absolute;
-		bottom: -90px;
+		top: -70px;
 		left: -120px;
-		width: 480px;
-		height: 480px;
-		background: radial-gradient(
-			circle,
-			rgba(238, 247, 255, 0.85) 0%,
-			rgba(255, 255, 255, 0) 70%
-		);
+		width: 460px;
+		height: auto;
 		z-index: 0;
 		pointer-events: none;
-	}
-
-	.quote-bg-decor {
-		position: absolute;
-		bottom: -110px;
-		left: -80px;
-		font-size: 26rem;
-		font-family: Georgia, serif;
-		color: rgba(
-			59,
-			159,
-			232,
-			0.08
-		); /* Changed from white to soft blue to match screenshot */
-		line-height: 1;
-		pointer-events: none;
-		z-index: 1;
-		font-weight: 900;
-		text-shadow: 0 10px 40px rgba(0, 0, 0, 0.02);
 	}
 
 	.testimonials-eyebrow,
@@ -2819,6 +2799,11 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 		.testimonials-layout {
 			grid-template-columns: 1fr;
 			gap: 40px;
+		}
+		.testimonials-triangle-bg {
+			width: 320px;
+			left: -40px;
+			top: -40px;
 		}
 		.testimonials-right {
 			border-left: none;
