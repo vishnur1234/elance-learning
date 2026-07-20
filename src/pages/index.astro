@@ -328,6 +328,11 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 						alt="For Students"
 						class="audience-img"
 					/>
+					<div class="audience-overlay">
+						<p class="audience-overlay-text">
+							<span class="label-light">For</span><br />Students
+						</p>
+					</div>
 					<div class="audience-info-box">
 						<h3 class="audience-info-title">For Students</h3>
 						<p class="audience-info-desc">
@@ -348,9 +353,18 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 					/>
 					<div class="audience-overlay">
 						<p class="audience-overlay-text">
-							<span class="label-light">For</span> Working<br
-							/>Professionals
+							<span class="label-light">For</span> Working<br />Professionals
 						</p>
+					</div>
+					<div class="audience-info-box">
+						<h3 class="audience-info-title">For Working Professionals</h3>
+						<p class="audience-info-desc">
+							Our flexible learning solutions—online, offline, and hybrid,
+							are designed for working professionals, to empower and
+							enhance your knowledge and skills, and achieve new
+							career heights.
+						</p>
+						<a href="#" class="btn-blue-pill-small">Get Started</a>
 					</div>
 				</div>
 			</div>
@@ -1720,7 +1734,7 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 
 	/* ── AUDIENCE ── */
 	.audience-section {
-		padding: 80px 0;
+		padding: 80px 0 120px;
 		background: #fff;
 	}
 
@@ -1736,12 +1750,8 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 	.audience-card {
 		position: relative;
 		border-radius: 20px;
-		overflow: hidden;
+		overflow: visible;
 		box-shadow: 0 12px 35px rgba(0, 0, 0, 0.05);
-	}
-
-	.students-card {
-		overflow: visible; /* Let the info box hang off the bottom */
 	}
 
 	.audience-img {
@@ -1749,13 +1759,29 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 		height: 460px;
 		object-fit: cover;
 		display: block;
-		border-radius: 20px; /* Force image rounding when parent overflow is visible */
+		border-radius: 20px;
 	}
 
-	/* Students card info overlay */
-	.students-card .audience-info-box {
+	/* Card background overlays for text readability */
+	.audience-card::after {
+		content: "";
 		position: absolute;
-		bottom: -55px; /* Positioned to hang off the bottom of the card */
+		inset: 0;
+		background: linear-gradient(
+			to top,
+			rgba(0, 0, 0, 0.65) 0%,
+			rgba(0, 0, 0, 0.1) 60%
+		);
+		z-index: 1;
+		transition: opacity 0.3s ease;
+		pointer-events: none;
+		border-radius: 20px;
+	}
+
+	/* Active white info box */
+	.audience-card .audience-info-box {
+		position: absolute;
+		bottom: -55px;
 		left: 24px;
 		right: 24px;
 		background: #ffffff;
@@ -1770,14 +1796,14 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 		font-family: "Outfit", sans-serif;
 	}
 
-	.students-card .audience-info-title {
+	.audience-card .audience-info-title {
 		font-size: 1.45rem;
 		font-weight: 800;
 		color: #111827;
 		font-family: "Outfit", sans-serif;
 	}
 
-	.students-card .audience-info-desc {
+	.audience-card .audience-info-desc {
 		font-size: 0.85rem;
 		color: #4b5563;
 		line-height: 1.55;
@@ -1802,20 +1828,8 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 		background-color: #2486d0;
 	}
 
-	/* Professionals card overlays */
-	.professionals-card::after {
-		content: "";
-		position: absolute;
-		inset: 0;
-		background: linear-gradient(
-			to top,
-			rgba(0, 0, 0, 0.65) 0%,
-			rgba(0, 0, 0, 0.1) 60%
-		);
-		z-index: 1;
-	}
-
-	.professionals-card .audience-overlay {
+	/* Faint overlay text */
+	.audience-card .audience-overlay {
 		position: absolute;
 		bottom: 36px;
 		left: 36px;
@@ -1837,6 +1851,87 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 		opacity: 0.95;
 		margin-right: 4px;
 		font-family: "Outfit", sans-serif;
+	}
+
+	/* ── CARD TOGGLE & HOVER SELECTORS (USING :has) ── */
+
+	/* Default state: Students is active, Professionals is normal/faint */
+	.students-card .audience-info-box {
+		opacity: 1;
+		visibility: visible;
+		transform: translateY(0);
+		transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+	}
+	.students-card .audience-overlay {
+		opacity: 0;
+		visibility: hidden;
+		transform: translateY(15px);
+		transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+	}
+	.students-card::after {
+		opacity: 0.3;
+	}
+
+	.professionals-card .audience-info-box {
+		opacity: 0;
+		visibility: hidden;
+		transform: translateY(15px);
+		transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+	}
+	.professionals-card .audience-overlay {
+		opacity: 1;
+		visibility: visible;
+		transform: translateY(0);
+		transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+	}
+	.professionals-card::after {
+		opacity: 1;
+	}
+
+	/* When hovering Professionals card:
+	   1. Professionals becomes active.
+	   2. Students becomes normal/faint. */
+	.audience-grid:has(.professionals-card:hover) .professionals-card .audience-info-box {
+		opacity: 1;
+		visibility: visible;
+		transform: translateY(0);
+	}
+	.audience-grid:has(.professionals-card:hover) .professionals-card .audience-overlay {
+		opacity: 0;
+		visibility: hidden;
+		transform: translateY(15px);
+	}
+	.audience-grid:has(.professionals-card:hover) .professionals-card::after {
+		opacity: 0.3;
+	}
+
+	.audience-grid:has(.professionals-card:hover) .students-card .audience-info-box {
+		opacity: 0;
+		visibility: hidden;
+		transform: translateY(15px);
+	}
+	.audience-grid:has(.professionals-card:hover) .students-card .audience-overlay {
+		opacity: 1;
+		visibility: visible;
+		transform: translateY(0);
+	}
+	.audience-grid:has(.professionals-card:hover) .students-card::after {
+		opacity: 1;
+	}
+
+	/* Explicit hovering on Students card ensures it stays active even if grid has mouseenter */
+	.students-card:hover .audience-info-box {
+		opacity: 1 !important;
+		visibility: visible !important;
+		transform: translateY(0) !important;
+	}
+	.students-card:hover .audience-overlay {
+		opacity: 0 !important;
+		visibility: hidden !important;
+		transform: translateY(15px) !important;
+	}
+	.students-card:hover::after {
+		opacity: 0.3 !important;
 	}
 
 	/* ── PROMO CTA BANNER ── */
@@ -2815,7 +2910,7 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 		.audience-grid {
 			grid-template-columns: 1fr;
 			padding: 0 24px;
-			gap: 20px;
+			gap: 80px;
 		}
 		.audience-img {
 			height: 380px;
