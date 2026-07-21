@@ -890,7 +890,8 @@ import CmaLearningAndSyllabus from "../components/CmaLearningAndSyllabus.astro";
 		}
 
 		.cma-hero-right {
-			min-height: auto;
+			/* Desktop-only start point for the morphing animation. */
+			display: none;
 		}
 
 		.cma-scroll-sticky {
@@ -923,7 +924,8 @@ import CmaLearningAndSyllabus from "../components/CmaLearningAndSyllabus.astro";
 			display: none;
 		}
 
-		/* Morph disabled on tablet/mobile — show as a plain static circle */
+		/* Morphing is desktop-only. On tablet/mobile the player follows the
+		 * hero content as the same full-width rounded video card as ACCA. */
 		.video-expanded-section {
 			display: none;
 		}
@@ -932,11 +934,19 @@ import CmaLearningAndSyllabus from "../components/CmaLearningAndSyllabus.astro";
 			position: relative !important;
 			left: auto !important;
 			top: auto !important;
-			width: 100% !important;
-			max-width: 360px !important;
-			height: 340px !important;
-			border-radius: 50% !important;
-			margin: 0 auto;
+			width: calc(100% - 40px) !important;
+			max-width: none !important;
+			height: auto !important;
+			aspect-ratio: 0.81 / 1;
+			border-radius: 22px !important;
+			margin: 40px 20px 0;
+			box-shadow: none;
+		}
+
+		.youtube-circle-iframe {
+			width: 100%;
+			height: 100%;
+			border-radius: 22px;
 		}
 	}
 
@@ -1113,7 +1123,33 @@ import CmaLearningAndSyllabus from "../components/CmaLearningAndSyllabus.astro";
 
 	@media (max-width: 1024px) {
 		.cma-achievements-cards-container {
-			grid-template-columns: repeat(3, 1fr);
+			grid-template-columns: 1fr;
+			gap: 16px;
+		}
+
+		.cma-achievements-cards-section {
+			padding: 72px 20px 60px;
+			background: #f2f4f6;
+		}
+
+		.cma-ach-card {
+			height: 230px;
+			padding: 32px 20px;
+			align-items: center;
+			justify-content: center;
+			text-align: center;
+			border: none;
+			border-radius: 20px;
+		}
+
+		.cma-ach-num {
+			font-size: 4.25rem;
+			line-height: 1;
+			margin-bottom: 22px;
+		}
+
+		.cma-ach-label {
+			font-size: 1.5rem;
 		}
 
 		.cma-professional-container {
@@ -1129,7 +1165,7 @@ import CmaLearningAndSyllabus from "../components/CmaLearningAndSyllabus.astro";
 		}
 
 		.cma-ach-card {
-			padding: 28px 20px;
+			padding: 32px 20px;
 		}
 
 		.cma-prof-left {

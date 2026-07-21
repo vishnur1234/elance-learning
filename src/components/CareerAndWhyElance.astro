@@ -734,6 +734,28 @@
 	}
 
 	@media (max-width: 768px) {
+		/* Keep the panel within the viewport on narrow screens. */
+		.career-page-wrapper,
+		.why-elance-section,
+		.why-elance-outer {
+			max-width: 100%;
+			overflow-x: hidden;
+		}
+
+		.why-elance-outer {
+			padding-inline: 18px;
+		}
+
+		.why-elance-card,
+		.why-list-item,
+		.why-text {
+			min-width: 0;
+		}
+
+		.why-text {
+			overflow-wrap: anywhere;
+		}
+
 		.why-title {
 			margin-bottom: 28px;
 		}
