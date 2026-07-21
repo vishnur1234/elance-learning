@@ -21,6 +21,9 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 			href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,600&family=Outfit:wght@300;400;500;600;700;800;900&display=swap"
 			rel="stylesheet"
 		/>
+		<script is:inline>
+			document.documentElement.classList.add("js-enabled");
+		</script>
 	</head>
 	<body>
 		<Nav />
@@ -29,12 +32,12 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 		<section class="hero">
 			<div class="hero-container">
 				<div class="hero-content">
-					<p class="hero-eyebrow">
-						From Learner to Leader Starts Here
+					<p class="hero-eyebrow" id="hero-eyebrow">
+						Among the Highest in ACCA & CMA Results
 					</p>
-					<h1 class="hero-heading">
-						India's Most Trusted<br />
-						<span class="hero-blue">Commerce Institute</span>
+					<h1 class="hero-heading" id="hero-heading">
+						Our Students Clear<br />
+						Exams. <span class="hero-blue">Confidently.</span>
 					</h1>
 					<div class="hero-btns">
 						<a href="#courses" class="btn-blue-pill"
@@ -1086,6 +1089,93 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 				// Init
 				updateTestimonial(0);
 			}
+
+			// Hero Text Carousel & Word Animation
+			{
+				const eyebrowEl = document.getElementById("hero-eyebrow");
+				const headingEl = document.getElementById("hero-heading");
+
+				if (eyebrowEl && headingEl) {
+					const slides = [
+						{
+							eyebrow: "Among the Highest in ACCA & CMA Results",
+							heading: 'Our Students Clear<br />Exams. <span class="hero-blue">Confidently.</span>'
+						},
+						{
+							eyebrow: "From Learner to Leader Starts Here",
+							heading: 'India\'s Most Trusted<br /><span class="hero-blue">Commerce Institute</span>'
+						}
+					];
+
+					let currentSlide = 0;
+
+					const prepareWordAnimation = (container, htmlContent) => {
+						const temp = document.createElement("div");
+						temp.innerHTML = htmlContent;
+						container.innerHTML = "";
+						let wordIndex = 0;
+
+						const processNode = (node) => {
+							if (node.nodeType === Node.TEXT_NODE) {
+								const words = node.textContent.split(/(\s+)/);
+								const fragment = document.createDocumentFragment();
+								words.forEach(word => {
+									if (word.trim() === "") {
+										fragment.appendChild(document.createTextNode(word));
+									} else {
+										const span = document.createElement("span");
+										span.className = "animate-word";
+										span.textContent = word;
+										span.style.setProperty("--word-index", wordIndex.toString());
+										wordIndex++;
+										fragment.appendChild(span);
+									}
+								});
+								return fragment;
+							} else if (node.nodeType === Node.ELEMENT_NODE) {
+								const clone = node.cloneNode(false);
+								Array.from(node.childNodes).forEach(child => {
+									clone.appendChild(processNode(child));
+								});
+								return clone;
+							}
+							return node.cloneNode(true);
+						};
+
+						Array.from(temp.childNodes).forEach(child => {
+							container.appendChild(processNode(child));
+						});
+					};
+
+					const showSlide = (index) => {
+						eyebrowEl.classList.add("fade-out");
+						headingEl.classList.add("fade-out");
+
+						setTimeout(() => {
+							const slide = slides[index];
+							prepareWordAnimation(eyebrowEl, slide.eyebrow);
+							prepareWordAnimation(headingEl, slide.heading);
+
+							eyebrowEl.classList.remove("fade-out");
+							headingEl.classList.remove("fade-out");
+						}, 400);
+					};
+
+					// Initial run
+					prepareWordAnimation(eyebrowEl, slides[0].eyebrow);
+					prepareWordAnimation(headingEl, slides[0].heading);
+					
+					// Make them visible now that they are prepared
+					eyebrowEl.classList.add("js-animated");
+					headingEl.classList.add("js-animated");
+
+					// Cycle slides every 7 seconds
+					setInterval(() => {
+						currentSlide = (currentSlide + 1) % slides.length;
+						showSlide(currentSlide);
+					}, 7000);
+				}
+			}
 		</script>
 
 		<!-- ===================== WE'RE FEATURED ON ===================== -->
@@ -1213,6 +1303,7 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 		color: #3b9fe8;
 		margin-bottom: 18px;
 		font-family: "Outfit", sans-serif;
+		transition: opacity 0.4s ease;
 	}
 
 	.hero-heading {
@@ -1222,11 +1313,42 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 		color: #111827;
 		line-height: 1.1;
 		margin-bottom: 32px;
+		transition: opacity 0.4s ease;
+	}
+
+	.hero-eyebrow.fade-out,
+	.hero-heading.fade-out {
+		opacity: 0;
+	}
+
+	.animate-word {
+		display: inline-block;
+		opacity: 0;
+		transform: translateY(8px);
+		animation: wordReveal 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+		animation-delay: calc(var(--word-index) * 0.05s);
+	}
+
+	@keyframes wordReveal {
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
 	}
 
 	.hero-blue {
 		color: #3b9fe8;
-		display: block;
+		display: inline-block;
+	}
+
+	/* Prevent Flash of Unstyled Content (FOUC) when JS is loading */
+	:global(.js-enabled) .hero-eyebrow,
+	:global(.js-enabled) .hero-heading {
+		opacity: 0;
+	}
+	:global(.js-enabled) .hero-eyebrow.js-animated,
+	:global(.js-enabled) .hero-heading.js-animated {
+		opacity: 1;
 	}
 
 	.hero-btns {
@@ -1440,15 +1562,15 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 
 	.course-card {
 		padding: 50px 45px 54px;
-		background: rgba(255, 255, 255, 0.75);
-		backdrop-filter: blur(12px);
-		-webkit-backdrop-filter: blur(12px);
+		background: rgba(255, 255, 255, 0.45);
+		backdrop-filter: blur(25px);
+		-webkit-backdrop-filter: blur(25px);
 		border-radius: 20px;
 		box-shadow: 0 12px 40px rgba(0, 0, 0, 0.04);
 		display: flex;
 		flex-direction: column;
 		align-items: flex-start;
-		border: 1px solid rgba(255, 255, 255, 0.4);
+		border: 1.5px solid rgba(255, 255, 255, 0.65);
 		min-height: 480px;
 	}
 
@@ -1626,7 +1748,7 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 	.testimonials-triangle-bg {
 		position: absolute;
 		top: -70px;
-		left: -120px;
+		left: -240px;
 		width: 460px;
 		height: auto;
 		z-index: 0;
