@@ -119,6 +119,178 @@ const currentPath = pathname.replace(/\/$/, "");
     </div>
 </nav>
 
+<!-- Mobile Drawer Overlay -->
+<div class="mobile-drawer-overlay" id="mobileDrawer">
+    <div class="mobile-drawer">
+        <div class="drawer-header">
+            <span class="drawer-title">Menu</span>
+            <button
+                class="drawer-close"
+                id="drawerClose"
+                aria-label="Close Menu"
+            >
+                <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path
+                        d="M18 6L6 18M6 6l12 12"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"></path>
+                </svg>
+            </button>
+        </div>
+        <ul class="drawer-links">
+            <li class="drawer-item has-mobile-submenu">
+                <button class="drawer-link-btn" aria-expanded="false">
+                    <span>Courses</span>
+                    <svg
+                        class="drawer-chevron"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path
+                            d="M9 5l7 7-7 7"
+                            stroke="currentColor"
+                            stroke-width="2.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"></path>
+                    </svg>
+                </button>
+                <ul class="drawer-submenu">
+                    <li><a href="/acca" class="drawer-sublink">ACCA</a></li>
+                    <li><a href="/cma" class="drawer-sublink">CMA</a></li>
+                </ul>
+            </li>
+            <li class="drawer-item has-mobile-submenu">
+                <button class="drawer-link-btn" aria-expanded="false">
+                    <span>Our Centers</span>
+                    <svg
+                        class="drawer-chevron"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path
+                            d="M9 5l7 7-7 7"
+                            stroke="currentColor"
+                            stroke-width="2.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"></path>
+                    </svg>
+                </button>
+                <ul class="drawer-submenu">
+                    <li>
+                        <a href="/calicutcenter" class="drawer-sublink"
+                            >Calicut</a>
+                    </li>
+                    <li>
+                        <a href="/kochicenter" class="drawer-sublink">Kochi</a>
+                    </li>
+                    <li>
+                        <a href="/kannurcenter" class="drawer-sublink"
+                            >Kannur</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="drawer-item">
+                <a href="#" class="drawer-link">Blog</a>
+            </li>
+            <li class="drawer-item has-mobile-submenu">
+                <button class="drawer-link-btn" aria-expanded="false">
+                    <span>About us</span>
+                    <svg
+                        class="drawer-chevron"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path
+                            d="M9 5l7 7-7 7"
+                            stroke="currentColor"
+                            stroke-width="2.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"></path>
+                    </svg>
+                </button>
+                <ul class="drawer-submenu">
+                    <li><a href="/about" class="drawer-sublink">About</a></li>
+                    <li>
+                        <a href="/gallery" class="drawer-sublink">Gallery</a>
+                    </li>
+                    <li>
+                        <a href="/hiringpartners" class="drawer-sublink"
+                            >Our Hiring Partners</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="drawer-item">
+                <a href="/contact" class="drawer-link">Contact Us</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<script>
+    const hamburgerBtn = document.getElementById("hamburger");
+    const drawerCloseBtn = document.getElementById("drawerClose");
+    const mobileDrawer = document.getElementById("mobileDrawer");
+
+    if (hamburgerBtn && mobileDrawer) {
+        hamburgerBtn.addEventListener("click", () => {
+            mobileDrawer.classList.add("active");
+            document.body.style.overflow = "hidden"; // Prevent background scroll
+        });
+    }
+
+    if (drawerCloseBtn && mobileDrawer) {
+        const closeDrawer = () => {
+            mobileDrawer.classList.remove("active");
+            document.body.style.overflow = "";
+        };
+        drawerCloseBtn.addEventListener("click", closeDrawer);
+
+        // Close on clicking backdrop
+        mobileDrawer.addEventListener("click", (e) => {
+            if (e.target === mobileDrawer) {
+                closeDrawer();
+            }
+        });
+    }
+
+    // Submenus toggle
+    const submenus = document.querySelectorAll(".has-mobile-submenu");
+    submenus.forEach((item) => {
+        const btn = item.querySelector(".drawer-link-btn");
+        const submenu = item.querySelector(".drawer-submenu") as HTMLElement;
+        const chevron = item.querySelector(".drawer-chevron") as HTMLElement;
+
+        if (btn && submenu) {
+            btn.addEventListener("click", (e) => {
+                e.preventDefault();
+                const expanded = item.classList.toggle("submenu-expanded");
+                if (expanded) {
+                    btn.setAttribute("aria-expanded", "true");
+                    submenu.style.maxHeight = submenu.scrollHeight + "px";
+                    submenu.style.opacity = "1";
+                    submenu.style.marginTop = "12px";
+                    if (chevron) chevron.style.transform = "rotate(90deg)";
+                } else {
+                    btn.setAttribute("aria-expanded", "false");
+                    submenu.style.maxHeight = "0px";
+                    submenu.style.opacity = "0";
+                    submenu.style.marginTop = "0px";
+                    if (chevron) chevron.style.transform = "rotate(0deg)";
+                }
+            });
+        }
+    });
+</script>
+
 <style>
     * {
         box-sizing: border-box;
@@ -277,7 +449,9 @@ const currentPath = pathname.replace(/\/$/, "");
     .has-dropdown:hover .dropdown-menu {
         opacity: 1;
         visibility: visible;
-        transform: translateY(6px); /* Reduced gap from 12px to 6px below navigation pill */
+        transform: translateY(
+            6px
+        ); /* Reduced gap from 12px to 6px below navigation pill */
         pointer-events: auto;
     }
 
@@ -352,15 +526,188 @@ const currentPath = pathname.replace(/\/$/, "");
         border-radius: 2px;
     }
 
+    /* Mobile Drawer */
+    .mobile-drawer-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.4);
+        z-index: 2000;
+        opacity: 0;
+        visibility: hidden;
+        transition:
+            opacity 0.3s ease,
+            visibility 0.3s ease;
+        display: block;
+    }
+
+    .mobile-drawer-overlay.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .mobile-drawer {
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 100%;
+        width: 80%;
+        max-width: 320px;
+        background: #519fde;
+        padding: 32px 24px;
+        box-shadow: -5px 0 25px rgba(0, 0, 0, 0.15);
+        display: flex;
+        flex-direction: column;
+        transform: translateX(100%);
+        transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        overflow-y: auto;
+    }
+
+    .mobile-drawer-overlay.active .mobile-drawer {
+        transform: translateX(0);
+    }
+
+    .drawer-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 40px;
+    }
+
+    .drawer-title {
+        color: #ffffff;
+        font-family: "Outfit", sans-serif;
+        font-size: 24px;
+        font-weight: 600;
+    }
+
+    .drawer-close {
+        background: rgba(255, 255, 255, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        border-radius: 6px;
+        width: 44px;
+        height: 44px;
+        color: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        padding: 0;
+        transition: background 0.2s;
+    }
+
+    .drawer-close:hover {
+        background: rgba(255, 255, 255, 0.25);
+    }
+
+    .drawer-close svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .drawer-links {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .drawer-item {
+        width: 100%;
+    }
+
+    .drawer-link,
+    .drawer-link-btn {
+        text-decoration: none;
+        background: none;
+        border: none;
+        color: #ffffff;
+        padding: 8px 0;
+        font-family: "Outfit", sans-serif;
+        font-size: 18px;
+        font-weight: 500;
+        text-align: left;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    .drawer-chevron {
+        width: 16px;
+        height: 16px;
+        transition: transform 0.2s ease;
+    }
+
+    .drawer-submenu {
+        list-style: none;
+        padding-left: 16px;
+        margin: 0;
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        transition:
+            max-height 0.3s ease,
+            opacity 0.3s ease,
+            margin-top 0.3s ease;
+    }
+
+    .drawer-sublink {
+        text-decoration: none;
+        color: rgba(255, 255, 255, 0.85);
+        font-family: "Outfit", sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        display: block;
+        padding: 4px 0;
+    }
+
+    .drawer-sublink:hover {
+        color: #ffffff;
+    }
+
     @media (max-width: 900px) {
         .nav-menu-wrapper {
             display: none;
         }
         .btn-get-in-touch {
-            display: none;
+            display: inline-flex;
+            margin-left: auto;
+            margin-right: 0;
+            padding: 0 20px;
+            height: 40px;
+            font-size: 13px;
         }
         .hamburger {
             display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 4px;
+            width: 44px;
+            height: 44px;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            cursor: pointer;
+            padding: 0;
+            flex-shrink: 0;
+            margin-left: 12px;
+        }
+        .hamburger span {
+            display: block;
+            width: 20px;
+            height: 2px;
+            background: #0f172a;
+            border-radius: 2px;
         }
     }
 </style>
