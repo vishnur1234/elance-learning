@@ -620,6 +620,43 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 							</button>
 						</div>
 					</div>
+					<!-- Mobile navigation arrows for feedback section stack -->
+					<div class="feedback-arrows-mobile">
+						<button
+							class="arrow-btn prev-feedback-btn"
+							aria-label="Previous"
+						>
+							<svg
+								viewBox="0 0 24 24"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path
+									d="M15 19l-7-7 7-7"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"></path>
+							</svg>
+						</button>
+						<button
+							class="arrow-btn next-feedback-btn"
+							aria-label="Next"
+						>
+							<svg
+								viewBox="0 0 24 24"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path
+									d="M9 5l7 7-7 7"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"></path>
+							</svg>
+						</button>
+					</div>
 				</div>
 			</div>
 
@@ -631,9 +668,9 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 
 					<div class="think-banner-left">
 						<h2 class="think-title">
-							What our<br />
-							<span class="text-blue">Students think</span><br />
-							about us?
+							What our <span class="text-blue"
+								>Students<br />think</span
+							> about us?
 						</h2>
 					</div>
 
@@ -738,6 +775,44 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 									id="think-quote-company">KPMG</span
 								>
 							</div>
+						</div>
+
+						<!-- Mobile-specific testimonial navigation arrows -->
+						<div class="think-arrows-mobile">
+							<button
+								class="think-arrow-btn prev-think-btn"
+								aria-label="Previous"
+							>
+								<svg
+									viewBox="0 0 24 24"
+									fill="none"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<path
+										d="M15 19l-7-7 7-7"
+										stroke="currentColor"
+										stroke-width="2.5"
+										stroke-linecap="round"
+										stroke-linejoin="round"></path>
+								</svg>
+							</button>
+							<button
+								class="think-arrow-btn next-think-btn"
+								aria-label="Next"
+							>
+								<svg
+									viewBox="0 0 24 24"
+									fill="none"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<path
+										d="M9 5l7 7-7 7"
+										stroke="currentColor"
+										stroke-width="2.5"
+										stroke-linecap="round"
+										stroke-linejoin="round"></path>
+								</svg>
+							</button>
 						</div>
 					</div>
 				</div>
@@ -952,6 +1027,44 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 						</div>
 					</div>
 
+					<!-- Mobile-specific navigation arrows centered below -->
+					<div class="life-arrows-mobile">
+						<button
+							class="life-arrow-btn-mobile prev-btn"
+							aria-label="Previous"
+						>
+							<svg
+								viewBox="0 0 24 24"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path
+									d="M15 19l-7-7 7-7"
+									stroke="currentColor"
+									stroke-width="2.5"
+									stroke-linecap="round"
+									stroke-linejoin="round"></path>
+							</svg>
+						</button>
+						<button
+							class="life-arrow-btn-mobile next-btn"
+							aria-label="Next"
+						>
+							<svg
+								viewBox="0 0 24 24"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path
+									d="M9 5l7 7-7 7"
+									stroke="currentColor"
+									stroke-width="2.5"
+									stroke-linecap="round"
+									stroke-linejoin="round"></path>
+							</svg>
+						</button>
+					</div>
+
 					<!-- Right Navigation Arrow -->
 					<button class="life-arrow-btn next-btn" aria-label="Next">
 						<svg
@@ -974,19 +1087,23 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 		<script>
 			// Life at Elance slider
 			const grid = document.getElementById("life-grid");
-			const prevBtn = document.querySelector(
+			const prevBtns = document.querySelectorAll(
 				".life-slider-wrap .prev-btn",
 			);
-			const nextBtn = document.querySelector(
+			const nextBtns = document.querySelectorAll(
 				".life-slider-wrap .next-btn",
 			);
 
-			if (grid && prevBtn && nextBtn) {
-				prevBtn.addEventListener("click", () => {
-					grid.scrollBy({ left: -450, behavior: "smooth" });
+			if (grid && prevBtns.length > 0 && nextBtns.length > 0) {
+				prevBtns.forEach((btn) => {
+					btn.addEventListener("click", () => {
+						grid.scrollBy({ left: -310, behavior: "smooth" });
+					});
 				});
-				nextBtn.addEventListener("click", () => {
-					grid.scrollBy({ left: 450, behavior: "smooth" });
+				nextBtns.forEach((btn) => {
+					btn.addEventListener("click", () => {
+						grid.scrollBy({ left: 310, behavior: "smooth" });
+					});
 				});
 			}
 
@@ -996,8 +1113,10 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 			);
 			const feedbackName = document.getElementById("feedback-name");
 			const feedbackRole = document.getElementById("feedback-role");
-			const feedbackPrev = document.querySelector(".prev-feedback-btn");
-			const feedbackNext = document.querySelector(".next-feedback-btn");
+			const feedbackPrevs =
+				document.querySelectorAll(".prev-feedback-btn");
+			const feedbackNexts =
+				document.querySelectorAll(".next-feedback-btn");
 
 			if (feedbackCards.length > 0) {
 				let activeIndex = 0;
@@ -1030,14 +1149,18 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 					});
 				};
 
-				if (feedbackPrev && feedbackNext) {
-					feedbackPrev.addEventListener("click", () => {
-						activeIndex = (activeIndex - 1 + total) % total;
-						updateStack();
+				if (feedbackPrevs.length > 0 && feedbackNexts.length > 0) {
+					feedbackPrevs.forEach((btn) => {
+						btn.addEventListener("click", () => {
+							activeIndex = (activeIndex - 1 + total) % total;
+							updateStack();
+						});
 					});
-					feedbackNext.addEventListener("click", () => {
-						activeIndex = (activeIndex + 1) % total;
-						updateStack();
+					feedbackNexts.forEach((btn) => {
+						btn.addEventListener("click", () => {
+							activeIndex = (activeIndex + 1) % total;
+							updateStack();
+						});
 					});
 				}
 
@@ -1054,8 +1177,8 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 			const thinkQuoteCompany = document.getElementById(
 				"think-quote-company",
 			);
-			const thinkPrevBtn = document.querySelector(".prev-think-btn");
-			const thinkNextBtn = document.querySelector(".next-think-btn");
+			const thinkPrevBtns = document.querySelectorAll(".prev-think-btn");
+			const thinkNextBtns = document.querySelectorAll(".next-think-btn");
 
 			const testimonials = [
 				{
@@ -1110,16 +1233,21 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 				});
 
 				// Arrow buttons
-				if (thinkPrevBtn && thinkNextBtn) {
-					thinkPrevBtn.addEventListener("click", () => {
-						let prevIdx =
-							(currentIndex - 1 + testimonials.length) %
-							testimonials.length;
-						updateTestimonial(prevIdx);
+				if (thinkPrevBtns.length > 0 && thinkNextBtns.length > 0) {
+					thinkPrevBtns.forEach((btn) => {
+						btn.addEventListener("click", () => {
+							let prevIdx =
+								(currentIndex - 1 + testimonials.length) %
+								testimonials.length;
+							updateTestimonial(prevIdx);
+						});
 					});
-					thinkNextBtn.addEventListener("click", () => {
-						let nextIdx = (currentIndex + 1) % testimonials.length;
-						updateTestimonial(nextIdx);
+					thinkNextBtns.forEach((btn) => {
+						btn.addEventListener("click", () => {
+							let nextIdx =
+								(currentIndex + 1) % testimonials.length;
+							updateTestimonial(nextIdx);
+						});
 					});
 				}
 
@@ -1271,6 +1399,8 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 	body {
 		font-family: "Outfit", sans-serif;
 		font-weight: 400;
+		overflow-x: hidden !important;
+		max-width: 100vw;
 	}
 
 	body {
@@ -1279,6 +1409,7 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 		color: #111827;
 		line-height: 1.6;
 		overflow-x: hidden !important;
+		max-width: 100vw;
 	}
 
 	/* ── Shared ── */
@@ -2307,13 +2438,17 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 		font-family: "Outfit", sans-serif;
 		font-size: 1.05rem;
 		font-weight: 600;
-		color: #3b9fe8;
+		color: #4b5563;
 	}
 
 	.feedback-arrows {
 		display: flex;
 		gap: 16px;
 		margin-top: 24px;
+	}
+
+	.feedback-arrows-mobile {
+		display: none;
 	}
 
 	.arrow-btn {
@@ -2572,6 +2707,10 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 		gap: 12px;
 	}
 
+	.think-arrows-mobile {
+		display: none;
+	}
+
 	.think-arrow-btn {
 		width: 44px;
 		height: 44px;
@@ -2821,13 +2960,13 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 
 	.blue-grad-1 .achievement-shine {
 		top: -40px;
-		left: -40px;
+		right: -40px;
 		transform: rotate(-20deg);
 		opacity: 0.22;
 	}
 
 	.blue-grad-2 .achievement-shine {
-		bottom: -40px;
+		top: -40px;
 		right: -40px;
 		transform: rotate(155deg);
 		opacity: 0.25;
@@ -3027,6 +3166,10 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 	.life-arrow-btn svg {
 		width: 22px;
 		height: 22px;
+	}
+
+	.life-arrows-mobile {
+		display: none;
 	}
 
 	.life-grid {
@@ -3280,53 +3423,192 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 			top: -40px;
 		}
 		.testimonials-right {
-			border-left: none;
-			padding-left: 0;
+			border-left: 1.5px solid #e5e7eb;
+			padding-left: 20px;
+			display: flex;
+			flex-direction: column;
+			gap: 24px;
 		}
 		.testimonials-right::before {
-			display: none;
+			display: block;
+			left: -1.5px;
+		}
+		.testimonial-card {
+			padding: 24px;
+			height: auto;
+		}
+		.testimonial-quote {
+			font-size: 0.9rem;
+			margin-bottom: 16px;
+		}
+		.audience-section {
+			padding: 40px 0 65px !important;
 		}
 		.audience-grid {
 			grid-template-columns: 1fr;
-			padding: 0 24px;
-			gap: 80px;
+			padding: 0 8px;
+			gap: 95px;
 		}
 		.audience-img {
-			height: 380px;
+			height: 290px;
+			object-position: center;
+		}
+		.audience-card::after {
+			opacity: 0.15 !important;
+		}
+		.audience-card .audience-overlay {
+			display: none !important;
+		}
+		.audience-card .audience-info-box {
+			opacity: 1 !important;
+			visibility: visible !important;
+			transform: translateY(0) !important;
+			position: absolute !important;
+			bottom: -55px !important;
+			left: 8px !important;
+			right: 8px !important;
+			padding: 20px !important;
+			box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08) !important;
+		}
+		.audience-card .btn-blue-pill-small {
+			width: 100% !important;
+			text-align: center;
+			box-sizing: border-box;
+			padding: 12px 24px;
+		}
+		.promo-cta-section {
+			padding: 10px 0 60px !important;
+		}
+		.promo-cta-section .section-container {
+			padding: 0 8px;
 		}
 		.promo-card {
-			padding: 44px 20px;
+			padding: 72px 20px;
 		}
 		.feedback-layout {
 			grid-template-columns: 1fr;
-			gap: 32px;
+			gap: 20px;
+		}
+		.feedback-left {
+			display: flex;
+			flex-direction: column;
+		}
+		.feedback-title {
+			font-size: 2.2rem;
+			text-align: left;
+			margin-bottom: 12px;
+		}
+		.feedback-desc {
+			text-align: left;
+			margin-bottom: 16px;
+		}
+		.feedback-info {
+			text-align: right;
+			margin-top: 24px;
+			margin-bottom: 24px;
+		}
+		.feedback-student-name {
+			font-size: 1.8rem;
+			font-weight: 800;
+			color: #111827;
+			margin-bottom: 4px;
+		}
+		.feedback-student-role {
+			font-size: 0.95rem;
+			font-weight: 500;
+			color: #4b5563;
+		}
+		.feedback-arrows {
+			display: none !important;
+		}
+		.feedback-right {
+			height: auto;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			margin-left: 0;
+			gap: 24px;
+		}
+		.feedback-stack-container {
+			width: 280px;
+			height: 350px;
+			position: relative;
+		}
+		.feedback-arrows-mobile {
+			display: flex !important;
+			justify-content: center;
+			gap: 16px;
+			margin-top: 12px;
 		}
 		.think-banner {
 			flex-direction: column;
-			align-items: flex-start;
-			padding: 30px 24px;
-			gap: 24px;
+			align-items: center;
+			text-align: center;
+			padding: 40px 24px;
+			gap: 28px;
 		}
 		.think-banner-left,
 		.think-banner-right {
 			flex: 0 0 100%;
 			width: 100%;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+		.think-banner-left {
+			text-align: center;
+		}
+		.think-title {
+			font-size: 1.85rem;
+			text-align: center;
 		}
 		.think-banner-right {
-			justify-content: space-between;
-			gap: 20px;
+			gap: 24px;
+		}
+		.think-header-row {
+			justify-content: center;
+			width: 100%;
+		}
+		.think-avatars-wrap {
+			justify-content: center;
+			gap: 16px;
+		}
+		.think-arrows {
+			display: none !important;
+		}
+		.think-content {
+			align-items: center;
+			text-align: center;
+		}
+		.think-student-info {
+			align-items: center;
+		}
+		.think-arrows-mobile {
+			display: flex !important;
+			justify-content: center;
+			gap: 16px;
+			margin-top: 16px;
 		}
 		.achievements-grid {
-			flex-direction: column;
-			gap: 20px;
+			flex-direction: row !important;
+			gap: 16px !important;
+			padding: 0 8px;
 		}
 		.achievement-card {
-			width: 100%;
-			min-height: 200px;
-			padding: 36px 20px;
+			flex: 1 1 0% !important;
+			width: calc(50% - 8px) !important;
+			max-width: calc(50% - 8px) !important;
+			min-width: 0 !important;
+			min-height: 160px !important;
+			padding: 28px 16px !important;
+			border-radius: 20px !important;
 		}
 		.achievement-num {
-			font-size: 4.5rem;
+			font-size: 2.8rem !important;
+			margin-bottom: 4px;
+		}
+		.achievement-label {
+			font-size: 1.05rem !important;
 		}
 		.career-layout {
 			grid-template-columns: 1fr;
@@ -3339,39 +3621,128 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 			max-width: 280px;
 		}
 		.partner-item {
-			padding: 20px 0;
+			flex-direction: column !important;
+			align-items: center !important;
+			text-align: center !important;
+			padding: 32px 16px !important;
 			gap: 16px;
+			border-bottom: 1px solid #e5e7eb !important;
+		}
+		.partner-item:last-child {
+			border-bottom: none !important;
 		}
 		.partner-logo-wrap {
-			flex: 0 0 48px;
+			flex: 0 0 auto !important;
+			width: 90px !important;
+			margin-top: 0 !important;
+			margin-bottom: 4px !important;
+		}
+		.partner-logo {
+			width: 100% !important;
+			max-height: 70px !important;
+			height: auto !important;
 		}
 		.partner-name {
-			font-size: 1.05rem;
+			font-size: 1.15rem !important;
+			text-align: center !important;
+			margin-bottom: 10px !important;
+		}
+		.partner-desc {
+			text-align: center !important;
+			font-size: 0.9rem !important;
+			line-height: 1.65 !important;
 		}
 		.life-slider-wrap {
 			padding: 0 20px;
 		}
 		.life-grid {
-			flex-direction: column;
-			gap: 20px;
+			display: flex !important;
+			flex-direction: row !important;
+			overflow-x: auto !important;
+			scroll-snap-type: x mandatory !important;
+			scroll-behavior: smooth !important;
+			gap: 20px !important;
+			scrollbar-width: none !important;
+			padding: 10px 0 !important;
+		}
+		.life-grid::-webkit-scrollbar {
+			display: none !important;
 		}
 		.life-arrow-btn {
-			display: none;
+			display: none !important;
 		}
 		.life-card {
-			flex: 0 0 auto;
-			width: 100%;
-			min-height: 280px;
+			flex: 0 0 280px !important;
+			scroll-snap-align: center !important;
+			height: 420px !important;
+			min-height: auto !important;
+			display: flex !important;
+			flex-direction: column !important;
+			position: relative;
+			background: #000000 !important;
+			border-radius: 24px !important;
+			overflow: hidden;
+		}
+		.life-card-img {
+			height: 200px !important;
+			width: 100% !important;
+			position: relative !important;
+			object-fit: cover !important;
 		}
 		.life-card-overlay {
-			padding: 24px;
+			position: relative !important;
+			inset: auto !important;
+			background: #000000 !important;
+			flex: 1 !important;
+			padding: 20px 20px 24px !important;
+			display: flex !important;
+			flex-direction: column !important;
+			justify-content: flex-start !important;
+			text-align: left !important;
 		}
 		.life-card-title {
-			font-size: 1.35rem;
-			margin-bottom: 8px;
+			font-size: 1.25rem !important;
+			font-weight: 800 !important;
+			color: #ffffff !important;
+			margin-bottom: 8px !important;
+			line-height: 1.35 !important;
 		}
 		.life-card-desc {
-			font-size: 0.8rem;
+			font-size: 0.825rem !important;
+			line-height: 1.55 !important;
+			color: #e5e7eb !important;
+		}
+		.life-arrows-mobile {
+			display: flex !important;
+			justify-content: center;
+			gap: 16px;
+			margin-top: 24px;
+			margin-bottom: 12px;
+			width: 100%;
+		}
+		.life-arrow-btn-mobile {
+			width: 48px;
+			height: 48px;
+			border-radius: 50%;
+			border: none;
+			background: #50b5ff;
+			color: #111827;
+			cursor: pointer;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			box-shadow: 0 4px 14px rgba(80, 181, 255, 0.25);
+			transition:
+				background-color 0.2s,
+				transform 0.2s;
+		}
+		.life-arrow-btn-mobile:hover {
+			background: #35a4ee;
+			transform: scale(1.05);
+		}
+		.life-arrow-btn-mobile svg {
+			width: 18px;
+			height: 18px;
 		}
 		.featured-ticker {
 			gap: 40px;
