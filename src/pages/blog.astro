@@ -1,0 +1,135 @@
+---
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import FeaturedOn from "../components/FeaturedOn.astro";
+
+const posts = [
+	{
+		title: "CMA USA in 2026: Everything Finance Students in India Need to Know",
+		image: "/images/WorkingProfessionalsai.jpg",
+		label: "CMA USA in 2026:",
+	},
+	{
+		title: "CMA USA Vs MBA: Which Career Path Has Better Future Scope In 2026?",
+		image: "/images/Studentsai1.jpg",
+		label: "CMA USA Vs MBA:",
+	},
+	{
+		title: "ACCA vs MBA: Which Is Better for a Finance Career in 2026?",
+		image: "/images/Anaam-Abdul-Salam.webp",
+		label: "ACCA vs MBA:",
+	},
+	{
+		title: "Is Doing ACCA Worth It? A Complete Career Guide",
+		image: "/images/Anuradha.webp",
+		label: "Is Doing ACCA",
+	},
+	{
+		title: "Top Countries Hiring ACCA Professionals in 2026",
+		image: "/images/students-classroom.png",
+		label: "Top Countries Hiring ACCA Professionals in 2026",
+	},
+];
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Blog | Elance</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+	</head>
+	<body>
+		<Nav />
+		<main>
+			<section class="blog-hero">
+				<h1>Blog</h1>
+				<p>Expand your knowledge with our informative blogs,<br />offering valuable insights to support your growth<br />and clear your doubts.</p>
+			</section>
+
+			<section class="blog-listing">
+				<label class="search-box">
+					<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"></circle><path d="m16 16 4.5 4.5"></path></svg>
+					<input type="search" placeholder="Search" aria-label="Search blogs" />
+				</label>
+
+				<div class="blog-grid">
+					{posts.map((post) => (
+						<article class="blog-card">
+							<div class="post-image">
+								<img src={post.image} alt="" />
+								<div class="image-copy"><img src="/images/elancewebIcon.svg" alt="ELANCE" /><strong>{post.label}</strong><span>›››</span></div>
+							</div>
+							<div class="post-content">
+								<h2>{post.title}</h2>
+								<p>by <span>Elance</span></p>
+							</div>
+						</article>
+					))}
+				</div>
+
+				<nav class="pagination" aria-label="Blog pages">
+					<a class="active" href="#">1</a><a href="#">2</a><a href="#">3</a><a href="#">...</a><a href="#">9</a><a class="next" href="#" aria-label="Next page">›</a>
+				</nav>
+			</section>
+			<FeaturedOn />
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	:global(*) { box-sizing: border-box; }
+	:global(body) { margin: 0; color: #1d1d1d; font-family: "Outfit", sans-serif; overflow-x: hidden; }
+	.blog-hero { max-width: 1200px; margin: 0 auto; padding: 52px 24px 94px; text-align: center; }
+	.blog-hero h1 { margin: 0 0 20px; font-size: clamp(2.8rem, 5vw, 4rem); line-height: 1; font-weight: 800; }
+	.blog-hero p { margin: 0; color: #454545; font-size: clamp(1.15rem, 2.5vw, 1.7rem); line-height: 1.5; }
+	.blog-listing { max-width: 1200px; margin: 0 auto; padding: 0 24px 96px; }
+	.search-box { height: 70px; display: flex; align-items: center; gap: 16px; border: 1.5px solid #cad7e0; border-radius: 999px; padding: 0 22px; margin-bottom: 62px; }
+	.search-box svg { width: 25px; height: 25px; fill: none; stroke: #060606; stroke-width: 2; flex: none; }
+	.search-box input { width: 100%; border: 0; outline: 0; font: 600 1.25rem "Outfit", sans-serif; color: #1d1d1d; }
+	.search-box input::placeholder { color: #c7c7c7; }
+	.blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+	.blog-card { overflow: hidden; background: #fff; box-shadow: 0 3px 10px rgba(0,0,0,.11); }
+	.post-image { height: 245px; position: relative; overflow: hidden; background: #e7f1fa; }
+	.post-image > img { width: 100%; height: 100%; object-fit: cover; object-position: center; filter: saturate(.78); }
+	.image-copy { position: absolute; inset: 0 43% 0 0; padding: 22px; display: flex; flex-direction: column; align-items: flex-start; gap: 14px; background: rgba(255,255,255,.93); color: #0d569c; }
+	.image-copy img { width: 118px; height: auto; }
+	.image-copy strong { font-size: 1.3rem; line-height: 1.12; }
+	.image-copy span { margin-top: auto; font-size: 1.9rem; line-height: 1; color: #2b9ce7; }
+	.post-content { min-height: 238px; display: flex; flex-direction: column; padding: 26px 24px 30px; }
+	.post-content h2 { margin: 0; font-size: 1.55rem; font-weight: 800; line-height: 1.22; }
+	.post-content p { margin: auto 0 0; color: #064a91; font-size: 1.35rem; font-weight: 500; }
+	.post-content p span { font-weight: 600; }
+	.pagination { display: flex; justify-content: center; gap: 15px; margin-top: 62px; }
+	.pagination a { width: 52px; height: 52px; border: 1.5px solid #bfc4c7; border-radius: 50%; display: grid; place-items: center; color: #8a8a8a; font-size: 1.25rem; font-weight: 600; text-decoration: none; }
+	.pagination .active, .pagination .next { color: #121212; border-color: #121212; }
+	.pagination .next { font-size: 2.6rem; line-height: 1; }
+
+	@media (max-width: 768px) {
+		.blog-hero { padding: 48px 20px 132px; }
+		.blog-hero h1 { font-size: 3.3rem; margin-bottom: 30px; }
+		.blog-hero p { font-size: 1.48rem; line-height: 1.65; }
+		.blog-hero p br { display: none; }
+		.blog-listing { padding: 0 18px 88px; }
+		.search-box { height: 70px; margin-bottom: 62px; }
+		.blog-grid { display: flex; flex-direction: column; gap: 46px; }
+		.post-image { height: clamp(260px, 50vw, 340px); }
+		.image-copy strong { font-size: clamp(1.45rem, 5.3vw, 2rem); }
+		.post-content { min-height: 244px; padding: 28px 24px 32px; }
+		.post-content h2 { font-size: clamp(1.55rem, 5.4vw, 2rem); line-height: 1.24; }
+		.post-content p { font-size: 1.55rem; }
+		.pagination { gap: 15px; margin-top: 62px; }
+		.pagination a { width: 48px; height: 48px; }
+	}
+
+	@media (max-width: 420px) {
+		.blog-hero { padding-top: 38px; padding-bottom: 84px; }
+		.blog-hero h1 { font-size: 2.6rem; }
+		.blog-hero p { font-size: 1.2rem; }
+		.pagination { gap: 8px; }
+		.pagination a { width: 40px; height: 40px; font-size: 1rem; }
+	}
+</style>
