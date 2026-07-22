@@ -7,7 +7,16 @@
 <div class="wa-widget-container" id="wa-widget">
 	<!-- Close Button (Leftmost) -->
 	<button class="wa-close-btn" id="wa-close" aria-label="Close widget">
-		<svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="#475569" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+		<svg
+			viewBox="0 0 24 24"
+			width="12"
+			height="12"
+			fill="none"
+			stroke="#475569"
+			stroke-width="3"
+			stroke-linecap="round"
+			stroke-linejoin="round"
+		>
 			<line x1="18" y1="6" x2="6" y2="18"></line>
 			<line x1="6" y1="6" x2="18" y2="18"></line>
 		</svg>
@@ -15,13 +24,26 @@
 
 	<!-- Chat Bubble (Middle) -->
 	<div class="wa-chat-bubble" id="wa-bubble">
-		<p class="wa-chat-text">Hey there! Got a question?<br />We're just a message away!</p>
+		<p class="wa-chat-text">
+			Hey there! Got a question?<br />We're just a message away!
+		</p>
 		<div class="wa-bubble-arrow"></div>
 	</div>
 
 	<!-- WhatsApp Button (Rightmost, Square) -->
-	<a href="https://wa.me/919895097070" target="_blank" rel="noopener noreferrer" class="wa-btn" id="wa-link" aria-label="Chat on WhatsApp">
-		<img src="/images/gallery/hero_noti_profile-150x150.png" alt="WhatsApp" class="wa-icon" />
+	<a
+		href="https://wa.me/919895097070"
+		target="_blank"
+		rel="noopener noreferrer"
+		class="wa-btn"
+		id="wa-link"
+		aria-label="Chat on WhatsApp"
+	>
+		<img
+			src="/images/gallery/hero_noti_profile-150x150.png"
+			alt="WhatsApp"
+			class="wa-icon"
+		/>
 		<span class="wa-badge">3</span>
 	</a>
 </div>
@@ -38,11 +60,13 @@
 		gap: 12px;
 		font-family: "Outfit", "Inter", sans-serif;
 		pointer-events: none;
-		
+
 		/* Initial state: Hidden and translated to the left (preparing left-to-right slide entry) */
 		opacity: 0;
 		transform: translateX(-150px);
-		transition: transform 1.2s cubic-bezier(0.19, 1, 0.22, 1), opacity 1.2s cubic-bezier(0.19, 1, 0.22, 1);
+		transition:
+			transform 1.2s cubic-bezier(0.19, 1, 0.22, 1),
+			opacity 1.2s cubic-bezier(0.19, 1, 0.22, 1);
 	}
 
 	.wa-close-btn,
@@ -75,7 +99,9 @@
 		justify-content: center;
 		cursor: pointer;
 		box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-		transition: background 0.2s, transform 0.15s;
+		transition:
+			background 0.2s,
+			transform 0.15s;
 		flex-shrink: 0;
 	}
 
@@ -95,8 +121,9 @@
 	}
 
 	.wa-chat-text {
-		font-size: 0.92rem;
-		font-weight: 500;
+		font-size: 14px;
+		font-family: "Outfit", sans-serif;
+		font-weight: 400;
 		color: #111827;
 		line-height: 1.45;
 		margin: 0;
@@ -197,10 +224,10 @@
 		closeBtn.addEventListener("click", (e) => {
 			e.preventDefault();
 			e.stopPropagation();
-			
+
 			// Slide out to the right
 			widget.classList.add("hide");
-			
+
 			// Set display: none after transition finishes (1200ms)
 			setTimeout(() => {
 				widget.style.display = "none";

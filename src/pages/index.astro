@@ -140,13 +140,14 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 		<section class="courses" id="courses">
 			<div class="section-container">
 				<h2 class="section-title">
-					Pick the <span class="text-blue">Course</span> That Fits Your
-					Dream
+					Pick the <span class="text-blue">Course</span> That Fits<br
+						class="life-mobile-br"
+					/> Your Dream
 				</h2>
 				<p class="section-subtitle">
-					Build your career with globally recognized programs in CMA
-					(US),<br />
-					and ACCA — designed for future commerce leaders.
+					Build your career with globally recognized programs<br />
+					in CMA (US), and ACCA — designed for future<br />
+					commerce leaders.
 				</p>
 				<div class="courses-wrap">
 					<div class="funnel-bg"></div>
@@ -334,8 +335,6 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 							</div>
 						</div>
 					</div>
-
-					
 
 					<!-- Card 2 -->
 					<div class="testimonial-card">
@@ -989,7 +988,22 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 
 					<!-- Cards Container -->
 					<div class="life-grid" id="life-grid">
-						<!-- Card 1: Excel Hackathon -->
+						<!-- Card 1: Launch of 'CMA' -->
+						<div class="life-card">
+							<img
+								src="/images/Resize-09.jpg"
+								alt="Launch of 'CMA'"
+								class="life-card-img"
+							/>
+							<div class="life-card-overlay">
+								<h3 class="life-card-title">Launch of 'CMA'</h3>
+								<p class="life-card-desc">
+									An awesome event for students!
+								</p>
+							</div>
+						</div>
+
+						<!-- Card 2: Excel Hackathon -->
 						<div class="life-card">
 							<img
 								src="/images/ReSize-01.jpg"
@@ -997,16 +1011,18 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 								class="life-card-img"
 							/>
 							<div class="life-card-overlay">
-								<h3 class="life-card-title">
-									Excel Hackathon
-								</h3>
+								<h3 class="life-card-title">Excel Hackathon</h3>
 								<p class="life-card-desc">
-									An exciting competition to test your Excel skills, from formulas to real-world scenarios. This event pushes students to analyze smart, and build solutions — all in one go!
+									An exciting competition to test your Excel
+									skills, from formulas to real-world
+									scenarios. This event pushes students to
+									analyze smart, and build solutions — all in
+									one go!
 								</p>
 							</div>
 						</div>
 
-						<!-- Card 2: AuditLab -->
+						<!-- Card 3: AuditLab -->
 						<div class="life-card">
 							<img
 								src="/images/ReSize-08.jpg"
@@ -1014,11 +1030,34 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 								class="life-card-img"
 							/>
 							<div class="life-card-overlay">
+								<h3 class="life-card-title">AuditLab</h3>
+								<p class="life-card-desc">
+									From 1000+ participants to the final client
+									round, AuditLab was nothing short of
+									transformative! It was a completely
+									immersive audit experience where our
+									students moved beyond theory, applied their
+									knowledge step by step, and came out more
+									confident and job-ready than ever.
+								</p>
+							</div>
+						</div>
+
+						<!-- Card 4: Placement Training -->
+						<div class="life-card">
+							<img
+								src="/images/gallery/DSC05997-scaled-1-1024x576.jpg"
+								alt="Placement Training"
+								class="life-card-img"
+							/>
+							<div class="life-card-overlay">
 								<h3 class="life-card-title">
-									AuditLab
+									Placement Training
 								</h3>
 								<p class="life-card-desc">
-									From 1000+ participants in the first round, AuditLab was nothing short of transformative! It was a hands-on, immersive audit experience where students moved beyond classroom theory, applying their knowledge step by step in action.
+									Through dedicated placement training, we
+									help students in pursuing successful careers
+									and land dream jobs.
 								</p>
 							</div>
 						</div>
@@ -1092,10 +1131,14 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 			);
 
 			if (grid && prevBtns.length > 0 && nextBtns.length > 0) {
-				// Center the grid on load/resize on mobile
+				// Center the first two cards on load/resize on mobile
 				const centerGrid = () => {
 					if (window.innerWidth <= 768) {
-						grid.scrollLeft = (grid.scrollWidth - grid.clientWidth) / 2;
+						const card = grid.querySelector(".life-card");
+						const cardWidth = card ? card.clientWidth : 340;
+						const gap = 20;
+						grid.scrollLeft =
+							cardWidth + gap / 2 - grid.clientWidth / 2;
 					}
 				};
 				window.addEventListener("load", centerGrid);
@@ -1105,15 +1148,27 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 				prevBtns.forEach((btn) => {
 					btn.addEventListener("click", () => {
 						const card = grid.querySelector(".life-card");
-						const scrollAmount = card ? card.clientWidth + 20 : 350;
-						grid.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+						const gap = window.innerWidth <= 768 ? 20 : 40;
+						const scrollAmount = card
+							? card.clientWidth + gap
+							: 350;
+						grid.scrollBy({
+							left: -scrollAmount,
+							behavior: "smooth",
+						});
 					});
 				});
 				nextBtns.forEach((btn) => {
 					btn.addEventListener("click", () => {
 						const card = grid.querySelector(".life-card");
-						const scrollAmount = card ? card.clientWidth + 20 : 350;
-						grid.scrollBy({ left: scrollAmount, behavior: "smooth" });
+						const gap = window.innerWidth <= 768 ? 20 : 40;
+						const scrollAmount = card
+							? card.clientWidth + gap
+							: 350;
+						grid.scrollBy({
+							left: scrollAmount,
+							behavior: "smooth",
+						});
 					});
 				});
 			}
@@ -1439,11 +1494,16 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 	}
 
 	.section-subtitle {
+		font-family: "Outfit", sans-serif;
 		font-size: 0.95rem;
-		color: #6b7280;
+		color: #4b5563;
 		text-align: center;
 		line-height: 1.8;
 		margin-bottom: 56px;
+	}
+
+	.life-mobile-br {
+		display: none;
 	}
 
 	.text-blue {
@@ -1478,14 +1538,14 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 		font-weight: 600;
 		padding: 10px 24px;
 		border-radius: 100px;
-		border: 1.5px solid #d1d5db;
+		border: 1.5px solid #3b9fe8;
 		text-decoration: none;
 		transition:
 			border-color 0.2s,
 			color 0.2s;
 	}
 	.btn-outline-pill:hover {
-		border-color: #3b9fe8;
+		border-color: #2486d0;
 		color: #3b9fe8;
 	}
 
@@ -1746,6 +1806,7 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 	}
 
 	.courses .section-title {
+		font-family: "Outfit", sans-serif;
 		font-size: clamp(2.2rem, 3.8vw, 2.7rem);
 		margin-bottom: 16px;
 	}
@@ -3153,8 +3214,8 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 		height: 52px;
 		border-radius: 50%;
 		border: none;
-		background: #eef5fb;
-		color: #3b9fe8;
+		background: #50b5ff;
+		color: #111827;
 		cursor: pointer;
 		display: flex;
 		align-items: center;
@@ -3164,7 +3225,7 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 			color 0.2s,
 			transform 0.2s;
 		flex-shrink: 0;
-		box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
+		box-shadow: 0 6px 18px rgba(80, 181, 255, 0.25);
 		z-index: 10;
 		position: absolute;
 		top: 50%;
@@ -3172,17 +3233,17 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 	}
 
 	.life-arrow-btn:hover {
-		background: #3b9fe8;
-		color: #ffffff;
+		background: #35a4ee;
+		color: #111827;
 		transform: translateY(-50%) scale(1.05);
 	}
 
 	.life-arrow-btn.prev-btn {
-		left: -64px;
+		left: 40px;
 	}
 
 	.life-arrow-btn.next-btn {
-		right: -64px;
+		right: 40px;
 	}
 
 	.life-arrow-btn svg {
@@ -3195,10 +3256,18 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 	}
 
 	.life-grid {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
+		display: flex !important;
+		flex-direction: row !important;
+		flex-wrap: nowrap !important;
+		overflow-x: auto !important;
+		scroll-behavior: smooth !important;
 		gap: 40px;
 		width: 100%;
+		scrollbar-width: none !important;
+	}
+
+	.life-grid::-webkit-scrollbar {
+		display: none !important;
 	}
 
 	.life-card {
@@ -3206,7 +3275,7 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 		border-radius: 24px;
 		overflow: hidden;
 		box-shadow: 0 12px 35px rgba(0, 0, 0, 0.06);
-		width: 100%;
+		flex: 0 0 calc(50% - 20px) !important;
 		aspect-ratio: 1.58;
 	}
 
@@ -3261,7 +3330,7 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 		}
 		.hero-content {
 			width: 100%;
-			padding: 40px 0 380px;
+			padding: 40px 0 320px;
 		}
 		.hero-btns {
 			display: flex;
@@ -3274,7 +3343,7 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 		.hero-btns .btn-outline-pill {
 			width: 100%;
 			text-align: center;
-			padding: 14px 20px;
+			padding: 10px 20px;
 			font-size: 14px;
 		}
 		.hero-btns .btn-outline-pill {
@@ -3288,7 +3357,7 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 			transform: translateX(-50%);
 			width: 100%;
 			max-width: 440px;
-			height: 380px;
+			height: 320px;
 			display: flex;
 			align-items: flex-end;
 			justify-content: center;
@@ -3312,8 +3381,35 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 			left: 50%;
 			transform: translateX(-50%);
 			width: 100%;
-			max-width: 340px;
+			max-width: 290px;
 			z-index: 2;
+		}
+		.courses {
+			padding: 30px 0 !important;
+			min-height: auto !important;
+		}
+		.courses .section-container {
+			padding: 0 10px !important;
+		}
+		.courses .section-title {
+			font-family: "Outfit", sans-serif !important;
+			font-size: 2rem !important;
+			line-height: 1.25 !important;
+			margin-bottom: 12px !important;
+		}
+		.life-mobile-br {
+			display: inline !important;
+		}
+		.section-subtitle {
+			font-family: "Outfit", sans-serif !important;
+			font-size: 0.9rem !important;
+			color: #4b5563 !important;
+			line-height: 1.55 !important;
+			margin-bottom: 24px !important;
+			max-width: 100% !important;
+			padding: 0 10px !important;
+			margin-left: auto !important;
+			margin-right: auto !important;
 		}
 		.hero-heading {
 			font-size: 2.2rem;
@@ -3334,15 +3430,15 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 			scroll-snap-type: x mandatory;
 			scroll-behavior: smooth;
 			gap: 20px;
-			padding: 20px 24px;
-			margin: 0 -24px;
+			padding: 20px 0 !important;
+			margin: 0 !important;
 			scrollbar-width: none;
 		}
 		.courses-grid::-webkit-scrollbar {
 			display: none;
 		}
 		.course-card {
-			flex: 0 0 85%;
+			flex: 0 0 90% !important;
 			scroll-snap-align: center;
 			min-height: 480px;
 		}
