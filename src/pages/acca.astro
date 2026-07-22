@@ -1483,7 +1483,9 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 		}
 
 		.video-circle-wrapper {
-			width: 100%;
+			width: calc(100% - 32px) !important;
+			margin-left: auto !important;
+			margin-right: auto !important;
 			height: auto;
 			aspect-ratio: 0.81 / 1;
 			margin-top: 40px;
