@@ -1409,10 +1409,9 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 					eyebrowEl.classList.add("js-animated");
 					headingEl.classList.add("js-animated");
 
-					// Cycle slides every 7 seconds
-					setInterval(() => {
-						currentSlide = (currentSlide + 1) % slides.length;
-						showSlide(currentSlide);
+					// Show the second slide (screenshot text) after 7 seconds and keep showing it always
+					setTimeout(() => {
+						showSlide(1);
 					}, 7000);
 				}
 			}
