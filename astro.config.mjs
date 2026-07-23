@@ -1,5 +1,5 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
+import { defineConfig, sessionDrivers } from 'astro/config';
 import vercel from '@astrojs/vercel';
 import react from '@astrojs/react';
 import emdash from 'emdash/astro';
@@ -16,6 +16,9 @@ const database = (isProd && process.env.DATABASE_URL)
 export default defineConfig({
     output: 'server',
     adapter: vercel(),
+    session: {
+        driver: sessionDrivers.fs(),
+    },
     vite: {
         server: {
             watch: {
