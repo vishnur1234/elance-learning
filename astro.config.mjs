@@ -1,6 +1,6 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
-import node from '@astrojs/node';
+import vercel from '@astrojs/vercel';
 import react from '@astrojs/react';
 import emdash from 'emdash/astro';
 import { postgres, sqlite } from 'emdash/db';
@@ -15,7 +15,7 @@ const database = (isProd && process.env.DATABASE_URL)
 // https://docs.emdashcms.com/existing-project/
 export default defineConfig({
     output: 'server',
-    adapter: node({ mode: 'standalone' }),
+    adapter: vercel(),
     vite: {
         server: {
             watch: {
