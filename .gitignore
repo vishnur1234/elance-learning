@@ -17,6 +17,16 @@ pnpm-debug.log*
 .env
 .env.production
 
+# EmDash local database & cache
+emdash.sqlite
+emdash.sqlite-shm
+emdash.sqlite-wal
+.emdash/cache/
+
+# media uploads (add to cloud storage in production)
+public/uploads/*
+!public/uploads/.gitkeep
+
 # macOS-specific files
 .DS_Store
 

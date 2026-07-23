@@ -1,6 +1,11 @@
 ---
+import { getEmDashEntry } from "../lib/cms.js";
+
 const pathname = new URL(Astro.request.url).pathname;
 const currentPath = pathname.replace(/\/$/, "");
+
+// Fetch header navigation menu from EmDash CMS
+const { entry: headerMenu } = await getEmDashEntry('menus', 'header').catch(() => ({ entry: null }));
 ---
 
 <nav class="navbar">

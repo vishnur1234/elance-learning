@@ -1,6 +1,10 @@
 ---
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
+import { getEmDashCollection } from "../lib/cms.js";
+
+// Fetch trainers/faculty list from EmDash CMS
+const { entries: trainers = [] } = await getEmDashCollection('trainers').catch(() => ({ entries: [] }));
 ---
 
 <html lang="en">

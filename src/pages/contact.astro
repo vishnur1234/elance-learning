@@ -2,6 +2,10 @@
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
 import FeaturedOn from "../components/FeaturedOn.astro";
+import { getEmDashEntry } from "../lib/cms.js";
+
+// Fetch global site settings (contact info, address, phone) from EmDash CMS
+const { entry: settings } = await getEmDashEntry('settings', 'global').catch(() => ({ entry: null }));
 ---
 
 <html lang="en">

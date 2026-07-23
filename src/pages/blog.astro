@@ -2,34 +2,16 @@
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
 import FeaturedOn from "../components/FeaturedOn.astro";
+import { getEmDashCollection } from "../lib/cms.js";
+import { getMediaUrl } from "../utils/media.js";
 
-const posts = [
-	{
-		title: "CMA USA in 2026: Everything Finance Students in India Need to Know",
-		image: "/images/WorkingProfessionalsai.jpg",
-		label: "CMA USA in 2026:",
-	},
-	{
-		title: "CMA USA Vs MBA: Which Career Path Has Better Future Scope In 2026?",
-		image: "/images/Studentsai1.jpg",
-		label: "CMA USA Vs MBA:",
-	},
-	{
-		title: "ACCA vs MBA: Which Is Better for a Finance Career in 2026?",
-		image: "/images/Anaam-Abdul-Salam.webp",
-		label: "ACCA vs MBA:",
-	},
-	{
-		title: "Is Doing ACCA Worth It? A Complete Career Guide",
-		image: "/images/Anuradha.webp",
-		label: "Is Doing ACCA",
-	},
-	{
-		title: "Top Countries Hiring ACCA Professionals in 2026",
-		image: "/images/students-classroom.png",
-		label: "Top Countries Hiring ACCA Professionals in 2026",
-	},
-];
+// Fetch published blog posts from EmDash CMS
+// Falls back to empty array gracefully if CMS is not yet set up
+const { entries: posts, error: postsError } = await getEmDashCollection('blog', {
+	status: 'published',
+	orderBy: { published_date: 'desc' },
+});
+if (postsError) console.error('[blog.astro] EmDash error:', postsError);
 ---
 
 <html lang="en">
@@ -58,16 +40,21 @@ const posts = [
 				<div class="blog-grid">
 					{posts.map((post) => (
 						<article class="blog-card">
-							<div class="post-image">
-								<img src={post.image} alt="" />
-								<div class="image-copy"><img src="/images/elancewebIcon.svg" alt="ELANCE" /><strong>{post.label}</strong><span>›››</span></div>
-							</div>
-							<div class="post-content">
-								<h2>{post.title}</h2>
-								<p>by <span>Elance</span></p>
-							</div>
+							<a href={`/blog/${post.data.slug || post.id}`} class="blog-card-link" aria-label={String(post.data.title || '')}>
+								<div class="post-image">
+									<img src={getMediaUrl(post.data.featured_image, '/images/WorkingProfessionalsai.jpg')} alt={String(post.data.title || '')} />
+									<div class="image-copy"><img src="/images/elancewebIcon.svg" alt="ELANCE" /><strong>{String(post.data.title || '').split(':')[0]}</strong><span>›››</span></div>
+								</div>
+								<div class="post-content">
+									<h2>{String(post.data.title || '')}</h2>
+									<p>by <span>Elance</span></p>
+								</div>
+							</a>
 						</article>
 					))}
+					{posts.length === 0 && (
+						<p style="grid-column:1/-1;text-align:center;color:#888;padding:40px 0">No blog posts found. Add posts in the EmDash admin panel.</p>
+					)}
 				</div>
 
 				<nav class="pagination" aria-label="Blog pages">

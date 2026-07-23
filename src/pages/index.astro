@@ -2,6 +2,42 @@
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
 import FeaturedOn from "../components/FeaturedOn.astro";
+import { getEmDashCollection, getEmDashEntry } from "../lib/cms.js";
+import { getMediaUrl } from "../utils/media.js";
+
+// Fetch all dynamic sections from EmDash CMS
+const [
+	{ entry: homePage },
+	{ entries: courses = [] },
+	{ entries: testimonials = [] },
+	{ entries: faqs = [] },
+	{ entry: settings },
+] = await Promise.all([
+	getEmDashEntry("pages", "home").catch(() => ({ entry: null })),
+	getEmDashCollection("courses", { status: "published" }).catch(() => ({
+		entries: [],
+	})),
+	getEmDashCollection("testimonials").catch(() => ({ entries: [] })),
+	getEmDashCollection("faq").catch(() => ({ entries: [] })),
+	getEmDashEntry("settings", "global").catch(() => ({ entry: null })),
+]);
+
+const homeData = homePage?.data || {};
+const heroEyebrow = String(
+	homeData.hero_eyebrow || "From Learner to Leader Starts Here",
+);
+const heroHeading = String(
+	homeData.hero_heading ||
+		'India\'s Most Trusted<br /><span class="hero-blue">Commerce Institute</span>',
+);
+const heroCtaPrimary = String(homeData.hero_cta_primary || "Explore Courses");
+const heroCtaPrimaryUrl = String(homeData.hero_cta_primary_url || "#courses");
+const heroCtaSecondary = String(
+	homeData.hero_cta_secondary || "Speak to a Counsellor",
+);
+const heroCtaSecondaryUrl = String(
+	homeData.hero_cta_secondary_url || "contact",
+);
 ---
 
 <html lang="en">
@@ -29,22 +65,39 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 		<Nav />
 
 		<!-- ===================== HERO ===================== -->
-		<section class="hero">
+		<section
+			class="hero"
+			data-hero-eyebrow={heroEyebrow}
+			data-hero-heading={heroHeading}
+			{...homePage?.edit}
+		>
 			<div class="hero-container">
 				<div class="hero-content">
-					<p class="hero-eyebrow" id="hero-eyebrow">
-						Among the Highest in ACCA & CMA Results
+					<p
+						class="hero-eyebrow"
+						id="hero-eyebrow"
+						{...homePage?.edit?.hero_eyebrow}
+					>
+						{heroEyebrow}
 					</p>
-					<h1 class="hero-heading" id="hero-heading">
-						Our Students Clear<br />
-						Exams. <span class="hero-blue">Confidently.</span>
-					</h1>
+					<h1
+						class="hero-heading"
+						id="hero-heading"
+						set:html={heroHeading}
+						{...homePage?.edit?.hero_heading}
+					/>
 					<div class="hero-btns">
-						<a href="#courses" class="btn-blue-pill"
-							>Explore Courses</a
+						<a
+							href={heroCtaPrimaryUrl}
+							class="btn-blue-pill"
+							{...homePage?.edit?.hero_cta_primary}
+							>{heroCtaPrimary}</a
 						>
-						<a href="contact" class="btn-outline-pill"
-							>Speak to a Counsellor</a
+						<a
+							href={heroCtaSecondaryUrl}
+							class="btn-outline-pill"
+							{...homePage?.edit?.hero_cta_secondary}
+							>{heroCtaSecondary}</a
 						>
 					</div>
 					<div class="alumni-section">
@@ -1325,18 +1378,25 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 			{
 				const eyebrowEl = document.getElementById("hero-eyebrow");
 				const headingEl = document.getElementById("hero-heading");
+				const heroSectionEl = document.querySelector(".hero");
 
 				if (eyebrowEl && headingEl) {
+					const cmsEyebrow =
+						heroSectionEl?.getAttribute("data-hero-eyebrow") ||
+						"From Learner to Leader Starts Here";
+					const cmsHeading =
+						heroSectionEl?.getAttribute("data-hero-heading") ||
+						'India\'s Most Trusted<br /><span class="hero-blue">Commerce Institute</span>';
+
 					const slides = [
+						{
+							eyebrow: cmsEyebrow,
+							heading: cmsHeading,
+						},
 						{
 							eyebrow: "Among the Highest in ACCA & CMA Results",
 							heading:
 								'Our Students Clear<br />Exams. <span class="hero-blue">Confidently.</span>',
-						},
-						{
-							eyebrow: "From Learner to Leader Starts Here",
-							heading:
-								'India\'s Most Trusted<br /><span class="hero-blue">Commerce Institute</span>',
 						},
 					];
 

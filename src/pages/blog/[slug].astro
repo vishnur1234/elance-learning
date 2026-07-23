@@ -1,0 +1,190 @@
+---
+import Nav from "../../components/Nav.astro";
+import Footer from "../../components/Footer.astro";
+import { getEmDashCollection, getEmDashEntry } from "../../lib/cms.js";
+import { getMediaUrl } from "../../utils/media.js";
+import { getSeoMeta } from "../../utils/seo.js";
+import { PortableText } from "emdash/ui";
+
+// Get slug from URL params
+const { slug } = Astro.params;
+
+// Fetch the blog post from EmDash CMS
+const { entry: post, error } = await getEmDashEntry('blog', slug);
+
+// If post not found, redirect to blog listing
+if (!post || error) {
+	return Astro.redirect('/blog');
+}
+
+const data = post.data || {};
+const seo = getSeoMeta(data, String(data.title || 'Blog | Elance'), 'Read our latest blog posts on finance careers.');
+const featuredImage = getMediaUrl(data.featured_image, '/images/WorkingProfessionalsai.jpg');
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>{seo.title}</title>
+		<meta name="description" content={seo.description} />
+		{seo.canonical && <link rel="canonical" href={seo.canonical} />}
+		{seo.ogImage && <meta property="og:image" content={seo.ogImage} />}
+		<meta property="og:title" content={seo.title} />
+		<meta property="og:description" content={seo.description} />
+		<meta name="twitter:card" content="summary_large_image" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,600&family=Outfit:wght@300;400;500;600;700;800;900&display=swap"
+			rel="stylesheet"
+		/>
+	</head>
+	<body>
+		<Nav />
+
+		<main class="blog-post-main">
+			<!-- HERO -->
+			<section class="blog-post-hero">
+				<div class="blog-post-hero-inner">
+					{data.category && <span class="post-category">{String(data.category)}</span>}
+					<h1 class="blog-post-title">{String(data.title || '')}</h1>
+					{data.excerpt && <p class="blog-post-excerpt">{String(data.excerpt)}</p>}
+					<div class="post-meta">
+						<span class="post-date">
+							{data.published_date ? new Date(String(data.published_date)).toLocaleDateString('en-IN', { year: 'numeric', month: 'long', day: 'numeric' }) : ''}
+						</span>
+					</div>
+				</div>
+			</section>
+
+			<!-- FEATURED IMAGE -->
+			{featuredImage && (
+				<section class="blog-featured-image">
+					<div class="blog-featured-image-inner">
+						<img src={featuredImage} alt={String(data.title || '')} />
+					</div>
+				</section>
+			)}
+
+			<!-- CONTENT -->
+			<section class="blog-post-body">
+				<div class="blog-post-body-inner">
+					{data.content ? (
+						<div class="blog-content">
+							<PortableText value={data.content} />
+						</div>
+					) : (
+						<p style="color:#888;text-align:center;padding:40px 0">Content coming soon.</p>
+					)}
+				</div>
+			</section>
+
+			<!-- BACK LINK -->
+			<section class="blog-back-section">
+				<div class="blog-back-inner">
+					<a href="/blog" class="back-to-blog">← Back to Blog</a>
+				</div>
+			</section>
+		</main>
+
+		<Footer />
+	</body>
+</html>
+
+<style>
+	:global(*) { box-sizing: border-box; }
+	:global(body) { margin: 0; color: #1d1d1d; font-family: "Outfit", sans-serif; overflow-x: hidden; }
+
+	.blog-post-hero {
+		background: linear-gradient(135deg, #0a2e5e 0%, #1260a4 100%);
+		color: #fff;
+		padding: 80px 24px 60px;
+	}
+	.blog-post-hero-inner {
+		max-width: 860px;
+		margin: 0 auto;
+	}
+	.post-category {
+		display: inline-block;
+		background: rgba(255,255,255,0.15);
+		border-radius: 999px;
+		padding: 4px 14px;
+		font-size: 0.9rem;
+		font-weight: 600;
+		margin-bottom: 16px;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+	}
+	.blog-post-title {
+		font-size: clamp(1.8rem, 4vw, 2.8rem);
+		font-weight: 800;
+		line-height: 1.2;
+		margin: 0 0 16px;
+	}
+	.blog-post-excerpt {
+		font-size: clamp(1rem, 2vw, 1.2rem);
+		opacity: 0.85;
+		margin: 0 0 20px;
+		line-height: 1.6;
+	}
+	.post-meta {
+		font-size: 0.95rem;
+		opacity: 0.7;
+	}
+
+	.blog-featured-image {
+		background: #f5f7fa;
+		padding: 40px 24px 0;
+	}
+	.blog-featured-image-inner {
+		max-width: 860px;
+		margin: 0 auto;
+		border-radius: 12px;
+		overflow: hidden;
+		box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+	}
+	.blog-featured-image-inner img {
+		width: 100%;
+		height: auto;
+		max-height: 480px;
+		object-fit: cover;
+		display: block;
+	}
+
+	.blog-post-body {
+		padding: 56px 24px 80px;
+		background: #f5f7fa;
+	}
+	.blog-post-body-inner {
+		max-width: 860px;
+		margin: 0 auto;
+	}
+	.blog-content {
+		background: #fff;
+		border-radius: 12px;
+		padding: 48px;
+		box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+		font-size: 1.1rem;
+		line-height: 1.8;
+		color: #2d2d2d;
+	}
+	:global(.blog-content h2) { font-size: 1.6rem; color: #0a2e5e; margin-top: 2em; }
+	:global(.blog-content h3) { font-size: 1.3rem; color: #1260a4; }
+	:global(.blog-content a) { color: #1260a4; }
+	:global(.blog-content img) { max-width: 100%; border-radius: 8px; }
+
+	.blog-back-section { padding: 0 24px 60px; background: #f5f7fa; }
+	.blog-back-inner { max-width: 860px; margin: 0 auto; }
+	.back-to-blog {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		color: #1260a4;
+		font-weight: 600;
+		font-size: 1rem;
+		text-decoration: none;
+	}
+	.back-to-blog:hover { text-decoration: underline; }
+</style>

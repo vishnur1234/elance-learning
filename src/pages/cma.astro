@@ -5,6 +5,14 @@ import StudentPlacements from "../components/StudentPlacements.astro";
 import CareerAndWhyElance from "../components/CareerAndWhyElance.astro";
 import CmaFaculties from "../components/CmaFaculties.astro";
 import CmaLearningAndSyllabus from "../components/CmaLearningAndSyllabus.astro";
+import { getEmDashCollection } from "../lib/cms.js";
+import { getMediaUrl } from "../utils/media.js";
+
+// Fetch CMA-specific content from EmDash CMS
+const [{ entries: cmaFaqs = [] }, { entries: trainers = [] }] = await Promise.all([
+	getEmDashCollection('faq', { where: { category: 'cma' } }).catch(() => ({ entries: [] })),
+	getEmDashCollection('trainers').catch(() => ({ entries: [] })),
+]);
 ---
 
 <html lang="en">

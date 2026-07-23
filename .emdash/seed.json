@@ -1,0 +1,379 @@
+{
+  "version": "1",
+  "collections": [
+    {
+      "slug": "pages",
+      "label": "Pages",
+      "singular": "Page",
+      "fields": [
+        {
+          "slug": "title",
+          "type": "string",
+          "label": "Title",
+          "required": true
+        },
+        {
+          "slug": "hero_eyebrow",
+          "type": "string",
+          "label": "Hero Eyebrow"
+        },
+        {
+          "slug": "hero_heading",
+          "type": "string",
+          "label": "Hero Heading"
+        },
+        {
+          "slug": "hero_subtext",
+          "type": "text",
+          "label": "Hero Subtext"
+        },
+        {
+          "slug": "hero_cta_primary",
+          "type": "string",
+          "label": "CTA Primary Label"
+        },
+        {
+          "slug": "hero_cta_primary_url",
+          "type": "string",
+          "label": "CTA Primary URL"
+        },
+        {
+          "slug": "hero_cta_secondary",
+          "type": "string",
+          "label": "CTA Secondary Label"
+        },
+        {
+          "slug": "hero_cta_secondary_url",
+          "type": "string",
+          "label": "CTA Secondary URL"
+        },
+        {
+          "slug": "content",
+          "type": "portableText",
+          "label": "Content"
+        },
+        {
+          "slug": "seo_title",
+          "type": "string",
+          "label": "SEO Title"
+        },
+        {
+          "slug": "seo_description",
+          "type": "text",
+          "label": "SEO Description"
+        },
+        {
+          "slug": "canonical_url",
+          "type": "url",
+          "label": "Canonical URL"
+        },
+        {
+          "slug": "og_image",
+          "type": "image",
+          "label": "Open Graph Image"
+        }
+      ]
+    },
+    {
+      "slug": "courses",
+      "label": "Courses",
+      "singular": "Course",
+      "fields": [
+        {
+          "slug": "name",
+          "type": "string",
+          "label": "Course Name",
+          "required": true
+        },
+        {
+          "slug": "description",
+          "type": "portableText",
+          "label": "Description"
+        },
+        {
+          "slug": "short_description",
+          "type": "text",
+          "label": "Short Description"
+        },
+        {
+          "slug": "duration",
+          "type": "string",
+          "label": "Duration"
+        },
+        {
+          "slug": "level",
+          "type": "string",
+          "label": "Level"
+        },
+        {
+          "slug": "fees",
+          "type": "string",
+          "label": "Fees"
+        },
+        {
+          "slug": "features",
+          "type": "portableText",
+          "label": "Features"
+        },
+        {
+          "slug": "curriculum",
+          "type": "portableText",
+          "label": "Curriculum"
+        },
+        {
+          "slug": "thumbnail",
+          "type": "image",
+          "label": "Thumbnail"
+        },
+        {
+          "slug": "banner",
+          "type": "image",
+          "label": "Banner"
+        },
+        {
+          "slug": "seo_title",
+          "type": "string",
+          "label": "SEO Title"
+        },
+        {
+          "slug": "seo_description",
+          "type": "text",
+          "label": "SEO Description"
+        }
+      ]
+    },
+    {
+      "slug": "trainers",
+      "label": "Trainers",
+      "singular": "Trainer",
+      "fields": [
+        {
+          "slug": "name",
+          "type": "string",
+          "label": "Name",
+          "required": true
+        },
+        {
+          "slug": "position",
+          "type": "string",
+          "label": "Position"
+        },
+        {
+          "slug": "bio",
+          "type": "portableText",
+          "label": "Bio"
+        },
+        {
+          "slug": "image",
+          "type": "image",
+          "label": "Photo"
+        },
+        {
+          "slug": "linkedin_url",
+          "type": "url",
+          "label": "LinkedIn URL"
+        }
+      ]
+    },
+    {
+      "slug": "testimonials",
+      "label": "Testimonials",
+      "singular": "Testimonial",
+      "fields": [
+        {
+          "slug": "student_name",
+          "type": "string",
+          "label": "Student Name",
+          "required": true
+        },
+        {
+          "slug": "course_name",
+          "type": "string",
+          "label": "Course Name"
+        },
+        {
+          "slug": "review",
+          "type": "text",
+          "label": "Review"
+        },
+        {
+          "slug": "rating",
+          "type": "number",
+          "label": "Rating (1-5)"
+        },
+        {
+          "slug": "photo",
+          "type": "image",
+          "label": "Student Photo"
+        }
+      ]
+    },
+    {
+      "slug": "faq",
+      "label": "FAQ",
+      "singular": "FAQ Item",
+      "fields": [
+        {
+          "slug": "question",
+          "type": "string",
+          "label": "Question",
+          "required": true
+        },
+        {
+          "slug": "answer",
+          "type": "text",
+          "label": "Answer",
+          "required": true
+        },
+        {
+          "slug": "category",
+          "type": "string",
+          "label": "Category (e.g. acca, cma, general)"
+        }
+      ]
+    },
+    {
+      "slug": "blog",
+      "label": "Blog",
+      "singular": "Blog Post",
+      "fields": [
+        {
+          "slug": "title",
+          "type": "string",
+          "label": "Title",
+          "required": true
+        },
+        {
+          "slug": "featured_image",
+          "type": "image",
+          "label": "Featured Image"
+        },
+        {
+          "slug": "excerpt",
+          "type": "text",
+          "label": "Excerpt"
+        },
+        {
+          "slug": "content",
+          "type": "portableText",
+          "label": "Content"
+        },
+        {
+          "slug": "category",
+          "type": "string",
+          "label": "Category"
+        },
+        {
+          "slug": "published_date",
+          "type": "datetime",
+          "label": "Published Date"
+        }
+      ]
+    },
+    {
+      "slug": "menus",
+      "label": "Menus",
+      "singular": "Menu",
+      "fields": [
+        {
+          "slug": "name",
+          "type": "string",
+          "label": "Menu Name",
+          "required": true
+        },
+        {
+          "slug": "items",
+          "type": "json",
+          "label": "Menu Items"
+        }
+      ]
+    },
+    {
+      "slug": "settings",
+      "label": "Settings",
+      "singular": "Setting",
+      "fields": [
+        {
+          "slug": "site_name",
+          "type": "string",
+          "label": "Site Name"
+        },
+        {
+          "slug": "contact_phone",
+          "type": "string",
+          "label": "Contact Phone"
+        },
+        {
+          "slug": "contact_email",
+          "type": "string",
+          "label": "Contact Email"
+        },
+        {
+          "slug": "contact_address",
+          "type": "text",
+          "label": "Contact Address"
+        }
+      ]
+    }
+  ],
+  "content": {
+    "pages": [
+      {
+        "id": "home-page",
+        "slug": "home",
+        "data": {
+          "title": "Home Page",
+          "hero_eyebrow": "From Learner to Leader Starts Here",
+          "hero_heading": "India's Most Trusted Commerce Institute",
+          "hero_subtext": "Build your career with globally recognized programs in CMA (US) and ACCA – designed for future commerce leaders.",
+          "hero_cta_primary": "Explore Courses",
+          "hero_cta_primary_url": "#courses",
+          "hero_cta_secondary": "Speak to a Counsellor",
+          "hero_cta_secondary_url": "#counselor",
+          "seo_title": "Elance – India's Most Trusted Commerce Institute",
+          "seo_description": "From Learner to Leader. Build your career with globally recognized programs in CMA (US) and ACCA."
+        }
+      },
+      {
+        "id": "acca-page",
+        "slug": "acca",
+        "data": {
+          "title": "ACCA Course Page",
+          "hero_heading": "Become an ACCA Certified Global Professional",
+          "seo_title": "ACCA Course | Elance Learning"
+        }
+      },
+      {
+        "id": "cma-page",
+        "slug": "cma",
+        "data": {
+          "title": "CMA Course Page",
+          "hero_heading": "CMA USA Professional Certification",
+          "seo_title": "CMA USA Course | Elance Learning"
+        }
+      }
+    ],
+    "courses": [
+      {
+        "id": "acca-course",
+        "slug": "acca-global",
+        "data": {
+          "name": "ACCA (Association of Chartered Certified Accountants)",
+          "short_description": "Global professional accounting qualification recognized in 180+ countries.",
+          "duration": "2 - 3 Years",
+          "level": "Global Certification"
+        }
+      },
+      {
+        "id": "cma-course",
+        "slug": "cma-usa",
+        "data": {
+          "name": "CMA USA (Certified Management Accountant)",
+          "short_description": "Premier global certification in management accounting & financial management.",
+          "duration": "6 - 9 Months",
+          "level": "US Certification"
+        }
+      }
+    ]
+  }
+}

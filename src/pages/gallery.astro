@@ -2,6 +2,10 @@
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
 import FeaturedOn from "../components/FeaturedOn.astro";
+import { getEmDashCollection } from "../lib/cms.js";
+
+// Fetch gallery/media items or page content from EmDash CMS
+const { entries: galleryItems = [] } = await getEmDashCollection('media').catch(() => ({ entries: [] }));
 ---
 
 <html lang="en">

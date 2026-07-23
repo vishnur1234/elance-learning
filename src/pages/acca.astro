@@ -9,6 +9,14 @@ import AccaFaculties from "../components/AccaFaculties.astro";
 import AccaLearningAndSyllabus from "../components/AccaLearningAndSyllabus.astro";
 import AccaFaq from "../components/AccaFaq.astro";
 import FeaturedOn from "../components/FeaturedOn.astro";
+import { getEmDashCollection } from "../lib/cms.js";
+import { getMediaUrl } from "../utils/media.js";
+
+// Fetch ACCA-specific content from EmDash CMS
+const [{ entries: accaFaqs = [] }, { entries: trainers = [] }] = await Promise.all([
+	getEmDashCollection('faq', { where: { category: 'acca' } }).catch(() => ({ entries: [] })),
+	getEmDashCollection('trainers').catch(() => ({ entries: [] })),
+]);
 ---
 
 <html lang="en">
