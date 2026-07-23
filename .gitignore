@@ -19,9 +19,8 @@ pnpm-debug.log*
 .env.production
 
 # EmDash local database & cache
-emdash.sqlite
-emdash.sqlite-shm
-emdash.sqlite-wal
+data.db*
+emdash.sqlite*
 .emdash/cache/
 
 # media uploads (add to cloud storage in production)
