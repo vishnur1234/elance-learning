@@ -28,6 +28,7 @@ export default defineConfig({
         react(),
         emdash({
             database,
+            siteUrl: process.env.EMDASH_SITE_URL || (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : undefined),
         }),
     ],
 });
