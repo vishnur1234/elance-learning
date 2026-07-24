@@ -14,6 +14,8 @@ const database = databaseUrl
     ? postgres({ connectionString: databaseUrl })
     : sqlite({ url: 'data.db' });
 
+const siteUrl = process.env.EMDASH_SITE_URL || env.EMDASH_SITE_URL || process.env.PUBLIC_SITE_URL || env.PUBLIC_SITE_URL || (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : undefined) || (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : undefined);
+
 // https://docs.emdashcms.com/existing-project/
 export default defineConfig({
     output: 'server',
@@ -32,7 +34,7 @@ export default defineConfig({
         react(),
         emdash({
             database,
-            siteUrl: process.env.EMDASH_SITE_URL || (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : undefined),
+            siteUrl,
         }),
     ],
 });
