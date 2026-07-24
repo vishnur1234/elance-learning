@@ -22,21 +22,21 @@ const [
 	getEmDashEntry("settings", "global").catch(() => ({ entry: null })),
 ]);
 
-const homeData = homePage?.data || {};
+const homeData = homePage?.data || homePage || {};
 const heroEyebrow = String(
-	homeData.hero_eyebrow || "From Learner to Leader Starts Here",
+	homeData.hero_eyebrow ?? "From Learner to Leader Starts Here",
 );
 const heroHeading = String(
-	homeData.hero_heading ||
+	homeData.hero_heading ??
 		'India\'s Most Trusted<br /><span class="hero-blue">Commerce Institute</span>',
 );
-const heroCtaPrimary = String(homeData.hero_cta_primary || "Explore Courses");
-const heroCtaPrimaryUrl = String(homeData.hero_cta_primary_url || "#courses");
+const heroCtaPrimary = String(homeData.hero_cta_primary ?? "Explore Courses");
+const heroCtaPrimaryUrl = String(homeData.hero_cta_primary_url ?? "#courses");
 const heroCtaSecondary = String(
-	homeData.hero_cta_secondary || "Speak to a Counsellor",
+	homeData.hero_cta_secondary ?? "Speak to a Counsellor",
 );
 const heroCtaSecondaryUrl = String(
-	homeData.hero_cta_secondary_url || "contact",
+	homeData.hero_cta_secondary_url ?? "contact",
 );
 ---
 
