@@ -1,11 +1,7 @@
 import pg from 'pg';
-import { loadEnv } from 'vite';
-
-const env = loadEnv(process.env.NODE_ENV || 'development', process.cwd(), '');
-const databaseUrl = process.env.DATABASE_URL || env.DATABASE_URL;
 
 export default function supabaseSessionDriver(options = {}) {
-    const connStr = options.connectionString || databaseUrl;
+    const connStr = options.connectionString || process.env.DATABASE_URL;
     let pool;
     const getPool = () => {
         if (!pool) pool = new pg.Pool({ connectionString: connStr });
