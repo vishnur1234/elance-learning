@@ -5,14 +5,6 @@ import StudentPlacements from "../components/StudentPlacements.astro";
 import CareerAndWhyElance from "../components/CareerAndWhyElance.astro";
 import CmaFaculties from "../components/CmaFaculties.astro";
 import CmaLearningAndSyllabus from "../components/CmaLearningAndSyllabus.astro";
-import { getEmDashCollection } from "../lib/cms.js";
-import { getMediaUrl } from "../utils/media.js";
-
-// Fetch CMA-specific content from EmDash CMS
-const [{ entries: cmaFaqs = [] }, { entries: trainers = [] }] = await Promise.all([
-	getEmDashCollection('faq', { where: { category: 'cma' } }).catch(() => ({ entries: [] })),
-	getEmDashCollection('trainers').catch(() => ({ entries: [] })),
-]);
 ---
 
 <html lang="en">
@@ -163,7 +155,6 @@ const [{ entries: cmaFaqs = [] }, { entries: trainers = [] }] = await Promise.al
 				<iframe
 					src="https://www.youtube.com/embed/fSmpRKXSJS0?autoplay=1&mute=1&loop=1&playlist=fSmpRKXSJS0&start=5"
 					title="CMA USA – Elance"
-					frameborder="0"
 					allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
 					allowfullscreen
 					class="youtube-circle-iframe"></iframe>
@@ -173,17 +164,29 @@ const [{ entries: cmaFaqs = [] }, { entries: trainers = [] }] = await Promise.al
 
 		<!-- Script for Scroll Morphing (circle → full-width video) -->
 		<script>
-			const wrapper = document.querySelector(".morphing-wrapper");
-			const placeholder = document.querySelector(".video-placeholder");
-			const target = document.querySelector(".expanded-video-target");
-			const video = document.querySelector(".video-circle-wrapper");
-			const iframe = document.querySelector(".youtube-circle-iframe");
-			const leftCol = document.querySelector(".cma-hero-left");
+			const wrapper = document.querySelector<HTMLElement>(".morphing-wrapper");
+			const placeholder = document.querySelector<HTMLElement>(".video-placeholder");
+			const target = document.querySelector<HTMLElement>(".expanded-video-target");
+			const video = document.querySelector<HTMLElement>(".video-circle-wrapper");
+			const iframe = document.querySelector<HTMLIFrameElement>(".youtube-circle-iframe");
+			const leftCol = document.querySelector<HTMLElement>(".cma-hero-left");
 
 			// Cached document-relative metrics. Re-measured on load/resize
 			// and whenever images finish loading (badges/avatars/logos can
 			// shift the layout height after the first paint).
-			let metrics = null;
+			interface Metrics {
+				wrapperDocTop: number;
+				startLeft: number;
+				startTop: number;
+				startWidth: number;
+				startHeight: number;
+				endLeft: number;
+				endTop: number;
+				endWidth: number;
+				endHeight: number;
+				targetDocTop: number;
+			}
+			let metrics: Metrics | null = null;
 			let isMobileLayout = false;
 
 			function measure() {

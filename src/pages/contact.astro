@@ -2,10 +2,6 @@
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
 import FeaturedOn from "../components/FeaturedOn.astro";
-import { getEmDashEntry } from "../lib/cms.js";
-
-// Fetch global site settings (contact info, address, phone) from EmDash CMS
-const { entry: settings } = await getEmDashEntry('settings', 'global').catch(() => ({ entry: null }));
 ---
 
 <html lang="en">
@@ -344,7 +340,6 @@ const { entry: settings } = await getEmDashEntry('settings', 'global').catch(() 
 
 				function updateScrollEffect() {
 					const rect = title.getBoundingClientRect();
-					const viewportHeight = window.innerHeight;
 
 					// Start revealing when the top of the title reaches 320px from the viewport top
 					// Fully reveal when it reaches 80px from the viewport top

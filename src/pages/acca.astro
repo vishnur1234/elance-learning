@@ -9,14 +9,6 @@ import AccaFaculties from "../components/AccaFaculties.astro";
 import AccaLearningAndSyllabus from "../components/AccaLearningAndSyllabus.astro";
 import AccaFaq from "../components/AccaFaq.astro";
 import FeaturedOn from "../components/FeaturedOn.astro";
-import { getEmDashCollection } from "../lib/cms.js";
-import { getMediaUrl } from "../utils/media.js";
-
-// Fetch ACCA-specific content from EmDash CMS
-const [{ entries: accaFaqs = [] }, { entries: trainers = [] }] = await Promise.all([
-	getEmDashCollection('faq', { where: { category: 'acca' } }).catch(() => ({ entries: [] })),
-	getEmDashCollection('trainers').catch(() => ({ entries: [] })),
-]);
 ---
 
 <html lang="en">
@@ -150,7 +142,6 @@ const [{ entries: accaFaqs = [] }, { entries: trainers = [] }] = await Promise.a
 				<iframe
 					src="https://www.youtube.com/embed/IkMjDiSgEuw?autoplay=1&mute=1&loop=1&playlist=IkMjDiSgEuw"
 					title="YouTube video player"
-					frameborder="0"
 					allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
 					allowfullscreen
 					class="youtube-circle-iframe"
@@ -161,17 +152,29 @@ const [{ entries: accaFaqs = [] }, { entries: trainers = [] }] = await Promise.a
 
 		<!-- Script for Scroll Parallax Morphing -->
 		<script>
-			const wrapper = document.querySelector(".morphing-wrapper");
-			const placeholder = document.querySelector(".video-placeholder");
-			const target = document.querySelector(".expanded-video-target");
-			const video = document.querySelector(".video-circle-wrapper");
-			const iframe = document.querySelector(".youtube-circle-iframe");
-			const leftCol = document.querySelector(".hero-left");
+			const wrapper = document.querySelector<HTMLElement>(".morphing-wrapper");
+			const placeholder = document.querySelector<HTMLElement>(".video-placeholder");
+			const target = document.querySelector<HTMLElement>(".expanded-video-target");
+			const video = document.querySelector<HTMLElement>(".video-circle-wrapper");
+			const iframe = document.querySelector<HTMLIFrameElement>(".youtube-circle-iframe");
+			const leftCol = document.querySelector<HTMLElement>(".hero-left");
 
 			// Cached document-relative metrics. Re-measured on load/resize
 			// and whenever images finish loading (avatars/badges/logos can
 			// shift the layout height after the first paint).
-			let metrics = null;
+			interface Metrics {
+				wrapperDocTop: number;
+				startLeft: number;
+				startTop: number;
+				startWidth: number;
+				startHeight: number;
+				endLeft: number;
+				endTop: number;
+				endWidth: number;
+				endHeight: number;
+				targetDocTop: number;
+			}
+			let metrics: Metrics | null = null;
 			let isMobileLayout = false;
 
 			function measure() {

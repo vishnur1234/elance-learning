@@ -2,27 +2,12 @@
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
 import FeaturedOn from "../components/FeaturedOn.astro";
-import { getEmDashCollection, getEmDashEntry } from "../lib/cms.js";
-import { getMediaUrl } from "../utils/media.js";
+import { getEmDashEntry } from "../lib/cms.js";
 
-// Fetch all dynamic sections from EmDash CMS
-const [
-	{ entry: homePage },
-	{ entries: courses = [] },
-	{ entries: testimonials = [] },
-	{ entries: faqs = [] },
-	{ entry: settings },
-] = await Promise.all([
-	getEmDashEntry("pages", "home").catch(() => ({ entry: null })),
-	getEmDashCollection("courses", { status: "published" }).catch(() => ({
-		entries: [],
-	})),
-	getEmDashCollection("testimonials").catch(() => ({ entries: [] })),
-	getEmDashCollection("faq").catch(() => ({ entries: [] })),
-	getEmDashEntry("settings", "global").catch(() => ({ entry: null })),
-]);
+// Fetch home page dynamic content from EmDash CMS
+const { entry: homePage } = await getEmDashEntry("pages", "home").catch(() => ({ entry: null }));
 
-const homeData = homePage?.data || {};
+const homeData = (homePage?.data as Record<string, any>) || {};
 const heroEyebrow = String(
 	homeData.hero_eyebrow || "From Learner to Leader Starts Here",
 );
@@ -1323,7 +1308,7 @@ const heroCtaSecondaryUrl = String(
 			if (thinkAvatars.length > 0) {
 				let currentIndex = 0;
 
-				const updateTestimonial = (index) => {
+				const updateTestimonial = (index: number) => {
 					currentIndex = index;
 
 					// Update active class on avatars
@@ -1400,20 +1385,18 @@ const heroCtaSecondaryUrl = String(
 						},
 					];
 
-					let currentSlide = 0;
-
-					const prepareWordAnimation = (container, htmlContent) => {
+					const prepareWordAnimation = (container: HTMLElement, htmlContent: string) => {
 						const temp = document.createElement("div");
 						temp.innerHTML = htmlContent;
 						container.innerHTML = "";
 						let wordIndex = 0;
 
-						const processNode = (node) => {
+						const processNode = (node: Node): Node => {
 							if (node.nodeType === Node.TEXT_NODE) {
-								const words = node.textContent.split(/(\s+)/);
+								const words = (node.textContent || "").split(/(\s+)/);
 								const fragment =
 									document.createDocumentFragment();
-								words.forEach((word) => {
+								words.forEach((word: string) => {
 									if (word.trim() === "") {
 										fragment.appendChild(
 											document.createTextNode(word),
@@ -1447,7 +1430,7 @@ const heroCtaSecondaryUrl = String(
 						});
 					};
 
-					const showSlide = (index) => {
+					const showSlide = (index: number) => {
 						eyebrowEl.classList.add("fade-out");
 						headingEl.classList.add("fade-out");
 

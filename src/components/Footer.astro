@@ -1,12 +1,5 @@
 ---
 import WhatsAppWidget from "./WhatsAppWidget.astro";
-import { getEmDashEntry } from "../lib/cms.js";
-
-// Fetch footer menu and global settings from EmDash CMS
-const [{ entry: footerMenu }, { entry: settings }] = await Promise.all([
-	getEmDashEntry('menus', 'footer').catch(() => ({ entry: null })),
-	getEmDashEntry('settings', 'global').catch(() => ({ entry: null })),
-]);
 ---
 
 <footer class="footer">
