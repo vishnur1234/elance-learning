@@ -89,6 +89,8 @@ export interface Page {
   seo_description?: string;
   canonical_url?: string;
   og_image?: { id: string; src?: string; alt?: string; width?: number; height?: number; provider?: string; previewUrl?: string; meta?: Record<string, unknown> };
+  courses_heading?: string;
+  courses_subtext?: string;
   createdAt: Date;
   updatedAt: Date;
   publishedAt: Date | null;

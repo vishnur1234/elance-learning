@@ -17,41 +17,27 @@ const [
 	getEmDashCollection("courses", { status: "published" }).catch(() => ({
 		entries: [],
 	})),
-	getEmDashCollection("testimonials", { status: "published" }).catch(() => ({ entries: [] })),
+	getEmDashCollection("testimonials").catch(() => ({ entries: [] })),
 	getEmDashCollection("faq").catch(() => ({ entries: [] })),
 	getEmDashEntry("settings", "global").catch(() => ({ entry: null })),
 ]);
 
-// Safely extract data — handles both { data: {...} } wrapper and flat object forms
-const homeData = (homePage && typeof homePage === 'object' && 'data' in homePage && homePage.data)
-	? homePage.data
-	: (homePage || {});
-
+const homeData = homePage?.data || {};
 const heroEyebrow = String(
-	homeData.hero_eyebrow ?? "From Learner to Leader Starts Here",
+	homeData.hero_eyebrow || "From Learner to Leader Starts Here",
 );
 const heroHeading = String(
-	homeData.hero_heading ??
+	homeData.hero_heading ||
 		'India\'s Most Trusted<br /><span class="hero-blue">Commerce Institute</span>',
 );
-const heroSubtext = String(
-	homeData.hero_subtext ??
-		"Build your career with globally recognized programs in CMA (US) and ACCA – designed for future commerce leaders.",
-);
-const heroCtaPrimary = String(homeData.hero_cta_primary ?? "Explore Courses");
-const heroCtaPrimaryUrl = String(homeData.hero_cta_primary_url ?? "#courses");
+const heroCtaPrimary = String(homeData.hero_cta_primary || "Explore Courses");
+const heroCtaPrimaryUrl = String(homeData.hero_cta_primary_url || "#courses");
 const heroCtaSecondary = String(
-	homeData.hero_cta_secondary ?? "Speak to a Counsellor",
+	homeData.hero_cta_secondary || "Speak to a Counsellor",
 );
 const heroCtaSecondaryUrl = String(
-	homeData.hero_cta_secondary_url ?? "contact",
+	homeData.hero_cta_secondary_url || "contact",
 );
-
-// Normalize testimonials entries — extract .data and .edit for visual inline editing
-const cmsTestimonials = testimonials.map((t) => ({
-	data: (t && typeof t === 'object' && 'data' in t && t.data) ? t.data : (t || {}),
-	edit: t?.edit,
-}));
 ---
 
 <html lang="en">
@@ -100,13 +86,6 @@ const cmsTestimonials = testimonials.map((t) => ({
 						set:html={heroHeading}
 						{...homePage?.edit?.hero_heading}
 					/>
-					<p
-						class="hero-subtext"
-						id="hero-subtext"
-						{...homePage?.edit?.hero_subtext}
-					>
-						{heroSubtext}
-					</p>
 					<div class="hero-btns">
 						<a
 							href={heroCtaPrimaryUrl}
@@ -386,87 +365,49 @@ const cmsTestimonials = testimonials.map((t) => ({
 					</p>
 					<a href="#" class="btn-blue-pill">View More</a>
 				</div>
-				<!-- Right – Testimonial Cards (dynamic from EmDash CMS) -->
+				<!-- Right – Testimonial Cards -->
 				<div class="testimonials-right">
-					{
-						cmsTestimonials.length > 0 ? (
-							cmsTestimonials.slice(0, 2).map((item) => {
-								const tData = item.data;
-								return (
-									<div class="testimonial-card" {...item.edit}>
-										<span class="testimonial-badge" {...item.edit?.course_name}>
-											{tData.course_name ?? "Student"}
-										</span>
-										<p class="testimonial-quote" {...item.edit?.review}>
-											"{tData.review ?? ""}"
-										</p>
-										<div class="testimonial-author">
-											{tData.photo?.src ? (
-												<img
-													src={tData.photo.src}
-													alt={tData.student_name ?? "Student"}
-													class="testimonial-avatar"
-													{...item.edit?.photo}
-												/>
-											) : (
-												<div class="testimonial-avatar testimonial-avatar-placeholder">
-													{(tData.student_name ?? "S")[0].toUpperCase()}
-												</div>
-											)}
-											<div>
-												<p class="testimonial-name" {...item.edit?.student_name}>
-													{tData.student_name ?? ""}
-												</p>
-												<p class="testimonial-course">
-													{tData.course_name ?? ""}
-												</p>
-											</div>
-										</div>
-									</div>
-								);
-							})
-						) : (
-							<>
-								{/* Fallback: hard-coded cards shown when CMS has no published testimonials */}
-								<div class="testimonial-card">
-									<span class="testimonial-badge">CA</span>
-									<p class="testimonial-quote">
-										"All my papers were done online at Elance, with wonderful support
-										from the faculty and staff."
-									</p>
-									<div class="testimonial-author">
-										<img
-											src="/images/Anagha-Anand-150x150.webp"
-											alt="Anagha Anand"
-											class="testimonial-avatar"
-										/>
-										<div>
-											<p class="testimonial-name">Anagha Anand</p>
-											<p class="testimonial-course">Elance CA Student</p>
-										</div>
-									</div>
-								</div>
-								<div class="testimonial-card">
-									<span class="testimonial-badge">ACCA</span>
-									<p class="testimonial-quote">
-										"Elance's online ACCA course and placement drive helped me get a
-										job at EY."
-									</p>
-									<div class="testimonial-author">
-										<img
-											src="/images/Abhiram-testi.jpg"
-											alt="Abhiram"
-											class="testimonial-avatar"
-										/>
-										<div>
-											<p class="testimonial-name">Abhiram</p>
-											<p class="testimonial-course">ACCA</p>
-										</div>
-									</div>
-								</div>
-							</>
-						)
-					}
+					<!-- Card 1 -->
+					<div class="testimonial-card">
+						<span class="testimonial-badge">CA</span>
+						<p class="testimonial-quote">
+							"All my papers were done online at Elance, with
+							wonderful support from the faculty and staff. "
+						</p>
+						<div class="testimonial-author">
+							<img
+								src="/images/Anagha-Anand-150x150.webp"
+								alt="Anagha Anand"
+								class="testimonial-avatar"
+							/>
+							<div>
+								<p class="testimonial-name">Anagha Anand</p>
+								<p class="testimonial-course">
+									Elance CA Student
+								</p>
+							</div>
+						</div>
+					</div>
+
+					<!-- Card 2 -->
+					<div class="testimonial-card">
+						<span class="testimonial-badge">ACCA</span>
+						<p class="testimonial-quote">
+							"Elance's online ACCA course and placement drive
+							helped me get a job at EY."
+						</p>
+						<div class="testimonial-author">
+							<img
+								src="/images/Abhiram-testi.jpg"
+								alt="Abhiram"
+								class="testimonial-avatar"
+							/>
+							<div>
+								<p class="testimonial-name">Abhiram</p>
+								<p class="testimonial-course">ACCA</p>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</section>
@@ -790,71 +731,44 @@ const cmsTestimonials = testimonials.map((t) => ({
 					<div class="think-banner-right">
 						<div class="think-header-row">
 							<div class="think-avatars-wrap">
-								{
-									cmsTestimonials.length > 0 ? (
-										cmsTestimonials.slice(0, 3).map((tData, idx) => {
-											const bgClasses = ["bg-blue", "bg-purple", "bg-skyblue"];
-											return (
-												<div
-													class={`think-avatar-container avatar-${idx}${idx === 0 ? " active" : ""}`}
-													data-index={idx}
-													data-quote={tData.review ?? ""}
-													data-name={tData.student_name ?? ""}
-													data-company={tData.course_name ?? ""}
-												>
-													<div class={`avatar-backdrop ${bgClasses[idx % 3]}`}></div>
-													{tData.photo?.src ? (
-														<img
-															src={tData.photo.src}
-															alt={tData.student_name ?? `Student ${idx + 1}`}
-															class="think-avatar-img"
-														/>
-													) : (
-														<div class="think-avatar-img think-avatar-initials">
-															{(tData.student_name ?? "S")[0].toUpperCase()}
-														</div>
-													)}
-												</div>
-											);
-										})
-									) : (
-										<>
-											{/* Fallback avatar 1 */}
-											<div
-												class="think-avatar-container avatar-0 active"
-												data-index="0"
-												data-quote="With Elance, you won't feel like you're missing out on the college vibe."
-												data-name="Shringa Surendran"
-												data-company="KPMG"
-											>
-												<div class="avatar-backdrop bg-blue"></div>
-												<img src="/images/i1.jpg" alt="Student 1" class="think-avatar-img" />
-											</div>
-											{/* Fallback avatar 2 */}
-											<div
-												class="think-avatar-container avatar-1"
-												data-index="1"
-												data-quote="Elance gave me the skills and confidence to land my dream job."
-												data-name="Anaam Abdul Salam"
-												data-company="Elance ACCA"
-											>
-												<div class="avatar-backdrop bg-purple"></div>
-												<img src="/images/i2.jpg" alt="Student 2" class="think-avatar-img" />
-											</div>
-											{/* Fallback avatar 3 */}
-											<div
-												class="think-avatar-container avatar-2"
-												data-index="2"
-												data-quote="Elance's online ACCA course and placement drive helped me get a job at EY."
-												data-name="Abhiram"
-												data-company="EY"
-											>
-												<div class="avatar-backdrop bg-skyblue"></div>
-												<img src="/images/Abhiram-testi.jpg" alt="Student 3" class="think-avatar-img" />
-											</div>
-										</>
-									)
-								}
+								<!-- Avatar 1 -->
+								<div
+									class="think-avatar-container avatar-0 active"
+									data-index="0"
+								>
+									<div class="avatar-backdrop bg-blue"></div>
+									<img
+										src="/images/i1.jpg"
+										alt="Student 1"
+										class="think-avatar-img"
+									/>
+								</div>
+								<!-- Avatar 2 -->
+								<div
+									class="think-avatar-container avatar-1"
+									data-index="1"
+								>
+									<div class="avatar-backdrop bg-purple">
+									</div>
+									<img
+										src="/images/i2.jpg"
+										alt="Student 2"
+										class="think-avatar-img"
+									/>
+								</div>
+								<!-- Avatar 3 -->
+								<div
+									class="think-avatar-container avatar-2"
+									data-index="2"
+								>
+									<div class="avatar-backdrop bg-skyblue">
+									</div>
+									<img
+										src="/images/Abhiram-testi.jpg"
+										alt="Student 3"
+										class="think-avatar-img"
+									/>
+								</div>
 							</div>
 
 							<div class="think-arrows">
@@ -901,17 +815,18 @@ const cmsTestimonials = testimonials.map((t) => ({
 								class="think-quote"
 								id="think-quote-text"
 							>
-								"{cmsTestimonials[0]?.review ?? "With Elance, you won't feel like you're missing out on the college vibe."}"
+								"With Elance, you won't feel like you're missing
+								out on the college vibe."
 							</blockquote>
 							<div class="think-student-info">
 								<cite
 									class="think-student-name"
 									id="think-quote-name"
-									>{cmsTestimonials[0]?.student_name ?? "Shringa Surendran"}</cite
+									>Shringa Surendran</cite
 								>
 								<span
 									class="think-student-company"
-									id="think-quote-company">{cmsTestimonials[0]?.course_name ?? "KPMG"}</span
+									id="think-quote-company">KPMG</span
 								>
 							</div>
 						</div>
@@ -1384,13 +1299,26 @@ const cmsTestimonials = testimonials.map((t) => ({
 			const thinkPrevBtns = document.querySelectorAll(".prev-think-btn");
 			const thinkNextBtns = document.querySelectorAll(".next-think-btn");
 
-			// Build testimonials array from data-* attributes on avatar elements (set by server from CMS)
-			const testimonials = thinkAvatars.map((el) => ({
-				quote: el.dataset.quote ? `"${el.dataset.quote}"` : "",
-				name: el.dataset.name ?? "",
-				company: el.dataset.company ?? "",
-				avatarIndex: parseInt(el.dataset.index ?? "0"),
-			}));
+			const testimonials = [
+				{
+					quote: "\"With Elance, you won't feel like you're missing out on the college vibe.\"",
+					name: "Shringa Surendran",
+					company: "KPMG",
+					avatarIndex: 0,
+				},
+				{
+					quote: '"Flexible classes and amazing mock exams. Elance is the best choice for professional finance courses."',
+					name: "Anagha Anand",
+					company: "Deloitte",
+					avatarIndex: 1,
+				},
+				{
+					quote: '"The placement support and faculty mentoring at Elance are unmatched in professional coaching."',
+					name: "Abhiram",
+					company: "EY",
+					avatarIndex: 2,
+				},
+			];
 
 			if (thinkAvatars.length > 0) {
 				let currentIndex = 0;
@@ -1770,47 +1698,6 @@ const cmsTestimonials = testimonials.map((t) => ({
 		font-family: "Outfit", sans-serif;
 		font-size: 18px;
 		padding-top: 20px;
-	}
-
-	/* Hero subtext — rendered from CMS hero_subtext field */
-	.hero-subtext {
-		font-family: "Inter", sans-serif;
-		font-size: clamp(0.9rem, 1.5vw, 1.05rem);
-		color: #4b5563;
-		line-height: 1.65;
-		margin-bottom: 28px;
-		max-width: 460px;
-	}
-
-	/* Placeholder avatar when no photo is set in CMS */
-	.testimonial-avatar-placeholder {
-		width: 48px;
-		height: 48px;
-		border-radius: 50%;
-		background: linear-gradient(135deg, #3b9fe8, #1a6fc4);
-		color: #fff;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		font-size: 20px;
-		font-weight: 700;
-		font-family: "Outfit", sans-serif;
-		flex-shrink: 0;
-	}
-
-	/* Initial letter placeholder for think section avatars */
-	.think-avatar-initials {
-		width: 100%;
-		height: 100%;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		font-size: 2rem;
-		font-weight: 700;
-		font-family: "Outfit", sans-serif;
-		color: #fff;
-		background: linear-gradient(135deg, #3b9fe8, #1a6fc4);
-		border-radius: 50%;
 	}
 
 	.alumni-section {
