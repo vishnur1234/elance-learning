@@ -14,7 +14,13 @@ const database = databaseUrl
     ? postgres({ connectionString: databaseUrl })
     : sqlite({ url: 'data.db' });
 
-const siteUrl = process.env.EMDASH_SITE_URL || env.EMDASH_SITE_URL || process.env.PUBLIC_SITE_URL || env.PUBLIC_SITE_URL || (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : undefined) || (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : undefined);
+// In production / Vercel, ignore localhost URLs for siteUrl so WebAuthn/Passkey origin matches correctly
+const rawSiteUrl = process.env.EMDASH_SITE_URL || env.EMDASH_SITE_URL || process.env.PUBLIC_SITE_URL || env.PUBLIC_SITE_URL || (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : undefined) || (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : undefined);
+
+const isVercel = Boolean(process.env.VERCEL || process.env.VERCEL_ENV);
+const siteUrl = (isVercel && rawSiteUrl?.includes('localhost'))
+    ? (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'https://elance-learning.vercel.app'))
+    : rawSiteUrl;
 
 // https://docs.emdashcms.com/existing-project/
 export default defineConfig({
