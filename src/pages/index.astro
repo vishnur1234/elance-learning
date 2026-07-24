@@ -47,10 +47,11 @@ const heroCtaSecondaryUrl = String(
 	homeData.hero_cta_secondary_url ?? "contact",
 );
 
-// Normalize testimonials entries — extract .data if wrapped
-const cmsTestimonials = testimonials.map((t) =>
-	(t && typeof t === 'object' && 'data' in t && t.data) ? t.data : (t || {})
-);
+// Normalize testimonials entries — extract .data and .edit for visual inline editing
+const cmsTestimonials = testimonials.map((t) => ({
+	data: (t && typeof t === 'object' && 'data' in t && t.data) ? t.data : (t || {}),
+	edit: t?.edit,
+}));
 ---
 
 <html lang="en">
@@ -82,12 +83,14 @@ const cmsTestimonials = testimonials.map((t) =>
 			class="hero"
 			data-hero-eyebrow={heroEyebrow}
 			data-hero-heading={heroHeading}
+			{...homePage?.edit}
 		>
 			<div class="hero-container">
 				<div class="hero-content">
 					<p
 						class="hero-eyebrow"
 						id="hero-eyebrow"
+						{...homePage?.edit?.hero_eyebrow}
 					>
 						{heroEyebrow}
 					</p>
@@ -95,19 +98,26 @@ const cmsTestimonials = testimonials.map((t) =>
 						class="hero-heading"
 						id="hero-heading"
 						set:html={heroHeading}
+						{...homePage?.edit?.hero_heading}
 					/>
-					<p class="hero-subtext" id="hero-subtext">
+					<p
+						class="hero-subtext"
+						id="hero-subtext"
+						{...homePage?.edit?.hero_subtext}
+					>
 						{heroSubtext}
 					</p>
 					<div class="hero-btns">
 						<a
 							href={heroCtaPrimaryUrl}
 							class="btn-blue-pill"
+							{...homePage?.edit?.hero_cta_primary}
 							>{heroCtaPrimary}</a
 						>
 						<a
 							href={heroCtaSecondaryUrl}
 							class="btn-outline-pill"
+							{...homePage?.edit?.hero_cta_secondary}
 							>{heroCtaSecondary}</a
 						>
 					</div>
@@ -380,37 +390,41 @@ const cmsTestimonials = testimonials.map((t) =>
 				<div class="testimonials-right">
 					{
 						cmsTestimonials.length > 0 ? (
-							cmsTestimonials.slice(0, 2).map((tData) => (
-								<div class="testimonial-card">
-									<span class="testimonial-badge">
-										{tData.course_name ?? "Student"}
-									</span>
-									<p class="testimonial-quote">
-										"{tData.review ?? ""}"
-									</p>
-									<div class="testimonial-author">
-										{tData.photo?.src ? (
-											<img
-												src={tData.photo.src}
-												alt={tData.student_name ?? "Student"}
-												class="testimonial-avatar"
-											/>
-										) : (
-											<div class="testimonial-avatar testimonial-avatar-placeholder">
-												{(tData.student_name ?? "S")[0].toUpperCase()}
+							cmsTestimonials.slice(0, 2).map((item) => {
+								const tData = item.data;
+								return (
+									<div class="testimonial-card" {...item.edit}>
+										<span class="testimonial-badge" {...item.edit?.course_name}>
+											{tData.course_name ?? "Student"}
+										</span>
+										<p class="testimonial-quote" {...item.edit?.review}>
+											"{tData.review ?? ""}"
+										</p>
+										<div class="testimonial-author">
+											{tData.photo?.src ? (
+												<img
+													src={tData.photo.src}
+													alt={tData.student_name ?? "Student"}
+													class="testimonial-avatar"
+													{...item.edit?.photo}
+												/>
+											) : (
+												<div class="testimonial-avatar testimonial-avatar-placeholder">
+													{(tData.student_name ?? "S")[0].toUpperCase()}
+												</div>
+											)}
+											<div>
+												<p class="testimonial-name" {...item.edit?.student_name}>
+													{tData.student_name ?? ""}
+												</p>
+												<p class="testimonial-course">
+													{tData.course_name ?? ""}
+												</p>
 											</div>
-										)}
-										<div>
-											<p class="testimonial-name">
-												{tData.student_name ?? ""}
-											</p>
-											<p class="testimonial-course">
-												{tData.course_name ?? ""}
-											</p>
 										</div>
 									</div>
-								</div>
-							))
+								);
+							})
 						) : (
 							<>
 								{/* Fallback: hard-coded cards shown when CMS has no published testimonials */}
