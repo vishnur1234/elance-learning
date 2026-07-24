@@ -12,9 +12,40 @@ const databaseUrl = process.env.DATABASE_URL || env.DATABASE_URL;
 const mode = process.argv[2] || 'all';
 
 async function main() {
-  let db;
+  const isPg = Boolean(databaseUrl && !databaseUrl.includes('data.db'));
 
-  if (databaseUrl && !databaseUrl.includes('data.db')) {
+  if (mode === 'drop') {
+    if (isPg) {
+      console.log('🔥 Dropping ALL tables from Supabase PostgreSQL database...');
+      const pool = new pg.Pool({ connectionString: databaseUrl });
+      const client = await pool.connect();
+      try {
+        await client.query(`
+          DO $$ DECLARE
+              r RECORD;
+          BEGIN
+              FOR r IN (SELECT tablename FROM pg_tables WHERE schemaname = 'public') LOOP
+                  EXECUTE 'DROP TABLE IF EXISTS "' || r.tablename || '" CASCADE';
+              END LOOP;
+          END $$;
+        `);
+        console.log('💥 All tables dropped successfully from Supabase PostgreSQL!');
+      } finally {
+        client.release();
+        await pool.end();
+      }
+    } else {
+      console.log('🔥 Deleting local SQLite database (data.db)...');
+      if (fs.existsSync('data.db')) {
+        fs.unlinkSync('data.db');
+      }
+      console.log('💥 Local SQLite database deleted successfully!');
+    }
+    return;
+  }
+
+  let db;
+  if (isPg) {
     console.log('🔗 Connecting to PostgreSQL database (Supabase)...');
     db = new Kysely({
       dialect: new PostgresDialect({
