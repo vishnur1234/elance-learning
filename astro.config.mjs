@@ -1,13 +1,17 @@
 // @ts-check
 import { defineConfig, sessionDrivers } from 'astro/config';
+import { loadEnv } from 'vite';
 import vercel from '@astrojs/vercel';
 import react from '@astrojs/react';
 import emdash from 'emdash/astro';
 import { postgres, sqlite } from 'emdash/db';
 
+const env = loadEnv(process.env.NODE_ENV || 'development', process.cwd(), '');
+const databaseUrl = process.env.DATABASE_URL || env.DATABASE_URL;
+
 // Use Supabase PostgreSQL when DATABASE_URL is present, otherwise fallback to local SQLite (data.db).
-const database = process.env.DATABASE_URL
-    ? postgres({ connectionString: process.env.DATABASE_URL })
+const database = databaseUrl
+    ? postgres({ connectionString: databaseUrl })
     : sqlite({ url: 'data.db' });
 
 // https://docs.emdashcms.com/existing-project/
