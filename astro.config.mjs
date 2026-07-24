@@ -5,6 +5,7 @@ import vercel from '@astrojs/vercel';
 import react from '@astrojs/react';
 import emdash from 'emdash/astro';
 import { postgres, sqlite } from 'emdash/db';
+import path from 'path';
 
 const env = loadEnv(process.env.NODE_ENV || 'development', process.cwd(), '');
 const databaseUrl = process.env.DATABASE_URL || env.DATABASE_URL;
@@ -22,12 +23,17 @@ const siteUrl = (isVercel && rawSiteUrl?.includes('localhost'))
     ? (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'https://elance-learning.vercel.app'))
     : rawSiteUrl;
 
+// Use persistent PostgreSQL database session on Vercel/PostgreSQL so login sessions persist across serverless instances
+const sessionDriver = databaseUrl && !databaseUrl.includes('data.db')
+    ? { entrypoint: path.resolve('./src/lib/session-driver.js'), config: { connectionString: databaseUrl } }
+    : sessionDrivers.fs();
+
 // https://docs.emdashcms.com/existing-project/
 export default defineConfig({
     output: 'server',
     adapter: vercel(),
     session: {
-        driver: sessionDrivers.fs(),
+        driver: sessionDriver,
     },
     vite: {
         server: {
