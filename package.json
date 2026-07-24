@@ -9,7 +9,9 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "db:reset": "node scripts/db-reset.js all",
+    "db:clean-users": "node scripts/db-reset.js users"
   },
   "dependencies": {
     "@astrojs/node": "^11.0.2",
