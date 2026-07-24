@@ -1,21 +1,30 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
+import { loadEnv } from 'vite';
 import vercel from '@astrojs/vercel';
 import react from '@astrojs/react';
 import emdash from 'emdash/astro';
 import { postgres, sqlite } from 'emdash/db';
 
-// Use local SQLite (data.db) for development so seeded collections & entries work instantly.
-// Use Supabase PostgreSQL in production builds when DATABASE_URL is present.
-const isProd = process.env.NODE_ENV === 'production';
-const database = (isProd && process.env.DATABASE_URL)
-    ? postgres({ connectionString: process.env.DATABASE_URL })
+const env = loadEnv(process.env.NODE_ENV || 'development', process.cwd(), '');
+const databaseUrl = process.env.DATABASE_URL || env.DATABASE_URL;
+
+// Use Supabase PostgreSQL when DATABASE_URL is present, otherwise fallback to local SQLite (data.db).
+const database = databaseUrl
+    ? postgres({ connectionString: databaseUrl })
     : sqlite({ url: 'data.db' });
+
+const siteUrl = process.env.EMDASH_SITE_URL || (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : undefined);
 
 // https://docs.emdashcms.com/existing-project/
 export default defineConfig({
     output: 'server',
     adapter: vercel(),
+    session: {
+        driver: {
+            entrypoint: 'unstorage/drivers/memory',
+        },
+    },
     vite: {
         server: {
             watch: {
@@ -27,6 +36,7 @@ export default defineConfig({
         react(),
         emdash({
             database,
+            siteUrl,
         }),
     ],
 });
