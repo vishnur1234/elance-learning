@@ -41,7 +41,12 @@ export default function supabaseSessionDriver(options = {}) {
 				await ensureTable(p);
 				const res = await p.query('SELECT value FROM _emdash_sessions WHERE key = $1', [key]);
 				if (res.rows.length === 0) return null;
-				return JSON.parse(res.rows[0].value);
+				const raw = res.rows[0].value;
+				try {
+					return JSON.parse(raw);
+				} catch {
+					return raw;
+				}
 			} catch (err) {
 				console.error('[supabase-session] getItem error:', err);
 				return null;
@@ -52,7 +57,7 @@ export default function supabaseSessionDriver(options = {}) {
 				if (!connectionString) return;
 				const p = getPool(connectionString);
 				await ensureTable(p);
-				const valStr = JSON.stringify(value);
+				const valStr = typeof value === 'string' ? value : JSON.stringify(value);
 				await p.query(
 					`INSERT INTO _emdash_sessions (key, value) VALUES ($1, $2)
 					 ON CONFLICT (key) DO UPDATE SET value = EXCLUDED.value`,
