@@ -2,7 +2,6 @@ import { Kysely, PostgresDialect, SqliteDialect } from 'kysely';
 import BetterSqlite3 from 'better-sqlite3';
 import pg from 'pg';
 import { runMigrations } from 'emdash/db';
-import { t as applySeed } from '../node_modules/emdash/dist/apply-CmIJK9j8.mjs';
 import { loadEnv } from 'vite';
 import fs from 'fs';
 import path from 'path';
@@ -64,13 +63,9 @@ async function main() {
   try {
     if (mode === 'users') {
       console.log('🧹 Cleaning users, credentials, and resetting setup wizard...');
-      try { await db.deleteFrom('credentials').execute(); } catch {}
-      try { await db.deleteFrom('users').execute(); } catch {}
-      try { await db.deleteFrom('auth_challenges').execute(); } catch {}
-      try { await db.deleteFrom('auth_tokens').execute(); } catch {}
-      try { await db.deleteFrom('_emdash_authorization_codes').execute(); } catch {}
-      try { await db.deleteFrom('_emdash_device_codes').execute(); } catch {}
-      try { await db.deleteFrom('_emdash_oauth_tokens').execute(); } catch {}
+      for (const tbl of ['credentials', 'users', 'auth_challenges', 'auth_tokens', '_emdash_authorization_codes', '_emdash_device_codes', '_emdash_oauth_tokens']) {
+        try { await db.deleteFrom(tbl).execute(); } catch {}
+      }
       try {
         await db.updateTable('options')
           .set({ value: JSON.stringify('false') })
@@ -87,7 +82,8 @@ async function main() {
       if (fs.existsSync(seedFile)) {
         const seedRaw = fs.readFileSync(seedFile, 'utf8');
         const seedData = JSON.parse(seedRaw);
-        const result = await applySeed(db, seedData, { onConflict: 'update' });
+        const { t: applySeed } = await import('../node_modules/emdash/dist/apply-CmIJK9j8.mjs');
+        await applySeed(db, seedData, { onConflict: 'update' });
         console.log('✅ Master seed applied successfully!');
       } else {
         console.log('⚠️ .emdash/seed.json not found, skipping seed.');

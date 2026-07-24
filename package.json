@@ -11,8 +11,7 @@
     "preview": "astro preview",
     "astro": "astro",
     "db:reset": "node scripts/db-reset.js all",
-    "db:clean-users": "node scripts/db-reset.js users",
-    "db:drop-all": "node scripts/db-reset.js drop"
+    "db:clean-users": "node scripts/db-reset.js users"
   },
   "dependencies": {
     "@astrojs/node": "^11.0.2",
