@@ -10,6 +10,24 @@ const env = loadEnv(process.env.NODE_ENV || 'development', process.cwd(), '');
 const databaseUrl = process.env.DATABASE_URL || env.DATABASE_URL;
 const mode = process.argv[2] || 'all';
 
+async function ensurePostgresHelpers(pool) {
+  const client = await pool.connect();
+  try {
+    await client.query(`
+      CREATE OR REPLACE FUNCTION datetime(val text DEFAULT 'now')
+      RETURNS timestamptz AS $$
+      BEGIN
+          RETURN CURRENT_TIMESTAMP;
+      END;
+      $$ LANGUAGE plpgsql;
+    `);
+  } catch (err) {
+    console.error('Failed to create datetime helper:', err);
+  } finally {
+    client.release();
+  }
+}
+
 async function main() {
   const isPg = Boolean(databaseUrl && !databaseUrl.includes('data.db'));
 
@@ -44,11 +62,14 @@ async function main() {
   }
 
   let db;
+  let pgPool;
   if (isPg) {
     console.log('🔗 Connecting to PostgreSQL database (Supabase)...');
+    pgPool = new pg.Pool({ connectionString: databaseUrl });
+    await ensurePostgresHelpers(pgPool);
     db = new Kysely({
       dialect: new PostgresDialect({
-        pool: new pg.Pool({ connectionString: databaseUrl })
+        pool: pgPool
       })
     });
   } else {
