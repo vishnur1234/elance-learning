@@ -23,6 +23,15 @@ const heroCtaSecondary = String(
 const heroCtaSecondaryUrl = String(
 	homeData.hero_cta_secondary_url || "contact",
 );
+const alumniText = String(
+	homeData.alumni_text || 'Our <span class="alumni-word">alumni</span> work at',
+);
+const studentsFeedbackTitle = String(
+	homeData.students_feedback_title || 'Our Students <span class="text-blue">Feedback</span>',
+);
+const studentsFeedbackDesc = String(
+	homeData.students_feedback_desc || 'Hear from our students as they share their incredible journeys of growth, success, and accomplishments with Elance!',
+);
 ---
 
 <html lang="en">
@@ -86,9 +95,12 @@ const heroCtaSecondaryUrl = String(
 						>
 					</div>
 					<div class="alumni-section">
-						<p class="alumni-text">
-							Our <span class="alumni-word">alumni</span> work at
-						</p>
+						<p
+							class="alumni-text"
+							id="alumni-text"
+							set:html={alumniText}
+							{...homePage?.edit?.alumni_text}
+						/>
 						<div class="alumni-ticker-wrap">
 							<div class="alumni-ticker">
 								<!-- Set 1 -->
@@ -473,13 +485,18 @@ const heroCtaSecondaryUrl = String(
 			<div class="section-container feedback-layout">
 				<!-- Left -->
 				<div class="feedback-left">
-					<h2 class="feedback-title">
-						Our Students <span class="text-blue">Feedback</span>
-					</h2>
-					<p class="feedback-desc">
-						Hear from our students as they share their incredible
-						journeys of growth, success, and accomplishments with
-						Elance!
+					<h2
+						class="feedback-title"
+						id="feedback-title"
+						set:html={studentsFeedbackTitle}
+						{...homePage?.edit?.students_feedback_title}
+					/>
+					<p
+						class="feedback-desc"
+						id="feedback-desc"
+						{...homePage?.edit?.students_feedback_desc}
+					>
+						{studentsFeedbackDesc}
 					</p>
 
 					<!-- Active Student Info (Dynamic) -->

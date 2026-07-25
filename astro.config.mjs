@@ -22,7 +22,7 @@ const siteUrl = (isVercel && rawSiteUrl?.includes('localhost'))
    : (rawSiteUrl || undefined);
 
 // Use persistent PostgreSQL database session on Vercel/PostgreSQL so login sessions persist across serverless instances, or fs driver in local dev
-const sessionDriver = (databaseUrl && !databaseUrl.includes('data.db'))
+const sessionDriver = (isVercel && databaseUrl && !databaseUrl.includes('data.db'))
     ? { entrypoint: path.resolve('./src/lib/session-driver.js'), options: { connectionString: databaseUrl } }
     : sessionDrivers.fs();
 

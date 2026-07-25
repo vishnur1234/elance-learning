@@ -1,3 +1,4 @@
+import { defineDriver } from 'unstorage';
 import pg from 'pg';
 
 let pool;
@@ -29,11 +30,22 @@ async function ensureTable(p) {
 	}
 }
 
-export default function supabaseSessionDriver(options = {}) {
+export default defineDriver((options = {}) => {
 	const connectionString = options.connectionString || process.env.DATABASE_URL;
 
 	return {
 		name: 'supabase-session',
+		async hasItem(key) {
+			try {
+				if (!connectionString) return false;
+				const p = getPool(connectionString);
+				await ensureTable(p);
+				const res = await p.query('SELECT 1 FROM _emdash_sessions WHERE key = $1', [key]);
+				return res.rows.length > 0;
+			} catch {
+				return false;
+			}
+		},
 		async getItem(key) {
 			try {
 				if (!connectionString) return null;
@@ -41,12 +53,7 @@ export default function supabaseSessionDriver(options = {}) {
 				await ensureTable(p);
 				const res = await p.query('SELECT value FROM _emdash_sessions WHERE key = $1', [key]);
 				if (res.rows.length === 0) return null;
-				const raw = res.rows[0].value;
-				try {
-					return JSON.parse(raw);
-				} catch {
-					return raw;
-				}
+				return res.rows[0].value;
 			} catch (err) {
 				console.error('[supabase-session] getItem error:', err);
 				return null;
@@ -99,4 +106,5 @@ export default function supabaseSessionDriver(options = {}) {
 			}
 		}
 	};
-}
+});
+

@@ -223,6 +223,21 @@
 					"slug": "og_image",
 					"label": "Open Graph Image",
 					"type": "image"
+				},
+				{
+					"slug": "alumni_text",
+					"label": "Alumni Section Text",
+					"type": "string"
+				},
+				{
+					"slug": "students_feedback_title",
+					"label": "Students Feedback Title",
+					"type": "string"
+				},
+				{
+					"slug": "students_feedback_desc",
+					"label": "Students Feedback Description",
+					"type": "text"
 				}
 			]
 		},

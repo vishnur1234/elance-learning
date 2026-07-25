@@ -89,6 +89,9 @@ export interface Page {
   seo_description?: string;
   canonical_url?: string;
   og_image?: { id: string; src?: string; alt?: string; width?: number; height?: number; provider?: string; previewUrl?: string; meta?: Record<string, unknown> };
+  alumni_text?: string;
+  students_feedback_title?: string;
+  students_feedback_desc?: string;
   createdAt: Date;
   updatedAt: Date;
   publishedAt: Date | null;
