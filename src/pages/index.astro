@@ -15,6 +15,10 @@ const heroHeading = String(
 	homeData.hero_heading ||
 		'India\'s Most Trusted<br /><span class="hero-blue">Commerce Institute</span>',
 );
+const heroSubtext = String(
+	homeData.hero_subtext ||
+		'Build your career with globally recognized programs<br />in CMA (US), and ACCA — designed for future<br />commerce leaders.',
+);
 const heroCtaPrimary = String(homeData.hero_cta_primary || "Explore Courses");
 const heroCtaPrimaryUrl = String(homeData.hero_cta_primary_url || "#courses");
 const heroCtaSecondary = String(
@@ -194,11 +198,12 @@ const studentsFeedbackDesc = String(
 						class="life-mobile-br"
 					/> Your Dream
 				</h2>
-				<p class="section-subtitle">
-					Build your career with globally recognized programs<br />
-					in CMA (US), and ACCA — designed for future<br />
-					commerce leaders.
-				</p>
+				<p
+					class="section-subtitle"
+					id="hero-subtext"
+					set:html={heroSubtext}
+					{...homePage?.edit?.hero_subtext}
+				/>
 				<div class="courses-wrap">
 					<div class="funnel-bg"></div>
 					<div class="courses-grid" id="coursesGrid">
