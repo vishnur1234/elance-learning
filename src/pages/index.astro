@@ -5,7 +5,9 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 import { getEmDashEntry } from "../lib/cms.js";
 
 // Fetch home page dynamic content from EmDash CMS
-const { entry: homePage } = await getEmDashEntry("pages", "home").catch(() => ({ entry: null }));
+const { entry: homePage } = await getEmDashEntry("pages", "home").catch(() => ({
+	entry: null,
+}));
 
 function formatTitleWithBlueWords(
 	text: string,
@@ -13,12 +15,15 @@ function formatTitleWithBlueWords(
 	spanClass: string = "text-blue",
 ): string {
 	if (!text) return "";
-	if (text.includes('<span class=')) return text;
+	if (text.includes("<span class=")) return text;
 	let formatted = text;
 	for (const keyword of keywords) {
-		const escaped = keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-		const regex = new RegExp(`\\b(${escaped})\\b`, 'gi');
-		formatted = formatted.replace(regex, `<span class="${spanClass}">$1</span>`);
+		const escaped = keyword.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+		const regex = new RegExp(`\\b(${escaped})\\b`, "gi");
+		formatted = formatted.replace(
+			regex,
+			`<span class="${spanClass}">$1</span>`,
+		);
 	}
 	return formatted;
 }
@@ -32,12 +37,12 @@ const heroHeading = formatTitleWithBlueWords(
 		homeData.hero_heading ||
 			'India\'s Most Trusted<br /><span class="hero-blue">Commerce Institute</span>',
 	),
-	['Commerce Institute'],
-	'hero-blue',
+	["Commerce Institute"],
+	"hero-blue",
 );
 const heroSubtext = String(
 	homeData.hero_subtext ||
-		'Build your career with globally recognized programs<br />in CMA (US), and ACCA — designed for future<br />commerce leaders.',
+		"Build your career with globally recognized programs<br />in CMA (US), and ACCA — designed for future<br />commerce leaders.",
 );
 const heroCtaPrimary = String(homeData.hero_cta_primary || "Explore Courses");
 const heroCtaPrimaryUrl = String(homeData.hero_cta_primary_url || "#courses");
@@ -49,234 +54,263 @@ const heroCtaSecondaryUrl = String(
 );
 const alumniText = formatTitleWithBlueWords(
 	String(
-		homeData.alumni_text || 'Our <span class="alumni-word">alumni</span> work at',
+		homeData.alumni_text ||
+			'Our <span class="alumni-word">alumni</span> work at',
 	),
-	['alumni'],
-	'alumni-word',
+	["alumni"],
+	"alumni-word",
 );
 const studentsFeedbackTitle = formatTitleWithBlueWords(
 	String(
-		homeData.students_feedback_title || 'Our Students <span class="text-blue">Feedback</span>',
+		homeData.students_feedback_title ||
+			'Our Students <span class="text-blue">Feedback</span>',
 	),
-	['Feedback'],
+	["Feedback"],
 );
 const studentsFeedbackDesc = String(
-	homeData.students_feedback_desc || 'Hear from our students as they share their incredible journeys of growth, success, and accomplishments with Elance!',
+	homeData.students_feedback_desc ||
+		"Hear from our students as they share their incredible journeys of growth, success, and accomplishments with Elance!",
 );
 
 const coursesTitle = formatTitleWithBlueWords(
 	String(
-		homeData.courses_title || 'Pick the <span class="text-blue">Course</span> That Fits<br class="life-mobile-br" /> Your Dream',
+		homeData.courses_title ||
+			'Pick the <span class="text-blue">Course</span> That Fits<br class="life-mobile-br" /> Your Dream',
 	),
-	['Course'],
+	["Course"],
 );
-const course1Title = String(homeData.course_1_title || 'ACCA');
+const course1Title = String(homeData.course_1_title || "ACCA");
 const course1Desc = String(
 	homeData.course_1_desc ||
-		'Qualify for ACCA and get access to the world of professional accounting which gives an offer to work globally across 180+ countries with high demand and good remuneration.',
+		"Qualify for ACCA and get access to the world of professional accounting which gives an offer to work globally across 180+ countries with high demand and good remuneration.",
 );
-const course1BtnPrimary = String(homeData.course_1_btn_primary || 'Brochure');
-const course1BtnSecondary = String(homeData.course_1_btn_secondary || 'Know more');
+const course1BtnPrimary = String(homeData.course_1_btn_primary || "Brochure");
+const course1BtnSecondary = String(
+	homeData.course_1_btn_secondary || "Know more",
+);
 
-const course2Title = String(homeData.course_2_title || 'CMA USA');
+const course2Title = String(homeData.course_2_title || "CMA USA");
 const course2Desc = String(
 	homeData.course_2_desc ||
-		'Skill up your current working career by becoming a Certified Management Accountant and feel the advancement of professional accounting.',
+		"Skill up your current working career by becoming a Certified Management Accountant and feel the advancement of professional accounting.",
 );
-const course2BtnPrimary = String(homeData.course_2_btn_primary || 'Brochure');
-const course2BtnSecondary = String(homeData.course_2_btn_secondary || 'Know more');
+const course2BtnPrimary = String(homeData.course_2_btn_primary || "Brochure");
+const course2BtnSecondary = String(
+	homeData.course_2_btn_secondary || "Know more",
+);
 
 const stepsTitle = formatTitleWithBlueWords(
 	String(
-		homeData.steps_title || 'Your <span class="text-blue">Commerce Career</span> Starts Here',
+		homeData.steps_title ||
+			'Your <span class="text-blue">Commerce Career</span> Starts Here',
 	),
-	['Commerce Career'],
+	["Commerce Career"],
 );
-const step1Num = String(homeData.step_1_num || '01');
-const step1Label = String(homeData.step_1_label || 'Learn');
-const step2Num = String(homeData.step_2_num || '02');
-const step2Label = String(homeData.step_2_label || 'Perform');
-const step3Num = String(homeData.step_3_num || '03');
-const step3Label = String(homeData.step_3_label || 'Get A Job');
-const stepsCtaText = String(homeData.steps_cta_text || 'Reach Us Anytime');
+const step1Num = String(homeData.step_1_num || "01");
+const step1Label = String(homeData.step_1_label || "Learn");
+const step2Num = String(homeData.step_2_num || "02");
+const step2Label = String(homeData.step_2_label || "Perform");
+const step3Num = String(homeData.step_3_num || "03");
+const step3Label = String(homeData.step_3_label || "Get A Job");
+const stepsCtaText = String(homeData.steps_cta_text || "Reach Us Anytime");
 
-const testimonialsEyebrow = String(homeData.testimonials_eyebrow || 'Testimonials');
+const testimonialsEyebrow = String(
+	homeData.testimonials_eyebrow || "Testimonials",
+);
 const testimonialsTitle = formatTitleWithBlueWords(
 	String(
 		homeData.testimonials_title ||
 			'<span class="text-blue">Hear From</span> Our<br />Previous <span class="text-blue">Students</span>',
 	),
-	['Hear From', 'Students'],
+	["Hear From", "Students"],
 );
 const testimonialsDesc = String(
 	homeData.testimonials_desc ||
-		'Elance envisions the courses for everyone to fuel the advancement of skills and make you capable of conquering your dream career',
+		"Elance envisions the courses for everyone to fuel the advancement of skills and make you capable of conquering your dream career",
 );
-const testimonialsBtnText = String(homeData.testimonials_btn_text || 'View More');
-const testimonial1Badge = String(homeData.testimonial_1_badge || 'CA');
+const testimonialsBtnText = String(
+	homeData.testimonials_btn_text || "View More",
+);
+const testimonial1Badge = String(homeData.testimonial_1_badge || "CA");
 const testimonial1Quote = String(
 	homeData.testimonial_1_quote ||
 		'"All my papers were done online at Elance, with wonderful support from the faculty and staff. "',
 );
-const testimonial1Name = String(homeData.testimonial_1_name || 'Anagha Anand');
-const testimonial1Role = String(homeData.testimonial_1_role || 'Elance CA Student');
-const testimonial2Badge = String(homeData.testimonial_2_badge || 'ACCA');
+const testimonial1Name = String(homeData.testimonial_1_name || "Anagha Anand");
+const testimonial1Role = String(
+	homeData.testimonial_1_role || "Elance CA Student",
+);
+const testimonial2Badge = String(homeData.testimonial_2_badge || "ACCA");
 const testimonial2Quote = String(
 	homeData.testimonial_2_quote ||
 		'"Elance\'s online ACCA course and placement drive helped me get a job at EY."',
 );
-const testimonial2Name = String(homeData.testimonial_2_name || 'Abhiram');
-const testimonial2Role = String(homeData.testimonial_2_role || 'ACCA');
+const testimonial2Name = String(homeData.testimonial_2_name || "Abhiram");
+const testimonial2Role = String(homeData.testimonial_2_role || "ACCA");
 
 const audience1Overlay = formatTitleWithBlueWords(
 	String(
-		homeData.audience_1_overlay || '<span class="label-light">For</span><br />Students',
+		homeData.audience_1_overlay ||
+			'<span class="label-light">For</span><br />Students',
 	),
-	['For'],
-	'label-light',
+	["For"],
+	"label-light",
 );
-const audience1Title = String(homeData.audience_1_title || 'For Students');
+const audience1Title = String(homeData.audience_1_title || "For Students");
 const audience1Desc = String(
 	homeData.audience_1_desc ||
-		'Offering top-tier commerce professional courses like ACCA and CMA to propel you into the future of finance with high-paying global career opportunities',
+		"Offering top-tier commerce professional courses like ACCA and CMA to propel you into the future of finance with high-paying global career opportunities",
 );
-const audience1BtnText = String(homeData.audience_1_btn_text || 'Get Started');
+const audience1BtnText = String(homeData.audience_1_btn_text || "Get Started");
 
 const audience2Overlay = formatTitleWithBlueWords(
 	String(
 		homeData.audience_2_overlay ||
 			'<span class="label-light">For</span> Working<br />Professionals',
 	),
-	['For'],
-	'label-light',
+	["For"],
+	"label-light",
 );
-const audience2Title = String(homeData.audience_2_title || 'For Working Professionals');
+const audience2Title = String(
+	homeData.audience_2_title || "For Working Professionals",
+);
 const audience2Desc = String(
 	homeData.audience_2_desc ||
-		'Our flexible learning solutions—online, offline, and hybrid, are designed for working professionals, to empower and enhance your knowledge and skills, and achieve new career heights.',
+		"Our flexible learning solutions—online, offline, and hybrid, are designed for working professionals, to empower and enhance your knowledge and skills, and achieve new career heights.",
 );
-const audience2BtnText = String(homeData.audience_2_btn_text || 'Get Started');
+const audience2BtnText = String(homeData.audience_2_btn_text || "Get Started");
 
 const promoTitle = String(
 	homeData.promo_title ||
-		'Make the Smart Move for a<br />Commerce Career<br />That Matters!',
+		"Make the Smart Move for a<br />Commerce Career<br />That Matters!",
 );
-const promoBtnText = String(homeData.promo_btn_text || 'Download Brochure');
+const promoBtnText = String(homeData.promo_btn_text || "Download Brochure");
 
-const feedback1Name = String(homeData.feedback_1_name || 'Kasinath');
-const feedback1Role = String(homeData.feedback_1_role || 'Elance CA Student');
-const feedback2Name = String(homeData.feedback_2_name || 'Anaam Abdul Salam');
-const feedback2Role = String(homeData.feedback_2_role || 'Elance ACCA Student');
-const feedback3Name = String(homeData.feedback_3_name || 'Ann Mary');
-const feedback3Role = String(homeData.feedback_3_role || 'Elance CMA Student');
-const feedback4Name = String(homeData.feedback_4_name || 'Anuradha');
-const feedback4Role = String(homeData.feedback_4_role || 'Elance CA Student');
-const feedback5Name = String(homeData.feedback_5_name || 'Ayshath Shahma');
-const feedback5Role = String(homeData.feedback_5_role || 'Elance ACCA Student');
-const feedback6Name = String(homeData.feedback_6_name || 'Bijini Koshi');
-const feedback6Role = String(homeData.feedback_6_role || 'Elance CMA Student');
+const feedback1Name = String(homeData.feedback_1_name || "Kasinath");
+const feedback1Role = String(homeData.feedback_1_role || "Elance CA Student");
+const feedback2Name = String(homeData.feedback_2_name || "Anaam Abdul Salam");
+const feedback2Role = String(homeData.feedback_2_role || "Elance ACCA Student");
+const feedback3Name = String(homeData.feedback_3_name || "Ann Mary");
+const feedback3Role = String(homeData.feedback_3_role || "Elance CMA Student");
+const feedback4Name = String(homeData.feedback_4_name || "Anuradha");
+const feedback4Role = String(homeData.feedback_4_role || "Elance CA Student");
+const feedback5Name = String(homeData.feedback_5_name || "Ayshath Shahma");
+const feedback5Role = String(homeData.feedback_5_role || "Elance ACCA Student");
+const feedback6Name = String(homeData.feedback_6_name || "Bijini Koshi");
+const feedback6Role = String(homeData.feedback_6_role || "Elance CMA Student");
 
 const thinkBannerTitle = formatTitleWithBlueWords(
 	String(
 		homeData.think_banner_title ||
 			'What our <span class="text-blue">Students<br />think</span> about us?',
 	),
-	['Students', 'think'],
+	["Students", "think"],
 );
 const think1Quote = String(
 	homeData.think_1_quote ||
-		'"With Elance, you won\'t feel like you\'re missing out on the college vibe."',
+		"\"With Elance, you won't feel like you're missing out on the college vibe.\"",
 );
-const think1Name = String(homeData.think_1_name || 'Shringa Surendran');
-const think1Company = String(homeData.think_1_company || 'KPMG');
+const think1Name = String(homeData.think_1_name || "Shringa Surendran");
+const think1Company = String(homeData.think_1_company || "KPMG");
 const think2Quote = String(
 	homeData.think_2_quote ||
 		'"Flexible classes and amazing mock exams. Elance is the best choice for professional finance courses."',
 );
-const think2Name = String(homeData.think_2_name || 'Anagha Anand');
-const think2Company = String(homeData.think_2_company || 'Deloitte');
+const think2Name = String(homeData.think_2_name || "Anagha Anand");
+const think2Company = String(homeData.think_2_company || "Deloitte");
 const think3Quote = String(
 	homeData.think_3_quote ||
 		'"The placement support and faculty mentoring at Elance are unmatched in professional coaching."',
 );
-const think3Name = String(homeData.think_3_name || 'Abhiram');
-const think3Company = String(homeData.think_3_company || 'EY');
+const think3Name = String(homeData.think_3_name || "Abhiram");
+const think3Company = String(homeData.think_3_company || "EY");
 
-const achievementsTitle = String(homeData.achievements_title || 'Achievements');
+const achievementsTitle = String(homeData.achievements_title || "Achievements");
 const achievementsSubtitle = String(
 	homeData.achievements_subtitle ||
 		"With immense pride, we underscore our outstanding results, a testament to Elance's legacy since its inception. In just four years, Elance has consistently delivered unmatched results, guiding students towards their dream careers as top-class commerce professionals. These achievements aren't just milestones; they represent our unwavering dedication to nurturing the future leaders of the industry.",
 );
-const achievements1Num = String(homeData.achievements_1_num || '53');
-const achievements1Label = String(homeData.achievements_1_label || 'World Ranks');
-const achievements2Num = String(homeData.achievements_2_num || '80');
-const achievements2Label = String(homeData.achievements_2_label || 'National Ranks');
+const achievements1Num = String(homeData.achievements_1_num || "53");
+const achievements1Label = String(
+	homeData.achievements_1_label || "World Ranks",
+);
+const achievements2Num = String(homeData.achievements_2_num || "80");
+const achievements2Label = String(
+	homeData.achievements_2_label || "National Ranks",
+);
 
 const careerTitle = formatTitleWithBlueWords(
 	String(
 		homeData.career_title ||
 			'Begin Your <span class="text-blue">Dream Career</span><br />with Us',
 	),
-	['Dream Career'],
+	["Dream Career"],
 );
 const partner1Name = String(
-	homeData.partner_1_name || 'Platinum Approved Partner of ACCA',
+	homeData.partner_1_name || "Platinum Approved Partner of ACCA",
 );
 const partner1Desc = String(
 	homeData.partner_1_desc ||
-		'Elance Proudly stands as one of the top Platinum Approved Partners of ACCA, a testament to our exceptional commitment to top-tier accounting education and excellent academic standards.',
+		"Elance Proudly stands as one of the top Platinum Approved Partners of ACCA, a testament to our exceptional commitment to top-tier accounting education and excellent academic standards.",
 );
 const partner2Name = String(
-	homeData.partner_2_name || 'Gold CMA Course Provider approved by IMA',
+	homeData.partner_2_name || "Gold CMA Course Provider approved by IMA",
 );
 const partner2Desc = String(
 	homeData.partner_2_desc ||
-		'Highlighting a commitment to excellence in management accounting education, Elance is being recognised as a Gold CMA Course Provider approved by IMA.',
+		"Highlighting a commitment to excellence in management accounting education, Elance is being recognised as a Gold CMA Course Provider approved by IMA.",
 );
 const partner3Name = String(
-	homeData.partner_3_name || 'ACCA Approved CBE Centre',
+	homeData.partner_3_name || "ACCA Approved CBE Centre",
 );
 const partner3Desc = String(
 	homeData.partner_3_desc ||
-		'Elance is an ACCA-approved CBE Centre. This license grants our campus the authorization to conduct ACCA fundamentals at our Calicut campus itself..',
+		"Elance is an ACCA-approved CBE Centre. This license grants our campus the authorization to conduct ACCA fundamentals at our Calicut campus itself..",
 );
 const partner4Name = String(
-	homeData.partner_4_name || 'Approved Partner of HOCK INTERNATIONAL',
+	homeData.partner_4_name || "Approved Partner of HOCK INTERNATIONAL",
 );
 const partner4Desc = String(
 	homeData.partner_4_desc ||
-		'Hock International for CMA USA collaborates closely with Elance, ensuring top-notch instruction using authentic learning materials supporting guidance to conquer doubts, master the syllabus, and excel in certification exams.',
+		"Hock International for CMA USA collaborates closely with Elance, ensuring top-notch instruction using authentic learning materials supporting guidance to conquer doubts, master the syllabus, and excel in certification exams.",
 );
 
 const lifeTitle = formatTitleWithBlueWords(
-	String(homeData.life_title || 'Life at <span class="text-blue">Elance</span>'),
-	['Elance'],
+	String(
+		homeData.life_title || 'Life at <span class="text-blue">Elance</span>',
+	),
+	["Elance"],
 );
 const life1Title = String(homeData.life_1_title || "Launch of 'CMA'");
-const life1Desc = String(homeData.life_1_desc || 'An awesome event for students!');
-const life2Title = String(homeData.life_2_title || 'Excel Hackathon');
+const life1Desc = String(
+	homeData.life_1_desc || "An awesome event for students!",
+);
+const life2Title = String(homeData.life_2_title || "Excel Hackathon");
 const life2Desc = String(
 	homeData.life_2_desc ||
-		'An exciting competition to test your Excel skills, from formulas to real-world scenarios. This event pushes students to analyze smart, and build solutions — all in one go!',
+		"An exciting competition to test your Excel skills, from formulas to real-world scenarios. This event pushes students to analyze smart, and build solutions — all in one go!",
 );
-const life3Title = String(homeData.life_3_title || 'AuditLab');
+const life3Title = String(homeData.life_3_title || "AuditLab");
 const life3Desc = String(
 	homeData.life_3_desc ||
-		'From 1000+ participants to the final client round, AuditLab was nothing short of transformative! It was a completely immersive audit experience where our students moved beyond theory, applied their knowledge step by step, and came out more confident and job-ready than ever.',
+		"From 1000+ participants to the final client round, AuditLab was nothing short of transformative! It was a completely immersive audit experience where our students moved beyond theory, applied their knowledge step by step, and came out more confident and job-ready than ever.",
 );
-const life4Title = String(homeData.life_4_title || 'Placement Training');
+const life4Title = String(homeData.life_4_title || "Placement Training");
 const life4Desc = String(
 	homeData.life_4_desc ||
-		'Through dedicated placement training, we help students in pursuing successful careers and land dream jobs.',
+		"Through dedicated placement training, we help students in pursuing successful careers and land dream jobs.",
 );
 
 const featuredTitle = formatTitleWithBlueWords(
-	String(homeData.featured_title || 'We\'re <span class="text-blue">Featured</span> On'),
-	['Featured'],
+	String(
+		homeData.featured_title ||
+			'We\'re <span class="text-blue">Featured</span> On',
+	),
+	["Featured"],
 );
 const featuredSubtitle = String(
 	homeData.featured_subtitle ||
-		'Recognized by leading media houses for our commitment to quality education and student success.',
+		"Recognized by leading media houses for our commitment to quality education and student success.",
 );
 ---
 
@@ -456,13 +490,30 @@ const featuredSubtitle = String(
 								alt="ACCA"
 								class="course-logo-img"
 							/>
-							<h3 class="course-card-title-plain" set:html={course1Title} {...homePage?.edit?.course_1_title} />
-							<p class="course-desc" {...homePage?.edit?.course_1_desc}>
+							<h3
+								class="course-card-title-plain"
+								set:html={course1Title}
+								{...homePage?.edit?.course_1_title}
+							/>
+							<p
+								class="course-desc"
+								{...homePage?.edit?.course_1_desc}
+							>
 								{course1Desc}
 							</p>
 							<div class="course-btns">
-								<a href="acca" class="btn-blue-pill" {...homePage?.edit?.course_1_btn_primary}>{course1BtnPrimary}</a>
-								<a href="acca" class="btn-outline-pill" {...homePage?.edit?.course_1_btn_secondary}>{course1BtnSecondary}</a>
+								<a
+									href="acca"
+									class="btn-blue-pill"
+									{...homePage?.edit?.course_1_btn_primary}
+									>{course1BtnPrimary}</a
+								>
+								<a
+									href="acca"
+									class="btn-outline-pill"
+									{...homePage?.edit?.course_1_btn_secondary}
+									>{course1BtnSecondary}</a
+								>
 							</div>
 						</div>
 
@@ -473,13 +524,30 @@ const featuredSubtitle = String(
 								alt="CMA USA"
 								class="course-logo-img"
 							/>
-							<h3 class="course-name-badge" set:html={course2Title} {...homePage?.edit?.course_2_title} />
-							<p class="course-desc" {...homePage?.edit?.course_2_desc}>
+							<h3
+								class="course-name-badge"
+								set:html={course2Title}
+								{...homePage?.edit?.course_2_title}
+							/>
+							<p
+								class="course-desc"
+								{...homePage?.edit?.course_2_desc}
+							>
 								{course2Desc}
 							</p>
 							<div class="course-btns">
-								<a href="cma" class="btn-blue-pill" {...homePage?.edit?.course_2_btn_primary}>{course2BtnPrimary}</a>
-								<a href="cma" class="btn-outline-pill" {...homePage?.edit?.course_2_btn_secondary}>{course2BtnSecondary}</a>
+								<a
+									href="cma"
+									class="btn-blue-pill"
+									{...homePage?.edit?.course_2_btn_primary}
+									>{course2BtnPrimary}</a
+								>
+								<a
+									href="cma"
+									class="btn-outline-pill"
+									{...homePage?.edit?.course_2_btn_secondary}
+									>{course2BtnSecondary}</a
+								>
 							</div>
 						</div>
 					</div>
@@ -530,10 +598,17 @@ const featuredSubtitle = String(
 		<!-- ===================== COMMERCE CAREER STEPS ===================== -->
 		<section class="steps-section">
 			<div class="section-container">
-				<h2 class="section-title" set:html={stepsTitle} {...homePage?.edit?.steps_title} />
+				<h2
+					class="section-title"
+					set:html={stepsTitle}
+					{...homePage?.edit?.steps_title}
+				/>
 				<div class="steps-grid">
 					<div class="step-item">
-						<span class="step-number" {...homePage?.edit?.step_1_num}>{step1Num}</span>
+						<span
+							class="step-number"
+							{...homePage?.edit?.step_1_num}>{step1Num}</span
+						>
 						<div class="step-icon-wrap">
 							<img
 								src="/images/home-cta-icon1.webp"
@@ -541,11 +616,16 @@ const featuredSubtitle = String(
 								class="step-icon"
 							/>
 						</div>
-						<p class="step-label" {...homePage?.edit?.step_1_label}>{step1Label}</p>
+						<p class="step-label" {...homePage?.edit?.step_1_label}>
+							{step1Label}
+						</p>
 					</div>
 					<div class="step-dots"></div>
 					<div class="step-item">
-						<span class="step-number" {...homePage?.edit?.step_2_num}>{step2Num}</span>
+						<span
+							class="step-number"
+							{...homePage?.edit?.step_2_num}>{step2Num}</span
+						>
 						<div class="step-icon-wrap">
 							<img
 								src="/images/home-cta-icon2.webp"
@@ -553,11 +633,16 @@ const featuredSubtitle = String(
 								class="step-icon"
 							/>
 						</div>
-						<p class="step-label" {...homePage?.edit?.step_2_label}>{step2Label}</p>
+						<p class="step-label" {...homePage?.edit?.step_2_label}>
+							{step2Label}
+						</p>
 					</div>
 					<div class="step-dots"></div>
 					<div class="step-item">
-						<span class="step-number" {...homePage?.edit?.step_3_num}>{step3Num}</span>
+						<span
+							class="step-number"
+							{...homePage?.edit?.step_3_num}>{step3Num}</span
+						>
 						<div class="step-icon-wrap">
 							<img
 								src="/images/home-cta-icon3.webp"
@@ -565,11 +650,17 @@ const featuredSubtitle = String(
 								class="step-icon"
 							/>
 						</div>
-						<p class="step-label" {...homePage?.edit?.step_3_label}>{step3Label}</p>
+						<p class="step-label" {...homePage?.edit?.step_3_label}>
+							{step3Label}
+						</p>
 					</div>
 				</div>
 				<div class="steps-cta">
-					<a href="#" class="btn-blue-pill" {...homePage?.edit?.steps_cta_text}>{stepsCtaText}</a>
+					<a
+						href="#"
+						class="btn-blue-pill"
+						{...homePage?.edit?.steps_cta_text}>{stepsCtaText}</a
+					>
 				</div>
 			</div>
 		</section>
@@ -585,19 +676,43 @@ const featuredSubtitle = String(
 						class="testimonials-triangle-bg"
 						aria-hidden="true"
 					/>
-					<p class="testimonials-eyebrow" {...homePage?.edit?.testimonials_eyebrow}>{testimonialsEyebrow}</p>
-					<h2 class="testimonials-title" set:html={testimonialsTitle} {...homePage?.edit?.testimonials_title} />
-					<p class="testimonials-desc" {...homePage?.edit?.testimonials_desc}>
+					<p
+						class="testimonials-eyebrow"
+						{...homePage?.edit?.testimonials_eyebrow}
+					>
+						{testimonialsEyebrow}
+					</p>
+					<h2
+						class="testimonials-title"
+						set:html={testimonialsTitle}
+						{...homePage?.edit?.testimonials_title}
+					/>
+					<p
+						class="testimonials-desc"
+						{...homePage?.edit?.testimonials_desc}
+					>
 						{testimonialsDesc}
 					</p>
-					<a href="#" class="btn-blue-pill" {...homePage?.edit?.testimonials_btn_text}>{testimonialsBtnText}</a>
+					<a
+						href="#"
+						class="btn-blue-pill"
+						{...homePage?.edit?.testimonials_btn_text}
+						>{testimonialsBtnText}</a
+					>
 				</div>
 				<!-- Right – Testimonial Cards -->
 				<div class="testimonials-right">
 					<!-- Card 1 -->
 					<div class="testimonial-card">
-						<span class="testimonial-badge" {...homePage?.edit?.testimonial_1_badge}>{testimonial1Badge}</span>
-						<p class="testimonial-quote" {...homePage?.edit?.testimonial_1_quote}>
+						<span
+							class="testimonial-badge"
+							{...homePage?.edit?.testimonial_1_badge}
+							>{testimonial1Badge}</span
+						>
+						<p
+							class="testimonial-quote"
+							{...homePage?.edit?.testimonial_1_quote}
+						>
 							{testimonial1Quote}
 						</p>
 						<div class="testimonial-author">
@@ -607,8 +722,16 @@ const featuredSubtitle = String(
 								class="testimonial-avatar"
 							/>
 							<div>
-								<p class="testimonial-name" {...homePage?.edit?.testimonial_1_name}>{testimonial1Name}</p>
-								<p class="testimonial-course" {...homePage?.edit?.testimonial_1_role}>
+								<p
+									class="testimonial-name"
+									{...homePage?.edit?.testimonial_1_name}
+								>
+									{testimonial1Name}
+								</p>
+								<p
+									class="testimonial-course"
+									{...homePage?.edit?.testimonial_1_role}
+								>
 									{testimonial1Role}
 								</p>
 							</div>
@@ -617,8 +740,15 @@ const featuredSubtitle = String(
 
 					<!-- Card 2 -->
 					<div class="testimonial-card">
-						<span class="testimonial-badge" {...homePage?.edit?.testimonial_2_badge}>{testimonial2Badge}</span>
-						<p class="testimonial-quote" {...homePage?.edit?.testimonial_2_quote}>
+						<span
+							class="testimonial-badge"
+							{...homePage?.edit?.testimonial_2_badge}
+							>{testimonial2Badge}</span
+						>
+						<p
+							class="testimonial-quote"
+							{...homePage?.edit?.testimonial_2_quote}
+						>
 							{testimonial2Quote}
 						</p>
 						<div class="testimonial-author">
@@ -628,8 +758,18 @@ const featuredSubtitle = String(
 								class="testimonial-avatar"
 							/>
 							<div>
-								<p class="testimonial-name" {...homePage?.edit?.testimonial_2_name}>{testimonial2Name}</p>
-								<p class="testimonial-course" {...homePage?.edit?.testimonial_2_role}>{testimonial2Role}</p>
+								<p
+									class="testimonial-name"
+									{...homePage?.edit?.testimonial_2_name}
+								>
+									{testimonial2Name}
+								</p>
+								<p
+									class="testimonial-course"
+									{...homePage?.edit?.testimonial_2_role}
+								>
+									{testimonial2Role}
+								</p>
 							</div>
 						</div>
 					</div>
@@ -648,14 +788,31 @@ const featuredSubtitle = String(
 						class="audience-img"
 					/>
 					<div class="audience-overlay">
-						<p class="audience-overlay-text" set:html={audience1Overlay} {...homePage?.edit?.audience_1_overlay} />
+						<p
+							class="audience-overlay-text"
+							set:html={audience1Overlay}
+							{...homePage?.edit?.audience_1_overlay}
+						/>
 					</div>
 					<div class="audience-info-box">
-						<h3 class="audience-info-title" {...homePage?.edit?.audience_1_title}>{audience1Title}</h3>
-						<p class="audience-info-desc" {...homePage?.edit?.audience_1_desc}>
+						<h3
+							class="audience-info-title"
+							{...homePage?.edit?.audience_1_title}
+						>
+							{audience1Title}
+						</h3>
+						<p
+							class="audience-info-desc"
+							{...homePage?.edit?.audience_1_desc}
+						>
 							{audience1Desc}
 						</p>
-						<a href="#" class="btn-blue-pill-small" {...homePage?.edit?.audience_1_btn_text}>{audience1BtnText}</a>
+						<a
+							href="#"
+							class="btn-blue-pill-small"
+							{...homePage?.edit?.audience_1_btn_text}
+							>{audience1BtnText}</a
+						>
 					</div>
 				</div>
 
@@ -667,16 +824,31 @@ const featuredSubtitle = String(
 						class="audience-img"
 					/>
 					<div class="audience-overlay">
-						<p class="audience-overlay-text" set:html={audience2Overlay} {...homePage?.edit?.audience_2_overlay} />
+						<p
+							class="audience-overlay-text"
+							set:html={audience2Overlay}
+							{...homePage?.edit?.audience_2_overlay}
+						/>
 					</div>
 					<div class="audience-info-box">
-						<h3 class="audience-info-title" {...homePage?.edit?.audience_2_title}>
+						<h3
+							class="audience-info-title"
+							{...homePage?.edit?.audience_2_title}
+						>
 							{audience2Title}
 						</h3>
-						<p class="audience-info-desc" {...homePage?.edit?.audience_2_desc}>
+						<p
+							class="audience-info-desc"
+							{...homePage?.edit?.audience_2_desc}
+						>
 							{audience2Desc}
 						</p>
-						<a href="#" class="btn-blue-pill-small" {...homePage?.edit?.audience_2_btn_text}>{audience2BtnText}</a>
+						<a
+							href="#"
+							class="btn-blue-pill-small"
+							{...homePage?.edit?.audience_2_btn_text}
+							>{audience2BtnText}</a
+						>
 					</div>
 				</div>
 			</div>
@@ -688,8 +860,16 @@ const featuredSubtitle = String(
 				<div class="promo-card">
 					<div class="promo-card-decor-1"></div>
 					<div class="promo-card-decor-2"></div>
-					<h2 class="promo-title" set:html={promoTitle} {...homePage?.edit?.promo_title} />
-					<a href="#" class="btn-white-pill" {...homePage?.edit?.promo_btn_text}>{promoBtnText}</a>
+					<h2
+						class="promo-title"
+						set:html={promoTitle}
+						{...homePage?.edit?.promo_title}
+					/>
+					<a
+						href="#"
+						class="btn-white-pill"
+						{...homePage?.edit?.promo_btn_text}>{promoBtnText}</a
+					>
 				</div>
 			</div>
 		</section>
@@ -943,7 +1123,11 @@ const featuredSubtitle = String(
 					<div class="think-banner-decor"></div>
 
 					<div class="think-banner-left">
-						<h2 class="think-title" set:html={thinkBannerTitle} {...homePage?.edit?.think_banner_title} />
+						<h2
+							class="think-title"
+							set:html={thinkBannerTitle}
+							{...homePage?.edit?.think_banner_title}
+						/>
 					</div>
 
 					<div class="think-banner-right">
@@ -1046,7 +1230,8 @@ const featuredSubtitle = String(
 								<span
 									class="think-student-company"
 									id="think-quote-company"
-									{...homePage?.edit?.think_1_company}>{think1Company}</span
+									{...homePage?.edit?.think_1_company}
+									>{think1Company}</span
 								>
 							</div>
 						</div>
@@ -1096,22 +1281,50 @@ const featuredSubtitle = String(
 		<!-- ===================== ACHIEVEMENTS ===================== -->
 		<section class="achievements-section">
 			<div class="section-container">
-				<h2 class="achievements-title" {...homePage?.edit?.achievements_title}>{achievementsTitle}</h2>
-				<p class="achievements-subtitle" {...homePage?.edit?.achievements_subtitle}>
+				<h2
+					class="achievements-title"
+					{...homePage?.edit?.achievements_title}
+				>
+					{achievementsTitle}
+				</h2>
+				<p
+					class="achievements-subtitle"
+					{...homePage?.edit?.achievements_subtitle}
+				>
 					{achievementsSubtitle}
 				</p>
 				<div class="achievements-grid">
 					<!-- Left Card -->
 					<div class="achievement-card blue-grad-1">
 						<div class="achievement-shine"></div>
-						<div class="achievement-num" {...homePage?.edit?.achievements_1_num}>{achievements1Num}</div>
-						<div class="achievement-label" {...homePage?.edit?.achievements_1_label}>{achievements1Label}</div>
+						<div
+							class="achievement-num"
+							{...homePage?.edit?.achievements_1_num}
+						>
+							{achievements1Num}
+						</div>
+						<div
+							class="achievement-label"
+							{...homePage?.edit?.achievements_1_label}
+						>
+							{achievements1Label}
+						</div>
 					</div>
 					<!-- Right Card -->
 					<div class="achievement-card blue-grad-2">
 						<div class="achievement-shine"></div>
-						<div class="achievement-num" {...homePage?.edit?.achievements_2_num}>{achievements2Num}</div>
-						<div class="achievement-label" {...homePage?.edit?.achievements_2_label}>{achievements2Label}</div>
+						<div
+							class="achievement-num"
+							{...homePage?.edit?.achievements_2_num}
+						>
+							{achievements2Num}
+						</div>
+						<div
+							class="achievement-label"
+							{...homePage?.edit?.achievements_2_label}
+						>
+							{achievements2Label}
+						</div>
 					</div>
 				</div>
 			</div>
@@ -1120,7 +1333,11 @@ const featuredSubtitle = String(
 		<!-- ===================== PARTNERS / CAREER ===================== -->
 		<section class="career-section">
 			<div class="section-container">
-				<h2 class="career-title" set:html={careerTitle} {...homePage?.edit?.career_title} />
+				<h2
+					class="career-title"
+					set:html={careerTitle}
+					{...homePage?.edit?.career_title}
+				/>
 				<div class="career-layout">
 					<!-- Left: Ambassador -->
 					<div class="career-left">
@@ -1142,10 +1359,16 @@ const featuredSubtitle = String(
 								/>
 							</div>
 							<div class="partner-content">
-								<h3 class="partner-name" {...homePage?.edit?.partner_1_name}>
+								<h3
+									class="partner-name"
+									{...homePage?.edit?.partner_1_name}
+								>
 									{partner1Name}
 								</h3>
-								<p class="partner-desc" {...homePage?.edit?.partner_1_desc}>
+								<p
+									class="partner-desc"
+									{...homePage?.edit?.partner_1_desc}
+								>
 									{partner1Desc}
 								</p>
 							</div>
@@ -1160,10 +1383,16 @@ const featuredSubtitle = String(
 								/>
 							</div>
 							<div class="partner-content">
-								<h3 class="partner-name" {...homePage?.edit?.partner_2_name}>
+								<h3
+									class="partner-name"
+									{...homePage?.edit?.partner_2_name}
+								>
 									{partner2Name}
 								</h3>
-								<p class="partner-desc" {...homePage?.edit?.partner_2_desc}>
+								<p
+									class="partner-desc"
+									{...homePage?.edit?.partner_2_desc}
+								>
 									{partner2Desc}
 								</p>
 							</div>
@@ -1178,10 +1407,16 @@ const featuredSubtitle = String(
 								/>
 							</div>
 							<div class="partner-content">
-								<h3 class="partner-name" {...homePage?.edit?.partner_3_name}>
+								<h3
+									class="partner-name"
+									{...homePage?.edit?.partner_3_name}
+								>
 									{partner3Name}
 								</h3>
-								<p class="partner-desc" {...homePage?.edit?.partner_3_desc}>
+								<p
+									class="partner-desc"
+									{...homePage?.edit?.partner_3_desc}
+								>
 									{partner3Desc}
 								</p>
 							</div>
@@ -1196,10 +1431,16 @@ const featuredSubtitle = String(
 								/>
 							</div>
 							<div class="partner-content">
-								<h3 class="partner-name" {...homePage?.edit?.partner_4_name}>
+								<h3
+									class="partner-name"
+									{...homePage?.edit?.partner_4_name}
+								>
 									{partner4Name}
 								</h3>
-								<p class="partner-desc" {...homePage?.edit?.partner_4_desc}>
+								<p
+									class="partner-desc"
+									{...homePage?.edit?.partner_4_desc}
+								>
 									{partner4Desc}
 								</p>
 							</div>
@@ -1212,7 +1453,11 @@ const featuredSubtitle = String(
 		<!-- ===================== LIFE AT ELANCE ===================== -->
 		<section class="life-section">
 			<div class="section-container">
-				<h2 class="life-title" set:html={lifeTitle} {...homePage?.edit?.life_title} />
+				<h2
+					class="life-title"
+					set:html={lifeTitle}
+					{...homePage?.edit?.life_title}
+				/>
 				<div class="life-slider-wrap">
 					<!-- Left Navigation Arrow -->
 					<button
@@ -1243,8 +1488,16 @@ const featuredSubtitle = String(
 								class="life-card-img"
 							/>
 							<div class="life-card-overlay">
-								<h3 class="life-card-title" {...homePage?.edit?.life_1_title}>{life1Title}</h3>
-								<p class="life-card-desc" {...homePage?.edit?.life_1_desc}>
+								<h3
+									class="life-card-title"
+									{...homePage?.edit?.life_1_title}
+								>
+									{life1Title}
+								</h3>
+								<p
+									class="life-card-desc"
+									{...homePage?.edit?.life_1_desc}
+								>
 									{life1Desc}
 								</p>
 							</div>
@@ -1258,8 +1511,16 @@ const featuredSubtitle = String(
 								class="life-card-img"
 							/>
 							<div class="life-card-overlay">
-								<h3 class="life-card-title" {...homePage?.edit?.life_2_title}>{life2Title}</h3>
-								<p class="life-card-desc" {...homePage?.edit?.life_2_desc}>
+								<h3
+									class="life-card-title"
+									{...homePage?.edit?.life_2_title}
+								>
+									{life2Title}
+								</h3>
+								<p
+									class="life-card-desc"
+									{...homePage?.edit?.life_2_desc}
+								>
 									{life2Desc}
 								</p>
 							</div>
@@ -1273,8 +1534,16 @@ const featuredSubtitle = String(
 								class="life-card-img"
 							/>
 							<div class="life-card-overlay">
-								<h3 class="life-card-title" {...homePage?.edit?.life_3_title}>{life3Title}</h3>
-								<p class="life-card-desc" {...homePage?.edit?.life_3_desc}>
+								<h3
+									class="life-card-title"
+									{...homePage?.edit?.life_3_title}
+								>
+									{life3Title}
+								</h3>
+								<p
+									class="life-card-desc"
+									{...homePage?.edit?.life_3_desc}
+								>
 									{life3Desc}
 								</p>
 							</div>
@@ -1288,10 +1557,16 @@ const featuredSubtitle = String(
 								class="life-card-img"
 							/>
 							<div class="life-card-overlay">
-								<h3 class="life-card-title" {...homePage?.edit?.life_4_title}>
+								<h3
+									class="life-card-title"
+									{...homePage?.edit?.life_4_title}
+								>
 									{life4Title}
 								</h3>
-								<p class="life-card-desc" {...homePage?.edit?.life_4_desc}>
+								<p
+									class="life-card-desc"
+									{...homePage?.edit?.life_4_desc}
+								>
 									{life4Desc}
 								</p>
 							</div>
@@ -1355,7 +1630,19 @@ const featuredSubtitle = String(
 			</div>
 		</section>
 
-		<script define:vars={{ think1Quote, think1Name, think1Company, think2Quote, think2Name, think2Company, think3Quote, think3Name, think3Company }}>
+		<script
+			define:vars={{
+				think1Quote,
+				think1Name,
+				think1Company,
+				think2Quote,
+				think2Name,
+				think2Company,
+				think3Quote,
+				think3Name,
+				think3Company,
+			}}
+		>
 			// Life at Elance slider
 			const grid = document.getElementById("life-grid");
 			const prevBtns = document.querySelectorAll(
@@ -1590,7 +1877,9 @@ const featuredSubtitle = String(
 
 						const processNode = (node) => {
 							if (node.nodeType === Node.TEXT_NODE) {
-								const words = (node.textContent || "").split(/(\s+)/);
+								const words = (node.textContent || "").split(
+									/(\s+)/,
+								);
 								const fragment =
 									document.createDocumentFragment();
 								words.forEach((word) => {

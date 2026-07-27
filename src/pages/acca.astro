@@ -152,11 +152,19 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 
 		<!-- Script for Scroll Parallax Morphing -->
 		<script>
-			const wrapper = document.querySelector<HTMLElement>(".morphing-wrapper");
-			const placeholder = document.querySelector<HTMLElement>(".video-placeholder");
-			const target = document.querySelector<HTMLElement>(".expanded-video-target");
-			const video = document.querySelector<HTMLElement>(".video-circle-wrapper");
-			const iframe = document.querySelector<HTMLIFrameElement>(".youtube-circle-iframe");
+			const wrapper =
+				document.querySelector<HTMLElement>(".morphing-wrapper");
+			const placeholder =
+				document.querySelector<HTMLElement>(".video-placeholder");
+			const target = document.querySelector<HTMLElement>(
+				".expanded-video-target",
+			);
+			const video = document.querySelector<HTMLElement>(
+				".video-circle-wrapper",
+			);
+			const iframe = document.querySelector<HTMLIFrameElement>(
+				".youtube-circle-iframe",
+			);
 			const leftCol = document.querySelector<HTMLElement>(".hero-left");
 
 			// Cached document-relative metrics. Re-measured on load/resize
