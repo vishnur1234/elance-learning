@@ -312,6 +312,28 @@ const featuredSubtitle = String(
 	homeData.featured_subtitle ||
 		"Recognized by leading media houses for our commitment to quality education and student success.",
 );
+
+function getImageUrl(imgData: any, defaultUrl: string): string {
+	if (!imgData) return defaultUrl;
+	if (typeof imgData === "string" && imgData.trim() !== "") return imgData;
+	if (typeof imgData === "object") {
+		return imgData.previewUrl || imgData.src || imgData.url || defaultUrl;
+	}
+	return defaultUrl;
+}
+
+const heroPersonImg = getImageUrl(homeData.hero_person_img, "/images/mammooty-new7.webp");
+const course1Img = getImageUrl(homeData.course_1_img, "/images/accaimage-300x300.png");
+const course2Img = getImageUrl(homeData.course_2_img, "/images/cmaimage-300x300.png");
+const testimonial1Avatar = getImageUrl(homeData.testimonial_1_avatar, "/images/Anagha-Anand-150x150.webp");
+const testimonial2Avatar = getImageUrl(homeData.testimonial_2_avatar, "/images/Abhiram-testi.jpg");
+const audience1Img = getImageUrl(homeData.audience_1_img, "/images/Studentsai1.jpg");
+const audience2Img = getImageUrl(homeData.audience_2_img, "/images/WorkingProfessionalsai.jpg");
+const careerPersonImg = getImageUrl(homeData.career_person_img, "/images/mamu-sec.webp");
+const life1Img = getImageUrl(homeData.life_1_img, "/images/Resize-09.jpg");
+const life2Img = getImageUrl(homeData.life_2_img, "/images/ReSize-01.jpg");
+const life3Img = getImageUrl(homeData.life_3_img, "/images/ReSize-08.jpg");
+const life4Img = getImageUrl(homeData.life_4_img, "/images/gallery/DSC05997-scaled-1-1024x576.jpg");
 ---
 
 <html lang="en">
@@ -458,9 +480,10 @@ const featuredSubtitle = String(
 						aria-hidden="true"
 					/>
 					<img
-						src="/images/mammooty-new7.webp"
+						src={heroPersonImg}
 						alt="Brand Ambassador"
 						class="hero-person"
+						{...homePage?.edit?.hero_person_img}
 					/>
 				</div>
 			</div>
@@ -486,9 +509,10 @@ const featuredSubtitle = String(
 						<!-- ACCA -->
 						<div class="course-card">
 							<img
-								src="/images/accaimage-300x300.png"
+								src={course1Img}
 								alt="ACCA"
 								class="course-logo-img"
+								{...homePage?.edit?.course_1_img}
 							/>
 							<h3
 								class="course-card-title-plain"
@@ -520,9 +544,10 @@ const featuredSubtitle = String(
 						<!-- CMA USA -->
 						<div class="course-card">
 							<img
-								src="/images/cmaimage-300x300.png"
+								src={course2Img}
 								alt="CMA USA"
 								class="course-logo-img"
+								{...homePage?.edit?.course_2_img}
 							/>
 							<h3
 								class="course-name-badge"
@@ -717,9 +742,10 @@ const featuredSubtitle = String(
 						</p>
 						<div class="testimonial-author">
 							<img
-								src="/images/Anagha-Anand-150x150.webp"
+								src={testimonial1Avatar}
 								alt="Anagha Anand"
 								class="testimonial-avatar"
+								{...homePage?.edit?.testimonial_1_avatar}
 							/>
 							<div>
 								<p
@@ -753,9 +779,10 @@ const featuredSubtitle = String(
 						</p>
 						<div class="testimonial-author">
 							<img
-								src="/images/Abhiram-testi.jpg"
+								src={testimonial2Avatar}
 								alt="Abhiram"
 								class="testimonial-avatar"
+								{...homePage?.edit?.testimonial_2_avatar}
 							/>
 							<div>
 								<p
@@ -783,9 +810,10 @@ const featuredSubtitle = String(
 				<!-- Left Card: Students -->
 				<div class="audience-card students-card">
 					<img
-						src="/images/Studentsai1.jpg"
+						src={audience1Img}
 						alt="For Students"
 						class="audience-img"
+						{...homePage?.edit?.audience_1_img}
 					/>
 					<div class="audience-overlay">
 						<p
@@ -819,9 +847,10 @@ const featuredSubtitle = String(
 				<!-- Right Card: Professionals -->
 				<div class="audience-card professionals-card">
 					<img
-						src="/images/WorkingProfessionalsai.jpg"
+						src={audience2Img}
 						alt="For Working Professionals"
 						class="audience-img"
+						{...homePage?.edit?.audience_2_img}
 					/>
 					<div class="audience-overlay">
 						<p
@@ -1342,9 +1371,10 @@ const featuredSubtitle = String(
 					<!-- Left: Ambassador -->
 					<div class="career-left">
 						<img
-							src="/images/mamu-sec.webp"
+							src={careerPersonImg}
 							alt="Brand Ambassador"
 							class="career-person-img"
+							{...homePage?.edit?.career_person_img}
 						/>
 					</div>
 					<!-- Right: Listings -->
@@ -1483,9 +1513,10 @@ const featuredSubtitle = String(
 						<!-- Card 1: Launch of 'CMA' -->
 						<div class="life-card">
 							<img
-								src="/images/Resize-09.jpg"
+								src={life1Img}
 								alt="Launch of 'CMA'"
 								class="life-card-img"
+								{...homePage?.edit?.life_1_img}
 							/>
 							<div class="life-card-overlay">
 								<h3
@@ -1506,9 +1537,10 @@ const featuredSubtitle = String(
 						<!-- Card 2: Excel Hackathon -->
 						<div class="life-card">
 							<img
-								src="/images/ReSize-01.jpg"
+								src={life2Img}
 								alt="Excel Hackathon"
 								class="life-card-img"
+								{...homePage?.edit?.life_2_img}
 							/>
 							<div class="life-card-overlay">
 								<h3
@@ -1529,9 +1561,10 @@ const featuredSubtitle = String(
 						<!-- Card 3: AuditLab -->
 						<div class="life-card">
 							<img
-								src="/images/ReSize-08.jpg"
+								src={life3Img}
 								alt="AuditLab"
 								class="life-card-img"
+								{...homePage?.edit?.life_3_img}
 							/>
 							<div class="life-card-overlay">
 								<h3
@@ -1552,9 +1585,10 @@ const featuredSubtitle = String(
 						<!-- Card 4: Placement Training -->
 						<div class="life-card">
 							<img
-								src="/images/gallery/DSC05997-scaled-1-1024x576.jpg"
+								src={life4Img}
 								alt="Placement Training"
 								class="life-card-img"
+								{...homePage?.edit?.life_4_img}
 							/>
 							<div class="life-card-overlay">
 								<h3

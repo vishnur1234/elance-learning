@@ -3,7 +3,7 @@ import { defineConfig, sessionDrivers } from 'astro/config';
 import { loadEnv } from 'vite';
 import vercel from '@astrojs/vercel';
 import react from '@astrojs/react';
-import emdash from 'emdash/astro';
+import emdash, { s3 } from 'emdash/astro';
 import { postgres, sqlite } from 'emdash/db';
 import path from 'path';
 
@@ -26,6 +26,23 @@ const sessionDriver = (isVercel && databaseUrl && !databaseUrl.includes('data.db
     ? { entrypoint: path.resolve('./src/lib/session-driver.js'), options: { connectionString: databaseUrl } }
     : sessionDrivers.fs();
 
+// Supabase S3 Storage support (when S3_ENDPOINT or S3_ACCESS_KEY_ID is configured)
+const s3Endpoint = process.env.S3_ENDPOINT || env.S3_ENDPOINT;
+const s3Bucket = process.env.S3_BUCKET || env.S3_BUCKET;
+const s3AccessKeyId = process.env.S3_ACCESS_KEY_ID || env.S3_ACCESS_KEY_ID;
+const s3SecretAccessKey = process.env.S3_SECRET_ACCESS_KEY || env.S3_SECRET_ACCESS_KEY;
+const s3Region = process.env.S3_REGION || env.S3_REGION;
+const s3PublicUrl = process.env.S3_PUBLIC_URL || env.S3_PUBLIC_URL;
+
+const storage = (s3Endpoint || s3AccessKeyId) ? s3({
+    endpoint: s3Endpoint,
+    bucket: s3Bucket,
+    accessKeyId: s3AccessKeyId,
+    secretAccessKey: s3SecretAccessKey,
+    region: s3Region,
+    publicUrl: s3PublicUrl,
+}) : undefined;
+
 // https://docs.emdashcms.com/existing-project/
 export default defineConfig({
     output: 'server',
@@ -45,6 +62,7 @@ export default defineConfig({
         emdash({
             database,
             siteUrl,
+            storage,
         }),
     ],
 });

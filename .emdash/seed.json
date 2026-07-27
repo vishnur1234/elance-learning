@@ -673,6 +673,66 @@
 					"slug": "featured_subtitle",
 					"label": "Featured Section Subtitle",
 					"type": "text"
+				},
+				{
+					"slug": "hero_person_img",
+					"label": "Hero Person Image",
+					"type": "image"
+				},
+				{
+					"slug": "course_1_img",
+					"label": "Course 1 Logo Image",
+					"type": "image"
+				},
+				{
+					"slug": "course_2_img",
+					"label": "Course 2 Logo Image",
+					"type": "image"
+				},
+				{
+					"slug": "testimonial_1_avatar",
+					"label": "Testimonial 1 Avatar",
+					"type": "image"
+				},
+				{
+					"slug": "testimonial_2_avatar",
+					"label": "Testimonial 2 Avatar",
+					"type": "image"
+				},
+				{
+					"slug": "audience_1_img",
+					"label": "Audience 1 Image",
+					"type": "image"
+				},
+				{
+					"slug": "audience_2_img",
+					"label": "Audience 2 Image",
+					"type": "image"
+				},
+				{
+					"slug": "career_person_img",
+					"label": "Career Section Person Image",
+					"type": "image"
+				},
+				{
+					"slug": "life_1_img",
+					"label": "Life Card 1 Image",
+					"type": "image"
+				},
+				{
+					"slug": "life_2_img",
+					"label": "Life Card 2 Image",
+					"type": "image"
+				},
+				{
+					"slug": "life_3_img",
+					"label": "Life Card 3 Image",
+					"type": "image"
+				},
+				{
+					"slug": "life_4_img",
+					"label": "Life Card 4 Image",
+					"type": "image"
 				}
 			]
 		},
