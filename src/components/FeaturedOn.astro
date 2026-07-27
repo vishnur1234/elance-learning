@@ -1,16 +1,24 @@
 ---
+interface Props {
+	title?: string;
+	subtitle?: string;
+	editTitle?: Record<string, any>;
+	editSubtitle?: Record<string, any>;
+}
+
+const {
+	title = 'We\'re <span class="text-blue">Featured</span> On',
+	subtitle = 'Recognized by leading media houses for our commitment to quality education and student success.',
+	editTitle,
+	editSubtitle,
+} = Astro.props;
 ---
 
 <!-- ===================== WE'RE FEATURED ON ===================== -->
 <section class="featured-section">
 	<div class="section-container">
-		<h2 class="featured-title">
-			We're <span class="text-blue">Featured</span> On
-		</h2>
-		<p class="featured-subtitle">
-			Recognized by leading media houses for our commitment to
-			quality education and student success.
-		</p>
+		<h2 class="featured-title" set:html={title} {...editTitle} />
+		<p class="featured-subtitle" set:html={subtitle} {...editSubtitle} />
 		<div class="featured-ticker-wrap">
 			<div class="featured-ticker">
 				<!-- Set 1 -->
@@ -157,8 +165,8 @@
 		width: 100%;
 	}
 
-	.text-blue {
-		color: #1a9ee5;
+	:global(.text-blue) {
+		color: #3b9fe8 !important;
 	}
 
 	.featured-section {

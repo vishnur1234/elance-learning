@@ -238,6 +238,441 @@
 					"slug": "students_feedback_desc",
 					"label": "Students Feedback Description",
 					"type": "text"
+				},
+				{
+					"slug": "courses_title",
+					"label": "Courses Section Title",
+					"type": "string"
+				},
+				{
+					"slug": "course_1_title",
+					"label": "Course 1 Title",
+					"type": "string"
+				},
+				{
+					"slug": "course_1_desc",
+					"label": "Course 1 Description",
+					"type": "text"
+				},
+				{
+					"slug": "course_1_btn_primary",
+					"label": "Course 1 Primary Button",
+					"type": "string"
+				},
+				{
+					"slug": "course_1_btn_secondary",
+					"label": "Course 1 Secondary Button",
+					"type": "string"
+				},
+				{
+					"slug": "course_2_title",
+					"label": "Course 2 Title",
+					"type": "string"
+				},
+				{
+					"slug": "course_2_desc",
+					"label": "Course 2 Description",
+					"type": "text"
+				},
+				{
+					"slug": "course_2_btn_primary",
+					"label": "Course 2 Primary Button",
+					"type": "string"
+				},
+				{
+					"slug": "course_2_btn_secondary",
+					"label": "Course 2 Secondary Button",
+					"type": "string"
+				},
+				{
+					"slug": "steps_title",
+					"label": "Steps Section Title",
+					"type": "string"
+				},
+				{
+					"slug": "step_1_num",
+					"label": "Step 1 Number",
+					"type": "string"
+				},
+				{
+					"slug": "step_1_label",
+					"label": "Step 1 Label",
+					"type": "string"
+				},
+				{
+					"slug": "step_2_num",
+					"label": "Step 2 Number",
+					"type": "string"
+				},
+				{
+					"slug": "step_2_label",
+					"label": "Step 2 Label",
+					"type": "string"
+				},
+				{
+					"slug": "step_3_num",
+					"label": "Step 3 Number",
+					"type": "string"
+				},
+				{
+					"slug": "step_3_label",
+					"label": "Step 3 Label",
+					"type": "string"
+				},
+				{
+					"slug": "steps_cta_text",
+					"label": "Steps CTA Text",
+					"type": "string"
+				},
+				{
+					"slug": "testimonials_eyebrow",
+					"label": "Testimonials Eyebrow",
+					"type": "string"
+				},
+				{
+					"slug": "testimonials_title",
+					"label": "Testimonials Section Title",
+					"type": "string"
+				},
+				{
+					"slug": "testimonials_desc",
+					"label": "Testimonials Section Description",
+					"type": "text"
+				},
+				{
+					"slug": "testimonials_btn_text",
+					"label": "Testimonials Button Text",
+					"type": "string"
+				},
+				{
+					"slug": "testimonial_1_badge",
+					"label": "Testimonial 1 Badge",
+					"type": "string"
+				},
+				{
+					"slug": "testimonial_1_quote",
+					"label": "Testimonial 1 Quote",
+					"type": "text"
+				},
+				{
+					"slug": "testimonial_1_name",
+					"label": "Testimonial 1 Name",
+					"type": "string"
+				},
+				{
+					"slug": "testimonial_1_role",
+					"label": "Testimonial 1 Role",
+					"type": "string"
+				},
+				{
+					"slug": "testimonial_2_badge",
+					"label": "Testimonial 2 Badge",
+					"type": "string"
+				},
+				{
+					"slug": "testimonial_2_quote",
+					"label": "Testimonial 2 Quote",
+					"type": "text"
+				},
+				{
+					"slug": "testimonial_2_name",
+					"label": "Testimonial 2 Name",
+					"type": "string"
+				},
+				{
+					"slug": "testimonial_2_role",
+					"label": "Testimonial 2 Role",
+					"type": "string"
+				},
+				{
+					"slug": "audience_1_overlay",
+					"label": "Audience 1 Overlay Text",
+					"type": "string"
+				},
+				{
+					"slug": "audience_1_title",
+					"label": "Audience 1 Title",
+					"type": "string"
+				},
+				{
+					"slug": "audience_1_desc",
+					"label": "Audience 1 Description",
+					"type": "text"
+				},
+				{
+					"slug": "audience_1_btn_text",
+					"label": "Audience 1 Button Text",
+					"type": "string"
+				},
+				{
+					"slug": "audience_2_overlay",
+					"label": "Audience 2 Overlay Text",
+					"type": "string"
+				},
+				{
+					"slug": "audience_2_title",
+					"label": "Audience 2 Title",
+					"type": "string"
+				},
+				{
+					"slug": "audience_2_desc",
+					"label": "Audience 2 Description",
+					"type": "text"
+				},
+				{
+					"slug": "audience_2_btn_text",
+					"label": "Audience 2 Button Text",
+					"type": "string"
+				},
+				{
+					"slug": "promo_title",
+					"label": "Promo Banner Title",
+					"type": "string"
+				},
+				{
+					"slug": "promo_btn_text",
+					"label": "Promo Banner Button Text",
+					"type": "string"
+				},
+				{
+					"slug": "feedback_1_name",
+					"label": "Feedback 1 Student Name",
+					"type": "string"
+				},
+				{
+					"slug": "feedback_1_role",
+					"label": "Feedback 1 Student Role",
+					"type": "string"
+				},
+				{
+					"slug": "feedback_2_name",
+					"label": "Feedback 2 Student Name",
+					"type": "string"
+				},
+				{
+					"slug": "feedback_2_role",
+					"label": "Feedback 2 Student Role",
+					"type": "string"
+				},
+				{
+					"slug": "feedback_3_name",
+					"label": "Feedback 3 Student Name",
+					"type": "string"
+				},
+				{
+					"slug": "feedback_3_role",
+					"label": "Feedback 3 Student Role",
+					"type": "string"
+				},
+				{
+					"slug": "feedback_4_name",
+					"label": "Feedback 4 Student Name",
+					"type": "string"
+				},
+				{
+					"slug": "feedback_4_role",
+					"label": "Feedback 4 Student Role",
+					"type": "string"
+				},
+				{
+					"slug": "feedback_5_name",
+					"label": "Feedback 5 Student Name",
+					"type": "string"
+				},
+				{
+					"slug": "feedback_5_role",
+					"label": "Feedback 5 Student Role",
+					"type": "string"
+				},
+				{
+					"slug": "feedback_6_name",
+					"label": "Feedback 6 Student Name",
+					"type": "string"
+				},
+				{
+					"slug": "feedback_6_role",
+					"label": "Feedback 6 Student Role",
+					"type": "string"
+				},
+				{
+					"slug": "think_banner_title",
+					"label": "Think Banner Title",
+					"type": "string"
+				},
+				{
+					"slug": "think_1_quote",
+					"label": "Think Banner Testimonial 1 Quote",
+					"type": "text"
+				},
+				{
+					"slug": "think_1_name",
+					"label": "Think Banner Testimonial 1 Name",
+					"type": "string"
+				},
+				{
+					"slug": "think_1_company",
+					"label": "Think Banner Testimonial 1 Company",
+					"type": "string"
+				},
+				{
+					"slug": "think_2_quote",
+					"label": "Think Banner Testimonial 2 Quote",
+					"type": "text"
+				},
+				{
+					"slug": "think_2_name",
+					"label": "Think Banner Testimonial 2 Name",
+					"type": "string"
+				},
+				{
+					"slug": "think_2_company",
+					"label": "Think Banner Testimonial 2 Company",
+					"type": "string"
+				},
+				{
+					"slug": "think_3_quote",
+					"label": "Think Banner Testimonial 3 Quote",
+					"type": "text"
+				},
+				{
+					"slug": "think_3_name",
+					"label": "Think Banner Testimonial 3 Name",
+					"type": "string"
+				},
+				{
+					"slug": "think_3_company",
+					"label": "Think Banner Testimonial 3 Company",
+					"type": "string"
+				},
+				{
+					"slug": "achievements_title",
+					"label": "Achievements Title",
+					"type": "string"
+				},
+				{
+					"slug": "achievements_subtitle",
+					"label": "Achievements Subtitle",
+					"type": "text"
+				},
+				{
+					"slug": "achievements_1_num",
+					"label": "Achievement 1 Number",
+					"type": "string"
+				},
+				{
+					"slug": "achievements_1_label",
+					"label": "Achievement 1 Label",
+					"type": "string"
+				},
+				{
+					"slug": "achievements_2_num",
+					"label": "Achievement 2 Number",
+					"type": "string"
+				},
+				{
+					"slug": "achievements_2_label",
+					"label": "Achievement 2 Label",
+					"type": "string"
+				},
+				{
+					"slug": "career_title",
+					"label": "Career Section Title",
+					"type": "string"
+				},
+				{
+					"slug": "partner_1_name",
+					"label": "Partner 1 Name",
+					"type": "string"
+				},
+				{
+					"slug": "partner_1_desc",
+					"label": "Partner 1 Description",
+					"type": "text"
+				},
+				{
+					"slug": "partner_2_name",
+					"label": "Partner 2 Name",
+					"type": "string"
+				},
+				{
+					"slug": "partner_2_desc",
+					"label": "Partner 2 Description",
+					"type": "text"
+				},
+				{
+					"slug": "partner_3_name",
+					"label": "Partner 3 Name",
+					"type": "string"
+				},
+				{
+					"slug": "partner_3_desc",
+					"label": "Partner 3 Description",
+					"type": "text"
+				},
+				{
+					"slug": "partner_4_name",
+					"label": "Partner 4 Name",
+					"type": "string"
+				},
+				{
+					"slug": "partner_4_desc",
+					"label": "Partner 4 Description",
+					"type": "text"
+				},
+				{
+					"slug": "life_title",
+					"label": "Life Title",
+					"type": "string"
+				},
+				{
+					"slug": "life_1_title",
+					"label": "Life Card 1 Title",
+					"type": "string"
+				},
+				{
+					"slug": "life_1_desc",
+					"label": "Life Card 1 Description",
+					"type": "text"
+				},
+				{
+					"slug": "life_2_title",
+					"label": "Life Card 2 Title",
+					"type": "string"
+				},
+				{
+					"slug": "life_2_desc",
+					"label": "Life Card 2 Description",
+					"type": "text"
+				},
+				{
+					"slug": "life_3_title",
+					"label": "Life Card 3 Title",
+					"type": "string"
+				},
+				{
+					"slug": "life_3_desc",
+					"label": "Life Card 3 Description",
+					"type": "text"
+				},
+				{
+					"slug": "life_4_title",
+					"label": "Life Card 4 Title",
+					"type": "string"
+				},
+				{
+					"slug": "life_4_desc",
+					"label": "Life Card 4 Description",
+					"type": "text"
+				},
+				{
+					"slug": "featured_title",
+					"label": "Featured Section Title",
+					"type": "string"
+				},
+				{
+					"slug": "featured_subtitle",
+					"label": "Featured Section Subtitle",
+					"type": "text"
 				}
 			]
 		},
@@ -410,14 +845,104 @@
 				"data": {
 					"title": "Home Page",
 					"hero_eyebrow": "From Learner to Leader Starts Here",
-					"hero_heading": "India's Most Trusted Commerce Institute",
+					"hero_heading": "India's Most Trusted<br /><span class=\"hero-blue\">Commerce Institute</span>",
+					"alumni_text": "Our <span class=\"alumni-word\">alumni</span> work at",
+					"students_feedback_title": "Our Students <span class=\"text-blue\">Feedback</span>",
+					"students_feedback_desc": "Hear from our students as they share their incredible journeys of growth, success, and accomplishments with Elance!",
 					"hero_subtext": "Build your career with globally recognized programs in CMA (US) and ACCA – designed for future commerce leaders.",
 					"hero_cta_primary": "Explore Courses",
 					"hero_cta_primary_url": "#courses",
 					"hero_cta_secondary": "Speak to a Counsellor",
 					"hero_cta_secondary_url": "#counselor",
 					"seo_title": "Elance – India's Most Trusted Commerce Institute",
-					"seo_description": "From Learner to Leader. Build your career with globally recognized programs in CMA (US) and ACCA."
+					"seo_description": "From Learner to Leader. Build your career with globally recognized programs in CMA (US) and ACCA.",
+					"courses_title": "Pick the <span class=\"text-blue\">Course</span> That Fits<br class=\"life-mobile-br\" /> Your Dream",
+					"course_1_title": "ACCA",
+					"course_1_desc": "Qualify for ACCA and get access to the world of professional accounting which gives an offer to work globally across 180+ countries with high demand and good remuneration.",
+					"course_1_btn_primary": "Brochure",
+					"course_1_btn_secondary": "Know more",
+					"course_2_title": "CMA USA",
+					"course_2_desc": "Skill up your current working career by becoming a Certified Management Accountant and feel the advancement of professional accounting.",
+					"course_2_btn_primary": "Brochure",
+					"course_2_btn_secondary": "Know more",
+					"steps_title": "Your <span class=\"text-blue\">Commerce Career</span> Starts Here",
+					"step_1_num": "01",
+					"step_1_label": "Learn",
+					"step_2_num": "02",
+					"step_2_label": "Perform",
+					"step_3_num": "03",
+					"step_3_label": "Get A Job",
+					"steps_cta_text": "Reach Us Anytime",
+					"testimonials_eyebrow": "Testimonials",
+					"testimonials_title": "<span class=\"text-blue\">Hear From</span> Our<br />Previous <span class=\"text-blue\">Students</span>",
+					"testimonials_desc": "Elance envisions the courses for everyone to fuel the advancement of skills and make you capable of conquering your dream career",
+					"testimonials_btn_text": "View More",
+					"testimonial_1_badge": "CA",
+					"testimonial_1_quote": "\"All my papers were done online at Elance, with wonderful support from the faculty and staff. \"",
+					"testimonial_1_name": "Anagha Anand",
+					"testimonial_1_role": "Elance CA Student",
+					"testimonial_2_badge": "ACCA",
+					"testimonial_2_quote": "\"Elance's online ACCA course and placement drive helped me get a job at EY.\"",
+					"testimonial_2_name": "Abhiram",
+					"testimonial_2_role": "ACCA",
+					"audience_1_overlay": "<span class=\"label-light\">For</span><br />Students",
+					"audience_1_title": "For Students",
+					"audience_1_desc": "Offering top-tier commerce professional courses like ACCA and CMA to propel you into the future of finance with high-paying global career opportunities",
+					"audience_1_btn_text": "Get Started",
+					"audience_2_overlay": "<span class=\"label-light\">For</span> Working<br />Professionals",
+					"audience_2_title": "For Working Professionals",
+					"audience_2_desc": "Our flexible learning solutions—online, offline, and hybrid, are designed for working professionals, to empower and enhance your knowledge and skills, and achieve new career heights.",
+					"audience_2_btn_text": "Get Started",
+					"promo_title": "Make the Smart Move for a<br />Commerce Career<br />That Matters!",
+					"promo_btn_text": "Download Brochure",
+					"feedback_1_name": "Kasinath",
+					"feedback_1_role": "Elance CA Student",
+					"feedback_2_name": "Anaam Abdul Salam",
+					"feedback_2_role": "Elance ACCA Student",
+					"feedback_3_name": "Ann Mary",
+					"feedback_3_role": "Elance CMA Student",
+					"feedback_4_name": "Anuradha",
+					"feedback_4_role": "Elance CA Student",
+					"feedback_5_name": "Ayshath Shahma",
+					"feedback_5_role": "Elance ACCA Student",
+					"feedback_6_name": "Bijini Koshi",
+					"feedback_6_role": "Elance CMA Student",
+					"think_banner_title": "What our <span class=\"text-blue\">Students<br />think</span> about us?",
+					"think_1_quote": "\"With Elance, you won't feel like you're missing out on the college vibe.\"",
+					"think_1_name": "Shringa Surendran",
+					"think_1_company": "KPMG",
+					"think_2_quote": "\"Flexible classes and amazing mock exams. Elance is the best choice for professional finance courses.\"",
+					"think_2_name": "Anagha Anand",
+					"think_2_company": "Deloitte",
+					"think_3_quote": "\"The placement support and faculty mentoring at Elance are unmatched in professional coaching.\"",
+					"think_3_name": "Abhiram",
+					"think_3_company": "EY",
+					"achievements_title": "Achievements",
+					"achievements_subtitle": "With immense pride, we underscore our outstanding results, a testament to Elance's legacy since its inception. In just four years, Elance has consistently delivered unmatched results, guiding students towards their dream careers as top-class commerce professionals. These achievements aren't just milestones; they represent our unwavering dedication to nurturing the future leaders of the industry.",
+					"achievements_1_num": "53",
+					"achievements_1_label": "World Ranks",
+					"achievements_2_num": "80",
+					"achievements_2_label": "National Ranks",
+					"career_title": "Begin Your <span class=\"text-blue\">Dream Career</span><br />with Us",
+					"partner_1_name": "Platinum Approved Partner of ACCA",
+					"partner_1_desc": "Elance Proudly stands as one of the top Platinum Approved Partners of ACCA, a testament to our exceptional commitment to top-tier accounting education and excellent academic standards.",
+					"partner_2_name": "Gold CMA Course Provider approved by IMA",
+					"partner_2_desc": "Highlighting a commitment to excellence in management accounting education, Elance is being recognised as a Gold CMA Course Provider approved by IMA.",
+					"partner_3_name": "ACCA Approved CBE Centre",
+					"partner_3_desc": "Elance is an ACCA-approved CBE Centre. This license grants our campus the authorization to conduct ACCA fundamentals at our Calicut campus itself..",
+					"partner_4_name": "Approved Partner of HOCK INTERNATIONAL",
+					"partner_4_desc": "Hock International for CMA USA collaborates closely with Elance, ensuring top-notch instruction using authentic learning materials supporting guidance to conquer doubts, master the syllabus, and excel in certification exams.",
+					"life_title": "Life at <span class=\"text-blue\">Elance</span>",
+					"life_1_title": "Launch of 'CMA'",
+					"life_1_desc": "An awesome event for students!",
+					"life_2_title": "Excel Hackathon",
+					"life_2_desc": "An exciting competition to test your Excel skills, from formulas to real-world scenarios. This event pushes students to analyze smart, and build solutions — all in one go!",
+					"life_3_title": "AuditLab",
+					"life_3_desc": "From 1000+ participants to the final client round, AuditLab was nothing short of transformative! It was a completely immersive audit experience where our students moved beyond theory, applied their knowledge step by step, and came out more confident and job-ready than ever.",
+					"life_4_title": "Placement Training",
+					"life_4_desc": "Through dedicated placement training, we help students in pursuing successful careers and land dream jobs.",
+					"featured_title": "We're <span class=\"text-blue\">Featured</span> On",
+					"featured_subtitle": "Recognized by leading media houses for our commitment to quality education and student success."
 				}
 			}
 		]
