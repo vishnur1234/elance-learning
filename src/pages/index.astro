@@ -313,11 +313,28 @@ const featuredSubtitle = String(
 		"Recognized by leading media houses for our commitment to quality education and student success.",
 );
 
+const SUPABASE_CDN_BASE = "https://uvsypcermzvgktrufhcw.supabase.co/storage/v1/object/public/images";
+
 function getImageUrl(imgData: any, defaultUrl: string): string {
 	if (!imgData) return defaultUrl;
-	if (typeof imgData === "string" && imgData.trim() !== "") return imgData;
+	if (typeof imgData === "string" && imgData.trim() !== "") {
+		if (imgData.startsWith("/_emdash/api/media/file/")) {
+			return `${SUPABASE_CDN_BASE}/${imgData.replace("/_emdash/api/media/file/", "")}`;
+		}
+		return imgData;
+	}
 	if (typeof imgData === "object") {
-		return imgData.previewUrl || imgData.src || imgData.url || defaultUrl;
+		const key = imgData.meta?.storageKey || imgData.storageKey;
+		if (key) {
+			return `${SUPABASE_CDN_BASE}/${key}`;
+		}
+		const url = imgData.src || imgData.previewUrl || imgData.url;
+		if (url) {
+			if (url.startsWith("/_emdash/api/media/file/")) {
+				return `${SUPABASE_CDN_BASE}/${url.replace("/_emdash/api/media/file/", "")}`;
+			}
+			return url;
+		}
 	}
 	return defaultUrl;
 }
