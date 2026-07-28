@@ -65,20 +65,22 @@ const SUPABASE_CDN_BASE = "https://uvsypcermzvgktrufhcw.supabase.co/storage/v1/o
 export function getCmsImageUrl(imgData, defaultUrl) {
   if (!imgData) return defaultUrl;
   if (typeof imgData === "string" && imgData.trim() !== "") {
-    if (imgData.startsWith("/_emdash/api/media/file/")) {
-      return `${SUPABASE_CDN_BASE}/${imgData.replace("/_emdash/api/media/file/", "")}`;
+    if (imgData.includes("/_emdash/api/media/file/")) {
+      const filename = imgData.split("/_emdash/api/media/file/").pop();
+      return `${SUPABASE_CDN_BASE}/${filename}`;
     }
     return imgData;
   }
-  if (typeof imgData === "object") {
+  if (typeof imgData === "object" && imgData !== null) {
     const key = imgData.meta?.storageKey || imgData.storageKey;
     if (key) {
       return `${SUPABASE_CDN_BASE}/${key}`;
     }
     const url = imgData.src || imgData.previewUrl || imgData.url;
-    if (url) {
-      if (url.startsWith("/_emdash/api/media/file/")) {
-        return `${SUPABASE_CDN_BASE}/${url.replace("/_emdash/api/media/file/", "")}`;
+    if (url && typeof url === "string") {
+      if (url.includes("/_emdash/api/media/file/")) {
+        const filename = url.split("/_emdash/api/media/file/").pop();
+        return `${SUPABASE_CDN_BASE}/${filename}`;
       }
       return url;
     }
