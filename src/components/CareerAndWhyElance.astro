@@ -1,6 +1,62 @@
 ---
 // CareerAndWhyElance.astro
 // Component containing the "Land your Dream Career" section (accordion + contact form) and the "Why Elance?" section.
+
+interface Props {
+	entry?: { data?: Record<string, any>; edit?: Record<string, any> } | null;
+}
+const { entry } = Astro.props as Props;
+const data = entry?.data || {};
+const edit = entry?.edit || ({} as Record<string, any>);
+
+const careerHeading = String(
+	data.career_heading ||
+		'Land your <span class="text-blue">Dream Career</span>',
+);
+
+const CAREER_ITEM_DEFAULTS = [
+	{ title: "Financial Controller", desc: "As a financial controller, ACCA graduates oversee financial reporting, budgeting, and strategic planning, ensuring the financial health and compliance of an organization while providing key insights for decision-making." },
+	{ title: "Audit Manager", desc: "Audit Managers oversee internal and external audits, ensuring financial statements comply with regulatory standards and identifying operational efficiencies and risk management opportunities." },
+	{ title: "Tax Consultant", desc: "Tax Consultants provide advisory and compliance services, helping clients minimize tax liabilities and navigate complex local and international tax regulations." },
+	{ title: "Management Accountant", desc: "Management Accountants analyze financial information to support internal business planning, forecasting, budgeting, and strategic decision-making by managers." },
+	{ title: "Business Consultant", desc: "Business Consultants analyze business operations, identify problems, and recommend solutions to improve efficiency, profitability, and growth." },
+	{ title: "Financial Advisor", desc: "Financial Advisors help individuals and organizations manage their finances, invest wisely, and plan for future financial goals." },
+	{ title: "Finance Manager", desc: "Finance Managers oversee the financial operations of an organization, managing budgets, financial planning, and investment strategies to ensure long-term stability." },
+	{ title: "Investment Analyst", desc: "Investment Analysts research financial information and market trends to provide investment recommendations and support asset management decisions." },
+];
+const careerItems = CAREER_ITEM_DEFAULTS.map((fallback, i) => {
+	const n = i + 1;
+	return {
+		title: String(data[`career_item_${n}_title`] || fallback.title),
+		desc: String(data[`career_item_${n}_desc`] || fallback.desc),
+		editTitle: edit[`career_item_${n}_title`],
+		editDesc: edit[`career_item_${n}_desc`],
+	};
+});
+
+const whyTitle = String(data.why_title || "Why Elance?");
+
+const WHY_ITEM_DEFAULTS = [
+	"Exceptional Faculty Standards With 13+ Years of Experience",
+	"Outstanding Track Record of Achievements",
+	"ACCA Platinum Accredited Partner",
+	"Official CBE Centre",
+	"Guaranteed Placement Assistance",
+	"Comprehensive Support from Faculties, Mentors & Coordinators",
+	"Offline, Online & Hybrid Classes",
+	"24/7 Access to Elance Learning App",
+	"Access To Study Buddy to Connect with Likeminded Students",
+	"Study Planner App for organized preparation",
+	"Prime & Prime + Programs for Advanced Learning",
+	"Hassle-free Hostel Facility and Safe Transportation Service",
+];
+const whyItems = WHY_ITEM_DEFAULTS.map((fallback, i) => {
+	const n = i + 1;
+	return {
+		text: String(data[`why_item_${n}_text`] || fallback),
+		edit: edit[`why_item_${n}_text`],
+	};
+});
 ---
 
 <div class="career-page-wrapper">
@@ -9,180 +65,32 @@
 		<div class="section-container dream-career-container">
 			<!-- Left side: Career accordion -->
 			<div class="career-left">
-				<h2 class="career-heading">
-					Land your <span class="text-blue">Dream Career</span>
-				</h2>
+				<h2 class="career-heading" set:html={careerHeading} {...edit.career_heading} />
 
 				<div class="career-accordion">
-					<!-- Item 1 (Expanded by default) -->
-					<div class="accordion-item active">
-						<button class="accordion-header" aria-expanded="true">
-							<span class="accordion-icon">
-								<!-- Minus icon -->
-								<svg class="icon-minus" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none">
-									<line x1="5" y1="12" x2="19" y2="12"></line>
-								</svg>
-								<!-- Plus icon -->
-								<svg class="icon-plus" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none">
-									<line x1="12" y1="5" x2="12" y2="19"></line>
-									<line x1="5" y1="12" x2="19" y2="12"></line>
-								</svg>
-							</span>
-							<span class="accordion-title">Financial Controller</span>
-						</button>
-						<div class="accordion-content">
-							<p>
-								As a financial controller, ACCA graduates oversee financial reporting, budgeting, and strategic planning, ensuring the financial health and compliance of an organization while providing key insights for decision-making.
-							</p>
+					{careerItems.map((item, i) => (
+						<div class:list={["accordion-item", { active: i === 0 }]}>
+							<button class="accordion-header" aria-expanded={i === 0 ? "true" : "false"}>
+								<span class="accordion-icon">
+									<!-- Minus icon -->
+									<svg class="icon-minus" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none">
+										<line x1="5" y1="12" x2="19" y2="12"></line>
+									</svg>
+									<!-- Plus icon -->
+									<svg class="icon-plus" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none">
+										<line x1="12" y1="5" x2="12" y2="19"></line>
+										<line x1="5" y1="12" x2="19" y2="12"></line>
+									</svg>
+								</span>
+								<span class="accordion-title" {...item.editTitle}>{item.title}</span>
+							</button>
+							<div class="accordion-content">
+								<p {...item.editDesc}>
+									{item.desc}
+								</p>
+							</div>
 						</div>
-					</div>
-
-					<!-- Item 2 -->
-					<div class="accordion-item">
-						<button class="accordion-header" aria-expanded="false">
-							<span class="accordion-icon">
-								<svg class="icon-minus" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none">
-									<line x1="5" y1="12" x2="19" y2="12"></line>
-								</svg>
-								<svg class="icon-plus" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none">
-									<line x1="12" y1="5" x2="12" y2="19"></line>
-									<line x1="5" y1="12" x2="19" y2="12"></line>
-								</svg>
-							</span>
-							<span class="accordion-title">Audit Manager</span>
-						</button>
-						<div class="accordion-content">
-							<p>
-								Audit Managers oversee internal and external audits, ensuring financial statements comply with regulatory standards and identifying operational efficiencies and risk management opportunities.
-							</p>
-						</div>
-					</div>
-
-					<!-- Item 3 -->
-					<div class="accordion-item">
-						<button class="accordion-header" aria-expanded="false">
-							<span class="accordion-icon">
-								<svg class="icon-minus" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none">
-									<line x1="5" y1="12" x2="19" y2="12"></line>
-								</svg>
-								<svg class="icon-plus" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none">
-									<line x1="12" y1="5" x2="12" y2="19"></line>
-									<line x1="5" y1="12" x2="19" y2="12"></line>
-								</svg>
-							</span>
-							<span class="accordion-title">Tax Consultant</span>
-						</button>
-						<div class="accordion-content">
-							<p>
-								Tax Consultants provide advisory and compliance services, helping clients minimize tax liabilities and navigate complex local and international tax regulations.
-							</p>
-						</div>
-					</div>
-
-					<!-- Item 4 -->
-					<div class="accordion-item">
-						<button class="accordion-header" aria-expanded="false">
-							<span class="accordion-icon">
-								<svg class="icon-minus" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none">
-									<line x1="5" y1="12" x2="19" y2="12"></line>
-								</svg>
-								<svg class="icon-plus" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none">
-									<line x1="12" y1="5" x2="12" y2="19"></line>
-									<line x1="5" y1="12" x2="19" y2="12"></line>
-								</svg>
-							</span>
-							<span class="accordion-title">Management Accountant</span>
-						</button>
-						<div class="accordion-content">
-							<p>
-								Management Accountants analyze financial information to support internal business planning, forecasting, budgeting, and strategic decision-making by managers.
-							</p>
-						</div>
-					</div>
-
-					<!-- Item 5 -->
-					<div class="accordion-item">
-						<button class="accordion-header" aria-expanded="false">
-							<span class="accordion-icon">
-								<svg class="icon-minus" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none">
-									<line x1="5" y1="12" x2="19" y2="12"></line>
-								</svg>
-								<svg class="icon-plus" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none">
-									<line x1="12" y1="5" x2="12" y2="19"></line>
-									<line x1="5" y1="12" x2="19" y2="12"></line>
-								</svg>
-							</span>
-							<span class="accordion-title">Business Consultant</span>
-						</button>
-						<div class="accordion-content">
-							<p>
-								Business Consultants analyze business operations, identify problems, and recommend solutions to improve efficiency, profitability, and growth.
-							</p>
-						</div>
-					</div>
-
-					<!-- Item 6 -->
-					<div class="accordion-item">
-						<button class="accordion-header" aria-expanded="false">
-							<span class="accordion-icon">
-								<svg class="icon-minus" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none">
-									<line x1="5" y1="12" x2="19" y2="12"></line>
-								</svg>
-								<svg class="icon-plus" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none">
-									<line x1="12" y1="5" x2="12" y2="19"></line>
-									<line x1="5" y1="12" x2="19" y2="12"></line>
-								</svg>
-							</span>
-							<span class="accordion-title">Financial Advisor</span>
-						</button>
-						<div class="accordion-content">
-							<p>
-								Financial Advisors help individuals and organizations manage their finances, invest wisely, and plan for future financial goals.
-							</p>
-						</div>
-					</div>
-
-					<!-- Item 7 -->
-					<div class="accordion-item">
-						<button class="accordion-header" aria-expanded="false">
-							<span class="accordion-icon">
-								<svg class="icon-minus" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none">
-									<line x1="5" y1="12" x2="19" y2="12"></line>
-								</svg>
-								<svg class="icon-plus" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none">
-									<line x1="12" y1="5" x2="12" y2="19"></line>
-									<line x1="5" y1="12" x2="19" y2="12"></line>
-								</svg>
-							</span>
-							<span class="accordion-title">Finance Manager</span>
-						</button>
-						<div class="accordion-content">
-							<p>
-								Finance Managers oversee the financial operations of an organization, managing budgets, financial planning, and investment strategies to ensure long-term stability.
-							</p>
-						</div>
-					</div>
-
-					<!-- Item 8 -->
-					<div class="accordion-item">
-						<button class="accordion-header" aria-expanded="false">
-							<span class="accordion-icon">
-								<svg class="icon-minus" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none">
-									<line x1="5" y1="12" x2="19" y2="12"></line>
-								</svg>
-								<svg class="icon-plus" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none">
-									<line x1="12" y1="5" x2="12" y2="19"></line>
-									<line x1="5" y1="12" x2="19" y2="12"></line>
-								</svg>
-							</span>
-							<span class="accordion-title">Investment Analyst</span>
-						</button>
-						<div class="accordion-content">
-							<p>
-								Investment Analysts research financial information and market trends to provide investment recommendations and support asset management decisions.
-							</p>
-						</div>
-					</div>
+					))}
 				</div>
 			</div>
 
@@ -242,81 +150,17 @@
 				<!-- Decorative circle bottom-left -->
 				<div class="why-decor-circle"></div>
 
-				<h2 class="why-title">Why Elance?</h2>
+				<h2 class="why-title" {...edit.why_title}>{whyTitle}</h2>
 
 				<div class="why-list">
-					<div class="why-list-item">
-						<span class="why-chevron">
-							<svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="3" fill="none"><polyline points="9 18 15 12 9 6"></polyline></svg>
-						</span>
-						<span class="why-text">Exceptional Faculty Standards With 13+ Years of Experience</span>
-					</div>
-					<div class="why-list-item">
-						<span class="why-chevron">
-							<svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="3" fill="none"><polyline points="9 18 15 12 9 6"></polyline></svg>
-						</span>
-						<span class="why-text">Outstanding Track Record of Achievements</span>
-					</div>
-					<div class="why-list-item">
-						<span class="why-chevron">
-							<svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="3" fill="none"><polyline points="9 18 15 12 9 6"></polyline></svg>
-						</span>
-						<span class="why-text">ACCA Platinum Accredited Partner</span>
-					</div>
-					<div class="why-list-item">
-						<span class="why-chevron">
-							<svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="3" fill="none"><polyline points="9 18 15 12 9 6"></polyline></svg>
-						</span>
-						<span class="why-text">Official CBE Centre</span>
-					</div>
-					<div class="why-list-item">
-						<span class="why-chevron">
-							<svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="3" fill="none"><polyline points="9 18 15 12 9 6"></polyline></svg>
-						</span>
-						<span class="why-text">Guaranteed Placement Assistance</span>
-					</div>
-					<div class="why-list-item">
-						<span class="why-chevron">
-							<svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="3" fill="none"><polyline points="9 18 15 12 9 6"></polyline></svg>
-						</span>
-						<span class="why-text">Comprehensive Support from Faculties, Mentors & Coordinators</span>
-					</div>
-					<div class="why-list-item">
-						<span class="why-chevron">
-							<svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="3" fill="none"><polyline points="9 18 15 12 9 6"></polyline></svg>
-						</span>
-						<span class="why-text">Offline, Online & Hybrid Classes</span>
-					</div>
-					<div class="why-list-item">
-						<span class="why-chevron">
-							<svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="3" fill="none"><polyline points="9 18 15 12 9 6"></polyline></svg>
-						</span>
-						<span class="why-text">24/7 Access to Elance Learning App</span>
-					</div>
-					<div class="why-list-item">
-						<span class="why-chevron">
-							<svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="3" fill="none"><polyline points="9 18 15 12 9 6"></polyline></svg>
-						</span>
-						<span class="why-text">Access To Study Buddy to Connect with Likeminded Students</span>
-					</div>
-					<div class="why-list-item">
-						<span class="why-chevron">
-							<svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="3" fill="none"><polyline points="9 18 15 12 9 6"></polyline></svg>
-						</span>
-						<span class="why-text">Study Planner App for organized preparation</span>
-					</div>
-					<div class="why-list-item">
-						<span class="why-chevron">
-							<svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="3" fill="none"><polyline points="9 18 15 12 9 6"></polyline></svg>
-						</span>
-						<span class="why-text">Prime & Prime + Programs for Advanced Learning</span>
-					</div>
-					<div class="why-list-item">
-						<span class="why-chevron">
-							<svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="3" fill="none"><polyline points="9 18 15 12 9 6"></polyline></svg>
-						</span>
-						<span class="why-text">Hassle-free Hostel Facility and Safe Transportation Service</span>
-					</div>
+					{whyItems.map((item) => (
+						<div class="why-list-item">
+							<span class="why-chevron">
+								<svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="3" fill="none"><polyline points="9 18 15 12 9 6"></polyline></svg>
+							</span>
+							<span class="why-text" {...item.edit}>{item.text}</span>
+						</div>
+					))}
 				</div>
 			</div>
 		</div>

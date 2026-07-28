@@ -2,6 +2,182 @@
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
 import FeaturedOn from "../components/FeaturedOn.astro";
+import { getEmDashEntry, getEmDashCollection } from "../lib/cms.js";
+import { getCmsImageUrl } from "../utils/media.js";
+
+// Fetch the Courses page's dynamic content from EmDash CMS (same "pages"
+// collection the home/ACCA pages use, with slug "courses"). All sections
+// on this page share this single entry so there's one DB fetch per request.
+const { entry: pageEntry } = await getEmDashEntry("pages", "courses").catch(() => ({
+	entry: null,
+}));
+const data = (pageEntry?.data as Record<string, any>) || {};
+const edit = pageEntry?.edit || ({} as Record<string, any>);
+
+// ===================== HERO =====================
+const heroTitle = String(
+	data.hero_title ||
+		'Become a Globally Recognized <br /><span class="text-blue">Commerce Professional!</span>',
+);
+const heroDesc = String(
+	data.hero_desc ||
+		"Gain the skills, credibility, and global recognition to excel in today's competitive business world with industry-relevant commerce professional courses.",
+);
+const heroAmbassadorImg = getCmsImageUrl(data.hero_ambassador_img, "/images/mammu2.png");
+
+// ===================== WHY CHOOSE CARD =====================
+const chooseTitle = String(
+	data.choose_title || 'Why Choose Commerce <br />Professional Courses?',
+);
+const chooseDesc = String(
+	data.choose_desc ||
+		"The finance and business world are evolving faster than ever with new technologies, global standards, and rising industry expectations. Commerce professional courses are designed to equip you with the practical skills, strategic mindset, and prestigious global credentials required to excel in today's competitive business landscape.",
+);
+const chooseCtaText = String(data.choose_cta_text || "Explore Programs");
+const chooseImg = getCmsImageUrl(data.choose_img, "/images/courses/Slider-Elance-2.jpg");
+
+const WHY_CARD_DEFAULTS = [
+	{ title: "Relevant in Today's <br />Job Market", desc: "These certifications are built around current industry demands, making you job-ready from day one." },
+	{ title: "Practical & Global", desc: "They combine real-world applications with global recognition, opening doors across countries and industries." },
+	{ title: "Trusted by <br />Employers", desc: "Top companies value professionals with specialised, updated skills —not just theoretical knowledge." },
+	{ title: "Career-Focused", desc: "Designed for faster career progression, better roles, and leadership tracks." },
+];
+const whyCards = WHY_CARD_DEFAULTS.map((fallback, i) => {
+	const n = i + 1;
+	return {
+		title: String(data[`why_card_${n}_title`] || fallback.title),
+		desc: String(data[`why_card_${n}_desc`] || fallback.desc),
+		editTitle: edit[`why_card_${n}_title`],
+		editDesc: edit[`why_card_${n}_desc`],
+	};
+});
+
+// ===================== OPPORTUNITIES =====================
+const opportunitiesTitle = String(
+	data.opportunities_title ||
+		'Opportunities with <br/>Commerce <br/>Professional <br/>Courses',
+);
+const opportunitiesDesc = String(
+	data.opportunities_desc ||
+		"Commerce professional certifications are increasingly becoming the benchmark for hiring in finance, accounting, and business roles. Designed in line with global standards, these qualifications equip individuals with practical, up-to-date skills that meet the evolving needs of modern industries.",
+);
+
+const OPPORTUNITIES_LOGO_DEFAULTS = [
+	{ src: "/images/courses/trust.svg", alt: "ACCA Platinum Learning Partner" },
+	{ src: "/images/courses/Silver-CMA.png", alt: "Silver CMA Course Provider IMA" },
+	{ src: "/images/courses/CBE-Center.png", alt: "Licensed ACCA CBE Centre" },
+];
+const opportunitiesLogos = OPPORTUNITIES_LOGO_DEFAULTS.map((fallback, i) => {
+	const n = i + 1;
+	return {
+		src: getCmsImageUrl(data[`opportunities_logo_${n}_img`], fallback.src),
+		alt: fallback.alt,
+		edit: edit[`opportunities_logo_${n}_img`],
+	};
+});
+
+const OPPORTUNITY_CARD_DEFAULTS = [
+	{ title: "Global <br/>Recognition", desc: "Commerce professional certifications like ACCA and CMA USA are recognised worldwide, giving professionals the flexibility to work abroad or with international firms operating in India." },
+	{ title: "Diverse Job <br/>Roles", desc: "The commerce professional courses open doors to roles like Financial Analyst, Auditor, Tax Consultant, Risk Manager, and even CFO across both national and international markets." },
+	{ title: "Higher Earning <br/>Potential", desc: "Certified commerce professionals in India typically earn 30-60% more than their non-certified peers. Entry-level salaries range from ₹6-10 LPA, with mid- to senior-level roles offering packages of ₹15-40 LPA and beyond, depending on the role and experience." },
+	{ title: "Career <br/>Versatility", desc: "Certified professionals are eligible for roles across various sectors including banking, consulting, fintech, corporate finance, and public practice." },
+];
+const opportunityCards = OPPORTUNITY_CARD_DEFAULTS.map((fallback, i) => {
+	const n = i + 1;
+	return {
+		title: String(data[`opportunity_card_${n}_title`] || fallback.title),
+		desc: String(data[`opportunity_card_${n}_desc`] || fallback.desc),
+		editTitle: edit[`opportunity_card_${n}_title`],
+		editDesc: edit[`opportunity_card_${n}_desc`],
+	};
+});
+
+// ===================== COURSES WE OFFER =====================
+const COURSE_OFFER_DEFAULTS = [
+	{ id: "acca", img: "/images/accaimage-300x300.png", alt: "ACCA", desc: "ACCA is one of the world's most respected accounting qualifications, recognised in 180+ countries and trusted by over 7,600 approved employers globally. With a curriculum built around international standards, ethics, and digital finance, ACCA prepares professionals for high-impact roles in auditing, taxation, risk management, and financial strategy.", link: "Learn More &rarr;" },
+	{ id: "cma", img: "/images/cmaimage-300x300.png", alt: "CMA USA", desc: "CMA USA is a globally recognised certification in management accounting, awarded by the Institute of Management Accountants (IMA). Recognised in 150+ countries and preferred by Fortune 500 companies, the CMA credential focuses on financial strategy, cost control, and performance analysis—making it ideal for professionals aiming for leadership roles in finance.", link: "Learn More &rarr;" },
+];
+const courseOffers = COURSE_OFFER_DEFAULTS.map((fallback, i) => {
+	const n = i + 1;
+	return {
+		id: fallback.id,
+		img: getCmsImageUrl(data[`course_offer_${n}_img`], fallback.img),
+		alt: fallback.alt,
+		desc: String(data[`course_offer_${n}_desc`] || fallback.desc),
+		link: String(data[`course_offer_${n}_link_text`] || fallback.link),
+		editImg: edit[`course_offer_${n}_img`],
+		editDesc: edit[`course_offer_${n}_desc`],
+		editLink: edit[`course_offer_${n}_link_text`],
+	};
+});
+
+// ===================== VIDEO BANNER =====================
+const videoBannerTitle = String(
+	data.video_banner_title ||
+		'Step Into a Future-Ready Finance <br />Career. <br />Choose Elance',
+);
+const videoBannerSubtitle = String(data.video_banner_subtitle || "Begin your career now");
+
+// ===================== ACCREDITATIONS & STATS =====================
+const STATS_DEFAULTS = [
+	{ icon: "/images/courses/trophy.svg", iconAlt: "Trophy Icon", iconClass: "stats-card-icon", text: "44 World Ranks & 68 <br>National Ranks" },
+	{ icon: "/images/courses/trust.svg", iconAlt: "ACCA Platinum Logo", iconClass: "stats-card-icon", text: "Platinum Approved <br>Partner of ACCA" },
+	{ icon: "/images/courses/Silver-CMA.png", iconAlt: "Silver CMA Logo", iconClass: "stats-card-icon", text: "Silver CMA Course <br>Provider by IMA" },
+	{ icon: "/images/courses/CBE-Center.png", iconAlt: "ACCA CBE Centre", iconClass: "stats-card-icon", text: "ACCA Approved <br>CBE Centre" },
+	{ icon: "/images/courses/Hock.png", iconAlt: "Hock International Logo", iconClass: "stats-card-icon hock-logo", text: "Approved Partner of <br>HOCK International" },
+	{ icon: "/images/courses/faculty.svg", iconAlt: "Faculty Icon", iconClass: "stats-card-icon", text: "India's No 1 <br>Faculty Line-Up" },
+	{ icon: "/images/courses/100.svg", iconAlt: "100 Percent Icon", iconClass: "stats-card-icon", text: "100/100 in FR <br>(ACCA Dec ‘24 <br>Session)" },
+	{ icon: "/images/courses/pass.svg", iconAlt: "Pass Icon", iconClass: "stats-card-icon", text: "5000+ Passes in the <br>Past 1 Year" },
+];
+const statsCards = STATS_DEFAULTS.map((fallback, i) => {
+	const n = i + 1;
+	return {
+		icon: getCmsImageUrl(data[`stats_card_${n}_icon`], fallback.icon),
+		iconAlt: fallback.iconAlt,
+		iconClass: fallback.iconClass,
+		text: String(data[`stats_card_${n}_text`] || fallback.text),
+		editIcon: edit[`stats_card_${n}_icon`],
+		editText: edit[`stats_card_${n}_text`],
+	};
+});
+
+// ===================== FAQ =====================
+const FAQ_DEFAULTS = [
+	{ question: "Is professional certification better than a degree?", answer: "While a university degree provides a broad academic foundation, professional certifications like ACCA and CMA USA focus on specialized, practical knowledge that is directly applicable to the workplace. Many employers prefer certified professionals because they are job-ready from day one, often leading to better roles and faster career progression." },
+	{ question: "Which certification is most suitable for a finance career?", answer: "It depends on your career goals. If you want to specialize in global accounting, auditing, and taxation, ACCA is highly respected worldwide. If your focus is on management accounting, financial analysis, corporate finance, and strategic planning, CMA USA is the ideal choice." },
+	{ question: "Will a certification impact my salary?", answer: "Yes, certified commerce professionals typically earn significantly more than their non-certified peers. In India, entry-level salaries for ACCA or CMA professionals range from ₹6–10 LPA, while experienced senior roles can offer packages of ₹15–40 LPA and beyond." },
+	{ question: "Can I pursue these certifications along with college or a job?", answer: "Absolutely. Both ACCA and CMA USA offer flexible exam schedules and study options. You can prepare for the papers at your own pace, making it highly feasible to balance your study with college graduation (like B.Com) or full-time employment." },
+	{ question: "Which is the Best Institute to study ACCA in Calicut?", answer: "Elance Learning is recognized as one of the premier learning institutes for ACCA in Calicut. With platinum-approved learning partner status, expert faculty, and high pass rates, we provide comprehensive training and placement support to ensure your success." },
+	{ question: "How long does it take to complete ACCA and CMA USA?", answer: "CMA USA can typically be completed in 12 to 18 months as it consists of only 2 exam parts. ACCA, which has up to 13 papers depending on exemptions, generally takes 2 to 3 years to complete." },
+	{ question: "What makes Elance a leading ACCA institute in Kochi?", answer: "Elance's Kochi campus offers state-of-the-art classroom facilities, direct mentorship programs, industry-aligned course material, and an active placement cell. Our status as a Licensed CBE Centre also allows students to take exams locally and conveniently." },
+];
+
+// Fetch course-specific FAQs from the shared "faq" collection (same
+// collection ACCA uses via the `category` field). Falls back to the
+// original hardcoded Q&A so the section still renders if the CMS has no
+// entries yet for category "courses".
+const { entries: faqEntries, error: faqError } = await getEmDashCollection("faq", {
+	where: { category: "courses" },
+}).catch(() => ({ entries: [], error: null }));
+if (faqError) console.error("[courses.astro] EmDash FAQ error:", faqError);
+
+const faqs = (faqEntries && faqEntries.length > 0)
+	? faqEntries.map((e: any) => ({
+		question: String(e.data?.question || ""),
+		answer: String(e.data?.answer || ""),
+		editQuestion: e.edit?.question,
+		editAnswer: e.edit?.answer,
+	}))
+	: FAQ_DEFAULTS.map((f) => ({ ...f, editQuestion: undefined, editAnswer: undefined }));
+
+// ===================== FEATURED ON =====================
+const featuredTitle = String(
+	data.featured_title || 'We\'re <span class="text-blue">Featured</span> On',
+);
+const featuredSubtitle = String(
+	data.featured_subtitle ||
+		"Recognized by leading media houses for our commitment to quality education and student success.",
+);
 ---
 
 
@@ -30,15 +206,8 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 		<!-- ===================== HERO SECTION ===================== -->
 		<section class="courses-hero">
 			<div class="section-container hero-inner">
-				<h1 class="hero-title">
-					Become a Globally Recognized <br />
-					<span class="text-blue">Commerce Professional!</span>
-				</h1>
-				<p class="hero-desc">
-					Gain the skills, credibility, and global recognition to
-					excel in today's competitive business world with
-					industry-relevant commerce professional courses.
-				</p>
+				<h1 class="hero-title" set:html={heroTitle} {...edit.hero_title} />
+				<p class="hero-desc" {...edit.hero_desc}>{heroDesc}</p>
 
 				<div class="hero-visual-wrap">
 					<!-- Elance Logo Trigon Shape -->
@@ -54,9 +223,10 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 					<a href="#cma" class="course-pill-btn cma-pill">CMA USA</a>
 					<!-- Brand Ambassador Centered -->
 					<img
-						src="/images/mammu2.png"
+						src={heroAmbassadorImg}
 						alt="Brand Ambassador"
 						class="hero-ambassador"
+						{...edit.hero_ambassador_img}
 					/>
 				</div>
 			</div>
@@ -70,49 +240,30 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 						<!-- Study Group Graphic -->
 						<div class="classroom-img-wrap">
 							<img
-								src="/images/courses/Slider-Elance-2.jpg"
+								src={chooseImg}
 								alt="Students Studying"
 								class="classroom-img"
+								{...edit.choose_img}
 							/>
 						</div>
 					</div>
 					<div class="choose-right">
-						<h2 class="choose-title">
-							Why Choose Commerce <br />Professional Courses?
-						</h2>
-						<p class="choose-desc">
-							The finance and business world are evolving faster
-							than ever with new technologies, global standards,
-							and rising industry expectations. Commerce
-							professional courses are designed to equip you with
-							the practical skills, strategic mindset, and
-							prestigious global credentials required to excel in
-							today's competitive business landscape.
-						</p>
-						<a href="#courses" class="btn-choose-outline"
-							>Explore Programs</a
+						<h2 class="choose-title" set:html={chooseTitle} {...edit.choose_title} />
+						<p class="choose-desc" {...edit.choose_desc}>{chooseDesc}</p>
+						<a href="#courses" class="btn-choose-outline" {...edit.choose_cta_text}
+							>{chooseCtaText}</a
 						>
 					</div>
 				</div>
 
 				<!-- Area 1: Why Choose Cards (Dark Blue) -->
 				<div class="why-choose-grid">
-					<div class="why-card">
-						<h3>Relevant in Today's <br />Job Market</h3>
-						<p>These certifications are built around current industry demands, making you job-ready from day one.</p>
-					</div>
-					<div class="why-card">
-						<h3>Practical & Global</h3>
-						<p>They combine real-world applications with global recognition, opening doors across countries and industries.</p>
-					</div>
-					<div class="why-card">
-						<h3>Trusted by <br />Employers</h3>
-						<p>Top companies value professionals with specialised, updated skills —not just theoretical knowledge.</p>
-					</div>
-					<div class="why-card">
-						<h3>Career-Focused</h3>
-						<p>Designed for faster career progression, better roles, and leadership tracks.</p>
-					</div>
+					{whyCards.map((card) => (
+						<div class="why-card">
+							<h3 set:html={card.title} {...card.editTitle} />
+							<p {...card.editDesc}>{card.desc}</p>
+						</div>
+					))}
 				</div>
 			</div>
 		</section>
@@ -121,36 +272,32 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 		<section class="opportunities-section">
 			<div class="section-container opportunities-container">
 				<div class="opportunities-left">
-					<h2 class="opportunities-title">Opportunities with <br/>Commerce <br/>Professional <br/>Courses</h2>
-					<p class="opportunities-desc">
-						Commerce professional certifications are increasingly becoming the benchmark for hiring in finance, accounting, and business roles. Designed in line with global standards, these qualifications equip individuals with practical, up-to-date skills that meet the evolving needs of modern industries.
+					<h2 class="opportunities-title" set:html={opportunitiesTitle} {...edit.opportunities_title} />
+					<p class="opportunities-desc" {...edit.opportunities_desc}>
+						{opportunitiesDesc}
 					</p>
 					<div class="opportunities-logos">
-						<img src="/images/courses/trust.svg" alt="ACCA Platinum Learning Partner" class="partner-logo" />
-						<img src="/images/courses/Silver-CMA.png" alt="Silver CMA Course Provider IMA" class="partner-logo" />
-						<img src="/images/courses/CBE-Center.png" alt="Licensed ACCA CBE Centre" class="partner-logo" />
+						{opportunitiesLogos.map((logo) => (
+							<img src={logo.src} alt={logo.alt} class="partner-logo" {...logo.edit} />
+						))}
 					</div>
 				</div>
 				<div class="opportunities-right">
 					<div class="opportunities-col">
-						<div class="opportunity-card">
-							<h3>Global <br/>Recognition</h3>
-							<p>Commerce professional certifications like ACCA and CMA USA are recognised worldwide, giving professionals the flexibility to work abroad or with international firms operating in India.</p>
-						</div>
-						<div class="opportunity-card">
-							<h3>Diverse Job <br/>Roles</h3>
-							<p>The commerce professional courses open doors to roles like Financial Analyst, Auditor, Tax Consultant, Risk Manager, and even CFO across both national and international markets.</p>
-						</div>
+						{opportunityCards.slice(0, 2).map((card) => (
+							<div class="opportunity-card">
+								<h3 set:html={card.title} {...card.editTitle} />
+								<p {...card.editDesc}>{card.desc}</p>
+							</div>
+						))}
 					</div>
 					<div class="opportunities-col offset-col">
-						<div class="opportunity-card">
-							<h3>Higher Earning <br/>Potential</h3>
-							<p>Certified commerce professionals in India typically earn 30-60% more than their non-certified peers. Entry-level salaries range from ₹6-10 LPA, with mid- to senior-level roles offering packages of ₹15-40 LPA and beyond, depending on the role and experience.</p>
-						</div>
-						<div class="opportunity-card">
-							<h3>Career <br/>Versatility</h3>
-							<p>Certified professionals are eligible for roles across various sectors including banking, consulting, fintech, corporate finance, and public practice.</p>
-						</div>
+						{opportunityCards.slice(2, 4).map((card) => (
+							<div class="opportunity-card">
+								<h3 set:html={card.title} {...card.editTitle} />
+								<p {...card.editDesc}>{card.desc}</p>
+							</div>
+						))}
 					</div>
 				</div>
 			</div>
@@ -161,21 +308,15 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 			<div class="section-container">
 				<h2 class="courses-offer-title">Courses we offer at Elance</h2>
 				<div class="courses-offer-grid">
-					<div class="course-offer-card" id="acca">
-						<img src="/images/accaimage-300x300.png" alt="ACCA" class="course-offer-logo" />
-						<p class="course-offer-desc">
-							ACCA is one of the world's most respected accounting qualifications, recognised in 180+ countries and trusted by over 7,600 approved employers globally. With a curriculum built around international standards, ethics, and digital finance, ACCA prepares professionals for high-impact roles in auditing, taxation, risk management, and financial strategy.
-						</p>
-						<a href="#" class="course-offer-link">Learn More &rarr;</a>
-					</div>
-					
-					<div class="course-offer-card" id="cma">
-						<img src="/images/cmaimage-300x300.png" alt="CMA USA" class="course-offer-logo" />
-						<p class="course-offer-desc">
-							CMA USA is a globally recognised certification in management accounting, awarded by the Institute of Management Accountants (IMA). Recognised in 150+ countries and preferred by Fortune 500 companies, the CMA credential focuses on financial strategy, cost control, and performance analysis—making it ideal for professionals aiming for leadership roles in finance.
-						</p>
-						<a href="#" class="course-offer-link">Learn More &rarr;</a>
-					</div>
+					{courseOffers.map((course) => (
+						<div class="course-offer-card" id={course.id}>
+							<img src={course.img} alt={course.alt} class="course-offer-logo" {...course.editImg} />
+							<p class="course-offer-desc" {...course.editDesc}>
+								{course.desc}
+							</p>
+							<a href="#" class="course-offer-link" set:html={course.link} {...course.editLink} />
+						</div>
+					))}
 				</div>
 			</div>
 		</section>
@@ -187,55 +328,20 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 			</video>
 			<div class="video-banner-overlay"></div>
 			<div class="section-container video-banner-content">
-				<h2 class="video-banner-title">
-					Step Into a Future-Ready Finance <br />Career. <br />Choose Elance
-				</h2>
-				<p class="video-banner-subtitle">Begin your career now</p>
+				<h2 class="video-banner-title" set:html={videoBannerTitle} {...edit.video_banner_title} />
+				<p class="video-banner-subtitle" {...edit.video_banner_subtitle}>{videoBannerSubtitle}</p>
 			</div>
 		</section>
 
 		<!-- ===================== ACCREDITATIONS & STATS SECTION ===================== -->
 		<section class="stats-grid-section">
 			<div class="section-container stats-grid-container">
-				<div class="stats-card">
-					<img src="/images/courses/trophy.svg" alt="Trophy Icon" class="stats-card-icon" />
-					<p class="stats-card-text">44 World Ranks & 68 <br>National Ranks</p>
-				</div>
-				
-				<div class="stats-card">
-					<img src="/images/courses/trust.svg" alt="ACCA Platinum Logo" class="stats-card-icon" />
-					<p class="stats-card-text">Platinum Approved <br>Partner of ACCA</p>
-				</div>
-				
-				<div class="stats-card">
-					<img src="/images/courses/Silver-CMA.png" alt="Silver CMA Logo" class="stats-card-icon" />
-					<p class="stats-card-text">Silver CMA Course <br>Provider by IMA</p>
-				</div>
-				
-				<div class="stats-card">
-					<img src="/images/courses/CBE-Center.png" alt="ACCA CBE Centre" class="stats-card-icon" />
-					<p class="stats-card-text">ACCA Approved <br>CBE Centre</p>
-				</div>
-				
-				<div class="stats-card">
-					<img src="/images/courses/Hock.png" alt="Hock International Logo" class="stats-card-icon hock-logo" />
-					<p class="stats-card-text">Approved Partner of <br>HOCK International</p>
-				</div>
-				
-				<div class="stats-card">
-					<img src="/images/courses/faculty.svg" alt="Faculty Icon" class="stats-card-icon" />
-					<p class="stats-card-text">India's No 1 <br>Faculty Line-Up</p>
-				</div>
-				
-				<div class="stats-card">
-					<img src="/images/courses/100.svg" alt="100 Percent Icon" class="stats-card-icon" />
-					<p class="stats-card-text">100/100 in FR <br>(ACCA Dec ‘24 <br>Session)</p>
-				</div>
-				
-				<div class="stats-card">
-					<img src="/images/courses/pass.svg" alt="Pass Icon" class="stats-card-icon" />
-					<p class="stats-card-text">5000+ Passes in the <br>Past 1 Year</p>
-				</div>
+				{statsCards.map((stat) => (
+					<div class="stats-card">
+						<img src={stat.icon} alt={stat.iconAlt} class={stat.iconClass} {...stat.editIcon} />
+						<p class="stats-card-text" set:html={stat.text} {...stat.editText} />
+					</div>
+				))}
 			</div>
 		</section>
 
@@ -244,81 +350,28 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 			<div class="section-container">
 				<h2 class="faq-title">Frequently Asked Questions</h2>
 				<div class="faq-accordion">
-					<details class="faq-item">
-						<summary class="faq-summary">
-							<span class="faq-question">Is professional certification better than a degree?</span>
-							<span class="faq-icon"></span>
-						</summary>
-						<div class="faq-content">
-							<p>While a university degree provides a broad academic foundation, professional certifications like ACCA and CMA USA focus on specialized, practical knowledge that is directly applicable to the workplace. Many employers prefer certified professionals because they are job-ready from day one, often leading to better roles and faster career progression.</p>
-						</div>
-					</details>
-
-					<details class="faq-item">
-						<summary class="faq-summary">
-							<span class="faq-question">Which certification is most suitable for a finance career?</span>
-							<span class="faq-icon"></span>
-						</summary>
-						<div class="faq-content">
-							<p>It depends on your career goals. If you want to specialize in global accounting, auditing, and taxation, ACCA is highly respected worldwide. If your focus is on management accounting, financial analysis, corporate finance, and strategic planning, CMA USA is the ideal choice.</p>
-						</div>
-					</details>
-
-					<details class="faq-item">
-						<summary class="faq-summary">
-							<span class="faq-question">Will a certification impact my salary?</span>
-							<span class="faq-icon"></span>
-						</summary>
-						<div class="faq-content">
-							<p>Yes, certified commerce professionals typically earn significantly more than their non-certified peers. In India, entry-level salaries for ACCA or CMA professionals range from ₹6–10 LPA, while experienced senior roles can offer packages of ₹15–40 LPA and beyond.</p>
-						</div>
-					</details>
-
-					<details class="faq-item">
-						<summary class="faq-summary">
-							<span class="faq-question">Can I pursue these certifications along with college or a job?</span>
-							<span class="faq-icon"></span>
-						</summary>
-						<div class="faq-content">
-							<p>Absolutely. Both ACCA and CMA USA offer flexible exam schedules and study options. You can prepare for the papers at your own pace, making it highly feasible to balance your study with college graduation (like B.Com) or full-time employment.</p>
-						</div>
-					</details>
-
-					<details class="faq-item">
-						<summary class="faq-summary">
-							<span class="faq-question">Which is the Best Institute to study ACCA in Calicut?</span>
-							<span class="faq-icon"></span>
-						</summary>
-						<div class="faq-content">
-							<p>Elance Learning is recognized as one of the premier learning institutes for ACCA in Calicut. With platinum-approved learning partner status, expert faculty, and high pass rates, we provide comprehensive training and placement support to ensure your success.</p>
-						</div>
-					</details>
-
-					<details class="faq-item">
-						<summary class="faq-summary">
-							<span class="faq-question">How long does it take to complete ACCA and CMA USA?</span>
-							<span class="faq-icon"></span>
-						</summary>
-						<div class="faq-content">
-							<p>CMA USA can typically be completed in 12 to 18 months as it consists of only 2 exam parts. ACCA, which has up to 13 papers depending on exemptions, generally takes 2 to 3 years to complete.</p>
-						</div>
-					</details>
-
-					<details class="faq-item">
-						<summary class="faq-summary">
-							<span class="faq-question">What makes Elance a leading ACCA institute in Kochi?</span>
-							<span class="faq-icon"></span>
-						</summary>
-						<div class="faq-content">
-							<p>Elance's Kochi campus offers state-of-the-art classroom facilities, direct mentorship programs, industry-aligned course material, and an active placement cell. Our status as a Licensed CBE Centre also allows students to take exams locally and conveniently.</p>
-						</div>
-					</details>
+					{faqs.map((faq) => (
+						<details class="faq-item">
+							<summary class="faq-summary">
+								<span class="faq-question" {...faq.editQuestion}>{faq.question}</span>
+								<span class="faq-icon"></span>
+							</summary>
+							<div class="faq-content">
+								<p {...faq.editAnswer}>{faq.answer}</p>
+							</div>
+						</details>
+					))}
 				</div>
 			</div>
 		</section>
 
 		<!-- ===================== WE'RE FEATURED ON ===================== -->
-		<FeaturedOn />
+		<FeaturedOn
+			title={featuredTitle}
+			subtitle={featuredSubtitle}
+			editTitle={edit.featured_title}
+			editSubtitle={edit.featured_subtitle}
+		/>
 
 		<Footer />
 	</body>

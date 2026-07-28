@@ -2,6 +2,70 @@
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
 import FeaturedOn from "../components/FeaturedOn.astro";
+import { getEmDashEntry } from "../lib/cms.js";
+
+// Fetch the Contact page's dynamic content from EmDash CMS (same "pages"
+// collection the home/ACCA pages use, with slug "contact").
+const { entry: pageEntry } = await getEmDashEntry("pages", "contact").catch(() => ({
+	entry: null,
+}));
+const data = (pageEntry?.data as Record<string, any>) || {};
+const edit = pageEntry?.edit || ({} as Record<string, any>);
+
+// ── Header ──
+const headerTitle = String(
+	data.header_title ||
+		'Contact <span class="contact-header-blue">Us</span>',
+);
+const headerDesc = String(
+	data.header_desc ||
+		"Take a career step into the dynamic world of finance and explore the limitless professional opportunities of ACCA, CA, and CMA. Act today and accelerate your career to new heights.",
+);
+
+// ── Left info panel ──
+const leftTitle = String(
+	data.left_title ||
+		"Explore Empowering Courses, Inquire for a Better Tomorrow",
+);
+const address1 = String(
+	data.address_1 ||
+		"2nd Floor, Metro Magna Building, Mavoor Rd, Parayancheri, Puthiyara, Kozhikode, Kerala 673016",
+);
+const address2 = String(
+	data.address_2 ||
+		"Primero Plaza, A K Seshadri Rd, near Maharajas College Ground, Shenoys, Kochi, Ernakulam, Kerala 682011",
+);
+const address3 = String(
+	data.address_3 ||
+		"Elance Knowledge Tower, Palazhi Road, Pottammal, Kozhikode, Kerala 673016",
+);
+const contactEmail = String(data.contact_email || "info@Elancelearning.com");
+const contactPhone = String(data.contact_phone || "+91 98950 97070");
+
+// ── Where to find us ──
+const mapsTitle = String(
+	data.maps_title ||
+		'Where to <span class="where-to-find-blue">find us</span> ?',
+);
+const map1Label = String(data.map_1_label || "Calicut");
+const map1Url = String(
+	data.map_1_url ||
+		"https://www.google.com/maps?ll=11.258926,75.809514&z=17&t=m&hl=en&gl=IN&mapclient=embed&cid=10680548857255058933&output=embed",
+);
+const map2Label = String(data.map_2_label || "Kochi");
+const map2Url = String(
+	data.map_2_url ||
+		"https://www.google.com/maps?ll=9.975353,76.282945&z=16&t=m&hl=en&gl=IN&mapclient=embed&cid=6827443814145336761&output=embed",
+);
+
+// ── Featured On (shared component, same pattern as index.astro) ──
+const featuredTitle = String(
+	data.featured_title || 'We\'re <span class="text-blue">Featured</span> On',
+);
+const featuredSubtitle = String(
+	data.featured_subtitle ||
+		"Recognized by leading media houses for our commitment to quality education and student success.",
+);
 ---
 
 <html lang="en">
@@ -27,14 +91,9 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 		<!-- ===================== CONTACT US HEADER SECTION ===================== -->
 		<section class="contact-header-section">
 			<div class="contact-header-container">
-				<h1 class="contact-header-title">
-					Contact <span class="contact-header-blue">Us</span>
-				</h1>
-				<p class="contact-header-desc">
-					Take a career step into the dynamic world of finance and
-					explore the limitless professional opportunities of ACCA,
-					CA, and CMA. Act today and accelerate your career to new
-					heights.
+				<h1 class="contact-header-title" set:html={headerTitle} {...edit.header_title} />
+				<p class="contact-header-desc" {...edit.header_desc}>
+					{headerDesc}
 				</p>
 			</div>
 		</section>
@@ -44,9 +103,8 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 			<div class="contact-form-container">
 				<!-- LEFT SIDE - INFO -->
 				<div class="contact-left">
-					<h2 class="contact-left-title">
-						Explore Empowering Courses, Inquire for a Better
-						Tomorrow
+					<h2 class="contact-left-title" {...edit.left_title}>
+						{leftTitle}
 					</h2>
 
 					<div class="contact-info-list">
@@ -67,10 +125,8 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 								<circle cx="12" cy="10" r="3"></circle>
 							</svg>
 							<div class="info-text">
-								<p>
-									2nd Floor, Metro Magna Building, Mavoor Rd,
-									Parayancheri, Puthiyara, Kozhikode, Kerala
-									673016
+								<p {...edit.address_1}>
+									{address1}
 								</p>
 							</div>
 						</div>
@@ -92,10 +148,8 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 								<circle cx="12" cy="10" r="3"></circle>
 							</svg>
 							<div class="info-text">
-								<p>
-									Primero Plaza, A K Seshadri Rd, near
-									Maharajas College Ground, Shenoys, Kochi,
-									Ernakulam, Kerala 682011
+								<p {...edit.address_2}>
+									{address2}
 								</p>
 							</div>
 						</div>
@@ -117,9 +171,8 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 								<circle cx="12" cy="10" r="3"></circle>
 							</svg>
 							<div class="info-text">
-								<p>
-									Elance Knowledge Tower, Palazhi Road,
-									Pottammal, Kozhikode, Kerala 673016
+								<p {...edit.address_3}>
+									{address3}
 								</p>
 							</div>
 						</div>
@@ -142,7 +195,7 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 								></path>
 							</svg>
 							<div class="info-text">
-								<p>info@Elancelearning.com</p>
+								<p {...edit.contact_email}>{contactEmail}</p>
 							</div>
 						</div>
 
@@ -162,7 +215,7 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 								></path>
 							</svg>
 							<div class="info-text">
-								<p>+91 98950 97070</p>
+								<p {...edit.contact_phone}>{contactPhone}</p>
 							</div>
 						</div>
 					</div>
@@ -263,13 +316,11 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 		<!-- ===================== WHERE TO FIND US SECTION ===================== -->
 		<section class="where-to-find-section">
 			<div class="where-to-find-container">
-				<h2 class="where-to-find-title">
-					Where to <span class="where-to-find-blue">find us</span> ?
-				</h2>
+				<h2 class="where-to-find-title" set:html={mapsTitle} {...edit.maps_title} />
 
 				<div class="maps-grid">
 					<div class="map-item">
-						<h3 class="map-city-title">Calicut</h3>
+						<h3 class="map-city-title" {...edit.map_1_label}>{map1Label}</h3>
 						<div class="map-wrapper">
 							<a
 								href="https://www.google.com/maps?ll=11.258926,75.809514&z=17&t=m&hl=en&gl=IN&mapclient=embed&cid=10680548857255058933"
@@ -281,7 +332,8 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 							</a>
 							<iframe
 								class="map-embed"
-								src="https://www.google.com/maps?ll=11.258926,75.809514&z=17&t=m&hl=en&gl=IN&mapclient=embed&cid=10680548857255058933&output=embed"
+								src={map1Url}
+								{...edit.map_1_url}
 								allowfullscreen=""
 								loading="lazy"
 								referrerpolicy="no-referrer-when-downgrade"
@@ -290,7 +342,7 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 					</div>
 
 					<div class="map-item">
-						<h3 class="map-city-title">Kochi</h3>
+						<h3 class="map-city-title" {...edit.map_2_label}>{map2Label}</h3>
 						<div class="map-wrapper">
 							<a
 								href="https://www.google.com/maps?ll=9.975353,76.282945&z=16&t=m&hl=en&gl=IN&mapclient=embed&cid=6827443814145336761"
@@ -302,7 +354,8 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 							</a>
 							<iframe
 								class="map-embed"
-								src="https://www.google.com/maps?ll=9.975353,76.282945&z=16&t=m&hl=en&gl=IN&mapclient=embed&cid=6827443814145336761&output=embed"
+								src={map2Url}
+								{...edit.map_2_url}
 								allowfullscreen=""
 								loading="lazy"
 								referrerpolicy="no-referrer-when-downgrade"
@@ -314,7 +367,12 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 		</section>
 
 		<!-- ===================== WE'RE FEATURED ON ===================== -->
-		<FeaturedOn />
+		<FeaturedOn
+			title={featuredTitle}
+			subtitle={featuredSubtitle}
+			editTitle={edit.featured_title}
+			editSubtitle={edit.featured_subtitle}
+		/>
 
 		<Footer />
 

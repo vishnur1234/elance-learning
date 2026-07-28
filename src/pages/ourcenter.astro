@@ -2,6 +2,141 @@
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
 import FeaturedOn from "../components/FeaturedOn.astro";
+import { getEmDashEntry } from "../lib/cms.js";
+import { getCmsImageUrl } from "../utils/media.js";
+
+// Fetch the "Our Centers" page's dynamic content from EmDash CMS (same
+// "pages" collection the home/ACCA pages use, with slug "ourcenter").
+const { entry: pageEntry } = await getEmDashEntry("pages", "ourcenter").catch(
+	() => ({ entry: null }),
+);
+const data = (pageEntry?.data as Record<string, any>) || {};
+const edit = (pageEntry?.edit as Record<string, any>) || {};
+
+// ── Hero ──
+const heroEyebrow = String(data.hero_eyebrow || "Welcome to");
+const heroTitle = String(
+	data.hero_title ||
+		"India's Most Trusted<br />Commerce Institute",
+);
+const heroDesc = String(
+	data.hero_desc ||
+		"Begin your journey in a space alive with ambition, connection, and opportunity. Whether you're at our vibrant Calicut campus or the dynamic Kochi campus, every moment at Elance invites you to grow your skills, build meaningful relationships, and enjoy the spirited pulse of campus life. Here, education goes beyond the classroom— offering professional commerce qualifications that empowers your career while creating memories that last a lifetime.",
+);
+const heroCtaText = String(data.hero_cta_text || "Begin your career now");
+const heroImg = getCmsImageUrl(
+	data.hero_img,
+	"/images/ourcenter/Our-Center-BIG-M-Banner.png",
+);
+
+// ── Campus cards (Kochi, Calicut) ──
+const CAMPUS_DEFAULTS = [
+	{
+		title: "Elance Kochi Campus",
+		desc: "Our Kochi campus blends focus with freshness! A space where ambition excels alongside friendly faces, coffee breaks, and real-world learning. From expert-led sessions to campus moments you'll always remember, it's where growth feels good.",
+		cta: "Know more",
+		video: "https://www.youtube.com/embed/cGtbeaH_x88",
+	},
+	{
+		title: "Elance Calicut Campus",
+		desc: "At our Calicut campus, learning is just one part of the experience. It's a space filled with energy, connection, and the kind of support that helps you grow inside the classroom and beyond. Here, every day brings new ideas and memorable moments.",
+		cta: "Know more",
+		video: "https://www.youtube.com/embed/TWKK0uhj_QY",
+	},
+];
+const campuses = CAMPUS_DEFAULTS.map((fallback, i) => {
+	const n = i + 1;
+	return {
+		title: String(data[`campus_${n}_title`] || fallback.title),
+		desc: String(data[`campus_${n}_desc`] || fallback.desc),
+		cta: String(data[`campus_${n}_cta_text`] || fallback.cta),
+		video: String(data[`campus_${n}_video`] || fallback.video),
+		editTitle: edit[`campus_${n}_title`],
+		editDesc: edit[`campus_${n}_desc`],
+		editCta: edit[`campus_${n}_cta_text`],
+		editVideo: edit[`campus_${n}_video`],
+	};
+});
+
+// ── Features grid (6 icon+text cards) ──
+const FEATURE_DEFAULTS = [
+	{
+		icon: "/images/ourcenter/Classroom.svg",
+		text: "Modern, well-equipped classrooms",
+	},
+	{
+		icon: "/images/ourcenter/Discussion.svg",
+		text: "Tech-enabled learning spaces with high-speed internet",
+	},
+	{
+		icon: "/images/ourcenter/Environment.svg",
+		text: "Student-friendly common areas for discussions and collaboration",
+	},
+	{
+		icon: "/images/ourcenter/Mentor-Support.svg",
+		text: "Easy access to faculty and mentors for academic support",
+	},
+	{
+		icon: "/images/ourcenter/Meeting-room.svg",
+		text: "Space for events, celebrations, and student-led initiatives",
+	},
+	{
+		icon: "/images/ourcenter/Tech-Enabled-Space.svg",
+		text: "Calm, clean environment designed to keep students focused",
+	},
+];
+const features = FEATURE_DEFAULTS.map((fallback, i) => {
+	const n = i + 1;
+	return {
+		icon: getCmsImageUrl(data[`feature_${n}_icon`], fallback.icon),
+		text: String(data[`feature_${n}_text`] || fallback.text),
+		editIcon: edit[`feature_${n}_icon`],
+		editText: edit[`feature_${n}_text`],
+	};
+});
+
+// ── Celebrations banner ──
+const celebrationsTitle = String(
+	data.celebrations_title || "Celebrations, Culture & Campus Spirit",
+);
+const celebrationsDesc = String(
+	data.celebrations_desc ||
+		"At Elance, achievement and celebration go hand in hand. Our campuses come alive with vibrant cultural fests, spirited events, and thrilling sports moments that leave a lasting impact.",
+);
+const celebrationsDetail = String(
+	data.celebrations_detail ||
+		"From festive gatherings and talent showcases to high-energy sports competitions and our flagship annual event Elan Festa, every occasion brings students together to connect, express, and celebrate. Both Kochi and Calicut campuses offer a dynamic space where culture, creativity, and campus spirit thrive.",
+);
+
+// ── Excellence grid (2 title+text cards) ──
+const EXCELLENCE_DEFAULTS = [
+	{
+		title: "Academic Excellence with Personalised Support",
+		text: "At Elance, learning is not limited to textbooks. We foster a well-rounded environment where students grow intellectually, emotionally, and personally. Our distinctive 4-tier support system—including expert faculty, dedicated mentors, approachable coordinators, and trained psychological counsellors—ensures every student receives the right guidance at every stage of their journey through our commerce professional courses and beyond.",
+	},
+	{
+		title: "Career-Focused Student Journey",
+		text: "We combine strong academic foundations with hands-on exposure to prepare students for success beyond the classroom. Designed to provide the best commerce courses in India, our programs are enriched with initiatives like the Prime+ Program, leadership development platforms, and industry-aligned experiences—such as the EDGE '24 pitching challenge, LEAP '25, a case study collaboration with IIM Mumbai, and the Excel Hackathon. Students gain real-world skills and confidence to become industry-ready global commerce professionals.",
+	},
+];
+const excellenceCards = EXCELLENCE_DEFAULTS.map((fallback, i) => {
+	const n = i + 1;
+	return {
+		title: String(data[`excellence_${n}_title`] || fallback.title),
+		text: String(data[`excellence_${n}_text`] || fallback.text),
+		editTitle: edit[`excellence_${n}_title`],
+		editText: edit[`excellence_${n}_text`],
+	};
+});
+
+// ── Featured On section ──
+const featuredTitle = String(
+	data.featured_title || 'We\'re <span class="text-blue">Featured</span> On',
+);
+const featuredSubtitle = String(
+	data.featured_subtitle ||
+		"Recognized by leading media houses for our commitment to quality education and student success.",
+);
 ---
 
 <html lang="en">
@@ -28,29 +163,17 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 		<section class="oc-hero-section">
 			<div class="oc-hero-card">
 				<div class="oc-hero-left">
-					<p class="oc-eyebrow">Welcome to</p>
-					<h1 class="oc-hero-title">
-						India's Most Trusted<br />
-						Commerce Institute
-					</h1>
-					<p class="oc-hero-desc">
-						Begin your journey in a space alive with ambition,
-						connection, and opportunity. Whether you're at our
-						vibrant Calicut campus or the dynamic Kochi campus,
-						every moment at Elance invites you to grow your skills,
-						build meaningful relationships, and enjoy the spirited
-						pulse of campus life. Here, education goes beyond the
-						classroom— offering professional commerce qualifications
-						that empowers your career while creating memories that
-						last a lifetime.
-					</p>
-					<a href="#" class="oc-btn-primary">Begin your career now</a>
+					<p class="oc-eyebrow" {...edit.hero_eyebrow}>{heroEyebrow}</p>
+					<h1 class="oc-hero-title" set:html={heroTitle} {...edit.hero_title} />
+					<p class="oc-hero-desc" {...edit.hero_desc}>{heroDesc}</p>
+					<a href="#" class="oc-btn-primary" {...edit.hero_cta_text}>{heroCtaText}</a>
 				</div>
 				<div class="oc-hero-right">
 					<img
-						src="/images/ourcenter/Our-Center-BIG-M-Banner.png"
+						src={heroImg}
 						alt="Elance campus with brand ambassador"
 						class="oc-hero-img"
+						{...edit.hero_img}
 					/>
 				</div>
 			</div>
@@ -59,145 +182,56 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 		<!-- ===================== CAMPUS CARDS ===================== -->
 		<section class="oc-campus-section">
 			<div class="oc-campus-grid">
-				<!-- Kochi Campus -->
-				<div class="oc-campus-card">
-					<h2 class="oc-campus-title">Elance Kochi Campus</h2>
-					<p class="oc-campus-desc">
-						Our Kochi campus blends focus with freshness! A space
-						where ambition excels alongside friendly faces, coffee
-						breaks, and real-world learning. From expert-led
-						sessions to campus moments you'll always remember, it's
-						where growth feels good.
-					</p>
-					<a href="#" class="oc-btn-outline">Know more</a>
+				{campuses.map((c) => (
+					<div class="oc-campus-card">
+						<h2 class="oc-campus-title" {...c.editTitle}>{c.title}</h2>
+						<p class="oc-campus-desc" {...c.editDesc}>{c.desc}</p>
+						<a href="#" class="oc-btn-outline" {...c.editCta}>{c.cta}</a>
 
-					<div class="oc-video-thumb">
-						<iframe
-							src="https://www.youtube.com/embed/cGtbeaH_x88"
-							title="Elance Kochi Campus"
-							allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-							allowfullscreen
-							class="oc-video-iframe"></iframe>
+						<div class="oc-video-thumb">
+							<iframe
+								src={c.video}
+								title={c.title}
+								allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+								allowfullscreen
+								class="oc-video-iframe"
+								{...c.editVideo}></iframe>
+						</div>
 					</div>
-				</div>
-
-				<!-- Calicut Campus -->
-				<div class="oc-campus-card">
-					<h2 class="oc-campus-title">Elance Calicut Campus</h2>
-					<p class="oc-campus-desc">
-						At our Calicut campus, learning is just one part of the
-						experience. It's a space filled with energy, connection,
-						and the kind of support that helps you grow inside the
-						classroom and beyond. Here, every day brings new ideas
-						and memorable moments.
-					</p>
-					<a href="#" class="oc-btn-outline">Know more</a>
-
-					<div class="oc-video-thumb">
-						<iframe
-							src="https://www.youtube.com/embed/TWKK0uhj_QY"
-							title="Elance Calicut Campus"
-							allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-							allowfullscreen
-							class="oc-video-iframe"></iframe>
-					</div>
-				</div>
+				))}
 			</div>
 		</section>
 
 		<!-- ===================== CAMPUS FEATURES GRID ===================== -->
 		<section class="oc-features-section">
 			<div class="oc-features-grid">
-				<div class="oc-feature-card">
-					<img
-						src="/images/ourcenter/Classroom.svg"
-						alt=""
-						class="oc-feature-icon oc-feature-icon--original"
-					/>
-					<p class="oc-feature-text">
-						Modern, well-equipped classrooms
-					</p>
-				</div>
-
-				<div class="oc-feature-card">
-					<img
-						src="/images/ourcenter/Discussion.svg"
-						alt=""
-						class="oc-feature-icon oc-feature-icon--original"
-					/>
-					<p class="oc-feature-text">
-						Tech-enabled learning spaces with high-speed internet
-					</p>
-				</div>
-
-				<div class="oc-feature-card">
-					<img
-						src="/images/ourcenter/Environment.svg"
-						alt=""
-						class="oc-feature-icon oc-feature-icon--original"
-					/>
-					<p class="oc-feature-text">
-						Student-friendly common areas for discussions and
-						collaboration
-					</p>
-				</div>
-
-				<div class="oc-feature-card">
-					<img
-						src="/images/ourcenter/Mentor-Support.svg"
-						alt=""
-						class="oc-feature-icon oc-feature-icon--original"
-					/>
-					<p class="oc-feature-text">
-						Easy access to faculty and mentors for academic support
-					</p>
-				</div>
-
-				<div class="oc-feature-card">
-					<img
-						src="/images/ourcenter/Meeting-room.svg"
-						alt=""
-						class="oc-feature-icon oc-feature-icon--original"
-					/>
-					<p class="oc-feature-text">
-						Space for events, celebrations, and student-led
-						initiatives
-					</p>
-				</div>
-
-				<div class="oc-feature-card">
-					<img
-						src="/images/ourcenter/Tech-Enabled-Space.svg"
-						alt=""
-						class="oc-feature-icon oc-feature-icon--original"
-					/>
-					<p class="oc-feature-text">
-						Calm, clean environment designed to keep students
-						focused
-					</p>
-				</div>
+				{features.map((f) => (
+					<div class="oc-feature-card">
+						<img
+							src={f.icon}
+							alt=""
+							class="oc-feature-icon oc-feature-icon--original"
+							{...f.editIcon}
+						/>
+						<p class="oc-feature-text" {...f.editText}>
+							{f.text}
+						</p>
+					</div>
+				))}
 			</div>
 		</section>
 
 		<!-- ===================== CELEBRATIONS SECTION ===================== -->
 		<section class="oc-celebrations-section">
 			<div class="oc-celebrations-content">
-				<h2 class="oc-celebrations-title">
-					Celebrations, Culture & Campus Spirit
+				<h2 class="oc-celebrations-title" {...edit.celebrations_title}>
+					{celebrationsTitle}
 				</h2>
-				<p class="oc-celebrations-desc">
-					At Elance, achievement and celebration go hand in hand. Our
-					campuses come alive with vibrant cultural fests, spirited
-					events, and thrilling sports moments that leave a lasting
-					impact.
+				<p class="oc-celebrations-desc" {...edit.celebrations_desc}>
+					{celebrationsDesc}
 				</p>
-				<p class="oc-celebrations-detail">
-					From festive gatherings and talent showcases to high-energy
-					sports competitions and our flagship annual event Elan
-					Festa, every occasion brings students together to connect,
-					express, and celebrate. Both Kochi and Calicut campuses
-					offer a dynamic space where culture, creativity, and campus
-					spirit thrive.
+				<p class="oc-celebrations-detail" {...edit.celebrations_detail}>
+					{celebrationsDetail}
 				</p>
 			</div>
 		</section>
@@ -205,43 +239,25 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 		<!-- ===================== EXCELLENCE SECTION ===================== -->
 		<section class="oc-excellence-section">
 			<div class="oc-excellence-grid">
-				<div class="oc-excellence-card">
-					<h3 class="oc-excellence-title">
-						Academic Excellence with Personalised Support
-					</h3>
-					<p class="oc-excellence-text">
-						At Elance, learning is not limited to textbooks. We
-						foster a well-rounded environment where students grow
-						intellectually, emotionally, and personally. Our
-						distinctive 4-tier support system—including expert
-						faculty, dedicated mentors, approachable coordinators,
-						and trained psychological counsellors—ensures every
-						student receives the right guidance at every stage of
-						their journey through our commerce professional courses
-						and beyond.
-					</p>
-				</div>
-				<div class="oc-excellence-card">
-					<h3 class="oc-excellence-title">
-						Career-Focused Student Journey
-					</h3>
-					<p class="oc-excellence-text">
-						We combine strong academic foundations with hands-on
-						exposure to prepare students for success beyond the
-						classroom. Designed to provide the best commerce courses
-						in India, our programs are enriched with initiatives
-						like the Prime+ Program, leadership development
-						platforms, and industry-aligned experiences—such as the
-						EDGE '24 pitching challenge, LEAP '25, a case study
-						collaboration with IIM Mumbai, and the Excel Hackathon.
-						Students gain real-world skills and confidence to become
-						industry-ready global commerce professionals.
-					</p>
-				</div>
+				{excellenceCards.map((ex) => (
+					<div class="oc-excellence-card">
+						<h3 class="oc-excellence-title" {...ex.editTitle}>
+							{ex.title}
+						</h3>
+						<p class="oc-excellence-text" {...ex.editText}>
+							{ex.text}
+						</p>
+					</div>
+				))}
 			</div>
 		</section>
 
-		<FeaturedOn />
+		<FeaturedOn
+			title={featuredTitle}
+			subtitle={featuredSubtitle}
+			editTitle={edit.featured_title}
+			editSubtitle={edit.featured_subtitle}
+		/>
 
 		<Footer />
 	</body>

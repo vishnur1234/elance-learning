@@ -1,6 +1,86 @@
 ---
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
+import { getEmDashEntry } from "../lib/cms.js";
+
+// Fetch the About page's dynamic content from EmDash CMS (same "pages"
+// collection the home/ACCA pages use, with slug "about").
+const { entry: aboutPage } = await getEmDashEntry("pages", "about").catch(() => ({
+	entry: null,
+}));
+const data = (aboutPage?.data as Record<string, any>) || {};
+const edit = aboutPage?.edit || ({} as Record<string, any>);
+
+// ── Intro Hero ──
+const introTitle = String(
+	data.intro_title || 'About <span class="about-intro-blue">Us</span>',
+);
+const introDesc = String(
+	data.intro_desc ||
+		"Elance, India's premium commerce platform, excels in delivering esteemed professional accounting courses, such as ACCA & CMA USA. Supported by a team of highly skilled educators, our platform's core ethos revolves around accessibility and excellence in commerce education. Our remarkable growth trajectory, surging from 22 students in 2018 to nurturing a global cohort exceeding 25,000, is a testament to our unwavering dedication to providing exceptional educational opportunities. Elance proudly stands as the foremost platform for those seeking top-tier finance certifications and a comprehensive learning experience in commerce.",
+);
+
+// ── Commitment Section ──
+const commitmentTitle = String(
+	data.commitment_title ||
+		'<span class="about-commitment-blue">Above and Beyond</span>: A Commitment to Quality',
+);
+
+const FEATURE_DEFAULTS = [
+	{
+		title: "Faculty Line-Up",
+		desc: "At Elance, we boast an unparalleled faculty composed of India's top educators, each with extensive experience and impressive national and world rankings. The quality services they provide have enabled countless students to achieve their dream careers in commerce.",
+	},
+	{
+		title: "All-around Assistance for Effective Learning",
+		desc: "At Elance, students benefit from a complete learning ecosystem that goes beyond faculty support. With top-ranked mentors, dedicated coordinators, and a comprehensive learning app, they receive well-rounded guidance for their preparation.",
+	},
+	{
+		title: "Enhancing Learning Through Advanced Technology",
+		desc: "At Elance, we prioritize innovation and technology to simplify the learning process for mastering commerce professional courses. Features like Study Buddy and Study Planners are direct outcomes of this integration, enhancing the overall student experience.",
+	},
+	{
+		title: "24/7 Access to Elance Learning App",
+		desc: "The Elance Learning App offers flexibility for students and working professionals, allowing them to choose between online, offline, or hybrid learning modes. It provides easy access to courses, enabling users to upskill at their convenience anytime, anywhere.",
+	},
+	{
+		title: "Bridging Learning with Practical, Industry-Relevant Experience",
+		desc: "At Elance, we focus on bridging theory with practice, offering students the chance to excel through real-world experiences. Programs like EDGE '24 – Elance Driven Growth for Entrepreneurs provide valuable hands-on opportunities, helping aspirants master the skills needed to lead the industry. Global Recognition for Innovation Elance's dedication to innovation has earned global recognition! We are honored to be selected by Google for Startups, in collaboration with MeitY, to be a part of the AI Academy India 2024. This prestigious inclusion is a testament to our relentless pursuit of excellence and impactful solutions.",
+	},
+];
+const features = FEATURE_DEFAULTS.map((fallback, i) => {
+	const n = i + 1;
+	return {
+		title: String(data[`feature_${n}_title`] || fallback.title),
+		desc: String(data[`feature_${n}_desc`] || fallback.desc),
+		editTitle: edit[`feature_${n}_title`],
+		editDesc: edit[`feature_${n}_desc`],
+	};
+});
+
+// ── Mission & Vision Section ──
+const missionTitle = String(data.mission_title || "Our Mission & Vision");
+const missionText = String(
+	data.mission_text ||
+		"Our mission is to revolutionize education by breaking conventional patterns by integrating cutting-edge technology and innovation to create personalized learning experiences. We are dedicated to providing students with real-life experiences and practical knowledge through a practitioner-based approach, ensuring they are well-equipped with the essential skills needed to meet the ever-evolving demands of the industry. By fostering an environment that emphasizes quality education and skill development, we aim to empower our students to excel in their careers and make a meaningful impact in their fields. At Elance, we are committed to helping every commerce aspirant turn their dream of becoming a top-class commerce professional into a reality.",
+);
+
+// ── Impact Section ──
+const impactTitle = String(
+	data.impact_title || 'Our <span class="about-impact-blue">Impact</span>',
+);
+const impactText = String(
+	data.impact_text ||
+		"We believe we have significantly transformed the commerce education industry by revolutionizing the delivery of quality learning.",
+);
+const impactDetail = String(
+	data.impact_detail ||
+		'Rather than adhering to conventional educational methods, we have successfully integrated innovation and technology to provide a more personalized education to commerce aspirants. In just five years, our unwavering commitment has empowered over 25,000 students leading them to become exceptional commerce professionals. We take pride in our achievements, including <strong>49 World & 76 National Ranks</strong>. Our high-quality services have helped bridge the skill gap in the industry, producing professionals who excel and meet the demands of leading employers in national and international MNCs, including the Big Four.',
+);
+const impactClosing = String(
+	data.impact_closing ||
+		"By fostering a supportive and holistic environment, we continue to shape the future of commerce professionals and contribute to a dynamic professional culture.",
+);
 ---
 
 <html lang="en">
@@ -26,11 +106,9 @@ import Footer from "../components/Footer.astro";
 		<!-- ===================== ABOUT US INTRO SECTION ===================== -->
 		<section class="about-intro-section">
 			<div class="about-intro-container">
-				<h1 class="about-intro-title">
-					About <span class="about-intro-blue">Us</span>
-				</h1>
-				<p class="about-intro-desc">
-					Elance, India's premium commerce platform, excels in delivering esteemed professional accounting courses, such as ACCA & CMA USA. Supported by a team of highly skilled educators, our platform's core ethos revolves around accessibility and excellence in commerce education. Our remarkable growth trajectory, surging from 22 students in 2018 to nurturing a global cohort exceeding 25,000, is a testament to our unwavering dedication to providing exceptional educational opportunities. Elance proudly stands as the foremost platform for those seeking top-tier finance certifications and a comprehensive learning experience in commerce.
+				<h1 class="about-intro-title" set:html={introTitle} {...edit.intro_title} />
+				<p class="about-intro-desc" {...edit.intro_desc}>
+					{introDesc}
 				</p>
 			</div>
 		</section>
@@ -39,45 +117,17 @@ import Footer from "../components/Footer.astro";
 		<section class="about-commitment-section">
 			<div class="about-commitment-container">
 				<div class="about-commitment-left">
-					<h2 class="about-commitment-title">
-						<span class="about-commitment-blue">Above and Beyond</span>: A Commitment to Quality
-					</h2>
+					<h2 class="about-commitment-title" set:html={commitmentTitle} {...edit.commitment_title} />
 
 					<div class="about-features-list">
-						<div class="about-feature-item">
-							<h4 class="about-feature-item-title">Faculty Line-Up</h4>
-							<p class="about-feature-item-text">
-								At Elance, we boast an unparalleled faculty composed of India's top educators, each with extensive experience and impressive national and world rankings. The quality services they provide have enabled countless students to achieve their dream careers in commerce.
-							</p>
-						</div>
-
-						<div class="about-feature-item">
-							<h4 class="about-feature-item-title">All-around Assistance for Effective Learning</h4>
-							<p class="about-feature-item-text">
-								At Elance, students benefit from a complete learning ecosystem that goes beyond faculty support. With top-ranked mentors, dedicated coordinators, and a comprehensive learning app, they receive well-rounded guidance for their preparation.
-							</p>
-						</div>
-
-						<div class="about-feature-item">
-							<h4 class="about-feature-item-title">Enhancing Learning Through Advanced Technology</h4>
-							<p class="about-feature-item-text">
-								At Elance, we prioritize innovation and technology to simplify the learning process for mastering commerce professional courses. Features like Study Buddy and Study Planners are direct outcomes of this integration, enhancing the overall student experience.
-							</p>
-						</div>
-
-						<div class="about-feature-item">
-							<h4 class="about-feature-item-title">24/7 Access to Elance Learning App</h4>
-							<p class="about-feature-item-text">
-								The Elance Learning App offers flexibility for students and working professionals, allowing them to choose between online, offline, or hybrid learning modes. It provides easy access to courses, enabling users to upskill at their convenience anytime, anywhere.
-							</p>
-						</div>
-
-						<div class="about-feature-item">
-							<h4 class="about-feature-item-title">Bridging Learning with Practical, Industry-Relevant Experience</h4>
-							<p class="about-feature-item-text">
-								At Elance, we focus on bridging theory with practice, offering students the chance to excel through real-world experiences. Programs like EDGE '24 – Elance Driven Growth for Entrepreneurs provide valuable hands-on opportunities, helping aspirants master the skills needed to lead the industry. Global Recognition for Innovation Elance's dedication to innovation has earned global recognition! We are honored to be selected by Google for Startups, in collaboration with MeitY, to be a part of the AI Academy India 2024. This prestigious inclusion is a testament to our relentless pursuit of excellence and impactful solutions.
-							</p>
-						</div>
+						{features.map((f) => (
+							<div class="about-feature-item">
+								<h4 class="about-feature-item-title" {...f.editTitle}>{f.title}</h4>
+								<p class="about-feature-item-text" {...f.editDesc}>
+									{f.desc}
+								</p>
+							</div>
+						))}
 					</div>
 				</div>
 
@@ -138,9 +188,9 @@ import Footer from "../components/Footer.astro";
 		<!-- ===================== MISSION & VISION SECTION ===================== -->
 		<section class="about-mission-section">
 			<div class="about-mission-container">
-				<h2 class="about-mission-title">Our Mission & Vision</h2>
-				<p class="about-mission-text">
-					Our mission is to revolutionize education by breaking conventional patterns by integrating cutting-edge technology and innovation to create personalized learning experiences. We are dedicated to providing students with real-life experiences and practical knowledge through a practitioner-based approach, ensuring they are well-equipped with the essential skills needed to meet the ever-evolving demands of the industry. By fostering an environment that emphasizes quality education and skill development, we aim to empower our students to excel in their careers and make a meaningful impact in their fields. At Elance, we are committed to helping every commerce aspirant turn their dream of becoming a top-class commerce professional into a reality.
+				<h2 class="about-mission-title" {...edit.mission_title}>{missionTitle}</h2>
+				<p class="about-mission-text" {...edit.mission_text}>
+					{missionText}
 				</p>
 			</div>
 		</section>
@@ -148,15 +198,13 @@ import Footer from "../components/Footer.astro";
 		<!-- ===================== IMPACT SECTION ===================== -->
 		<section class="about-impact-section">
 			<div class="about-impact-container">
-				<h2 class="about-impact-title">Our <span class="about-impact-blue">Impact</span></h2>
-				<p class="about-impact-text">
-					We believe we have significantly transformed the commerce education industry by revolutionizing the delivery of quality learning.
+				<h2 class="about-impact-title" set:html={impactTitle} {...edit.impact_title} />
+				<p class="about-impact-text" {...edit.impact_text}>
+					{impactText}
 				</p>
-				<p class="about-impact-detail">
-					Rather than adhering to conventional educational methods, we have successfully integrated innovation and technology to provide a more personalized education to commerce aspirants. In just five years, our unwavering commitment has empowered over 25,000 students leading them to become exceptional commerce professionals. We take pride in our achievements, including <strong>49 World & 76 National Ranks</strong>. Our high-quality services have helped bridge the skill gap in the industry, producing professionals who excel and meet the demands of leading employers in national and international MNCs, including the Big Four.
-				</p>
-				<p class="about-impact-closing">
-					By fostering a supportive and holistic environment, we continue to shape the future of commerce professionals and contribute to a dynamic professional culture.
+				<p class="about-impact-detail" set:html={impactDetail} {...edit.impact_detail} />
+				<p class="about-impact-closing" {...edit.impact_closing}>
+					{impactClosing}
 				</p>
 			</div>
 		</section>

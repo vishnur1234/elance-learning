@@ -2,6 +2,67 @@
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
 import FeaturedOn from "../components/FeaturedOn.astro";
+import { getEmDashEntry, getEmDashCollection } from "../lib/cms.js";
+import { getCmsImageUrl } from "../utils/media.js";
+
+// Fetch the Gallery page's flat hero fields from EmDash CMS (same "pages"
+// collection other pages use, with slug "gallery").
+const { entry: galleryPage } = await getEmDashEntry("pages", "gallery").catch(() => ({
+	entry: null,
+}));
+const galleryData = (galleryPage?.data as Record<string, any>) || {};
+const galleryEdit = galleryPage?.edit || ({} as Record<string, any>);
+
+const heroTitle = String(galleryData.hero_title || "Life At Elance");
+const heroDesc = String(
+	galleryData.hero_desc ||
+		"Elance, India's premium commerce platform, excels in delivering esteemed professional accounting courses, such as ACCA & CMA USA. Supported by a team of highly skilled educators, our platform's core ethos revolves around accessibility and excellence in commerce education. Our remarkable growth trajectory, surging from 22 students in 2018 to nurturing a global cohort exceeding 25,000, is a testament to our unwavering dedication to providing exceptional educational opportunities. Elance proudly stands as the foremost platform for those seeking top-tier finance certifications and a comprehensive learning experience in commerce.",
+);
+
+const featuredTitle = String(
+	galleryData.featured_title || 'We\'re <span class="text-blue">Featured</span> On',
+);
+const featuredSubtitle = String(
+	galleryData.featured_subtitle ||
+		"Recognized by leading media houses for our commitment to quality education and student success.",
+);
+
+// Fetch the gallery images from the "gallery" collection. Falls back to the
+// original hardcoded photo set so the grid still renders identically if the
+// CMS has no entries yet (e.g. before the DB migration seeds it).
+const { entries: galleryEntries, error: galleryError } = await getEmDashCollection(
+	"gallery",
+	{},
+).catch(() => ({ entries: [], error: null }));
+if (galleryError) console.error("[gallery] EmDash error:", galleryError);
+
+const GALLERY_DEFAULTS = [
+	{ image: "/images/gallery/DSC05995-scaled-1-1024x576.jpg", alt: "Placement Training – session 1", category: "all" },
+	{ image: "/images/gallery/DSC05997-scaled-1-1024x576.jpg", alt: "Placement Training – session 2", category: "all" },
+	{ image: "/images/gallery/DSC06004-scaled-1-1024x576.jpg", alt: "Placement Training – session 3", category: "all" },
+	{ image: "/images/gallery/DSC06017-scaled-1-1024x576.jpg", alt: "Placement Training – session 4", category: "all" },
+	{ image: "/images/gallery/DSC06029-scaled-1-1024x576.jpg", alt: "Placement Training – session 5", category: "all" },
+	{ image: "/images/gallery/DSC06039-scaled-1-1024x576.jpg", alt: "Placement Training – session 6", category: "all" },
+	{ image: "/images/gallery/DSC06040-scaled-1-1024x576.jpg", alt: "Placement Training – session 7", category: "all" },
+	{ image: "/images/gallery/DSC06043-scaled-1-1024x576.jpg", alt: "Placement Training – session 8", category: "all" },
+	{ image: "/images/gallery/DSC06073-scaled-1-1024x683.jpg", alt: "Placement Training – session 9", category: "all" },
+	{ image: "/images/gallery/DSC06074-scaled-1-1024x683.jpg", alt: "Placement Training – session 10", category: "all" },
+	{ image: "/images/gallery/DSC06076-scaled-1.jpg", alt: "Placement Training – session 11", category: "all" },
+	{ image: "/images/gallery/DSC06082-scaled-1.jpg", alt: "Placement Training – session 12", category: "all" },
+	{ image: "/images/gallery/DSC06090-scaled-1.jpg", alt: "Placement Training – session 13", category: "all" },
+	{ image: "/images/gallery/DSC06095-scaled-1.jpg", alt: "Placement Training – session 14", category: "all" },
+	{ image: "/images/gallery/DSC06107-scaled-1-1024x576.jpg", alt: "Placement Training – session 15", category: "all" },
+];
+
+const galleryItems = (galleryEntries && galleryEntries.length > 0)
+	? galleryEntries.map((e: any) => ({
+		image: getCmsImageUrl(e.data?.image, ""),
+		alt: String(e.data?.alt || ""),
+		category: String(e.data?.category || "all"),
+		editImage: e.edit?.image,
+		editAlt: e.edit?.alt,
+	}))
+	: GALLERY_DEFAULTS.map((g) => ({ ...g, editImage: undefined, editAlt: undefined }));
 ---
 
 <html lang="en">
@@ -27,21 +88,8 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 		<!-- ===================== HERO ===================== -->
 		<section class="gl-hero">
 			<div class="gl-hero-inner">
-				<h1 class="gl-hero-title">Life At Elance</h1>
-				<p class="gl-hero-desc">
-					Elance, India's premium commerce platform, excels in
-					delivering esteemed professional accounting courses, such as
-					ACCA &amp; CMA USA. Supported by a team of highly skilled
-					educators, our platform's core ethos revolves around
-					accessibility and excellence in commerce education. Our
-					remarkable growth trajectory, surging from 22 students in
-					2018 to nurturing a global cohort exceeding 25,000, is a
-					testament to our unwavering dedication to providing
-					exceptional educational opportunities. Elance proudly stands
-					as the foremost platform for those seeking top-tier finance
-					certifications and a comprehensive learning experience in
-					commerce.
-				</p>
+				<h1 class="gl-hero-title" set:html={heroTitle} {...galleryEdit.hero_title} />
+				<p class="gl-hero-desc" set:html={heroDesc} {...galleryEdit.hero_desc} />
 			</div>
 		</section>
 
@@ -87,156 +135,20 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 			<div class="gl-grid-inner">
 				<div class="gl-grid" id="gl-grid">
 					<!-- All images tagged with data-category -->
-					<div class="gl-item" data-category="all">
-						<img
-							src="/images/gallery/DSC05995-scaled-1-1024x576.jpg"
-							alt="Placement Training – session 1"
-							loading="lazy"
-						/>
-						<div class="gl-overlay">
-							<span class="gl-zoom">+</span>
+					{galleryItems.map((item) => (
+						<div class="gl-item" data-category={item.category}>
+							<img
+								src={item.image}
+								alt={item.alt}
+								loading="lazy"
+								{...item.editImage}
+								{...item.editAlt}
+							/>
+							<div class="gl-overlay">
+								<span class="gl-zoom">+</span>
+							</div>
 						</div>
-					</div>
-					<div class="gl-item" data-category="all">
-						<img
-							src="/images/gallery/DSC05997-scaled-1-1024x576.jpg"
-							alt="Placement Training – session 2"
-							loading="lazy"
-						/>
-						<div class="gl-overlay">
-							<span class="gl-zoom">+</span>
-						</div>
-					</div>
-					<div class="gl-item" data-category="all">
-						<img
-							src="/images/gallery/DSC06004-scaled-1-1024x576.jpg"
-							alt="Placement Training – session 3"
-							loading="lazy"
-						/>
-						<div class="gl-overlay">
-							<span class="gl-zoom">+</span>
-						</div>
-					</div>
-					<div class="gl-item" data-category="all">
-						<img
-							src="/images/gallery/DSC06017-scaled-1-1024x576.jpg"
-							alt="Placement Training – session 4"
-							loading="lazy"
-						/>
-						<div class="gl-overlay">
-							<span class="gl-zoom">+</span>
-						</div>
-					</div>
-					<div class="gl-item" data-category="all">
-						<img
-							src="/images/gallery/DSC06029-scaled-1-1024x576.jpg"
-							alt="Placement Training – session 5"
-							loading="lazy"
-						/>
-						<div class="gl-overlay">
-							<span class="gl-zoom">+</span>
-						</div>
-					</div>
-					<div class="gl-item" data-category="all">
-						<img
-							src="/images/gallery/DSC06039-scaled-1-1024x576.jpg"
-							alt="Placement Training – session 6"
-							loading="lazy"
-						/>
-						<div class="gl-overlay">
-							<span class="gl-zoom">+</span>
-						</div>
-					</div>
-					<div class="gl-item" data-category="all">
-						<img
-							src="/images/gallery/DSC06040-scaled-1-1024x576.jpg"
-							alt="Placement Training – session 7"
-							loading="lazy"
-						/>
-						<div class="gl-overlay">
-							<span class="gl-zoom">+</span>
-						</div>
-					</div>
-					<div class="gl-item" data-category="all">
-						<img
-							src="/images/gallery/DSC06043-scaled-1-1024x576.jpg"
-							alt="Placement Training – session 8"
-							loading="lazy"
-						/>
-						<div class="gl-overlay">
-							<span class="gl-zoom">+</span>
-						</div>
-					</div>
-					<div class="gl-item" data-category="all">
-						<img
-							src="/images/gallery/DSC06073-scaled-1-1024x683.jpg"
-							alt="Placement Training – session 9"
-							loading="lazy"
-						/>
-						<div class="gl-overlay">
-							<span class="gl-zoom">+</span>
-						</div>
-					</div>
-					<div class="gl-item" data-category="all">
-						<img
-							src="/images/gallery/DSC06074-scaled-1-1024x683.jpg"
-							alt="Placement Training – session 10"
-							loading="lazy"
-						/>
-						<div class="gl-overlay">
-							<span class="gl-zoom">+</span>
-						</div>
-					</div>
-					<div class="gl-item" data-category="all">
-						<img
-							src="/images/gallery/DSC06076-scaled-1.jpg"
-							alt="Placement Training – session 11"
-							loading="lazy"
-						/>
-						<div class="gl-overlay">
-							<span class="gl-zoom">+</span>
-						</div>
-					</div>
-					<div class="gl-item" data-category="all">
-						<img
-							src="/images/gallery/DSC06082-scaled-1.jpg"
-							alt="Placement Training – session 12"
-							loading="lazy"
-						/>
-						<div class="gl-overlay">
-							<span class="gl-zoom">+</span>
-						</div>
-					</div>
-					<div class="gl-item" data-category="all">
-						<img
-							src="/images/gallery/DSC06090-scaled-1.jpg"
-							alt="Placement Training – session 13"
-							loading="lazy"
-						/>
-						<div class="gl-overlay">
-							<span class="gl-zoom">+</span>
-						</div>
-					</div>
-					<div class="gl-item" data-category="all">
-						<img
-							src="/images/gallery/DSC06095-scaled-1.jpg"
-							alt="Placement Training – session 14"
-							loading="lazy"
-						/>
-						<div class="gl-overlay">
-							<span class="gl-zoom">+</span>
-						</div>
-					</div>
-					<div class="gl-item" data-category="all">
-						<img
-							src="/images/gallery/DSC06107-scaled-1-1024x576.jpg"
-							alt="Placement Training – session 15"
-							loading="lazy"
-						/>
-						<div class="gl-overlay">
-							<span class="gl-zoom">+</span>
-						</div>
-					</div>
+					))}
 				</div>
 			</div>
 		</section>
@@ -263,7 +175,12 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 			</div>
 		</div>
 
-		<FeaturedOn />
+		<FeaturedOn
+			title={featuredTitle}
+			subtitle={featuredSubtitle}
+			editTitle={galleryEdit.featured_title}
+			editSubtitle={galleryEdit.featured_subtitle}
+		/>
 		<Footer />
 	</body>
 </html>

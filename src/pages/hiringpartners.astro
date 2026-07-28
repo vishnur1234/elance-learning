@@ -2,6 +2,96 @@
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
 import FeaturedOn from "../components/FeaturedOn.astro";
+import { getEmDashEntry, getEmDashCollection } from "../lib/cms.js";
+import { getCmsImageUrl } from "../utils/media.js";
+
+// Fetch the Hiring Partners page's dynamic content from EmDash CMS (same
+// "pages" collection the other pages use, with slug "hiringpartners").
+const { entry: hpPage } = await getEmDashEntry("pages", "hiringpartners").catch(() => ({
+	entry: null,
+}));
+const hpData = (hpPage?.data as Record<string, any>) || {};
+const edit = hpPage?.edit || ({} as Record<string, any>);
+
+const heroTitle = String(hpData.hero_title || "Our Hiring Partners");
+const heroSubtitle = String(
+	hpData.hero_subtitle ||
+		"Make your dream career a reality with the world's leading companies!",
+);
+
+const featuredTitle = String(
+	hpData.featured_title || 'We\'re <span class="text-blue">Featured</span> On',
+);
+const featuredSubtitle = String(
+	hpData.featured_subtitle ||
+		"Recognized by leading media houses for our commitment to quality education and student success.",
+);
+
+const PARTNER_DEFAULTS = [
+	{ logo: "/images/hiringPartners/223x53-4.png", name: "KPMG" },
+	{ logo: "/images/hiringPartners/223x53-1.png", name: "Deloitte" },
+	{ logo: "/images/hiringPartners/223x53-2.png", name: "PwC" },
+	{ logo: "/images/hiringPartners/223x53-3.png", name: "EY" },
+	{ logo: "/images/hiringPartners/223x53-6.png", name: "JPMorgan Chase & Co." },
+	{ logo: "/images/hiringPartners/223x53-5.png", name: "Goldman Sachs" },
+	{ logo: "/images/hiringPartners/223x53-7.png", name: "HSBC" },
+	{ logo: "/images/hiringPartners/223x53-9.png", name: "Morgan Stanley" },
+	{ logo: "/images/hiringPartners/223x53-8.png", name: "Citibank" },
+	{ logo: "/images/hiringPartners/223x53-13.png", name: "McKinsey & Company" },
+	{ logo: "/images/hiringPartners/223x53-15.png", name: "Accenture" },
+	{ logo: "/images/hiringPartners/223x53-14.png", name: "Boston Consulting Group" },
+	{ logo: "/images/hiringPartners/223x53-28.png", name: "IBM" },
+	{ logo: "/images/hiringPartners/223x53-38.png", name: "Mazars" },
+	{ logo: "/images/hiringPartners/223x53-35.png", name: "Baker Tilly" },
+	{ logo: "/images/hiringPartners/223x53-36.png", name: "RSM" },
+	{ logo: "/images/hiringPartners/223x53-37.png", name: "Crowe" },
+	{ logo: "/images/hiringPartners/223x53-39.png", name: "Moore" },
+	{ logo: "/images/hiringPartners/223x53-40.png", name: "HLG International" },
+	{ logo: "/images/hiringPartners/223x53-42.png", name: "PKF" },
+	{ logo: "/images/hiringPartners/223x53-41.png", name: "Smith & Williamson" },
+	{ logo: "/images/hiringPartners/223x53-10.png", name: "Bank of America Merrill Lynch" },
+	{ logo: "/images/hiringPartners/223x53-16.png", name: "Grant Thornton" },
+	{ logo: "/images/hiringPartners/223x53-12.png", name: "Deutsche Bank" },
+	{ logo: "/images/hiringPartners/223x53-11.png", name: "Barclays" },
+	{ logo: "/images/hiringPartners/223x53-22.png", name: "Coca-Cola" },
+	{ logo: "/images/hiringPartners/223x53-17.png", name: "BDO" },
+	{ logo: "/images/hiringPartners/223x53-18.png", name: "Unilever" },
+	{ logo: "/images/hiringPartners/223x53-21.png", name: "GE" },
+	{ logo: "/images/hiringPartners/223x53-19.png", name: "P&G" },
+	{ logo: "/images/hiringPartners/223x53-20.png", name: "Nestlé" },
+	{ logo: "/images/hiringPartners/223x53-24.png", name: "Microsoft" },
+	{ logo: "/images/hiringPartners/223x53-25.png", name: "Apple" },
+	{ logo: "/images/hiringPartners/223x53-27.png", name: "Alphabet" },
+	{ logo: "/images/hiringPartners/223x53-29.png", name: "Johnson & Johnson" },
+	{ logo: "/images/hiringPartners/223x53-23.png", name: "PepsiCo" },
+	{ logo: "/images/hiringPartners/223x53-26.png", name: "Amazon" },
+	{ logo: "/images/hiringPartners/223x53-34.png", name: "Chevron" },
+	{ logo: "/images/hiringPartners/223x53-32.png", name: "ExxonMobil" },
+	{ logo: "/images/hiringPartners/223x53-30.png", name: "Siemens" },
+];
+
+// Fetch hiring partner logos from the "hiring_partners" collection. Falls
+// back to the original hardcoded logo grid so the section still renders
+// if the CMS has no entries yet (e.g. before a DB migration seeds it).
+const { entries: partnerEntries, error: partnerError } = await getEmDashCollection(
+	"hiring_partners",
+	{},
+).catch(() => ({ entries: [], error: null }));
+if (partnerError) console.error("[hiringpartners] EmDash error:", partnerError);
+
+const partners = (partnerEntries && partnerEntries.length > 0)
+	? partnerEntries.map((e: any) => ({
+		logo: getCmsImageUrl(e.data?.logo, ""),
+		name: String(e.data?.name || ""),
+		editLogo: e.edit?.logo,
+		editName: e.edit?.name,
+	}))
+	: PARTNER_DEFAULTS.map((fallback) => ({
+		logo: getCmsImageUrl(undefined, fallback.logo),
+		name: fallback.name,
+		editLogo: undefined,
+		editName: undefined,
+	}));
 ---
 
 <html lang="en">
@@ -26,158 +116,27 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 
 		<!-- ===================== HERO ===================== -->
 		<section class="hp-hero">
-			<h1 class="hp-title">Our Hiring Partners</h1>
-			<p class="hp-subtitle">Make your dream career a reality with the world's leading companies!</p>
+			<h1 class="hp-title" {...edit.hero_title}>{heroTitle}</h1>
+			<p class="hp-subtitle" {...edit.hero_subtitle}>{heroSubtitle}</p>
 		</section>
 
 		<!-- ===================== LOGO GRID ===================== -->
 		<section class="hp-grid-section">
 			<div class="hp-grid">
-
-				<!-- Row 1 -->
-				<div class="hp-card">
-					<img src="/images/hiringPartners/223x53-4.png" alt="KPMG" />
-				</div>
-				<div class="hp-card">
-					<img src="/images/hiringPartners/223x53-1.png" alt="Deloitte" />
-				</div>
-				<div class="hp-card">
-					<img src="/images/hiringPartners/223x53-2.png" alt="PwC" />
-				</div>
-				<div class="hp-card">
-					<img src="/images/hiringPartners/223x53-3.png" alt="EY" />
-				</div>
-
-				<!-- Row 2 -->
-				<div class="hp-card">
-					<img src="/images/hiringPartners/223x53-6.png" alt="JPMorgan Chase & Co." />
-				</div>
-				<div class="hp-card">
-					<img src="/images/hiringPartners/223x53-5.png" alt="Goldman Sachs" />
-				</div>
-				<div class="hp-card">
-					<img src="/images/hiringPartners/223x53-7.png" alt="HSBC" />
-				</div>
-				<div class="hp-card">
-					<img src="/images/hiringPartners/223x53-9.png" alt="Morgan Stanley" />
-				</div>
-
-				<!-- Row 3 -->
-				<div class="hp-card">
-					<img src="/images/hiringPartners/223x53-8.png" alt="Citibank" />
-				</div>
-				<div class="hp-card">
-					<img src="/images/hiringPartners/223x53-13.png" alt="McKinsey & Company" />
-				</div>
-				<div class="hp-card">
-					<img src="/images/hiringPartners/223x53-15.png" alt="Accenture" />
-				</div>
-				<div class="hp-card">
-					<img src="/images/hiringPartners/223x53-14.png" alt="Boston Consulting Group" />
-				</div>
-
-				<!-- Row 4 -->
-				<div class="hp-card">
-					<img src="/images/hiringPartners/223x53-28.png" alt="IBM" />
-				</div>
-				<div class="hp-card">
-					<img src="/images/hiringPartners/223x53-38.png" alt="Mazars" />
-				</div>
-				<div class="hp-card">
-					<img src="/images/hiringPartners/223x53-35.png" alt="Baker Tilly" />
-				</div>
-				<div class="hp-card">
-					<img src="/images/hiringPartners/223x53-36.png" alt="RSM" />
-				</div>
-
-				<!-- Row 5 -->
-				<div class="hp-card">
-					<img src="/images/hiringPartners/223x53-37.png" alt="Crowe" />
-				</div>
-				<div class="hp-card">
-					<img src="/images/hiringPartners/223x53-39.png" alt="Moore" />
-				</div>
-				<div class="hp-card">
-					<img src="/images/hiringPartners/223x53-40.png" alt="HLG International" />
-				</div>
-				<div class="hp-card">
-					<img src="/images/hiringPartners/223x53-42.png" alt="PKF" />
-				</div>
-
-				<!-- Row 6 -->
-				<div class="hp-card">
-					<img src="/images/hiringPartners/223x53-41.png" alt="Smith & Williamson" />
-				</div>
-				<div class="hp-card">
-					<img src="/images/hiringPartners/223x53-10.png" alt="Bank of America Merrill Lynch" />
-				</div>
-				<div class="hp-card">
-					<img src="/images/hiringPartners/223x53-16.png" alt="Grant Thornton" />
-				</div>
-				<div class="hp-card">
-					<img src="/images/hiringPartners/223x53-12.png" alt="Deutsche Bank" />
-				</div>
-
-				<!-- Row 7 -->
-				<div class="hp-card">
-					<img src="/images/hiringPartners/223x53-11.png" alt="Barclays" />
-				</div>
-				<div class="hp-card">
-					<img src="/images/hiringPartners/223x53-22.png" alt="Coca-Cola" />
-				</div>
-				<div class="hp-card">
-					<img src="/images/hiringPartners/223x53-17.png" alt="BDO" />
-				</div>
-				<div class="hp-card">
-					<img src="/images/hiringPartners/223x53-18.png" alt="Unilever" />
-				</div>
-
-				<!-- Row 8 -->
-				<div class="hp-card">
-					<img src="/images/hiringPartners/223x53-21.png" alt="GE" />
-				</div>
-				<div class="hp-card">
-					<img src="/images/hiringPartners/223x53-19.png" alt="P&G" />
-				</div>
-				<div class="hp-card">
-					<img src="/images/hiringPartners/223x53-20.png" alt="Nestlé" />
-				</div>
-				<div class="hp-card">
-					<img src="/images/hiringPartners/223x53-24.png" alt="Microsoft" />
-				</div>
-
-				<!-- Row 9 -->
-				<div class="hp-card">
-					<img src="/images/hiringPartners/223x53-25.png" alt="Apple" />
-				</div>
-				<div class="hp-card">
-					<img src="/images/hiringPartners/223x53-27.png" alt="Alphabet" />
-				</div>
-				<div class="hp-card">
-					<img src="/images/hiringPartners/223x53-29.png" alt="Johnson & Johnson" />
-				</div>
-				<div class="hp-card">
-					<img src="/images/hiringPartners/223x53-23.png" alt="PepsiCo" />
-				</div>
-
-				<!-- Row 10 -->
-				<div class="hp-card">
-					<img src="/images/hiringPartners/223x53-26.png" alt="Amazon" />
-				</div>
-				<div class="hp-card">
-					<img src="/images/hiringPartners/223x53-34.png" alt="Chevron" />
-				</div>
-				<div class="hp-card">
-					<img src="/images/hiringPartners/223x53-32.png" alt="ExxonMobil" />
-				</div>
-				<div class="hp-card">
-					<img src="/images/hiringPartners/223x53-30.png" alt="Siemens" />
-				</div>
-
+				{partners.map((item) => (
+					<div class="hp-card">
+						<img src={item.logo} alt={item.name} {...item.editLogo} />
+					</div>
+				))}
 			</div>
 		</section>
 
-		<FeaturedOn />
+		<FeaturedOn
+			title={featuredTitle}
+			subtitle={featuredSubtitle}
+			editTitle={edit.featured_title}
+			editSubtitle={edit.featured_subtitle}
+		/>
 		<Footer />
 	</body>
 </html>

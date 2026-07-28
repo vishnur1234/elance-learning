@@ -1,33 +1,49 @@
 ---
 // AchievementsSection.astro
 // Component representing the Achievements section with the two blue gradient cards.
+
+interface Props {
+	entry?: { data?: Record<string, any>; edit?: Record<string, any> } | null;
+}
+const { entry } = Astro.props as Props;
+const data = entry?.data || {};
+const edit = entry?.edit || ({} as Record<string, any>);
+
+const achievementsTitle = String(data.achievements_title || "Achievements");
+const achievementsSubtitle = String(
+	data.achievements_subtitle ||
+		"With immense pride, we underscore our outstanding results, a testament to Elance's legacy since its inception. In just four years, Elance has consistently delivered unmatched results, guiding students towards their dream careers as top-class commerce professionals. These achievements aren't just milestones; they represent our unwavering dedication to nurturing the future leaders of the industry.",
+);
+
+const ACHIEVEMENT_DEFAULTS = [
+	{ num: "53", label: "World Ranks" },
+	{ num: "80", label: "National Ranks" },
+];
+const achievements = ACHIEVEMENT_DEFAULTS.map((fallback, i) => {
+	const n = i + 1;
+	return {
+		num: String(data[`achievement_${n}_num`] || fallback.num),
+		label: String(data[`achievement_${n}_label`] || fallback.label),
+		editNum: edit[`achievement_${n}_num`],
+		editLabel: edit[`achievement_${n}_label`],
+	};
+});
 ---
 
 <section class="achievements-section">
 	<div class="section-container">
-		<h2 class="achievements-title">Achievements</h2>
-		<p class="achievements-subtitle">
-			With immense pride, we underscore our outstanding results, a
-			testament to Elance's legacy since its inception. In just
-			four years, Elance has consistently delivered unmatched
-			results, guiding students towards their dream careers as
-			top-class commerce professionals. These achievements aren't
-			just milestones; they represent our unwavering dedication to
-			nurturing the future leaders of the industry.
+		<h2 class="achievements-title" {...edit.achievements_title}>{achievementsTitle}</h2>
+		<p class="achievements-subtitle" {...edit.achievements_subtitle}>
+			{achievementsSubtitle}
 		</p>
 		<div class="achievements-grid">
-			<!-- Left Card -->
-			<div class="achievement-card blue-grad-1">
-				<div class="achievement-shine"></div>
-				<div class="achievement-num">53</div>
-				<div class="achievement-label">World Ranks</div>
-			</div>
-			<!-- Right Card -->
-			<div class="achievement-card blue-grad-2">
-				<div class="achievement-shine"></div>
-				<div class="achievement-num">80</div>
-				<div class="achievement-label">National Ranks</div>
-			</div>
+			{achievements.map((a, i) => (
+				<div class={`achievement-card ${i === 0 ? "blue-grad-1" : "blue-grad-2"}`}>
+					<div class="achievement-shine"></div>
+					<div class="achievement-num" {...a.editNum}>{a.num}</div>
+					<div class="achievement-label" {...a.editLabel}>{a.label}</div>
+				</div>
+			))}
 		</div>
 	</div>
 </section>

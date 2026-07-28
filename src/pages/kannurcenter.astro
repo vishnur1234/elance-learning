@@ -2,6 +2,162 @@
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
 import FeaturedOn from "../components/FeaturedOn.astro";
+import { getEmDashEntry } from "../lib/cms.js";
+import { getCmsImageUrl } from "../utils/media.js";
+
+// Fetch the Kannur center page's dynamic content from EmDash CMS (same
+// "pages" collection the home/ACCA pages use, with slug "kannurcenter").
+const { entry: pageEntry } = await getEmDashEntry("pages", "kannurcenter").catch(() => ({
+	entry: null,
+}));
+const data = (pageEntry?.data as Record<string, any>) || {};
+const edit = pageEntry?.edit || ({} as Record<string, any>);
+
+// ── Hero ──
+const heroVideo = getCmsImageUrl(
+	data.hero_video,
+	"/images/ourcenter/calicut/Elance-Calicut.mp4",
+);
+const heroEyebrow = String(data.hero_eyebrow || "WELCOME TO THE");
+const heroTitle = String(data.hero_title || "Best Commerce Institute<br />in Kannur");
+const heroDesc = String(
+	data.hero_desc ||
+		"Welcome to a world filled with energy, endless learning, and epic memories. At Elance Kannur, your career excels as you celebrate friendships, festivities, and every exciting moment in between!",
+);
+const heroCta1Text = String(data.hero_cta_1_text || "ACCA");
+const heroCta1Link = String(data.hero_cta_1_link || "/acca");
+const heroCta2Text = String(data.hero_cta_2_text || "CMA USA");
+const heroCta2Link = String(data.hero_cta_2_link || "/cma");
+
+// ── Learning Ecosystem ──
+const ecosystemTitle = String(
+	data.ecosystem_title || "A Complete Learning<br />Ecosystem",
+);
+const ecosystemDesc = String(
+	data.ecosystem_desc ||
+		"At Elance Kannur, education is an experience that goes beyond textbooks. We aim to create a supportive and inspiring space where students can learn, grow, and discover their full potential—both inside and outside the classroom.",
+);
+const badge1Img = getCmsImageUrl(
+	data.badge_1_img,
+	"/images/ourcenter/calicut/ACCA-Platinum.png",
+);
+const badge2Img = getCmsImageUrl(
+	data.badge_2_img,
+	"/images/ourcenter/calicut/Silver-CMA.png",
+);
+const badge3Img = getCmsImageUrl(
+	data.badge_3_img,
+	"/images/ourcenter/calicut/CBE-Center.png",
+);
+const ambassadorImg = getCmsImageUrl(
+	data.ambassador_img,
+	"/images/ourcenter/calicut/Mammootty-2048x1184.jpg",
+);
+
+// ── Map + Contact (2 location blocks) ──
+const LOCATION_DEFAULTS = [
+	{
+		mapSrc:
+			"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3905.0!2d75.3704!3d11.8745!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba42101a7e8e021%3A0xaabbccdd!2sKannur%2C%20Kerala!5e0!3m2!1sen!2sin!4v1720000000004!5m2!1sen!2sin",
+		mapTitle: "Elance Kannur Campus Map",
+		name: "Elance Kannur Campus",
+		address: "Elance Knowledge Centre, SM Street, Kannur, Kerala 670001",
+		phone: "+ 91 98950 97070",
+		email: "info@elancelearning.com",
+	},
+	{
+		mapSrc:
+			"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3905.0!2d75.3804!3d11.8645!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba42101a7e8e021%3A0xaabbccee!2sKannur%20Railway%20Station!5e0!3m2!1sen!2sin!4v1720000000005!5m2!1sen!2sin",
+		mapTitle: "Elance Kannur Study Centre Map",
+		name: "Elance Study Centre",
+		address: "Elance Tower, Near Kannur Railway Station, Kannur, Kerala 670002",
+		phone: "+ 91 98950 97070",
+		email: "info@elancelearning.com",
+	},
+];
+const locations = LOCATION_DEFAULTS.map((fallback, i) => {
+	const n = i + 1;
+	return {
+		mapSrc: String(data[`location_${n}_map_src`] || fallback.mapSrc),
+		mapTitle: fallback.mapTitle,
+		name: String(data[`location_${n}_name`] || fallback.name),
+		address: String(data[`location_${n}_address`] || fallback.address),
+		phone: String(data[`location_${n}_phone`] || fallback.phone),
+		email: String(data[`location_${n}_email`] || fallback.email),
+		editMapSrc: edit[`location_${n}_map_src`],
+		editName: edit[`location_${n}_name`],
+		editAddress: edit[`location_${n}_address`],
+		editPhone: edit[`location_${n}_phone`],
+		editEmail: edit[`location_${n}_email`],
+	};
+});
+
+// ── CTA Banner ──
+const ctaTitle = String(
+	data.cta_title || "India's Most<br />Trusted Commerce Institute",
+);
+const ctaDesc = String(
+	data.cta_desc ||
+		"With a commitment to excellence and industry-relevant training, we empower students with the knowledge, skills, and confidence to excel in global commerce. Join thousands of learners who trust us to shape their future.",
+);
+const ctaButtonText = String(data.cta_button_text || "Register Now");
+
+// ── 4 Pillars ──
+const PILLAR_DEFAULTS = [
+	{
+		img: "/images/ourcenter/calicut/Expert-mentors-300x200.jpg",
+		imgAlt: "Learn from the Best",
+		title: "Learn",
+		subtitle: "from the Best",
+		desc: "Learning is built on strong academic structure, expert-led teaching, and continuous guidance here. With experienced faculty, personalised mentorship, regular assessments, and dedicated academic support, students develop the clarity, consistency, and confidence needed to excel. For students searching for the best commerce coaching in Kannur, Elance offers a focused and supportive academic environment.",
+	},
+	{
+		img: "/images/ourcenter/calicut/image-11-300x200.jpg",
+		imgAlt: "Grow with Confidence",
+		title: "Grow",
+		subtitle: "with Confidence",
+		desc: "We focus on shaping students into confident, career-ready professionals through leadership programs, communication training, corporate grooming, and industry-focused skill development. From resume building to interview preparation, every initiative is designed to strengthen both professional presence and career readiness.",
+	},
+	{
+		img: "",
+		imgAlt: "Discover Your True Path",
+		title: "Discover",
+		subtitle: "Your True Path",
+		desc: "Students explore their strengths through immersive practical learning experiences through our industry-focused student clubs, competitions, industry exposure, and student-driven activities. Initiatives like LEAP, EDGE, Excel Hackathon, and AuditLab help learners apply knowledge in real-world scenarios while discovering their interests and future direction.",
+	},
+	{
+		img: "/images/ourcenter/calicut/Elan-festa-300x200.jpg",
+		imgAlt: "Experience the Journey",
+		title: "Experience",
+		subtitle: "the Journey",
+		desc: "Life at Elance Kannur goes beyond classrooms to create a complete student experience. Through events, vibrant celebrations, industry interaction, placements, and a supportive campus environment, students become part of a vibrant learning ecosystem that prepares them for real-world success.",
+	},
+];
+const pillars = PILLAR_DEFAULTS.map((fallback, i) => {
+	const n = i + 1;
+	const rawImg = data[`pillar_${n}_img`];
+	const img = rawImg ? getCmsImageUrl(rawImg, fallback.img) : fallback.img;
+	return {
+		img,
+		imgAlt: fallback.imgAlt,
+		title: String(data[`pillar_${n}_title`] || fallback.title),
+		subtitle: String(data[`pillar_${n}_subtitle`] || fallback.subtitle),
+		desc: String(data[`pillar_${n}_desc`] || fallback.desc),
+		editImg: edit[`pillar_${n}_img`],
+		editTitle: edit[`pillar_${n}_title`],
+		editSubtitle: edit[`pillar_${n}_subtitle`],
+		editDesc: edit[`pillar_${n}_desc`],
+	};
+});
+
+// ── Featured On ──
+const featuredTitle = String(
+	data.featured_title || 'We\'re <span class="text-blue">Featured</span> On',
+);
+const featuredSubtitle = String(
+	data.featured_subtitle ||
+		"Recognized by leading media houses for our commitment to quality education and student success.",
+);
 ---
 
 <html lang="en">
@@ -35,20 +191,18 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 				playsinline
 				poster="/images/ourcenter/calicut/Rectangle-72-scaled.jpg"
 			>
-				<source src="/images/ourcenter/calicut/Elance-Calicut.mp4" type="video/mp4" />
+				<source src={heroVideo} type="video/mp4" {...edit.hero_video} />
 			</video>
 			<div class="cc-hero-content">
-				<p class="cc-hero-eyebrow">WELCOME TO THE</p>
-				<h1 class="cc-hero-title">Best Commerce Institute<br />in Kannur</h1>
+				<p class="cc-hero-eyebrow" {...edit.hero_eyebrow}>{heroEyebrow}</p>
+				<h1 class="cc-hero-title" set:html={heroTitle} {...edit.hero_title} />
 				<a href="#" class="cc-learn-badge">Learn</a>
 				<div class="cc-hero-btns">
-					<a href="/acca" class="cc-hero-btn-outline" id="hero-acca-btn-kannur">ACCA</a>
-					<a href="/cma" class="cc-hero-btn-outline" id="hero-cma-btn-kannur">CMA USA</a>
+					<a href={heroCta1Link} class="cc-hero-btn-outline" id="hero-acca-btn-kannur" {...edit.hero_cta_1_text}>{heroCta1Text}</a>
+					<a href={heroCta2Link} class="cc-hero-btn-outline" id="hero-cma-btn-kannur" {...edit.hero_cta_2_text}>{heroCta2Text}</a>
 				</div>
-				<p class="cc-hero-desc">
-					Welcome to a world filled with energy, endless learning, and epic memories. At
-					Elance Kannur, your career excels as you celebrate friendships, festivities, and
-					every exciting moment in between!
+				<p class="cc-hero-desc" {...edit.hero_desc}>
+					{heroDesc}
 				</p>
 			</div>
 		</section>
@@ -57,34 +211,34 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 		<section class="cc-ecosystem">
 			<div class="cc-ecosystem-grid">
 				<div class="cc-ecosystem-left">
-					<h2 class="cc-ecosystem-title">A Complete Learning<br />Ecosystem</h2>
-					<p class="cc-ecosystem-desc">
-						At Elance Kannur, education is an experience that goes beyond textbooks. We
-						aim to create a supportive and inspiring space where students can
-						learn, grow, and discover their full potential—both inside and outside
-						the classroom.
+					<h2 class="cc-ecosystem-title" set:html={ecosystemTitle} {...edit.ecosystem_title} />
+					<p class="cc-ecosystem-desc" {...edit.ecosystem_desc}>
+						{ecosystemDesc}
 					</p>
 					<div class="cc-badges">
 						<div class="cc-badge-item">
 							<img
-								src="/images/ourcenter/calicut/ACCA-Platinum.png"
+								src={badge1Img}
 								alt="ACCA Approved Learning Partner Platinum"
 								class="cc-badge-img"
+								{...edit.badge_1_img}
 							/>
 							<span class="cc-badge-label">Platinum</span>
 						</div>
 						<div class="cc-badge-item">
 							<img
-								src="/images/ourcenter/calicut/Silver-CMA.png"
+								src={badge2Img}
 								alt="Silver CMA Course Provider"
 								class="cc-badge-img"
+								{...edit.badge_2_img}
 							/>
 						</div>
 						<div class="cc-badge-item">
 							<img
-								src="/images/ourcenter/calicut/CBE-Center.png"
+								src={badge3Img}
 								alt="Licensed ACCA CBE Centre"
 								class="cc-badge-img"
+								{...edit.badge_3_img}
 							/>
 						</div>
 					</div>
@@ -92,9 +246,10 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 				<div class="cc-ecosystem-right">
 					<div class="cc-mammootty-wrap">
 						<img
-							src="/images/ourcenter/calicut/Mammootty-2048x1184.jpg"
+							src={ambassadorImg}
 							alt="Mammootty – Elance Brand Ambassador"
 							class="cc-mammootty-img"
+							{...edit.ambassador_img}
 						/>
 					</div>
 				</div>
@@ -109,15 +264,16 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 				<div class="cc-location-block">
 					<div class="cc-map-wrap">
 						<iframe
-							src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3905.0!2d75.3704!3d11.8745!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba42101a7e8e021%3A0xaabbccdd!2sKannur%2C%20Kerala!5e0!3m2!1sen!2sin!4v1720000000004!5m2!1sen!2sin"
+							src={locations[0].mapSrc}
 							width="100%"
 							height="100%"
 							style="border:0;"
 							allowfullscreen=""
 							loading="lazy"
 							referrerpolicy="no-referrer-when-downgrade"
-							title="Elance Kannur Campus Map"
+							title={locations[0].mapTitle}
 							class="cc-map-iframe"
+							{...locations[0].editMapSrc}
 						></iframe>
 					</div>
 					<div class="cc-contact-info">
@@ -126,8 +282,8 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 								<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
 							</div>
 							<div class="cc-contact-text">
-								<h3 class="cc-contact-name">Elance Kannur Campus</h3>
-								<p class="cc-contact-detail">Elance Knowledge Centre, SM Street, Kannur, Kerala 670001</p>
+								<h3 class="cc-contact-name" {...locations[0].editName}>{locations[0].name}</h3>
+								<p class="cc-contact-detail" {...locations[0].editAddress}>{locations[0].address}</p>
 							</div>
 						</div>
 						<div class="cc-contact-item">
@@ -136,7 +292,7 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 							</div>
 							<div class="cc-contact-text">
 								<h3 class="cc-contact-name">Call us</h3>
-								<p class="cc-contact-detail">+ 91 98950 97070</p>
+								<p class="cc-contact-detail" {...locations[0].editPhone}>{locations[0].phone}</p>
 							</div>
 						</div>
 						<div class="cc-contact-item">
@@ -145,7 +301,7 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 							</div>
 							<div class="cc-contact-text">
 								<h3 class="cc-contact-name">Connect us</h3>
-								<p class="cc-contact-detail">info@elancelearning.com</p>
+								<p class="cc-contact-detail" {...locations[0].editEmail}>{locations[0].email}</p>
 							</div>
 						</div>
 					</div>
@@ -159,8 +315,8 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 								<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
 							</div>
 							<div class="cc-contact-text">
-								<h3 class="cc-contact-name">Elance Study Centre</h3>
-								<p class="cc-contact-detail">Elance Tower, Near Kannur Railway Station, Kannur, Kerala 670002</p>
+								<h3 class="cc-contact-name" {...locations[1].editName}>{locations[1].name}</h3>
+								<p class="cc-contact-detail" {...locations[1].editAddress}>{locations[1].address}</p>
 							</div>
 						</div>
 						<div class="cc-contact-item">
@@ -169,7 +325,7 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 							</div>
 							<div class="cc-contact-text">
 								<h3 class="cc-contact-name">Call us</h3>
-								<p class="cc-contact-detail">+ 91 98950 97070</p>
+								<p class="cc-contact-detail" {...locations[1].editPhone}>{locations[1].phone}</p>
 							</div>
 						</div>
 						<div class="cc-contact-item">
@@ -178,21 +334,22 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 							</div>
 							<div class="cc-contact-text">
 								<h3 class="cc-contact-name">Connect us</h3>
-								<p class="cc-contact-detail">info@elancelearning.com</p>
+								<p class="cc-contact-detail" {...locations[1].editEmail}>{locations[1].email}</p>
 							</div>
 						</div>
 					</div>
 					<div class="cc-map-wrap">
 						<iframe
-							src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3905.0!2d75.3804!3d11.8645!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba42101a7e8e021%3A0xaabbccee!2sKannur%20Railway%20Station!5e0!3m2!1sen!2sin!4v1720000000005!5m2!1sen!2sin"
+							src={locations[1].mapSrc}
 							width="100%"
 							height="100%"
 							style="border:0;"
 							allowfullscreen=""
 							loading="lazy"
 							referrerpolicy="no-referrer-when-downgrade"
-							title="Elance Kannur Study Centre Map"
+							title={locations[1].mapTitle}
 							class="cc-map-iframe"
+							{...locations[1].editMapSrc}
 						></iframe>
 					</div>
 				</div>
@@ -204,14 +361,12 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 			<section class="cc-cta-banner">
 				<div class="cc-cta-inner">
 					<div class="cc-cta-text">
-						<h2 class="cc-cta-title">India's Most<br />Trusted Commerce Institute</h2>
-						<p class="cc-cta-desc">
-							With a commitment to excellence and industry-relevant training, we empower
-							students with the knowledge, skills, and confidence to excel in global
-							commerce. Join thousands of learners who trust us to shape their future.
+						<h2 class="cc-cta-title" set:html={ctaTitle} {...edit.cta_title} />
+						<p class="cc-cta-desc" {...edit.cta_desc}>
+							{ctaDesc}
 						</p>
 					</div>
-					<a href="/contact" class="cc-cta-btn" id="cta-register-btn-kannur">Register Now</a>
+					<a href="/contact" class="cc-cta-btn" id="cta-register-btn-kannur" {...edit.cta_button_text}>{ctaButtonText}</a>
 				</div>
 			</section>
 		</div>
@@ -219,101 +374,40 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 		<!-- ===================== 4 PILLARS ===================== -->
 		<section class="cc-pillars">
 			<div class="cc-pillars-grid">
-				<!-- Learn -->
-				<div class="cc-pillar-card">
-					<div class="cc-pillar-img-wrap">
-						<img
-							src="/images/ourcenter/calicut/Expert-mentors-300x200.jpg"
-							alt="Learn from the Best"
-							class="cc-pillar-img"
-						/>
+				{pillars.map((p) => (
+					<div class="cc-pillar-card">
+						<div class="cc-pillar-img-wrap">
+							{p.img ? (
+								<img
+									src={p.img}
+									alt={p.imgAlt}
+									class="cc-pillar-img"
+									{...p.editImg}
+								/>
+							) : (
+								<div class="cc-pillar-img-blue" {...p.editImg}></div>
+							)}
+						</div>
+						<div class="cc-pillar-body">
+							<h3 class="cc-pillar-heading">
+								<span class="cc-pillar-title" {...p.editTitle}>{p.title}</span><br />
+								<span class="cc-pillar-sub" {...p.editSubtitle}>{p.subtitle}</span>
+							</h3>
+							<p class="cc-pillar-desc" {...p.editDesc}>
+								{p.desc}
+							</p>
+						</div>
 					</div>
-					<div class="cc-pillar-body">
-						<h3 class="cc-pillar-heading">
-							<span class="cc-pillar-title">Learn</span><br />
-							<span class="cc-pillar-sub">from the Best</span>
-						</h3>
-						<p class="cc-pillar-desc">
-							Learning is built on strong academic structure, expert-led teaching, and
-							continuous guidance here. With experienced faculty, personalised mentorship,
-							regular assessments, and dedicated academic support, students develop the
-							clarity, consistency, and confidence needed to excel. For students searching
-							for the best commerce coaching in Kannur, Elance offers a focused and
-							supportive academic environment.
-						</p>
-					</div>
-				</div>
-
-				<!-- Grow -->
-				<div class="cc-pillar-card">
-					<div class="cc-pillar-img-wrap">
-						<img
-							src="/images/ourcenter/calicut/image-11-300x200.jpg"
-							alt="Grow with Confidence"
-							class="cc-pillar-img"
-						/>
-					</div>
-					<div class="cc-pillar-body">
-						<h3 class="cc-pillar-heading">
-							<span class="cc-pillar-title">Grow</span><br />
-							<span class="cc-pillar-sub">with Confidence</span>
-						</h3>
-						<p class="cc-pillar-desc">
-							We focus on shaping students into confident, career-ready professionals
-							through leadership programs, communication training, corporate grooming, and
-							industry-focused skill development. From resume building to interview
-							preparation, every initiative is designed to strengthen both professional
-							presence and career readiness.
-						</p>
-					</div>
-				</div>
-
-				<!-- Discover -->
-				<div class="cc-pillar-card">
-					<div class="cc-pillar-img-wrap">
-						<div class="cc-pillar-img-blue"></div>
-					</div>
-					<div class="cc-pillar-body">
-						<h3 class="cc-pillar-heading">
-							<span class="cc-pillar-title">Discover</span><br />
-							<span class="cc-pillar-sub">Your True Path</span>
-						</h3>
-						<p class="cc-pillar-desc">
-							Students explore their strengths through immersive practical learning
-							experiences through our industry-focused student clubs, competitions, industry
-							exposure, and student-driven activities. Initiatives like LEAP, EDGE, Excel
-							Hackathon, and AuditLab help learners apply knowledge in real-world scenarios
-							while discovering their interests and future direction.
-						</p>
-					</div>
-				</div>
-
-				<!-- Experience -->
-				<div class="cc-pillar-card">
-					<div class="cc-pillar-img-wrap">
-						<img
-							src="/images/ourcenter/calicut/Elan-festa-300x200.jpg"
-							alt="Experience the Journey"
-							class="cc-pillar-img"
-						/>
-					</div>
-					<div class="cc-pillar-body">
-						<h3 class="cc-pillar-heading">
-							<span class="cc-pillar-title">Experience</span><br />
-							<span class="cc-pillar-sub">the Journey</span>
-						</h3>
-						<p class="cc-pillar-desc">
-							Life at Elance Kannur goes beyond classrooms to create a complete student
-							experience. Through events, vibrant celebrations, industry interaction,
-							placements, and a supportive campus environment, students become part of a
-							vibrant learning ecosystem that prepares them for real-world success.
-						</p>
-					</div>
-				</div>
+				))}
 			</div>
 		</section>
 
-		<FeaturedOn />
+		<FeaturedOn
+			title={featuredTitle}
+			subtitle={featuredSubtitle}
+			editTitle={edit.featured_title}
+			editSubtitle={edit.featured_subtitle}
+		/>
 		<Footer />
 	</body>
 </html>

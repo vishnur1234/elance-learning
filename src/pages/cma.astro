@@ -6,6 +6,7 @@ import CareerAndWhyElance from "../components/CareerAndWhyElance.astro";
 import CmaFaculties from "../components/CmaFaculties.astro";
 import CmaLearningAndSyllabus from "../components/CmaLearningAndSyllabus.astro";
 import { getEmDashEntry } from "../lib/cms.js";
+import { getCmsImageUrl } from "../utils/media.js";
 
 // Fetch the CMA page's dynamic content from EmDash CMS (same "pages"
 // collection the home/acca pages use, with slug "cma").
@@ -16,6 +17,128 @@ const cmaData = (cmaPage?.data as Record<string, any>) || {};
 const edit = cmaPage?.edit || ({} as Record<string, any>);
 
 const bannerText = String(cmaData.banner_text || "Enrollment closes soon");
+
+// ── Hero section ──
+const heroTitle = String(
+	cmaData.hero_heading ||
+		'Transform your<br />career and lead the<br />finance world with<br /><span class="text-blue">CMA USA.</span>',
+);
+
+const heroBadgeGoldImg = getCmsImageUrl(
+	cmaData.hero_badge_gold_img,
+	"/images/CMA-gold-1-e1762840636945.png",
+);
+const heroBadgeHockImg = getCmsImageUrl(
+	cmaData.hero_badge_hock_img,
+	"/images/courses/Hock.png",
+);
+const heroBadgeImaImg = getCmsImageUrl(
+	cmaData.hero_badge_ima_img,
+	"/images/aswathi-CMA.jpg",
+);
+const imaLogoImg = getCmsImageUrl(
+	cmaData.ima_logo_img,
+	"/images/courses/Silver-CMA.png",
+);
+
+const proofLabel = String(
+	cmaData.proof_label ||
+		'TRUSTED BY OVER <span class="highlight-blue">25000</span><br />STUDENTS GLOBALLY FOR EXCELLENCE!',
+);
+
+const AVATAR_DEFAULTS = [
+	"/images/Ajsal-E.webp",
+	"/images/Anuradha.webp",
+	"/images/Bijini-Koshi.webp",
+	"/images/Jishana-T.webp",
+	"/images/Kashinath.webp",
+	"/images/Thanha-Kadeeja-K.webp",
+];
+const avatars = AVATAR_DEFAULTS.map((fallback, i) => {
+	const n = i + 1;
+	return {
+		img: getCmsImageUrl(cmaData[`avatar_${n}_img`], fallback),
+		edit: edit[`avatar_${n}_img`],
+	};
+});
+
+const CORP_LOGO_DEFAULTS = [
+	{ kind: "text", cls: "corp-logo-text corp-ey-logo", text: "e." },
+	{ kind: "img", cls: "corp-logo", src: "/images/pwc.png", alt: "PwC" },
+	{ kind: "text", cls: "corp-logo-text infosys-text", text: "Infosys" },
+	{ kind: "text", cls: "corp-logo-text kpmg-text", text: "KPMG" },
+	{ kind: "img", cls: "corp-logo", src: "/images/deloitte.png", alt: "Deloitte" },
+] as const;
+const corpLogos = CORP_LOGO_DEFAULTS.map((fallback, i) => {
+	const n = i + 1;
+	if (fallback.kind === "text") {
+		return {
+			kind: "text" as const,
+			cls: fallback.cls,
+			text: String(cmaData[`corp_logo_${n}_text`] || fallback.text),
+			edit: edit[`corp_logo_${n}_text`],
+		};
+	}
+	return {
+		kind: "img" as const,
+		cls: fallback.cls,
+		src: getCmsImageUrl(cmaData[`corp_logo_${n}_img`], fallback.src),
+		alt: fallback.alt,
+		editSrc: edit[`corp_logo_${n}_img`],
+	};
+});
+
+const heroVideoUrl = String(
+	cmaData.hero_video_url ||
+		"https://www.youtube.com/embed/fSmpRKXSJS0?autoplay=1&mute=1&loop=1&playlist=fSmpRKXSJS0&start=5",
+);
+
+// ── Achievements stat cards (CMA-specific, not the shared AchievementsSection) ──
+const ACHIEVEMENT_DEFAULTS = [
+	{ num: "5", label: "Years" },
+	{ num: "49", label: "World Ranks" },
+	{ num: "76", label: "National Ranks" },
+	{ num: "5000+", label: "Affiliates" },
+	{ num: "25,000", label: "Students" },
+];
+const achievements = ACHIEVEMENT_DEFAULTS.map((fallback, i) => {
+	const n = i + 1;
+	return {
+		num: String(cmaData[`achievement_${n}_num`] || fallback.num),
+		label: String(cmaData[`achievement_${n}_label`] || fallback.label),
+		editNum: edit[`achievement_${n}_num`],
+		editLabel: edit[`achievement_${n}_label`],
+	};
+});
+
+// ── "Be the Professional" section ──
+const professionalTitle = String(
+	cmaData.professional_title ||
+		'Be the <span class="text-slate">Professional</span> the<br />World Is <span class="text-slate">Looking For!</span>',
+);
+const professionalBadge1Img = getCmsImageUrl(
+	cmaData.professional_badge_1_img,
+	"/images/CMA-gold-1-e1762840636945.png",
+);
+const professionalBadge2Img = getCmsImageUrl(
+	cmaData.professional_badge_2_img,
+	"/images/courses/Silver-CMA.png",
+);
+
+const BULLET_DEFAULTS = [
+	"Recognition in over 160 countries world-wide.",
+	"Join a network of influential finance professionals.",
+	"Stay in demand with skills valued internationally.",
+	"Upskill your way to a leadership role in the finance industry.",
+	"High earning potential from ₹4 LPA to ₹20LPA.",
+];
+const bullets = BULLET_DEFAULTS.map((fallback, i) => {
+	const n = i + 1;
+	return {
+		text: String(cmaData[`bullet_${n}_text`] || fallback),
+		edit: edit[`bullet_${n}_text`],
+	};
+});
 ---
 
 <html lang="en">
@@ -49,101 +172,65 @@ const bannerText = String(cmaData.banner_text || "Enrollment closes soon");
 				<div class="cma-hero-inner">
 					<!-- LEFT: Sticky content -->
 					<div class="cma-hero-left">
-						<h1 class="cma-hero-title">
-							Transform your<br />
-							career and lead the<br />
-							finance world with<br />
-							<span class="text-blue">CMA USA.</span>
-						</h1>
+						<h1 class="cma-hero-title" set:html={heroTitle} {...edit.hero_heading} />
 
 						<!-- Badges row -->
 						<div class="cma-badges-row">
 							<img
-								src="/images/CMA-gold-1-e1762840636945.png"
+								src={heroBadgeGoldImg}
 								alt="Gold CMA Course Provider – IMA"
 								class="cma-badge-img gold-badge"
+								{...edit.hero_badge_gold_img}
 							/>
 							<img
-								src="/images/courses/Hock.png"
+								src={heroBadgeHockImg}
 								alt="HOCK International"
 								class="cma-badge-img hock-badge"
+								{...edit.hero_badge_hock_img}
 							/>
 							<img
-								src="/images/aswathi-CMA.jpg"
+								src={heroBadgeImaImg}
 								alt="IMA"
 								class="cma-badge-img ima-badge"
 								style="display:none"
+								{...edit.hero_badge_ima_img}
 							/>
 						</div>
 
 						<!-- IMA logo separate row -->
 						<div class="cma-ima-row">
 							<img
-								src="/images/courses/Silver-CMA.png"
+								src={imaLogoImg}
 								alt="IMA Authorized Partner"
 								class="ima-logo"
+								{...edit.ima_logo_img}
 							/>
 						</div>
 
 						<!-- Trusted by students -->
 						<div class="student-proof">
-							<p class="proof-label">
-								TRUSTED BY OVER <span class="highlight-blue"
-									>25000</span
-								><br />
-								STUDENTS GLOBALLY FOR EXCELLENCE!
-							</p>
+							<p class="proof-label" set:html={proofLabel} {...edit.proof_label} />
 							<div class="avatar-stack">
-								<img
-									src="/images/Ajsal-E.webp"
-									alt="Student"
-									class="avatar-img"
-								/>
-								<img
-									src="/images/Anuradha.webp"
-									alt="Student"
-									class="avatar-img"
-								/>
-								<img
-									src="/images/Bijini-Koshi.webp"
-									alt="Student"
-									class="avatar-img"
-								/>
-								<img
-									src="/images/Jishana-T.webp"
-									alt="Student"
-									class="avatar-img"
-								/>
-								<img
-									src="/images/Kashinath.webp"
-									alt="Student"
-									class="avatar-img"
-								/>
-								<img
-									src="/images/Thanha-Kadeeja-K.webp"
-									alt="Student"
-									class="avatar-img"
-								/>
+								{avatars.map((avatar) => (
+									<img
+										src={avatar.img}
+										alt="Student"
+										class="avatar-img"
+										{...avatar.edit}
+									/>
+								))}
 							</div>
 						</div>
 
 						<!-- Corporate logos -->
 						<div class="corporate-logos-row">
-							<span class="corp-logo-text corp-ey-logo">e.</span>
-							<img
-								src="/images/pwc.png"
-								alt="PwC"
-								class="corp-logo"
-							/>
-							<span class="corp-logo-text infosys-text"
-								>Infosys</span
-							>
-							<span class="corp-logo-text kpmg-text">KPMG</span>
-							<img
-								src="/images/deloitte.png"
-								alt="Deloitte"
-								class="corp-logo"
-							/>
+							{corpLogos.map((item) => (
+								item.kind === "text" ? (
+									<span class={item.cls} {...item.edit}>{item.text}</span>
+								) : (
+									<img src={item.src} alt={item.alt} class={item.cls} {...item.editSrc} />
+								)
+							))}
 						</div>
 					</div>
 
@@ -164,11 +251,12 @@ const bannerText = String(cmaData.banner_text || "Enrollment closes soon");
 			<!-- The actual video element — absolutely positioned and animated between the two targets above -->
 			<div class="video-circle-wrapper">
 				<iframe
-					src="https://www.youtube.com/embed/fSmpRKXSJS0?autoplay=1&mute=1&loop=1&playlist=fSmpRKXSJS0&start=5"
+					src={heroVideoUrl}
 					title="CMA USA – Elance"
 					allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
 					allowfullscreen
-					class="youtube-circle-iframe"></iframe>
+					class="youtube-circle-iframe"
+					{...edit.hero_video_url}></iframe>
 			</div>
 		</div>
 		<!-- /morphing-wrapper -->
@@ -399,26 +487,12 @@ const bannerText = String(cmaData.banner_text || "Enrollment closes soon");
 		<!-- ===================== ACHIEVEMENTS STATS CARDS ===================== -->
 		<section class="cma-achievements-cards-section">
 			<div class="cma-achievements-cards-container">
-				<div class="cma-ach-card">
-					<span class="cma-ach-num">5</span>
-					<span class="cma-ach-label">Years</span>
-				</div>
-				<div class="cma-ach-card">
-					<span class="cma-ach-num">49</span>
-					<span class="cma-ach-label">World Ranks</span>
-				</div>
-				<div class="cma-ach-card">
-					<span class="cma-ach-num">76</span>
-					<span class="cma-ach-label">National Ranks</span>
-				</div>
-				<div class="cma-ach-card">
-					<span class="cma-ach-num">5000+</span>
-					<span class="cma-ach-label">Affiliates</span>
-				</div>
-				<div class="cma-ach-card">
-					<span class="cma-ach-num">25,000</span>
-					<span class="cma-ach-label">Students</span>
-				</div>
+				{achievements.map((ach) => (
+					<div class="cma-ach-card">
+						<span class="cma-ach-num" set:html={ach.num} {...ach.editNum} />
+						<span class="cma-ach-label" {...ach.editLabel}>{ach.label}</span>
+					</div>
+				))}
 			</div>
 		</section>
 
@@ -427,113 +501,52 @@ const bannerText = String(cmaData.banner_text || "Enrollment closes soon");
 			<div class="cma-professional-container">
 				<!-- Left: Heading and Badges -->
 				<div class="cma-prof-left">
-					<h2 class="cma-prof-title">
-						Be the <span class="text-slate">Professional</span> the<br
-						/>
-						World Is <span class="text-slate">Looking For!</span>
-					</h2>
+					<h2 class="cma-prof-title" set:html={professionalTitle} {...edit.professional_title} />
 					<div class="cma-prof-badges">
 						<img
-							src="/images/CMA-gold-1-e1762840636945.png"
+							src={professionalBadge1Img}
 							alt="Gold CMA Course Provider"
 							class="cma-prof-badge-img gold-badge-img"
+							{...edit.professional_badge_1_img}
 						/>
 						<img
-							src="/images/courses/Silver-CMA.png"
+							src={professionalBadge2Img}
 							alt="IMA Logo"
 							class="cma-prof-badge-img ima-badge-img"
+							{...edit.professional_badge_2_img}
 						/>
 					</div>
 				</div>
 				<!-- Right: Bullet checklist -->
 				<div class="cma-prof-right">
-					<div class="cma-bullet-item">
-						<div class="cma-bullet-icon">
-							<svg
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								stroke-width="3"
-							>
-								<polyline points="20 6 9 17 4 12"></polyline>
-							</svg>
+					{bullets.map((bullet) => (
+						<div class="cma-bullet-item">
+							<div class="cma-bullet-icon">
+								<svg
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="3"
+								>
+									<polyline points="20 6 9 17 4 12"></polyline>
+								</svg>
+							</div>
+							<p class="cma-bullet-text" {...bullet.edit}>
+								{bullet.text}
+							</p>
 						</div>
-						<p class="cma-bullet-text">
-							Recognition in over 160 countries world-wide.
-						</p>
-					</div>
-					<div class="cma-bullet-item">
-						<div class="cma-bullet-icon">
-							<svg
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								stroke-width="3"
-							>
-								<polyline points="20 6 9 17 4 12"></polyline>
-							</svg>
-						</div>
-						<p class="cma-bullet-text">
-							Join a network of influential finance professionals.
-						</p>
-					</div>
-					<div class="cma-bullet-item">
-						<div class="cma-bullet-icon">
-							<svg
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								stroke-width="3"
-							>
-								<polyline points="20 6 9 17 4 12"></polyline>
-							</svg>
-						</div>
-						<p class="cma-bullet-text">
-							Stay in demand with skills valued internationally.
-						</p>
-					</div>
-					<div class="cma-bullet-item">
-						<div class="cma-bullet-icon">
-							<svg
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								stroke-width="3"
-							>
-								<polyline points="20 6 9 17 4 12"></polyline>
-							</svg>
-						</div>
-						<p class="cma-bullet-text">
-							Upskill your way to a leadership role in the finance
-							industry.
-						</p>
-					</div>
-					<div class="cma-bullet-item">
-						<div class="cma-bullet-icon">
-							<svg
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								stroke-width="3"
-							>
-								<polyline points="20 6 9 17 4 12"></polyline>
-							</svg>
-						</div>
-						<p class="cma-bullet-text">
-							High earning potential from ₹4 LPA to ₹20LPA.
-						</p>
-					</div>
+					))}
 				</div>
 			</div>
 		</section>
 
-		<StudentPlacements />
+		<StudentPlacements entry={cmaPage} />
 
-		<CareerAndWhyElance />
+		<CareerAndWhyElance entry={cmaPage} />
 
-		<CmaFaculties />
+		<CmaFaculties entry={cmaPage} />
 
-		<CmaLearningAndSyllabus />
+		<CmaLearningAndSyllabus entry={cmaPage} />
 
 		<Footer />
 	</body>

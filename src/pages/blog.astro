@@ -2,7 +2,7 @@
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
 import FeaturedOn from "../components/FeaturedOn.astro";
-import { getEmDashCollection } from "../lib/cms.js";
+import { getEmDashCollection, getEmDashEntry } from "../lib/cms.js";
 import { getMediaUrl } from "../utils/media.js";
 
 // Fetch published blog posts from EmDash CMS
@@ -12,6 +12,27 @@ const { entries: posts, error: postsError } = await getEmDashCollection('blog', 
 	orderBy: { published_date: 'desc' },
 });
 if (postsError) console.error('[blog.astro] EmDash error:', postsError);
+
+// Fetch this page's chrome (hero + featured section copy) from the EmDash
+// "pages" collection, distinct from the "blog" collection query above.
+const { entry: pageEntry } = await getEmDashEntry("pages", "blog").catch(() => ({
+	entry: null,
+}));
+const data = (pageEntry?.data as Record<string, any>) || {};
+const edit = pageEntry?.edit || ({} as Record<string, any>);
+
+const heroTitle = String(data.hero_title || "Blog");
+const heroSubtitle = String(
+	data.hero_subtitle ||
+		"Expand your knowledge with our informative blogs,<br />offering valuable insights to support your growth<br />and clear your doubts.",
+);
+const featuredTitle = String(
+	data.featured_title || 'We\'re <span class="text-blue">Featured</span> On',
+);
+const featuredSubtitle = String(
+	data.featured_subtitle ||
+		"Recognized by leading media houses for our commitment to quality education and student success.",
+);
 ---
 
 <html lang="en">
@@ -27,8 +48,8 @@ if (postsError) console.error('[blog.astro] EmDash error:', postsError);
 		<Nav />
 		<main>
 			<section class="blog-hero">
-				<h1>Blog</h1>
-				<p>Expand your knowledge with our informative blogs,<br />offering valuable insights to support your growth<br />and clear your doubts.</p>
+				<h1 {...edit.hero_title}>{heroTitle}</h1>
+				<p set:html={heroSubtitle} {...edit.hero_subtitle} />
 			</section>
 
 			<section class="blog-listing">
@@ -61,7 +82,12 @@ if (postsError) console.error('[blog.astro] EmDash error:', postsError);
 					<a class="active" href="#">1</a><a href="#">2</a><a href="#">3</a><a href="#">...</a><a href="#">9</a><a class="next" href="#" aria-label="Next page">›</a>
 				</nav>
 			</section>
-			<FeaturedOn />
+			<FeaturedOn
+				title={featuredTitle}
+				subtitle={featuredSubtitle}
+				editTitle={edit.featured_title}
+				editSubtitle={edit.featured_subtitle}
+			/>
 		</main>
 		<Footer />
 	</body>

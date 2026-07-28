@@ -1,13 +1,29 @@
 ---
 // StudentPlacements.astro
 // Component representing corporate placement logos of students.
+import { getCmsImageUrl } from "../utils/media.js";
+
+interface Props {
+	entry?: { data?: Record<string, any>; edit?: Record<string, any> } | null;
+}
+const { entry } = Astro.props as Props;
+const data = entry?.data || {};
+const edit = entry?.edit || ({} as Record<string, any>);
+
+const placementsTitle = String(
+	data.placements_title ||
+		'Our Students Made It – <span class="text-blue">Now It\'s Your Turn!</span>',
+);
+
+const placementGtImg = getCmsImageUrl(data.placement_gt_img, "/images/grant-thornton.png");
+const placementDeloitteImg = getCmsImageUrl(data.placement_deloitte_img, "/images/deloitte.png");
+const placementEyImg = getCmsImageUrl(data.placement_ey_img, "/images/ey.png");
+const placementPwcImg = getCmsImageUrl(data.placement_pwc_img, "/images/pwc.png");
 ---
 
 <section class="placements-section">
 	<div class="section-container placements-container">
-		<h2 class="placements-title">
-			Our Students Made It – <span class="text-blue">Now It's Your Turn!</span>
-		</h2>
+		<h2 class="placements-title" set:html={placementsTitle} {...edit.placements_title} />
 
 		<div class="placements-grid">
 			<!-- Row 1, Col 1: Baker Tilly -->
@@ -45,12 +61,12 @@
 
 			<!-- Row 1, Col 4: Grant Thornton -->
 			<div class="placement-box">
-				<img src="/images/grant-thornton.png" alt="Grant Thornton Logo" class="placement-img img-gt" />
+				<img src={placementGtImg} alt="Grant Thornton Logo" class="placement-img img-gt" {...edit.placement_gt_img} />
 			</div>
 
 			<!-- Row 1, Col 5: Deloitte -->
 			<div class="placement-box">
-				<img src="/images/deloitte.png" alt="Deloitte Logo" class="placement-img img-deloitte" />
+				<img src={placementDeloitteImg} alt="Deloitte Logo" class="placement-img img-deloitte" {...edit.placement_deloitte_img} />
 			</div>
 
 			<!-- Row 2, Col 1: KPMG -->
@@ -67,12 +83,12 @@
 
 			<!-- Row 2, Col 2: EY -->
 			<div class="placement-box">
-				<img src="/images/ey.png" alt="EY Logo" class="placement-img img-ey" />
+				<img src={placementEyImg} alt="EY Logo" class="placement-img img-ey" {...edit.placement_ey_img} />
 			</div>
 
 			<!-- Row 2, Col 3: PwC -->
 			<div class="placement-box">
-				<img src="/images/pwc.png" alt="PwC Logo" class="placement-img img-pwc" />
+				<img src={placementPwcImg} alt="PwC Logo" class="placement-img img-pwc" {...edit.placement_pwc_img} />
 			</div>
 
 			<!-- Row 2, Col 4: Citibank -->

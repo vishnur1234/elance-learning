@@ -1,6 +1,55 @@
 ---
 // StudentThinkBanner.astro
 // Component representing the "What our Students think about us" header banner.
+import { getCmsImageUrl } from "../utils/media.js";
+
+interface Props {
+	entry?: { data?: Record<string, any>; edit?: Record<string, any> } | null;
+}
+const { entry } = Astro.props as Props;
+const data = entry?.data || {};
+const edit = entry?.edit || ({} as Record<string, any>);
+
+const thinkTitle = String(
+	data.think_title ||
+		'What our<br />Students <svg class="elance-logo-mark" viewBox="0 0 30 20" aria-label="Elance Logo Mark"><rect x="0" y="2" width="28" height="4" fill="#3b9fe8" rx="2"/><rect x="0" y="8" width="20" height="4" fill="#3b9fe8" rx="2"/><rect x="0" y="14" width="12" height="4" fill="#3b9fe8" rx="2"/></svg> think<br />about us?',
+);
+
+const THINK_TESTIMONIAL_DEFAULTS = [
+	{
+		photo: "/images/i1.jpg",
+		quote: '"With Elance, you won\'t feel like you\'re missing out on the college vibe."',
+		author: "Shringa Surendran",
+		company: "KPMG",
+	},
+	{
+		photo: "/images/i2.jpg",
+		quote: '"The faculty at Elance is extremely supportive, guiding me at every step of my ACCA journey."',
+		author: "Vaishnav Unny",
+		company: "PwC",
+	},
+	{
+		photo: "/images/Abhiram-testi.jpg",
+		quote: '"Elance provided me with the resources and confidence to clear my papers on the first attempt."',
+		author: "Siya Sabu",
+		company: "EY",
+	},
+];
+const thinkTestimonials = THINK_TESTIMONIAL_DEFAULTS.map((fallback, i) => {
+	const n = i + 1;
+	return {
+		photo: getCmsImageUrl(data[`think_testimonial_${n}_photo`], fallback.photo),
+		quote: String(data[`think_testimonial_${n}_quote`] || fallback.quote),
+		author: String(data[`think_testimonial_${n}_author`] || fallback.author),
+		company: String(data[`think_testimonial_${n}_company`] || fallback.company),
+		editPhoto: edit[`think_testimonial_${n}_photo`],
+		editQuote: edit[`think_testimonial_${n}_quote`],
+		editAuthor: edit[`think_testimonial_${n}_author`],
+		editCompany: edit[`think_testimonial_${n}_company`],
+	};
+});
+const initialTestimonial = thinkTestimonials[0];
+const RING_CLASSES = ["bg-blue", "bg-purple", "bg-cyan"];
 ---
 
 <section class="think-section">
@@ -8,17 +57,7 @@
 		<div class="think-banner">
 			<!-- Left side with title -->
 			<div class="think-banner-left">
-				<h2 class="think-title">
-					What our<br />
-					Students
-					<svg class="elance-logo-mark" viewBox="0 0 30 20" aria-label="Elance Logo Mark">
-						<rect x="0" y="2" width="28" height="4" fill="#3b9fe8" rx="2"/>
-						<rect x="0" y="8" width="20" height="4" fill="#3b9fe8" rx="2"/>
-						<rect x="0" y="14" width="12" height="4" fill="#3b9fe8" rx="2"/>
-					</svg>
-					think<br />
-					about us?
-				</h2>
+				<h2 class="think-title" set:html={thinkTitle} {...edit.think_title} />
 			</div>
 
 			<!-- Right side with testimonials, avatars, and controls -->
@@ -26,27 +65,16 @@
 				<!-- Top row of the right side -->
 				<div class="think-right-header">
 					<div class="think-avatars">
-						<div class="avatar-ring bg-blue" data-index="0">
-							<img
-								src="/images/i1.jpg"
-								alt="Student 1"
-								class="think-avatar"
-							/>
-						</div>
-						<div class="avatar-ring bg-purple" data-index="1">
-							<img
-								src="/images/i2.jpg"
-								alt="Student 2"
-								class="think-avatar"
-							/>
-						</div>
-						<div class="avatar-ring bg-cyan" data-index="2">
-							<img
-								src="/images/Abhiram-testi.jpg"
-								alt="Student 3"
-								class="think-avatar"
-							/>
-						</div>
+						{thinkTestimonials.map((t, i) => (
+							<div class={`avatar-ring ${RING_CLASSES[i]}`} data-index={i}>
+								<img
+									src={t.photo}
+									alt={`Student ${i + 1}`}
+									class="think-avatar"
+									{...t.editPhoto}
+								/>
+							</div>
+						))}
 					</div>
 
 					<div class="think-arrows">
@@ -93,14 +121,14 @@
 
 				<!-- Testimonial Content Box -->
 				<div class="think-testimonial-content">
-					<p class="think-quote" id="testimonial-quote">
-						"With Elance, you won't feel like you're missing out on the college vibe."
+					<p class="think-quote" id="testimonial-quote" {...initialTestimonial.editQuote}>
+						{initialTestimonial.quote}
 					</p>
-					<h4 class="think-author" id="testimonial-author">
-						Shringa Surendran
+					<h4 class="think-author" id="testimonial-author" {...initialTestimonial.editAuthor}>
+						{initialTestimonial.author}
 					</h4>
-					<p class="think-company" id="testimonial-company">
-						KPMG
+					<p class="think-company" id="testimonial-company" {...initialTestimonial.editCompany}>
+						{initialTestimonial.company}
 					</p>
 				</div>
 			</div>
@@ -109,25 +137,7 @@
 </section>
 
 <!-- Script for dynamic testimonial slider -->
-<script>
-	const testimonials = [
-		{
-			quote: '"With Elance, you won\'t feel like you\'re missing out on the college vibe."',
-			author: "Shringa Surendran",
-			company: "KPMG"
-		},
-		{
-			quote: '"The faculty at Elance is extremely supportive, guiding me at every step of my ACCA journey."',
-			author: "Vaishnav Unny",
-			company: "PwC"
-		},
-		{
-			quote: '"Elance provided me with the resources and confidence to clear my papers on the first attempt."',
-			author: "Siya Sabu",
-			company: "EY"
-		}
-	];
-
+<script define:vars={{ testimonials: thinkTestimonials.map((t) => ({ quote: t.quote, author: t.author, company: t.company })) }}>
 	let currentIndex = 0;
 
 	const quoteEl = document.getElementById("testimonial-quote");
@@ -137,7 +147,7 @@
 	const nextBtn = document.getElementById("next-testimonial");
 	const rings = document.querySelectorAll(".avatar-ring");
 
-	function updateTestimonial(index: number) {
+	function updateTestimonial(index) {
 		if (!quoteEl || !authorEl || !companyEl) return;
 
 		// Fade out content slightly
@@ -160,14 +170,14 @@
 		rings.forEach((ring, rIndex) => {
 			if (rIndex === index) {
 				ring.classList.add("active");
-				(ring as HTMLElement).style.transform = "scale(1.15)";
-				(ring as HTMLElement).style.zIndex = "5";
-				(ring as HTMLElement).style.opacity = "1";
+				ring.style.transform = "scale(1.15)";
+				ring.style.zIndex = "5";
+				ring.style.opacity = "1";
 			} else {
 				ring.classList.remove("active");
-				(ring as HTMLElement).style.transform = "scale(1)";
-				(ring as HTMLElement).style.zIndex = (3 - Math.abs(rIndex - index)).toString();
-				(ring as HTMLElement).style.opacity = "0.7";
+				ring.style.transform = "scale(1)";
+				ring.style.zIndex = (3 - Math.abs(rIndex - index)).toString();
+				ring.style.opacity = "0.7";
 			}
 		});
 	}
