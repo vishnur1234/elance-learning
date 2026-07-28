@@ -199,13 +199,23 @@ const feedback5Role = String(homeData.feedback_5_role || "Elance ACCA Student");
 const feedback6Name = String(homeData.feedback_6_name || "Bijini Koshi");
 const feedback6Role = String(homeData.feedback_6_role || "Elance CMA Student");
 
-const thinkBannerTitle = formatTitleWithBlueWords(
-	String(
-		homeData.think_banner_title ||
-			'What our <span class="text-blue">Students<br />think</span> about us?',
-	),
-	["Students", "think"],
-);
+const logoMarkSvg = '<svg class="elance-logo-mark" width="26" height="18" viewBox="0 0 30 20" aria-label="Elance Logo Mark" style="width:26px!important;height:18px!important;display:inline-block!important;vertical-align:middle!important;margin:0 6px 2px 6px!important;"><rect x="0" y="2" width="28" height="4" fill="#38bdf8" rx="2"/><rect x="0" y="8" width="20" height="4" fill="#38bdf8" rx="2"/><rect x="0" y="14" width="12" height="4" fill="#38bdf8" rx="2"/></svg>';
+
+function formatThinkBannerTitle(rawTitle: string): string {
+	const defaultTitle = `What our<br />Students ${logoMarkSvg} think<br />about us?`;
+	if (!rawTitle) return defaultTitle;
+	let str = rawTitle.replace(/<svg[\s\S]*?<\/svg>/gi, "").replace(/<span class="text-blue">(.*?)<\/span>/gi, "$1");
+	let cleanText = str.replace(/<br\s*\/?>/gi, " ").replace(/\s+/g, " ").trim();
+	if (/What\s+our\s+Students\s+think\s+about\s+us\??/i.test(cleanText)) {
+		return defaultTitle;
+	}
+	return str
+		.replace(/What\s+our/gi, "What our<br />")
+		.replace(/Students\s+(<br\s*\/?>)?\s*think/gi, `Students ${logoMarkSvg} think`)
+		.replace(/think\s+about/gi, "think<br />about");
+}
+
+let thinkBannerTitle = formatThinkBannerTitle(String(homeData.think_banner_title || ""));
 const think1Quote = String(
 	homeData.think_1_quote ||
 		"\"With Elance, you won't feel like you're missing out on the college vibe.\"",
@@ -1165,8 +1175,10 @@ const life4Img = getImageUrl(homeData.life_4_img, "/images/gallery/DSC05997-scal
 			<!-- What our Students think about us Banner -->
 			<div class="section-container">
 				<div class="think-banner">
-					<!-- Decor shape behind left side using you-bg.png -->
-					<div class="think-banner-decor"></div>
+					<!-- Decor triangle shape behind title matching screenshot -->
+					<div class="think-banner-decor">
+						<img src="/images/you-bg.png" class="think-decor-img" alt="" />
+					</div>
 
 					<div class="think-banner-left">
 						<h2
@@ -3255,48 +3267,55 @@ const life4Img = getImageUrl(homeData.life_4_img, "/images/gallery/DSC05997-scal
 		margin-left: 2px;
 	}
 
-	.feedback-card:not(.card-0) .play-btn {
-		opacity: 0;
-		pointer-events: none;
-	}
-
 	/* Think Banner */
 	.think-banner {
 		position: relative;
 		background: #ffffff;
-		border-radius: 24px;
-		box-shadow: 0 15px 45px rgba(0, 0, 0, 0.04);
-		padding: 48px 64px;
+		border-radius: 32px;
+		box-shadow: 0 16px 48px rgba(37, 99, 235, 0.05), 0 2px 8px rgba(0, 0, 0, 0.02);
+		padding: 56px 64px;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		overflow: hidden;
 		margin-top: 60px;
 		border: 1px solid rgba(229, 231, 235, 0.5);
+		overflow: hidden;
 	}
 
 	.think-banner-decor {
 		position: absolute;
-		top: -40px;
-		left: -20px;
-		width: 320px;
-		height: 320px;
-		background: url("/images/you-bg.png") no-repeat center center;
-		background-size: contain;
-		opacity: 0.18;
-		transform: rotate(40deg);
+		top: 10px;
+		left: 10px;
+		width: 420px;
+		height: 300px;
 		pointer-events: none;
 		z-index: 1;
+		opacity: 0.9;
+	}
+
+	.think-decor-img {
+		width: 100%;
+		height: 100%;
+		object-fit: contain;
+		object-position: top left;
+	}
+
+	:global(.elance-logo-mark) {
+		display: inline-block !important;
+		vertical-align: middle !important;
+		width: 26px !important;
+		height: 18px !important;
+		margin: 0 6px 2px 6px !important;
 	}
 
 	.think-banner-left {
-		flex: 0 0 35%;
+		flex: 0 0 42%;
 		position: relative;
 		z-index: 2;
 	}
 
 	.think-banner-right {
-		flex: 0 0 55%;
+		flex: 0 0 52%;
 		position: relative;
 		z-index: 2;
 		display: flex;
@@ -3306,10 +3325,11 @@ const life4Img = getImageUrl(homeData.life_4_img, "/images/gallery/DSC05997-scal
 
 	.think-title {
 		font-family: "Outfit", sans-serif;
-		font-size: 2.1rem;
+		font-size: clamp(2.1rem, 3.4vw, 2.6rem);
 		font-weight: 800;
-		color: #111827;
-		line-height: 1.25;
+		color: #18181b;
+		line-height: 1.22;
+		margin: 0;
 	}
 
 	.think-header-row {
@@ -3321,52 +3341,55 @@ const life4Img = getImageUrl(homeData.life_4_img, "/images/gallery/DSC05997-scal
 
 	.think-avatars-wrap {
 		display: flex;
-		gap: 18px;
+		align-items: center;
 	}
 
 	.think-avatar-container {
 		position: relative;
 		width: 48px;
 		height: 48px;
+		border-radius: 50%;
 		cursor: pointer;
-		transition: transform 0.2s;
+		transition: transform 0.25s ease;
+		flex-shrink: 0;
+	}
+
+	.think-avatar-container:not(:first-child) {
+		margin-left: -14px;
 	}
 
 	.think-avatar-container:hover,
 	.think-avatar-container.active {
 		transform: scale(1.1);
+		z-index: 5;
 	}
 
 	.avatar-backdrop {
 		position: absolute;
-		top: 4px;
-		left: -4px;
-		width: 48px;
-		height: 48px;
+		inset: -2px;
 		border-radius: 50%;
 		z-index: 1;
-		opacity: 0.5;
 	}
 
 	.avatar-backdrop.bg-blue {
-		background: #50b5ff;
+		background: #3b82f6;
 	}
 
 	.avatar-backdrop.bg-purple {
-		background: #b1a0f5;
+		background: #a855f7;
 	}
 
 	.avatar-backdrop.bg-skyblue {
-		background: #a0dcf5;
+		background: #38bdf8;
 	}
 
 	.think-avatar-img {
 		position: relative;
-		width: 48px;
-		height: 48px;
+		width: 100%;
+		height: 100%;
 		border-radius: 50%;
 		object-fit: cover;
-		border: 2px solid #ffffff;
+		border: 2.5px solid #ffffff;
 		z-index: 2;
 		box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
 	}
@@ -3374,6 +3397,7 @@ const life4Img = getImageUrl(homeData.life_4_img, "/images/gallery/DSC05997-scal
 	.think-arrows {
 		display: flex;
 		gap: 12px;
+		align-items: center;
 	}
 
 	.think-arrows-mobile {
@@ -3385,20 +3409,26 @@ const life4Img = getImageUrl(homeData.life_4_img, "/images/gallery/DSC05997-scal
 		height: 44px;
 		border-radius: 50%;
 		border: none;
-		background: #50b5ff;
-		color: #111827;
+		background: #38bdf8;
+		color: #1e293b;
 		cursor: pointer;
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		box-shadow: 0 4px 12px rgba(80, 181, 255, 0.2);
-		transition:
-			background-color 0.2s,
-			transform 0.2s;
+		box-shadow: 0 4px 14px rgba(56, 189, 248, 0.3);
+		transition: all 0.25s ease;
 	}
 
 	.think-arrow-btn:hover {
-		background: #35a4ee;
+		background: #0ea5e9;
+		transform: scale(1.06);
+		box-shadow: 0 6px 18px rgba(56, 189, 248, 0.45);
+	}
+
+	.think-arrow-btn svg {
+		width: 18px;
+		height: 18px;
+	}nd: #35a4ee;
 		transform: scale(1.05);
 	}
 

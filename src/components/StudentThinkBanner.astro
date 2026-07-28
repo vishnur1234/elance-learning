@@ -10,15 +10,28 @@ const { entry } = Astro.props as Props;
 const data = entry?.data || {};
 const edit = entry?.edit || ({} as Record<string, any>);
 
-const thinkTitle = String(
-	data.think_title ||
-		'What our<br />Students <svg class="elance-logo-mark" viewBox="0 0 30 20" aria-label="Elance Logo Mark"><rect x="0" y="2" width="28" height="4" fill="#3b9fe8" rx="2"/><rect x="0" y="8" width="20" height="4" fill="#3b9fe8" rx="2"/><rect x="0" y="14" width="12" height="4" fill="#3b9fe8" rx="2"/></svg> think<br />about us?',
-);
+const logoMarkSvg =
+	'<svg class="elance-logo-mark" width="26" height="18" viewBox="0 0 30 20" aria-label="Elance Logo Mark" style="width:26px!important;height:18px!important;display:inline-block!important;vertical-align:middle!important;margin:0 6px 2px 6px!important;"><rect x="0" y="2" width="28" height="4" fill="#38bdf8" rx="2"/><rect x="0" y="8" width="20" height="4" fill="#38bdf8" rx="2"/><rect x="0" y="14" width="12" height="4" fill="#38bdf8" rx="2"/></svg>';
+function formatThinkBannerTitle(rawTitle: string): string {
+	const defaultTitle = `What our<br />Students ${logoMarkSvg} think<br />about us?`;
+	if (!rawTitle) return defaultTitle;
+	let str = rawTitle.replace(/<svg[\s\S]*?<\/svg>/gi, "").replace(/<span class="text-blue">(.*?)<\/span>/gi, "$1");
+	let cleanText = str.replace(/<br\s*\/?>/gi, " ").replace(/\s+/g, " ").trim();
+	if (/What\s+our\s+Students\s+think\s+about\s+us\??/i.test(cleanText)) {
+		return defaultTitle;
+	}
+	return str
+		.replace(/What\s+our/gi, "What our<br />")
+		.replace(/Students\s+(<br\s*\/?>)?\s*think/gi, `Students ${logoMarkSvg} think`)
+		.replace(/think\s+about/gi, "think<br />about");
+}
+
+let thinkTitle = formatThinkBannerTitle(String(data.think_title || ""));
 
 const THINK_TESTIMONIAL_DEFAULTS = [
 	{
 		photo: "/images/i1.jpg",
-		quote: '"With Elance, you won\'t feel like you\'re missing out on the college vibe."',
+		quote: "\"With Elance, you won't feel like you're missing out on the college vibe.\"",
 		author: "Shringa Surendran",
 		company: "KPMG",
 	},
@@ -38,10 +51,17 @@ const THINK_TESTIMONIAL_DEFAULTS = [
 const thinkTestimonials = THINK_TESTIMONIAL_DEFAULTS.map((fallback, i) => {
 	const n = i + 1;
 	return {
-		photo: getCmsImageUrl(data[`think_testimonial_${n}_photo`], fallback.photo),
+		photo: getCmsImageUrl(
+			data[`think_testimonial_${n}_photo`],
+			fallback.photo,
+		),
 		quote: String(data[`think_testimonial_${n}_quote`] || fallback.quote),
-		author: String(data[`think_testimonial_${n}_author`] || fallback.author),
-		company: String(data[`think_testimonial_${n}_company`] || fallback.company),
+		author: String(
+			data[`think_testimonial_${n}_author`] || fallback.author,
+		),
+		company: String(
+			data[`think_testimonial_${n}_company`] || fallback.company,
+		),
 		editPhoto: edit[`think_testimonial_${n}_photo`],
 		editQuote: edit[`think_testimonial_${n}_quote`],
 		editAuthor: edit[`think_testimonial_${n}_author`],
@@ -55,9 +75,18 @@ const RING_CLASSES = ["bg-blue", "bg-purple", "bg-cyan"];
 <section class="think-section">
 	<div class="section-container">
 		<div class="think-banner">
+			<!-- Decor triangle shape matching screenshot -->
+			<div class="think-banner-decor">
+				<img src="/images/you-bg.png" class="think-decor-img" alt="" />
+			</div>
+
 			<!-- Left side with title -->
 			<div class="think-banner-left">
-				<h2 class="think-title" set:html={thinkTitle} {...edit.think_title} />
+				<h2
+					class="think-title"
+					set:html={thinkTitle}
+					{...edit.think_title}
+				/>
 			</div>
 
 			<!-- Right side with testimonials, avatars, and controls -->
@@ -65,16 +94,21 @@ const RING_CLASSES = ["bg-blue", "bg-purple", "bg-cyan"];
 				<!-- Top row of the right side -->
 				<div class="think-right-header">
 					<div class="think-avatars">
-						{thinkTestimonials.map((t, i) => (
-							<div class={`avatar-ring ${RING_CLASSES[i]}`} data-index={i}>
-								<img
-									src={t.photo}
-									alt={`Student ${i + 1}`}
-									class="think-avatar"
-									{...t.editPhoto}
-								/>
-							</div>
-						))}
+						{
+							thinkTestimonials.map((t, i) => (
+								<div
+									class={`avatar-ring ${RING_CLASSES[i]}`}
+									data-index={i}
+								>
+									<img
+										src={t.photo}
+										alt={`Student ${i + 1}`}
+										class="think-avatar"
+										{...t.editPhoto}
+									/>
+								</div>
+							))
+						}
 					</div>
 
 					<div class="think-arrows">
@@ -93,8 +127,7 @@ const RING_CLASSES = ["bg-blue", "bg-purple", "bg-cyan"];
 									stroke="currentColor"
 									stroke-width="2.5"
 									stroke-linecap="round"
-									stroke-linejoin="round"
-								></path>
+									stroke-linejoin="round"></path>
 							</svg>
 						</button>
 						<button
@@ -112,8 +145,7 @@ const RING_CLASSES = ["bg-blue", "bg-purple", "bg-cyan"];
 									stroke="currentColor"
 									stroke-width="2.5"
 									stroke-linecap="round"
-									stroke-linejoin="round"
-								></path>
+									stroke-linejoin="round"></path>
 							</svg>
 						</button>
 					</div>
@@ -121,13 +153,25 @@ const RING_CLASSES = ["bg-blue", "bg-purple", "bg-cyan"];
 
 				<!-- Testimonial Content Box -->
 				<div class="think-testimonial-content">
-					<p class="think-quote" id="testimonial-quote" {...initialTestimonial.editQuote}>
+					<p
+						class="think-quote"
+						id="testimonial-quote"
+						{...initialTestimonial.editQuote}
+					>
 						{initialTestimonial.quote}
 					</p>
-					<h4 class="think-author" id="testimonial-author" {...initialTestimonial.editAuthor}>
+					<h4
+						class="think-author"
+						id="testimonial-author"
+						{...initialTestimonial.editAuthor}
+					>
 						{initialTestimonial.author}
 					</h4>
-					<p class="think-company" id="testimonial-company" {...initialTestimonial.editCompany}>
+					<p
+						class="think-company"
+						id="testimonial-company"
+						{...initialTestimonial.editCompany}
+					>
 						{initialTestimonial.company}
 					</p>
 				</div>
@@ -137,7 +181,15 @@ const RING_CLASSES = ["bg-blue", "bg-purple", "bg-cyan"];
 </section>
 
 <!-- Script for dynamic testimonial slider -->
-<script define:vars={{ testimonials: thinkTestimonials.map((t) => ({ quote: t.quote, author: t.author, company: t.company })) }}>
+<script
+	define:vars={{
+		testimonials: thinkTestimonials.map((t) => ({
+			quote: t.quote,
+			author: t.author,
+			company: t.company,
+		})),
+	}}
+>
 	let currentIndex = 0;
 
 	const quoteEl = document.getElementById("testimonial-quote");
@@ -184,7 +236,8 @@ const RING_CLASSES = ["bg-blue", "bg-purple", "bg-cyan"];
 
 	if (prevBtn && nextBtn) {
 		prevBtn.addEventListener("click", () => {
-			currentIndex = (currentIndex - 1 + testimonials.length) % testimonials.length;
+			currentIndex =
+				(currentIndex - 1 + testimonials.length) % testimonials.length;
 			updateTestimonial(currentIndex);
 		});
 
@@ -192,7 +245,7 @@ const RING_CLASSES = ["bg-blue", "bg-purple", "bg-cyan"];
 			currentIndex = (currentIndex + 1) % testimonials.length;
 			updateTestimonial(currentIndex);
 		});
-		
+
 		// Add click listeners to avatars themselves
 		rings.forEach((ring, index) => {
 			ring.addEventListener("click", () => {
@@ -226,31 +279,41 @@ const RING_CLASSES = ["bg-blue", "bg-purple", "bg-cyan"];
 		position: relative;
 		background: #ffffff;
 		border-radius: 32px; /* rounded box corners exactly like screenshot */
-		box-shadow: 
-			0 20px 50px rgba(37, 99, 235, 0.04), 
+		box-shadow:
+			0 20px 50px rgba(37, 99, 235, 0.04),
 			0 4px 15px rgba(0, 0, 0, 0.01);
 		padding: 60px 80px;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		overflow: hidden;
 		border: 1px solid rgba(229, 231, 235, 0.4);
+		overflow: hidden;
 	}
 
-	/* Wedge shape in background using you-bg.png from assets */
-	.think-banner::before {
-		content: "";
+	.think-banner-decor {
 		position: absolute;
-		top: 0;
-		left: 0;
-		width: 350px;
-		height: 100%;
-		background-image: url("/images/you-bg.png");
-		background-size: contain;
-		background-repeat: no-repeat;
-		background-position: left center;
-		z-index: 0;
+		top: -10px;
+		left: -10px;
+		width: 420px;
+		height: 340px;
 		pointer-events: none;
+		z-index: 1;
+		opacity: 0.9;
+	}
+
+	.think-decor-img {
+		width: 100%;
+		height: 100%;
+		object-fit: contain;
+		object-position: top left;
+	}
+
+	:global(.elance-logo-mark) {
+		display: inline-block !important;
+		vertical-align: middle !important;
+		width: 26px !important;
+		height: 18px !important;
+		margin: 0 6px 2px 6px !important;
 	}
 
 	.think-banner-left {
@@ -310,7 +373,9 @@ const RING_CLASSES = ["bg-blue", "bg-purple", "bg-cyan"];
 		justify-content: center;
 		padding: 2.5px;
 		box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
-		transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
+		transition:
+			transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+			opacity 0.3s ease;
 		cursor: pointer;
 		opacity: 0.7;
 	}
@@ -364,18 +429,13 @@ const RING_CLASSES = ["bg-blue", "bg-purple", "bg-cyan"];
 		transition: all 0.25s ease;
 	}
 
-	/* Left (Previous) button */
-	.btn-prev {
-		background: #bae6fd;
-		color: #0284c7;
-		opacity: 0.85;
-	}
-
-	/* Right (Next) button */
+	/* Left & Right buttons */
+	.btn-prev,
 	.btn-next {
-		background: #3b9fe8;
-		color: #ffffff;
-		box-shadow: 0 4px 12px rgba(59, 159, 232, 0.25);
+		background: #38bdf8;
+		color: #1e293b;
+		box-shadow: 0 4px 14px rgba(56, 189, 248, 0.3);
+		opacity: 1;
 	}
 
 	.arrow-btn-small:hover {
