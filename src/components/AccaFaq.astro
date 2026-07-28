@@ -1,289 +1,79 @@
 ---
 // AccaFaq.astro
 // Component representing the "Frequently Asked Question" accordion section.
+import { getEmDashCollection } from "../lib/cms.js";
+
+interface Props {
+	entry?: { data?: Record<string, any>; edit?: Record<string, any> } | null;
+}
+const { entry } = Astro.props as Props;
+const pageData = entry?.data || {};
+const pageEdit = entry?.edit || ({} as Record<string, any>);
+const faqTitle = String(
+	pageData.faq_title || '<span class="text-blue">Frequently</span> Asked Question',
+);
+
+const FAQ_DEFAULTS = [
+	{ question: "What is ACCA ??", answer: "The full form of ACCA is the Association of Chartered Certified Accountants. It is a global professional qualification for those looking to build a career in accounting, finance, & business. The completion of ACCA course helps you gain skills in financial management, auditing, and taxation and is recognized in over 180 countries, offering global career opportunities." },
+	{ question: "Why Elance?", answer: "Elance stands out for its ACCA Platinum Accredited Partner status, world-class faculty with 13+ years of experience, guaranteed placement assistance, and a comprehensive learning ecosystem including offline, online, and hybrid classes. Our track record of 53 World Ranks and 80 National Ranks speaks for itself." },
+	{ question: "Structure of ACCA programs?", answer: "ACCA consists of 13 papers divided into three levels: Applied Knowledge (3 papers: BT, MA, FA), Applied Skills (6 papers: LW, PM, TX, FR, AA, FM), and Strategic Professional (4 papers: SBL, SBR, plus 2 from AFM, APM, ATX, AAA). Students must also complete an Ethics and Professional Skills module and 36 months of practical experience." },
+	{ question: "What is the schedule for the ACCA exams?", answer: "ACCA exams are held four times a year in March, June, September, and December. Applied Knowledge exams are available on demand at CBE centers. Strategic Professional exams take place in March, June, September, and December at authorized exam centers worldwide." },
+	{ question: "How can I get into ACCA ?", answer: "To register for ACCA, you need a minimum of 2 A-levels and 3 GCSEs (or equivalent), including English and Mathematics. If you hold a relevant degree, you may be eligible for exemptions from some papers. You can register directly through the ACCA website or through an authorized learning provider like Elance." },
+	{ question: "What sets ACCA apart from the other Finance & Accounting courses?", answer: "ACCA is globally recognized in 180+ countries, offering wider career opportunities than most local qualifications. It covers a broad spectrum including auditing, taxation, financial management, and strategic leadership. ACCA also provides exemptions for degree holders and offers flexible exam scheduling four times a year." },
+	{ question: "What are the exemptions available for ACCA?", answer: "ACCA offers exemptions based on prior academic qualifications. Commerce graduates may receive exemptions from Applied Knowledge papers (BT, MA, FA) and some Applied Skills papers. The number of exemptions depends on your degree and university. You can check your eligibility on the ACCA website using the exemption calculator." },
+	{ question: "How many papers are there in ACCA?", answer: "ACCA has a total of 13 papers: 3 at Applied Knowledge level, 6 at Applied Skills level, and 4 at Strategic Professional level (2 Essentials + 2 from 4 Optional papers). Along with these, students must complete the Ethics and Professional Skills module and 36 months of relevant practical experience." },
+	{ question: "Is ACCA exam tough?", answer: "ACCA exams are challenging but very achievable with the right preparation and guidance. The pass rate varies by paper, typically ranging from 40–60%. At Elance, our expert faculty and structured study programs ensure students are thoroughly prepared, resulting in consistent first-attempt passes and global top ranks." },
+	{ question: "Can I do ACCA after 12th?", answer: "Yes! Students can start ACCA after completing their 12th standard (Commerce stream preferred). ACCA accepts students who have passed at least 5 GCSEs and 2 A-levels (or equivalent). Students from the commerce stream in India with 65%+ marks in at least 4 subjects including English and Mathematics are eligible." },
+	{ question: "What is the salary for ACCA?", answer: "ACCA qualified professionals earn competitive salaries globally. In India, entry-level ACCA professionals can expect ₹4–8 LPA, mid-level ₹10–20 LPA, and senior positions can command ₹30 LPA or more. Internationally, ACCA members can earn £35,000–£70,000+ per annum depending on the role and country." },
+	{ question: "What is the ACCA course duration?", answer: "The duration of ACCA depends on the student's prior qualifications and pace. On average, it takes 3–4 years to complete all 13 exams along with the required practical experience (36 months). Students with relevant degrees and exemptions may complete ACCA faster, sometimes within 2–2.5 years." },
+	{ question: "When are the ACCA exam dates?", answer: "ACCA exams are scheduled four times a year: March, June, September, and December. On-demand CBE exams for Applied Knowledge papers are available year-round at authorized test centers. Registration deadlines typically fall 5–7 weeks before the exam session. Check the ACCA website for specific dates each year." },
+];
+
+// Fetch ACCA-specific FAQs from the shared "faq" collection (also used by
+// CMA/general FAQs via the same `category` field). Falls back to the
+// original hardcoded Q&A so the section still renders if the CMS has no
+// entries yet.
+const { entries: faqEntries, error: faqError } = await getEmDashCollection("faq", {
+	where: { category: "acca" },
+}).catch(() => ({ entries: [], error: null }));
+if (faqError) console.error("[AccaFaq] EmDash error:", faqError);
+
+const faqs = (faqEntries && faqEntries.length > 0)
+	? faqEntries.map((e: any) => ({
+		question: String(e.data?.question || ""),
+		answer: String(e.data?.answer || ""),
+		editQuestion: e.edit?.question,
+		editAnswer: e.edit?.answer,
+	}))
+	: FAQ_DEFAULTS.map((f) => ({ ...f, editQuestion: undefined, editAnswer: undefined }));
 ---
 
 <section class="faq-section">
 	<div class="faq-container">
-		<h2 class="faq-title">
-			<span class="text-blue">Frequently</span> Asked Question
-		</h2>
+		<h2 class="faq-title" set:html={faqTitle} {...pageEdit.faq_title} />
 
 		<div class="faq-accordion">
-
-			<!-- Q1 - Expanded by default -->
-			<div class="faq-item active">
-				<button class="faq-header" aria-expanded="true">
-					<span class="faq-icon">
-						<svg class="icon-minus" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none">
-							<line x1="5" y1="12" x2="19" y2="12"></line>
-						</svg>
-						<svg class="icon-plus" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none">
-							<line x1="12" y1="5" x2="12" y2="19"></line>
-							<line x1="5" y1="12" x2="19" y2="12"></line>
-						</svg>
-					</span>
-					<span class="faq-question">What is ACCA ??</span>
-				</button>
-				<div class="faq-content">
-					<p>
-						The full form of ACCA is the Association of Chartered Certified Accountants. It is a global professional qualification for those looking to build a career in accounting, finance, &amp; business. The completion of ACCA course helps you gain skills in financial management, auditing, and taxation and is recognized in over 180 countries, offering global career opportunities.
-					</p>
+			{faqs.map((faq, i) => (
+				<div class:list={["faq-item", { active: i === 0 }]}>
+					<button class="faq-header" aria-expanded={i === 0 ? "true" : "false"}>
+						<span class="faq-icon">
+							<svg class="icon-minus" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none">
+								<line x1="5" y1="12" x2="19" y2="12"></line>
+							</svg>
+							<svg class="icon-plus" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none">
+								<line x1="12" y1="5" x2="12" y2="19"></line>
+								<line x1="5" y1="12" x2="19" y2="12"></line>
+							</svg>
+						</span>
+						<span class="faq-question" {...faq.editQuestion}>{faq.question}</span>
+					</button>
+					<div class="faq-content">
+						<p {...faq.editAnswer}>
+							{faq.answer}
+						</p>
+					</div>
 				</div>
-			</div>
-
-			<!-- Q2 -->
-			<div class="faq-item">
-				<button class="faq-header" aria-expanded="false">
-					<span class="faq-icon">
-						<svg class="icon-minus" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none">
-							<line x1="5" y1="12" x2="19" y2="12"></line>
-						</svg>
-						<svg class="icon-plus" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none">
-							<line x1="12" y1="5" x2="12" y2="19"></line>
-							<line x1="5" y1="12" x2="19" y2="12"></line>
-						</svg>
-					</span>
-					<span class="faq-question">Why Elance?</span>
-				</button>
-				<div class="faq-content">
-					<p>
-						Elance stands out for its ACCA Platinum Accredited Partner status, world-class faculty with 13+ years of experience, guaranteed placement assistance, and a comprehensive learning ecosystem including offline, online, and hybrid classes. Our track record of 53 World Ranks and 80 National Ranks speaks for itself.
-					</p>
-				</div>
-			</div>
-
-			<!-- Q3 -->
-			<div class="faq-item">
-				<button class="faq-header" aria-expanded="false">
-					<span class="faq-icon">
-						<svg class="icon-minus" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none">
-							<line x1="5" y1="12" x2="19" y2="12"></line>
-						</svg>
-						<svg class="icon-plus" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none">
-							<line x1="12" y1="5" x2="12" y2="19"></line>
-							<line x1="5" y1="12" x2="19" y2="12"></line>
-						</svg>
-					</span>
-					<span class="faq-question">Structure of ACCA programs?</span>
-				</button>
-				<div class="faq-content">
-					<p>
-						ACCA consists of 13 papers divided into three levels: Applied Knowledge (3 papers: BT, MA, FA), Applied Skills (6 papers: LW, PM, TX, FR, AA, FM), and Strategic Professional (4 papers: SBL, SBR, plus 2 from AFM, APM, ATX, AAA). Students must also complete an Ethics and Professional Skills module and 36 months of practical experience.
-					</p>
-				</div>
-			</div>
-
-			<!-- Q4 -->
-			<div class="faq-item">
-				<button class="faq-header" aria-expanded="false">
-					<span class="faq-icon">
-						<svg class="icon-minus" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none">
-							<line x1="5" y1="12" x2="19" y2="12"></line>
-						</svg>
-						<svg class="icon-plus" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none">
-							<line x1="12" y1="5" x2="12" y2="19"></line>
-							<line x1="5" y1="12" x2="19" y2="12"></line>
-						</svg>
-					</span>
-					<span class="faq-question">What is the schedule for the ACCA exams?</span>
-				</button>
-				<div class="faq-content">
-					<p>
-						ACCA exams are held four times a year in March, June, September, and December. Applied Knowledge exams are available on demand at CBE centers. Strategic Professional exams take place in March, June, September, and December at authorized exam centers worldwide.
-					</p>
-				</div>
-			</div>
-
-			<!-- Q5 -->
-			<div class="faq-item">
-				<button class="faq-header" aria-expanded="false">
-					<span class="faq-icon">
-						<svg class="icon-minus" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none">
-							<line x1="5" y1="12" x2="19" y2="12"></line>
-						</svg>
-						<svg class="icon-plus" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none">
-							<line x1="12" y1="5" x2="12" y2="19"></line>
-							<line x1="5" y1="12" x2="19" y2="12"></line>
-						</svg>
-					</span>
-					<span class="faq-question">How can I get into ACCA ?</span>
-				</button>
-				<div class="faq-content">
-					<p>
-						To register for ACCA, you need a minimum of 2 A-levels and 3 GCSEs (or equivalent), including English and Mathematics. If you hold a relevant degree, you may be eligible for exemptions from some papers. You can register directly through the ACCA website or through an authorized learning provider like Elance.
-					</p>
-				</div>
-			</div>
-
-			<!-- Q6 -->
-			<div class="faq-item">
-				<button class="faq-header" aria-expanded="false">
-					<span class="faq-icon">
-						<svg class="icon-minus" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none">
-							<line x1="5" y1="12" x2="19" y2="12"></line>
-						</svg>
-						<svg class="icon-plus" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none">
-							<line x1="12" y1="5" x2="12" y2="19"></line>
-							<line x1="5" y1="12" x2="19" y2="12"></line>
-						</svg>
-					</span>
-					<span class="faq-question">What sets ACCA apart from the other Finance &amp; Accounting courses?</span>
-				</button>
-				<div class="faq-content">
-					<p>
-						ACCA is globally recognized in 180+ countries, offering wider career opportunities than most local qualifications. It covers a broad spectrum including auditing, taxation, financial management, and strategic leadership. ACCA also provides exemptions for degree holders and offers flexible exam scheduling four times a year.
-					</p>
-				</div>
-			</div>
-
-			<!-- Q7 -->
-			<div class="faq-item">
-				<button class="faq-header" aria-expanded="false">
-					<span class="faq-icon">
-						<svg class="icon-minus" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none">
-							<line x1="5" y1="12" x2="19" y2="12"></line>
-						</svg>
-						<svg class="icon-plus" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none">
-							<line x1="12" y1="5" x2="12" y2="19"></line>
-							<line x1="5" y1="12" x2="19" y2="12"></line>
-						</svg>
-					</span>
-					<span class="faq-question">What are the exemptions available for ACCA?</span>
-				</button>
-				<div class="faq-content">
-					<p>
-						ACCA offers exemptions based on prior academic qualifications. Commerce graduates may receive exemptions from Applied Knowledge papers (BT, MA, FA) and some Applied Skills papers. The number of exemptions depends on your degree and university. You can check your eligibility on the ACCA website using the exemption calculator.
-					</p>
-				</div>
-			</div>
-
-			<!-- Q8 -->
-			<div class="faq-item">
-				<button class="faq-header" aria-expanded="false">
-					<span class="faq-icon">
-						<svg class="icon-minus" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none">
-							<line x1="5" y1="12" x2="19" y2="12"></line>
-						</svg>
-						<svg class="icon-plus" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none">
-							<line x1="12" y1="5" x2="12" y2="19"></line>
-							<line x1="5" y1="12" x2="19" y2="12"></line>
-						</svg>
-					</span>
-					<span class="faq-question">How many papers are there in ACCA?</span>
-				</button>
-				<div class="faq-content">
-					<p>
-						ACCA has a total of 13 papers: 3 at Applied Knowledge level, 6 at Applied Skills level, and 4 at Strategic Professional level (2 Essentials + 2 from 4 Optional papers). Along with these, students must complete the Ethics and Professional Skills module and 36 months of relevant practical experience.
-					</p>
-				</div>
-			</div>
-
-			<!-- Q9 -->
-			<div class="faq-item">
-				<button class="faq-header" aria-expanded="false">
-					<span class="faq-icon">
-						<svg class="icon-minus" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none">
-							<line x1="5" y1="12" x2="19" y2="12"></line>
-						</svg>
-						<svg class="icon-plus" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none">
-							<line x1="12" y1="5" x2="12" y2="19"></line>
-							<line x1="5" y1="12" x2="19" y2="12"></line>
-						</svg>
-					</span>
-					<span class="faq-question">Is ACCA exam tough?</span>
-				</button>
-				<div class="faq-content">
-					<p>
-						ACCA exams are challenging but very achievable with the right preparation and guidance. The pass rate varies by paper, typically ranging from 40–60%. At Elance, our expert faculty and structured study programs ensure students are thoroughly prepared, resulting in consistent first-attempt passes and global top ranks.
-					</p>
-				</div>
-			</div>
-
-			<!-- Q10 -->
-			<div class="faq-item">
-				<button class="faq-header" aria-expanded="false">
-					<span class="faq-icon">
-						<svg class="icon-minus" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none">
-							<line x1="5" y1="12" x2="19" y2="12"></line>
-						</svg>
-						<svg class="icon-plus" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none">
-							<line x1="12" y1="5" x2="12" y2="19"></line>
-							<line x1="5" y1="12" x2="19" y2="12"></line>
-						</svg>
-					</span>
-					<span class="faq-question">Can I do ACCA after 12th?</span>
-				</button>
-				<div class="faq-content">
-					<p>
-						Yes! Students can start ACCA after completing their 12th standard (Commerce stream preferred). ACCA accepts students who have passed at least 5 GCSEs and 2 A-levels (or equivalent). Students from the commerce stream in India with 65%+ marks in at least 4 subjects including English and Mathematics are eligible.
-					</p>
-				</div>
-			</div>
-
-			<!-- Q11 -->
-			<div class="faq-item">
-				<button class="faq-header" aria-expanded="false">
-					<span class="faq-icon">
-						<svg class="icon-minus" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none">
-							<line x1="5" y1="12" x2="19" y2="12"></line>
-						</svg>
-						<svg class="icon-plus" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none">
-							<line x1="12" y1="5" x2="12" y2="19"></line>
-							<line x1="5" y1="12" x2="19" y2="12"></line>
-						</svg>
-					</span>
-					<span class="faq-question">What is the salary for ACCA?</span>
-				</button>
-				<div class="faq-content">
-					<p>
-						ACCA qualified professionals earn competitive salaries globally. In India, entry-level ACCA professionals can expect ₹4–8 LPA, mid-level ₹10–20 LPA, and senior positions can command ₹30 LPA or more. Internationally, ACCA members can earn £35,000–£70,000+ per annum depending on the role and country.
-					</p>
-				</div>
-			</div>
-
-			<!-- Q12 -->
-			<div class="faq-item">
-				<button class="faq-header" aria-expanded="false">
-					<span class="faq-icon">
-						<svg class="icon-minus" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none">
-							<line x1="5" y1="12" x2="19" y2="12"></line>
-						</svg>
-						<svg class="icon-plus" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none">
-							<line x1="12" y1="5" x2="12" y2="19"></line>
-							<line x1="5" y1="12" x2="19" y2="12"></line>
-						</svg>
-					</span>
-					<span class="faq-question">What is the ACCA course duration?</span>
-				</button>
-				<div class="faq-content">
-					<p>
-						The duration of ACCA depends on the student's prior qualifications and pace. On average, it takes 3–4 years to complete all 13 exams along with the required practical experience (36 months). Students with relevant degrees and exemptions may complete ACCA faster, sometimes within 2–2.5 years.
-					</p>
-				</div>
-			</div>
-
-			<!-- Q13 -->
-			<div class="faq-item">
-				<button class="faq-header" aria-expanded="false">
-					<span class="faq-icon">
-						<svg class="icon-minus" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none">
-							<line x1="5" y1="12" x2="19" y2="12"></line>
-						</svg>
-						<svg class="icon-plus" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none">
-							<line x1="12" y1="5" x2="12" y2="19"></line>
-							<line x1="5" y1="12" x2="19" y2="12"></line>
-						</svg>
-					</span>
-					<span class="faq-question">When are the ACCA exam dates?</span>
-				</button>
-				<div class="faq-content">
-					<p>
-						ACCA exams are scheduled four times a year: March, June, September, and December. On-demand CBE exams for Applied Knowledge papers are available year-round at authorized test centers. Registration deadlines typically fall 5–7 weeks before the exam session. Check the ACCA website for specific dates each year.
-					</p>
-				</div>
-			</div>
-
+			))}
 		</div>
 	</div>
 </section>

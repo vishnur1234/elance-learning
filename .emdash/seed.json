@@ -733,6 +733,501 @@
 					"slug": "life_4_img",
 					"label": "Life Card 4 Image",
 					"type": "image"
+				},
+				{
+					"slug": "proof_label",
+					"label": "Hero Trust Proof Label",
+					"type": "string"
+				},
+				{
+					"slug": "stat_1_num",
+					"label": "Stat 1 Number",
+					"type": "string"
+				},
+				{
+					"slug": "stat_1_label",
+					"label": "Stat 1 Label",
+					"type": "string"
+				},
+				{
+					"slug": "stat_2_num",
+					"label": "Stat 2 Number",
+					"type": "string"
+				},
+				{
+					"slug": "stat_2_label",
+					"label": "Stat 2 Label",
+					"type": "string"
+				},
+				{
+					"slug": "stat_3_num",
+					"label": "Stat 3 Number",
+					"type": "string"
+				},
+				{
+					"slug": "stat_3_label",
+					"label": "Stat 3 Label",
+					"type": "string"
+				},
+				{
+					"slug": "stat_4_num",
+					"label": "Stat 4 Number",
+					"type": "string"
+				},
+				{
+					"slug": "stat_4_label",
+					"label": "Stat 4 Label",
+					"type": "string"
+				},
+				{
+					"slug": "stat_5_num",
+					"label": "Stat 5 Number",
+					"type": "string"
+				},
+				{
+					"slug": "stat_5_label",
+					"label": "Stat 5 Label",
+					"type": "string"
+				},
+				{
+					"slug": "world_title",
+					"label": "Professional World Section Title",
+					"type": "string"
+				},
+				{
+					"slug": "world_item_1",
+					"label": "World List Item 1",
+					"type": "text"
+				},
+				{
+					"slug": "world_item_2",
+					"label": "World List Item 2",
+					"type": "text"
+				},
+				{
+					"slug": "world_item_3",
+					"label": "World List Item 3",
+					"type": "text"
+				},
+				{
+					"slug": "world_item_4",
+					"label": "World List Item 4",
+					"type": "text"
+				},
+				{
+					"slug": "world_item_5",
+					"label": "World List Item 5",
+					"type": "text"
+				},
+				{
+					"slug": "performers_title",
+					"label": "Top Performers Section Title",
+					"type": "string"
+				},
+				{
+					"slug": "performers_subtitle",
+					"label": "Top Performers Subtitle",
+					"type": "string"
+				},
+				{
+					"slug": "performer_1_name",
+					"label": "Performer 1 Name",
+					"type": "string"
+				},
+				{
+					"slug": "performer_1_photo",
+					"label": "Performer 1 Photo",
+					"type": "image"
+				},
+				{
+					"slug": "performer_1_exam",
+					"label": "Performer 1 Exam Tag",
+					"type": "string"
+				},
+				{
+					"slug": "performer_1_global_rank",
+					"label": "Performer 1 Global Rank",
+					"type": "string"
+				},
+				{
+					"slug": "performer_1_india_rank",
+					"label": "Performer 1 India Rank",
+					"type": "string"
+				},
+				{
+					"slug": "performer_2_name",
+					"label": "Performer 2 Name",
+					"type": "string"
+				},
+				{
+					"slug": "performer_2_photo",
+					"label": "Performer 2 Photo",
+					"type": "image"
+				},
+				{
+					"slug": "performer_2_exam",
+					"label": "Performer 2 Exam Tag",
+					"type": "string"
+				},
+				{
+					"slug": "performer_2_global_rank",
+					"label": "Performer 2 Global Rank",
+					"type": "string"
+				},
+				{
+					"slug": "performer_2_india_rank",
+					"label": "Performer 2 India Rank",
+					"type": "string"
+				},
+				{
+					"slug": "performer_3_name",
+					"label": "Performer 3 Name",
+					"type": "string"
+				},
+				{
+					"slug": "performer_3_photo",
+					"label": "Performer 3 Photo",
+					"type": "image"
+				},
+				{
+					"slug": "performer_3_exam",
+					"label": "Performer 3 Exam Tag",
+					"type": "string"
+				},
+				{
+					"slug": "performer_3_global_rank",
+					"label": "Performer 3 Global Rank",
+					"type": "string"
+				},
+				{
+					"slug": "performer_3_india_rank",
+					"label": "Performer 3 India Rank",
+					"type": "string"
+				},
+				{
+					"slug": "performer_4_name",
+					"label": "Performer 4 Name",
+					"type": "string"
+				},
+				{
+					"slug": "performer_4_photo",
+					"label": "Performer 4 Photo",
+					"type": "image"
+				},
+				{
+					"slug": "performer_4_exam",
+					"label": "Performer 4 Exam Tag",
+					"type": "string"
+				},
+				{
+					"slug": "performer_4_global_rank",
+					"label": "Performer 4 Global Rank",
+					"type": "string"
+				},
+				{
+					"slug": "performer_4_india_rank",
+					"label": "Performer 4 India Rank",
+					"type": "string"
+				},
+				{
+					"slug": "performer_5_name",
+					"label": "Performer 5 Name",
+					"type": "string"
+				},
+				{
+					"slug": "performer_5_photo",
+					"label": "Performer 5 Photo",
+					"type": "image"
+				},
+				{
+					"slug": "performer_5_exam",
+					"label": "Performer 5 Exam Tag",
+					"type": "string"
+				},
+				{
+					"slug": "performer_5_global_rank",
+					"label": "Performer 5 Global Rank",
+					"type": "string"
+				},
+				{
+					"slug": "performer_5_india_rank",
+					"label": "Performer 5 India Rank",
+					"type": "string"
+				},
+				{
+					"slug": "faculties_title",
+					"label": "Faculties Section Title",
+					"type": "string"
+				},
+				{
+					"slug": "faculty_1_name",
+					"label": "Faculty 1 Name",
+					"type": "string"
+				},
+				{
+					"slug": "faculty_1_qual",
+					"label": "Faculty 1 Qualification",
+					"type": "string"
+				},
+				{
+					"slug": "faculty_1_photo",
+					"label": "Faculty 1 Photo",
+					"type": "image"
+				},
+				{
+					"slug": "faculty_2_name",
+					"label": "Faculty 2 Name",
+					"type": "string"
+				},
+				{
+					"slug": "faculty_2_qual",
+					"label": "Faculty 2 Qualification",
+					"type": "string"
+				},
+				{
+					"slug": "faculty_2_photo",
+					"label": "Faculty 2 Photo",
+					"type": "image"
+				},
+				{
+					"slug": "faculty_3_name",
+					"label": "Faculty 3 Name",
+					"type": "string"
+				},
+				{
+					"slug": "faculty_3_qual",
+					"label": "Faculty 3 Qualification",
+					"type": "string"
+				},
+				{
+					"slug": "faculty_3_photo",
+					"label": "Faculty 3 Photo",
+					"type": "image"
+				},
+				{
+					"slug": "faculty_4_name",
+					"label": "Faculty 4 Name",
+					"type": "string"
+				},
+				{
+					"slug": "faculty_4_qual",
+					"label": "Faculty 4 Qualification",
+					"type": "string"
+				},
+				{
+					"slug": "faculty_4_photo",
+					"label": "Faculty 4 Photo",
+					"type": "image"
+				},
+				{
+					"slug": "faculty_5_name",
+					"label": "Faculty 5 Name",
+					"type": "string"
+				},
+				{
+					"slug": "faculty_5_qual",
+					"label": "Faculty 5 Qualification",
+					"type": "string"
+				},
+				{
+					"slug": "faculty_5_photo",
+					"label": "Faculty 5 Photo",
+					"type": "image"
+				},
+				{
+					"slug": "faculty_6_name",
+					"label": "Faculty 6 Name",
+					"type": "string"
+				},
+				{
+					"slug": "faculty_6_qual",
+					"label": "Faculty 6 Qualification",
+					"type": "string"
+				},
+				{
+					"slug": "faculty_6_photo",
+					"label": "Faculty 6 Photo",
+					"type": "image"
+				},
+				{
+					"slug": "faculty_7_name",
+					"label": "Faculty 7 Name",
+					"type": "string"
+				},
+				{
+					"slug": "faculty_7_qual",
+					"label": "Faculty 7 Qualification",
+					"type": "string"
+				},
+				{
+					"slug": "faculty_7_photo",
+					"label": "Faculty 7 Photo",
+					"type": "image"
+				},
+				{
+					"slug": "learning_title",
+					"label": "Learning Experience Section Title",
+					"type": "string"
+				},
+				{
+					"slug": "feature_1_title",
+					"label": "Feature 1 Title",
+					"type": "string"
+				},
+				{
+					"slug": "feature_1_desc",
+					"label": "Feature 1 Description",
+					"type": "text"
+				},
+				{
+					"slug": "feature_2_title",
+					"label": "Feature 2 Title",
+					"type": "string"
+				},
+				{
+					"slug": "feature_2_desc",
+					"label": "Feature 2 Description",
+					"type": "text"
+				},
+				{
+					"slug": "feature_3_title",
+					"label": "Feature 3 Title",
+					"type": "string"
+				},
+				{
+					"slug": "feature_3_desc",
+					"label": "Feature 3 Description",
+					"type": "text"
+				},
+				{
+					"slug": "feature_4_title",
+					"label": "Feature 4 Title",
+					"type": "string"
+				},
+				{
+					"slug": "feature_4_desc",
+					"label": "Feature 4 Description",
+					"type": "text"
+				},
+				{
+					"slug": "feature_5_title",
+					"label": "Feature 5 Title",
+					"type": "string"
+				},
+				{
+					"slug": "feature_5_desc",
+					"label": "Feature 5 Description",
+					"type": "text"
+				},
+				{
+					"slug": "feature_6_title",
+					"label": "Feature 6 Title",
+					"type": "string"
+				},
+				{
+					"slug": "feature_6_desc",
+					"label": "Feature 6 Description",
+					"type": "text"
+				},
+				{
+					"slug": "feature_7_title",
+					"label": "Feature 7 Title",
+					"type": "string"
+				},
+				{
+					"slug": "feature_7_desc",
+					"label": "Feature 7 Description",
+					"type": "text"
+				},
+				{
+					"slug": "feature_8_title",
+					"label": "Feature 8 Title",
+					"type": "string"
+				},
+				{
+					"slug": "feature_8_desc",
+					"label": "Feature 8 Description",
+					"type": "text"
+				},
+				{
+					"slug": "syllabus_title",
+					"label": "Syllabus Section Title",
+					"type": "string"
+				},
+				{
+					"slug": "syllabus_desc",
+					"label": "Syllabus Section Description",
+					"type": "text"
+				},
+				{
+					"slug": "syllabus_1_label",
+					"label": "Syllabus Item 1 Label",
+					"type": "string"
+				},
+				{
+					"slug": "syllabus_1_intro",
+					"label": "Syllabus Item 1 Intro",
+					"type": "text"
+				},
+				{
+					"slug": "syllabus_1_checklist",
+					"label": "Syllabus Item 1 Checklist (one per line)",
+					"type": "text"
+				},
+				{
+					"slug": "syllabus_1_outro",
+					"label": "Syllabus Item 1 Outro",
+					"type": "text"
+				},
+				{
+					"slug": "syllabus_2_label",
+					"label": "Syllabus Item 2 Label",
+					"type": "string"
+				},
+				{
+					"slug": "syllabus_2_intro",
+					"label": "Syllabus Item 2 Intro",
+					"type": "text"
+				},
+				{
+					"slug": "syllabus_2_checklist",
+					"label": "Syllabus Item 2 Checklist (one per line)",
+					"type": "text"
+				},
+				{
+					"slug": "syllabus_2_outro",
+					"label": "Syllabus Item 2 Outro",
+					"type": "text"
+				},
+				{
+					"slug": "syllabus_3_label",
+					"label": "Syllabus Item 3 Label",
+					"type": "string"
+				},
+				{
+					"slug": "syllabus_3_intro",
+					"label": "Syllabus Item 3 Intro",
+					"type": "text"
+				},
+				{
+					"slug": "syllabus_3_checklist",
+					"label": "Syllabus Item 3 Checklist (one per line)",
+					"type": "text"
+				},
+				{
+					"slug": "syllabus_3_outro",
+					"label": "Syllabus Item 3 Outro",
+					"type": "text"
+				},
+				{
+					"slug": "faq_title",
+					"label": "FAQ Section Title",
+					"type": "string"
+				},
+				{
+					"slug": "banner_text",
+					"label": "Top Enrollment Banner Text",
+					"type": "string"
 				}
 			]
 		},
@@ -885,7 +1380,8 @@
 				"data": {
 					"title": "CMA Course Page",
 					"hero_heading": "CMA USA Professional Certification",
-					"seo_title": "CMA USA Course | Elance Learning"
+					"seo_title": "CMA USA Course | Elance Learning",
+					"banner_text": "Enrollment closes soon"
 				}
 			},
 			{
@@ -895,7 +1391,106 @@
 				"data": {
 					"title": "ACCA Course Page",
 					"hero_heading": "Become an ACCA Certified Global Professional",
-					"seo_title": "ACCA Course | Elance Learning"
+					"seo_title": "ACCA Course | Elance Learning",
+					"proof_label": "TRUSTED BY OVER <span class=\"highlight-blue\">25,000</span><br />STUDENTS GLOBALLY FOR EXCELLENCE!",
+					"stat_1_num": "7+",
+					"stat_1_label": "Years",
+					"stat_2_num": "53",
+					"stat_2_label": "World Ranks",
+					"stat_3_num": "80",
+					"stat_3_label": "National Ranks",
+					"stat_4_num": "5000+",
+					"stat_4_label": "Affiliates",
+					"stat_5_num": "25000+",
+					"stat_5_label": "Students",
+					"world_title": "Be the <span class=\"highlight-slate\">Professional</span> the<br />World Is <span class=\"highlight-slate\">Looking For!</span>",
+					"world_item_1": "Recognition in over 180 countries globally.",
+					"world_item_2": "Access to a network of 200,000+ members.",
+					"world_item_3": "Fuel your career growth with eligibility to join top MNCs.",
+					"world_item_4": "High earning potential from ₹6 LPA to ₹20 LPA.",
+					"world_item_5": "Stay in demand with skills valued internationally.",
+					"performers_title": "Our Top <span class=\"text-blue\">Performers</span>",
+					"performers_subtitle": "Raising the Bar, Setting the Standard",
+					"performer_1_name": "Shahanaz Sainudin",
+					"performer_1_photo": "/images/topstudents/Students-Website-Template-36-1024x768-1.jpg",
+					"performer_1_exam": "((AFM)Dec 2020)",
+					"performer_1_global_rank": "1",
+					"performer_1_india_rank": "",
+					"performer_2_name": "Zinsil Shan",
+					"performer_2_photo": "/images/topstudents/Students-Website-Template-39-1024x768-1.jpg",
+					"performer_2_exam": "((FM)Dec 2022)",
+					"performer_2_global_rank": "1",
+					"performer_2_india_rank": "1",
+					"performer_3_name": "Shafnas",
+					"performer_3_photo": "/images/topstudents/Students-Website-Template-35-1024x768-1.jpg",
+					"performer_3_exam": "((ATX)Mar 2023)",
+					"performer_3_global_rank": "",
+					"performer_3_india_rank": "3",
+					"performer_4_name": "Vaishnav Unny",
+					"performer_4_photo": "/images/topstudents/Students-Website-Template-38-1024x768-1.jpg",
+					"performer_4_exam": "((AAA)Sep 2023)",
+					"performer_4_global_rank": "5",
+					"performer_4_india_rank": "2",
+					"performer_5_name": "Siya Sabu",
+					"performer_5_photo": "/images/topstudents/Students-Website-Template-37-1024x768-1.jpg",
+					"performer_5_exam": "((SBR)SEP 2020)",
+					"performer_5_global_rank": "4",
+					"performer_5_india_rank": "1",
+					"faculties_title": "Our <span class=\"text-blue\">ACCA</span> Faculties",
+					"faculty_1_name": "Anisha V Geo",
+					"faculty_1_qual": "ACCA, M.com",
+					"faculty_1_photo": "/images/accaFaculty/Faculty-Website-Template-02.jpg",
+					"faculty_2_name": "Ajith Antony",
+					"faculty_2_qual": "ACCA Final, M.com",
+					"faculty_2_photo": "/images/accaFaculty/Faculty-Website-Template-03-1024x768-1.jpg",
+					"faculty_3_name": "Ghaneem Izz",
+					"faculty_3_qual": "ACCA Affiliate",
+					"faculty_3_photo": "/images/accaFaculty/Faculty-Website-Template-04-1024x768-1.jpg",
+					"faculty_4_name": "Gopika Mam",
+					"faculty_4_qual": "ACCA, MBA",
+					"faculty_4_photo": "/images/accaFaculty/Faculty-Website-Template-06.jpg",
+					"faculty_5_name": "Senior Faculty",
+					"faculty_5_qual": "ACCA Member",
+					"faculty_5_photo": "/images/accaFaculty/Faculty-Website-Template-08.jpg",
+					"faculty_6_name": "ACCA Faculty",
+					"faculty_6_qual": "ACCA, B.com",
+					"faculty_6_photo": "/images/accaFaculty/Faculty-Website-Template-12-1024x768-1.jpg",
+					"faculty_7_name": "Gopika Mam",
+					"faculty_7_qual": "ACCA, MBA Finance",
+					"faculty_7_photo": "/images/accaFaculty/Gopika-mam-Faculty-Website-Template-06.jpg",
+					"learning_title": "<strong>Exceptional</strong> <span class=\"text-blue\">Elance Learning<br />Experience!</span>",
+					"feature_1_title": "World Class Faculties",
+					"feature_1_desc": "Elance is distinguished by its exceptional faculty of experts, guaranteeing effective teaching methods. We take pride in providing exceptional guidance and support to our students through every aspect of their courses.",
+					"feature_2_title": "Excellent Learning Experience",
+					"feature_2_desc": "Elance offers a calm campus where students can learn peacefully from expert teachers. We also focus on co-curricular activities that support personal and social development.",
+					"feature_3_title": "Holistic Guidance",
+					"feature_3_desc": "At Elance, students don't have to rely solely on faculty. They also receive support from top-ranked mentors, coordinators, and a learning app, creating a complete ecosystem for comprehensive preparation.",
+					"feature_4_title": "Hands on Approach",
+					"feature_4_desc": "With a hands-on approach to learning, Elance provides opportunities for practical application, allowing you to reinforce your understanding and develop practical skills that employers value.",
+					"feature_5_title": "Top-Tier Placement Assistance",
+					"feature_5_desc": "Elance prepares students not just for the industry but equips them with essential skills for excellence. Our focus ensures they are ready for successful placements and stand out as professionals.",
+					"feature_6_title": "Astonishing Infrastructure",
+					"feature_6_desc": "At Elance, every student receives personalized attention to gain an edge in professional commerce exams. Our campuses offer an integrated learning approach supported by advanced technology and top-notch facilities.",
+					"feature_7_title": "Accessibility from Anywhere Anytime",
+					"feature_7_desc": "Our learning app allows students to study anytime, anywhere. By offering comprehensive resources for their courses, the Elance Learning App simplifies their educational experience.",
+					"feature_8_title": "Hostel & Transportation Facility",
+					"feature_8_desc": "We at Elance offers convenient hostel facilities and reliable transportation services, ensuring students enjoy a safe, comfortable, and hassle-free learning journey tailored to their needs.",
+					"syllabus_title": "<span class=\"text-blue\">Course</span> Syllabus",
+					"syllabus_desc": "ACCA consists of 13 papers,broadly categorized into Fundamental level(9 Papers F1-F9), Strategic Professional level (4 out of 6 papers P1 – P7) The Exam structure is divided into three sections, Knowledge Level, Skills Level and Professional Level.",
+					"syllabus_1_label": "Knowledge Level",
+					"syllabus_1_intro": "Knowledge Level also known as Applied Knowledge level, consists of 3 exams which trains the students with the foundation level in accounting and finance",
+					"syllabus_1_checklist": "Business and Technology (BT)\nManagement Accounting (MA)\nFinancial Accounting (FA)",
+					"syllabus_1_outro": "Exam has two sections: Section A of the exam comprises 20 multiple choice questions of 2 marks each. Section B of the exam comprises three 10 mark questions and two 15 mark questions.",
+					"syllabus_2_label": "Skill Level",
+					"syllabus_2_intro": "The Applied Skills level consists of 6 exams which test a student's technical skills across core accounting disciplines.",
+					"syllabus_2_checklist": "Corporate and Business Law (LW)\nPerformance Management (PM)\nTaxation (TX)\nFinancial Reporting (FR)\nAudit and Assurance (AA)\nFinancial Management (FM)",
+					"syllabus_2_outro": "These papers are computer-based exams (CBE) and test both knowledge and application skills.",
+					"syllabus_3_label": "Professional Level",
+					"syllabus_3_intro": "The Strategic Professional level is the final stage of ACCA. Students must complete 2 Essentials papers and 2 from 4 Optional papers.",
+					"syllabus_3_checklist": "Strategic Business Leader (SBL) – Essentials\nStrategic Business Reporting (SBR) – Essentials\nAdvanced Financial Management (AFM) – Optional\nAdvanced Performance Management (APM) – Optional\nAdvanced Taxation (ATX) – Optional\nAdvanced Audit and Assurance (AAA) – Optional",
+					"syllabus_3_outro": "These exams are scenario-based, testing professional judgment and application at the highest level.",
+					"faq_title": "<span class=\"text-blue\">Frequently</span> Asked Question",
+					"banner_text": "Enrollment closes soon"
 				}
 			},
 			{
@@ -1003,6 +1598,138 @@
 					"life_4_desc": "Through dedicated placement training, we help students in pursuing successful careers and land dream jobs.",
 					"featured_title": "We're <span class=\"text-blue\">Featured</span> On",
 					"featured_subtitle": "Recognized by leading media houses for our commitment to quality education and student success."
+				}
+			}
+		],
+		"faq": [
+			{
+				"id": "faq:acca-1",
+				"slug": "acca-1",
+				"status": "published",
+				"data": {
+					"question": "What is ACCA ??",
+					"answer": "The full form of ACCA is the Association of Chartered Certified Accountants. It is a global professional qualification for those looking to build a career in accounting, finance, & business. The completion of ACCA course helps you gain skills in financial management, auditing, and taxation and is recognized in over 180 countries, offering global career opportunities.",
+					"category": "acca"
+				}
+			},
+			{
+				"id": "faq:acca-2",
+				"slug": "acca-2",
+				"status": "published",
+				"data": {
+					"question": "Why Elance?",
+					"answer": "Elance stands out for its ACCA Platinum Accredited Partner status, world-class faculty with 13+ years of experience, guaranteed placement assistance, and a comprehensive learning ecosystem including offline, online, and hybrid classes. Our track record of 53 World Ranks and 80 National Ranks speaks for itself.",
+					"category": "acca"
+				}
+			},
+			{
+				"id": "faq:acca-3",
+				"slug": "acca-3",
+				"status": "published",
+				"data": {
+					"question": "Structure of ACCA programs?",
+					"answer": "ACCA consists of 13 papers divided into three levels: Applied Knowledge (3 papers: BT, MA, FA), Applied Skills (6 papers: LW, PM, TX, FR, AA, FM), and Strategic Professional (4 papers: SBL, SBR, plus 2 from AFM, APM, ATX, AAA). Students must also complete an Ethics and Professional Skills module and 36 months of practical experience.",
+					"category": "acca"
+				}
+			},
+			{
+				"id": "faq:acca-4",
+				"slug": "acca-4",
+				"status": "published",
+				"data": {
+					"question": "What is the schedule for the ACCA exams?",
+					"answer": "ACCA exams are held four times a year in March, June, September, and December. Applied Knowledge exams are available on demand at CBE centers. Strategic Professional exams take place in March, June, September, and December at authorized exam centers worldwide.",
+					"category": "acca"
+				}
+			},
+			{
+				"id": "faq:acca-5",
+				"slug": "acca-5",
+				"status": "published",
+				"data": {
+					"question": "How can I get into ACCA ?",
+					"answer": "To register for ACCA, you need a minimum of 2 A-levels and 3 GCSEs (or equivalent), including English and Mathematics. If you hold a relevant degree, you may be eligible for exemptions from some papers. You can register directly through the ACCA website or through an authorized learning provider like Elance.",
+					"category": "acca"
+				}
+			},
+			{
+				"id": "faq:acca-6",
+				"slug": "acca-6",
+				"status": "published",
+				"data": {
+					"question": "What sets ACCA apart from the other Finance & Accounting courses?",
+					"answer": "ACCA is globally recognized in 180+ countries, offering wider career opportunities than most local qualifications. It covers a broad spectrum including auditing, taxation, financial management, and strategic leadership. ACCA also provides exemptions for degree holders and offers flexible exam scheduling four times a year.",
+					"category": "acca"
+				}
+			},
+			{
+				"id": "faq:acca-7",
+				"slug": "acca-7",
+				"status": "published",
+				"data": {
+					"question": "What are the exemptions available for ACCA?",
+					"answer": "ACCA offers exemptions based on prior academic qualifications. Commerce graduates may receive exemptions from Applied Knowledge papers (BT, MA, FA) and some Applied Skills papers. The number of exemptions depends on your degree and university. You can check your eligibility on the ACCA website using the exemption calculator.",
+					"category": "acca"
+				}
+			},
+			{
+				"id": "faq:acca-8",
+				"slug": "acca-8",
+				"status": "published",
+				"data": {
+					"question": "How many papers are there in ACCA?",
+					"answer": "ACCA has a total of 13 papers: 3 at Applied Knowledge level, 6 at Applied Skills level, and 4 at Strategic Professional level (2 Essentials + 2 from 4 Optional papers). Along with these, students must complete the Ethics and Professional Skills module and 36 months of relevant practical experience.",
+					"category": "acca"
+				}
+			},
+			{
+				"id": "faq:acca-9",
+				"slug": "acca-9",
+				"status": "published",
+				"data": {
+					"question": "Is ACCA exam tough?",
+					"answer": "ACCA exams are challenging but very achievable with the right preparation and guidance. The pass rate varies by paper, typically ranging from 40–60%. At Elance, our expert faculty and structured study programs ensure students are thoroughly prepared, resulting in consistent first-attempt passes and global top ranks.",
+					"category": "acca"
+				}
+			},
+			{
+				"id": "faq:acca-10",
+				"slug": "acca-10",
+				"status": "published",
+				"data": {
+					"question": "Can I do ACCA after 12th?",
+					"answer": "Yes! Students can start ACCA after completing their 12th standard (Commerce stream preferred). ACCA accepts students who have passed at least 5 GCSEs and 2 A-levels (or equivalent). Students from the commerce stream in India with 65%+ marks in at least 4 subjects including English and Mathematics are eligible.",
+					"category": "acca"
+				}
+			},
+			{
+				"id": "faq:acca-11",
+				"slug": "acca-11",
+				"status": "published",
+				"data": {
+					"question": "What is the salary for ACCA?",
+					"answer": "ACCA qualified professionals earn competitive salaries globally. In India, entry-level ACCA professionals can expect ₹4–8 LPA, mid-level ₹10–20 LPA, and senior positions can command ₹30 LPA or more. Internationally, ACCA members can earn £35,000–£70,000+ per annum depending on the role and country.",
+					"category": "acca"
+				}
+			},
+			{
+				"id": "faq:acca-12",
+				"slug": "acca-12",
+				"status": "published",
+				"data": {
+					"question": "What is the ACCA course duration?",
+					"answer": "The duration of ACCA depends on the student's prior qualifications and pace. On average, it takes 3–4 years to complete all 13 exams along with the required practical experience (36 months). Students with relevant degrees and exemptions may complete ACCA faster, sometimes within 2–2.5 years.",
+					"category": "acca"
+				}
+			},
+			{
+				"id": "faq:acca-13",
+				"slug": "acca-13",
+				"status": "published",
+				"data": {
+					"question": "When are the ACCA exam dates?",
+					"answer": "ACCA exams are scheduled four times a year: March, June, September, and December. On-demand CBE exams for Applied Knowledge papers are available year-round at authorized test centers. Registration deadlines typically fall 5–7 weeks before the exam session. Check the ACCA website for specific dates each year.",
+					"category": "acca"
 				}
 			}
 		]

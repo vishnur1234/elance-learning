@@ -49,3 +49,39 @@ export function getImageProps(imageValue, fallbackUrl = '') {
   const height = (imageValue && typeof imageValue === 'object' && imageValue.height) ? Number(imageValue.height) : null;
   return { url, alt, width, height };
 }
+
+const SUPABASE_CDN_BASE = "https://uvsypcermzvgktrufhcw.supabase.co/storage/v1/object/public/images";
+
+/**
+ * Resolve an EmDash image field value to a usable URL, rewriting the
+ * internal `/_emdash/api/media/file/...` path to the public Supabase CDN
+ * URL (same rewrite used on the home page). Falls back to defaultUrl when
+ * the field is empty/unset.
+ *
+ * @param {unknown} imgData
+ * @param {string} defaultUrl
+ * @returns {string}
+ */
+export function getCmsImageUrl(imgData, defaultUrl) {
+  if (!imgData) return defaultUrl;
+  if (typeof imgData === "string" && imgData.trim() !== "") {
+    if (imgData.startsWith("/_emdash/api/media/file/")) {
+      return `${SUPABASE_CDN_BASE}/${imgData.replace("/_emdash/api/media/file/", "")}`;
+    }
+    return imgData;
+  }
+  if (typeof imgData === "object") {
+    const key = imgData.meta?.storageKey || imgData.storageKey;
+    if (key) {
+      return `${SUPABASE_CDN_BASE}/${key}`;
+    }
+    const url = imgData.src || imgData.previewUrl || imgData.url;
+    if (url) {
+      if (url.startsWith("/_emdash/api/media/file/")) {
+        return `${SUPABASE_CDN_BASE}/${url.replace("/_emdash/api/media/file/", "")}`;
+      }
+      return url;
+    }
+  }
+  return defaultUrl;
+}

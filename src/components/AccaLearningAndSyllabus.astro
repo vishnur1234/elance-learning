@@ -2,79 +2,97 @@
 // AccaLearningAndSyllabus.astro
 // Component containing the "Exceptional Elance Learning Experience" feature grid
 // and the "Course Syllabus" accordion section.
+
+interface Props {
+	entry?: { data?: Record<string, any>; edit?: Record<string, any> } | null;
+}
+const { entry } = Astro.props as Props;
+const data = entry?.data || {};
+const edit = entry?.edit || ({} as Record<string, any>);
+
+const learningTitle = String(
+	data.learning_title ||
+		'<strong>Exceptional</strong> <span class="text-blue">Elance Learning<br />Experience!</span>',
+);
+
+const FEATURE_DEFAULTS = [
+	{ title: "World Class Faculties", desc: "Elance is distinguished by its exceptional faculty of experts, guaranteeing effective teaching methods. We take pride in providing exceptional guidance and support to our students through every aspect of their courses." },
+	{ title: "Excellent Learning Experience", desc: "Elance offers a calm campus where students can learn peacefully from expert teachers. We also focus on co-curricular activities that support personal and social development." },
+	{ title: "Holistic Guidance", desc: "At Elance, students don't have to rely solely on faculty. They also receive support from top-ranked mentors, coordinators, and a learning app, creating a complete ecosystem for comprehensive preparation." },
+	{ title: "Hands on Approach", desc: "With a hands-on approach to learning, Elance provides opportunities for practical application, allowing you to reinforce your understanding and develop practical skills that employers value." },
+	{ title: "Top-Tier Placement Assistance", desc: "Elance prepares students not just for the industry but equips them with essential skills for excellence. Our focus ensures they are ready for successful placements and stand out as professionals." },
+	{ title: "Astonishing Infrastructure", desc: "At Elance, every student receives personalized attention to gain an edge in professional commerce exams. Our campuses offer an integrated learning approach supported by advanced technology and top-notch facilities." },
+	{ title: "Accessibility from Anywhere Anytime", desc: "Our learning app allows students to study anytime, anywhere. By offering comprehensive resources for their courses, the Elance Learning App simplifies their educational experience." },
+	{ title: "Hostel & Transportation Facility", desc: "We at Elance offers convenient hostel facilities and reliable transportation services, ensuring students enjoy a safe, comfortable, and hassle-free learning journey tailored to their needs." },
+];
+const features = FEATURE_DEFAULTS.map((fallback, i) => {
+	const n = i + 1;
+	return {
+		title: String(data[`feature_${n}_title`] || fallback.title),
+		desc: String(data[`feature_${n}_desc`] || fallback.desc),
+		editTitle: edit[`feature_${n}_title`],
+		editDesc: edit[`feature_${n}_desc`],
+	};
+});
+
+const syllabusTitle = String(
+	data.syllabus_title || '<span class="text-blue">Course</span> Syllabus',
+);
+const syllabusDesc = String(
+	data.syllabus_desc ||
+		"ACCA consists of 13 papers,broadly categorized into Fundamental level(9 Papers F1-F9), Strategic Professional level (4 out of 6 papers P1 – P7) The Exam structure is divided into three sections, Knowledge Level, Skills Level and Professional Level.",
+);
+
+const SYLLABUS_DEFAULTS = [
+	{
+		label: "Knowledge Level",
+		intro: "Knowledge Level also known as Applied Knowledge level, consists of 3 exams which trains the students with the foundation level in accounting and finance",
+		checklist: "Business and Technology (BT)\nManagement Accounting (MA)\nFinancial Accounting (FA)",
+		outro: "Exam has two sections: Section A of the exam comprises 20 multiple choice questions of 2 marks each. Section B of the exam comprises three 10 mark questions and two 15 mark questions.",
+	},
+	{
+		label: "Skill Level",
+		intro: "The Applied Skills level consists of 6 exams which test a student's technical skills across core accounting disciplines.",
+		checklist: "Corporate and Business Law (LW)\nPerformance Management (PM)\nTaxation (TX)\nFinancial Reporting (FR)\nAudit and Assurance (AA)\nFinancial Management (FM)",
+		outro: "These papers are computer-based exams (CBE) and test both knowledge and application skills.",
+	},
+	{
+		label: "Professional Level",
+		intro: "The Strategic Professional level is the final stage of ACCA. Students must complete 2 Essentials papers and 2 from 4 Optional papers.",
+		checklist: "Strategic Business Leader (SBL) – Essentials\nStrategic Business Reporting (SBR) – Essentials\nAdvanced Financial Management (AFM) – Optional\nAdvanced Performance Management (APM) – Optional\nAdvanced Taxation (ATX) – Optional\nAdvanced Audit and Assurance (AAA) – Optional",
+		outro: "These exams are scenario-based, testing professional judgment and application at the highest level.",
+	},
+];
+const syllabusItems = SYLLABUS_DEFAULTS.map((fallback, i) => {
+	const n = i + 1;
+	const checklistText = String(data[`syllabus_${n}_checklist`] || fallback.checklist);
+	return {
+		label: String(data[`syllabus_${n}_label`] || fallback.label),
+		intro: String(data[`syllabus_${n}_intro`] || fallback.intro),
+		checklist: checklistText.split("\n").map((s) => s.trim()).filter(Boolean),
+		outro: String(data[`syllabus_${n}_outro`] || fallback.outro),
+		editLabel: edit[`syllabus_${n}_label`],
+		editIntro: edit[`syllabus_${n}_intro`],
+		editChecklist: edit[`syllabus_${n}_checklist`],
+		editOutro: edit[`syllabus_${n}_outro`],
+	};
+});
 ---
 
 <!-- ===================== EXCEPTIONAL LEARNING EXPERIENCE SECTION ===================== -->
 <section class="learning-section">
 	<div class="learning-container">
-		<h2 class="learning-title">
-			<strong>Exceptional</strong> <span class="text-blue">Elance Learning<br />Experience!</span>
-		</h2>
+		<h2 class="learning-title" set:html={learningTitle} {...edit.learning_title} />
 
 		<div class="features-grid">
-			<!-- Card 1 -->
-			<div class="feature-card">
-				<h3 class="feature-title">World Class Faculties</h3>
-				<p class="feature-desc">
-					Elance is distinguished by its exceptional faculty of experts, guaranteeing effective teaching methods. We take pride in providing exceptional guidance and support to our students through every aspect of their courses.
-				</p>
-			</div>
-
-			<!-- Card 2 -->
-			<div class="feature-card">
-				<h3 class="feature-title">Excellent Learning Experience</h3>
-				<p class="feature-desc">
-					Elance offers a calm campus where students can learn peacefully from expert teachers. We also focus on co-curricular activities that support personal and social development.
-				</p>
-			</div>
-
-			<!-- Card 3 -->
-			<div class="feature-card">
-				<h3 class="feature-title">Holistic Guidance</h3>
-				<p class="feature-desc">
-					At Elance, students don't have to rely solely on faculty. They also receive support from top-ranked mentors, coordinators, and a learning app, creating a complete ecosystem for comprehensive preparation.
-				</p>
-			</div>
-
-			<!-- Card 4 -->
-			<div class="feature-card">
-				<h3 class="feature-title">Hands on Approach</h3>
-				<p class="feature-desc">
-					With a hands-on approach to learning, Elance provides opportunities for practical application, allowing you to reinforce your understanding and develop practical skills that employers value.
-				</p>
-			</div>
-
-			<!-- Card 5 -->
-			<div class="feature-card">
-				<h3 class="feature-title">Top-Tier Placement Assistance</h3>
-				<p class="feature-desc">
-					Elance prepares students not just for the industry but equips them with essential skills for excellence. Our focus ensures they are ready for successful placements and stand out as professionals.
-				</p>
-			</div>
-
-			<!-- Card 6 -->
-			<div class="feature-card">
-				<h3 class="feature-title">Astonishing Infrastructure</h3>
-				<p class="feature-desc">
-					At Elance, every student receives personalized attention to gain an edge in professional commerce exams. Our campuses offer an integrated learning approach supported by advanced technology and top-notch facilities.
-				</p>
-			</div>
-
-			<!-- Card 7 -->
-			<div class="feature-card">
-				<h3 class="feature-title">Accessibility from Anywhere Anytime</h3>
-				<p class="feature-desc">
-					Our learning app allows students to study anytime, anywhere. By offering comprehensive resources for their courses, the Elance Learning App simplifies their educational experience.
-				</p>
-			</div>
-
-			<!-- Card 8 -->
-			<div class="feature-card">
-				<h3 class="feature-title">Hostel &amp; Transportation Facility</h3>
-				<p class="feature-desc">
-					We at Elance offers convenient hostel facilities and reliable transportation services, ensuring students enjoy a safe, comfortable, and hassle-free learning journey tailored to their needs.
-				</p>
-			</div>
+			{features.map((f) => (
+				<div class="feature-card">
+					<h3 class="feature-title" {...f.editTitle}>{f.title}</h3>
+					<p class="feature-desc" {...f.editDesc}>
+						{f.desc}
+					</p>
+				</div>
+			))}
 		</div>
 	</div>
 </section>
@@ -82,115 +100,44 @@
 <!-- ===================== COURSE SYLLABUS SECTION ===================== -->
 <section class="syllabus-section">
 	<div class="syllabus-container">
-		<h2 class="syllabus-title">
-			<span class="text-blue">Course</span> Syllabus
-		</h2>
-		<p class="syllabus-desc">
-			ACCA consists of 13 papers,broadly categorized into Fundamental level(9 Papers F1-F9), Strategic Professional level (4 out of 6 papers P1 – P7) The Exam structure is divided into three sections, Knowledge Level, Skills Level and Professional Level.
-		</p>
+		<h2 class="syllabus-title" set:html={syllabusTitle} {...edit.syllabus_title} />
+		<p class="syllabus-desc" {...edit.syllabus_desc}>
+				{syllabusDesc}
+			</p>
 
 		<div class="syllabus-accordion">
-			<!-- Item 1: Knowledge Level (expanded by default) -->
-			<div class="syllabus-item active" id="syllabus-1">
-				<button class="syllabus-header" aria-expanded="true">
-					<span class="syllabus-icon">
-						<svg class="icon-minus" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none">
-							<line x1="5" y1="12" x2="19" y2="12"></line>
-						</svg>
-						<svg class="icon-plus" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none">
-							<line x1="12" y1="5" x2="12" y2="19"></line>
-							<line x1="5" y1="12" x2="19" y2="12"></line>
-						</svg>
-					</span>
-					<span class="syllabus-label">Knowledge Level</span>
-				</button>
-				<div class="syllabus-content">
-					<p>
-						Knowledge Level also known as Applied Knowledge level, consists of 3 exams which trains the students with the foundation level in accounting and finance
-					</p>
-					<ul class="syllabus-checklist">
-						<li>
-							<span class="check-icon">✔</span>
-							Business and Technology (BT)
-						</li>
-						<li>
-							<span class="check-icon">✔</span>
-							Management Accounting (MA)
-						</li>
-						<li>
-							<span class="check-icon">✔</span>
-							Financial Accounting (FA)
-						</li>
-					</ul>
-					<p>
-						Exam has two sections: Section A of the exam comprises 20 multiple choice questions of 2 marks each. Section B of the exam comprises three 10 mark questions and two 15 mark questions.
-					</p>
+			{syllabusItems.map((item, i) => (
+				<div class:list={["syllabus-item", { active: i === 0 }]} id={`syllabus-${i + 1}`}>
+					<button class="syllabus-header" aria-expanded={i === 0 ? "true" : "false"}>
+						<span class="syllabus-icon">
+							<svg class="icon-minus" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none">
+								<line x1="5" y1="12" x2="19" y2="12"></line>
+							</svg>
+							<svg class="icon-plus" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none">
+								<line x1="12" y1="5" x2="12" y2="19"></line>
+								<line x1="5" y1="12" x2="19" y2="12"></line>
+							</svg>
+						</span>
+						<span class="syllabus-label" {...item.editLabel}>{item.label}</span>
+					</button>
+					<div class="syllabus-content">
+						<p {...item.editIntro}>
+							{item.intro}
+						</p>
+						<ul class="syllabus-checklist" {...item.editChecklist}>
+							{item.checklist.map((line) => (
+								<li>
+									<span class="check-icon">✔</span>
+									{line}
+								</li>
+							))}
+						</ul>
+						<p {...item.editOutro}>
+							{item.outro}
+						</p>
+					</div>
 				</div>
-			</div>
-
-			<!-- Item 2: Skill Level -->
-			<div class="syllabus-item" id="syllabus-2">
-				<button class="syllabus-header" aria-expanded="false">
-					<span class="syllabus-icon">
-						<svg class="icon-minus" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none">
-							<line x1="5" y1="12" x2="19" y2="12"></line>
-						</svg>
-						<svg class="icon-plus" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none">
-							<line x1="12" y1="5" x2="12" y2="19"></line>
-							<line x1="5" y1="12" x2="19" y2="12"></line>
-						</svg>
-					</span>
-					<span class="syllabus-label">Skill Level</span>
-				</button>
-				<div class="syllabus-content">
-					<p>
-						The Applied Skills level consists of 6 exams which test a student's technical skills across core accounting disciplines.
-					</p>
-					<ul class="syllabus-checklist">
-						<li><span class="check-icon">✔</span> Corporate and Business Law (LW)</li>
-						<li><span class="check-icon">✔</span> Performance Management (PM)</li>
-						<li><span class="check-icon">✔</span> Taxation (TX)</li>
-						<li><span class="check-icon">✔</span> Financial Reporting (FR)</li>
-						<li><span class="check-icon">✔</span> Audit and Assurance (AA)</li>
-						<li><span class="check-icon">✔</span> Financial Management (FM)</li>
-					</ul>
-					<p>
-						These papers are computer-based exams (CBE) and test both knowledge and application skills.
-					</p>
-				</div>
-			</div>
-
-			<!-- Item 3: Professional Level -->
-			<div class="syllabus-item" id="syllabus-3">
-				<button class="syllabus-header" aria-expanded="false">
-					<span class="syllabus-icon">
-						<svg class="icon-minus" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none">
-							<line x1="5" y1="12" x2="19" y2="12"></line>
-						</svg>
-						<svg class="icon-plus" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none">
-							<line x1="12" y1="5" x2="12" y2="19"></line>
-							<line x1="5" y1="12" x2="19" y2="12"></line>
-						</svg>
-					</span>
-					<span class="syllabus-label">Professional Level</span>
-				</button>
-				<div class="syllabus-content">
-					<p>
-						The Strategic Professional level is the final stage of ACCA. Students must complete 2 Essentials papers and 2 from 4 Optional papers.
-					</p>
-					<ul class="syllabus-checklist">
-						<li><span class="check-icon">✔</span> Strategic Business Leader (SBL) – Essentials</li>
-						<li><span class="check-icon">✔</span> Strategic Business Reporting (SBR) – Essentials</li>
-						<li><span class="check-icon">✔</span> Advanced Financial Management (AFM) – Optional</li>
-						<li><span class="check-icon">✔</span> Advanced Performance Management (APM) – Optional</li>
-						<li><span class="check-icon">✔</span> Advanced Taxation (ATX) – Optional</li>
-						<li><span class="check-icon">✔</span> Advanced Audit and Assurance (AAA) – Optional</li>
-					</ul>
-					<p>
-						These exams are scenario-based, testing professional judgment and application at the highest level.
-					</p>
-				</div>
-			</div>
+			))}
 		</div>
 	</div>
 </section>

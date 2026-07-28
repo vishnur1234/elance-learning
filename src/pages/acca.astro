@@ -9,6 +9,94 @@ import AccaFaculties from "../components/AccaFaculties.astro";
 import AccaLearningAndSyllabus from "../components/AccaLearningAndSyllabus.astro";
 import AccaFaq from "../components/AccaFaq.astro";
 import FeaturedOn from "../components/FeaturedOn.astro";
+import { getEmDashEntry } from "../lib/cms.js";
+import { getCmsImageUrl } from "../utils/media.js";
+
+// Fetch the ACCA page's dynamic content from EmDash CMS (same "pages"
+// collection the home page uses, with slug "acca"). All child sections
+// (faculties, syllabus, faq) share this same entry so there's a single
+// DB fetch per request.
+const { entry: accaPage } = await getEmDashEntry("pages", "acca").catch(() => ({
+	entry: null,
+}));
+const accaData = (accaPage?.data as Record<string, any>) || {};
+const edit = accaPage?.edit || ({} as Record<string, any>);
+
+const bannerText = String(accaData.banner_text || "Enrollment closes soon");
+
+const heroTitle = String(
+	accaData.hero_heading ||
+		'Accelerate your <br />journey to <span class="text-blue">Career <br />Excellence With <br />ACCA.</span>',
+);
+const proofLabel = String(
+	accaData.proof_label ||
+		'TRUSTED BY OVER <span class="highlight-blue">25,000</span><br />STUDENTS GLOBALLY FOR EXCELLENCE!',
+);
+
+const STAT_DEFAULTS = [
+	{ num: "7+", label: "Years" },
+	{ num: "53", label: "World Ranks" },
+	{ num: "80", label: "National Ranks" },
+	{ num: "5000+", label: "Affiliates" },
+	{ num: "25000+", label: "Students" },
+];
+const stats = STAT_DEFAULTS.map((fallback, i) => {
+	const n = i + 1;
+	return {
+		num: String(accaData[`stat_${n}_num`] || fallback.num),
+		label: String(accaData[`stat_${n}_label`] || fallback.label),
+		editNum: edit[`stat_${n}_num`],
+		editLabel: edit[`stat_${n}_label`],
+	};
+});
+
+const worldTitle = String(
+	accaData.world_title ||
+		'Be the <span class="highlight-slate">Professional</span> the<br />World Is <span class="highlight-slate">Looking For!</span>',
+);
+const WORLD_ITEM_DEFAULTS = [
+	"Recognition in over 180 countries globally.",
+	"Access to a network of 200,000+ members.",
+	"Fuel your career growth with eligibility to join top MNCs.",
+	"High earning potential from ₹6 LPA to ₹20 LPA.",
+	"Stay in demand with skills valued internationally.",
+];
+const worldItems = WORLD_ITEM_DEFAULTS.map((fallback, i) => {
+	const n = i + 1;
+	return {
+		text: String(accaData[`world_item_${n}`] || fallback),
+		edit: edit[`world_item_${n}`],
+	};
+});
+
+const performersTitle = String(
+	accaData.performers_title || 'Our Top <span class="text-blue">Performers</span>',
+);
+const performersSubtitle = String(
+	accaData.performers_subtitle || "Raising the Bar, Setting the Standard",
+);
+const PERFORMER_DEFAULTS = [
+	{ name: "Shahanaz Sainudin", photo: "/images/topstudents/Students-Website-Template-36-1024x768-1.jpg", exam: "((AFM)Dec 2020)", globalRank: "1", indiaRank: "" },
+	{ name: "Zinsil Shan", photo: "/images/topstudents/Students-Website-Template-39-1024x768-1.jpg", exam: "((FM)Dec 2022)", globalRank: "1", indiaRank: "1" },
+	{ name: "Shafnas", photo: "/images/topstudents/Students-Website-Template-35-1024x768-1.jpg", exam: "((ATX)Mar 2023)", globalRank: "", indiaRank: "3" },
+	{ name: "Vaishnav Unny", photo: "/images/topstudents/Students-Website-Template-38-1024x768-1.jpg", exam: "((AAA)Sep 2023)", globalRank: "5", indiaRank: "2" },
+	{ name: "Siya Sabu", photo: "/images/topstudents/Students-Website-Template-37-1024x768-1.jpg", exam: "((SBR)SEP 2020)", globalRank: "4", indiaRank: "1" },
+];
+const performers = PERFORMER_DEFAULTS.map((fallback, i) => {
+	const n = i + 1;
+	return {
+		name: String(accaData[`performer_${n}_name`] || fallback.name),
+		photo: getCmsImageUrl(accaData[`performer_${n}_photo`], fallback.photo),
+		exam: String(accaData[`performer_${n}_exam`] || fallback.exam),
+		globalRank: String(accaData[`performer_${n}_global_rank`] ?? fallback.globalRank),
+		indiaRank: String(accaData[`performer_${n}_india_rank`] ?? fallback.indiaRank),
+		editName: edit[`performer_${n}_name`],
+		editPhoto: edit[`performer_${n}_photo`],
+		editExam: edit[`performer_${n}_exam`],
+		editGlobalRank: edit[`performer_${n}_global_rank`],
+		editIndiaRank: edit[`performer_${n}_india_rank`],
+	};
+});
 ---
 
 <html lang="en">
@@ -31,7 +119,7 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 
 		<!-- ===================== TOP BANNER ===================== -->
 		<div class="enrollment-banner">
-			<div class="banner-badge">Enrollment closes soon</div>
+			<div class="banner-badge" {...edit.banner_text}>{bannerText}</div>
 		</div>
 
 		<!-- ===================== MORPHING WRAPPER ===================== -->
@@ -40,14 +128,7 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 			<section class="acca-hero-section">
 				<div class="section-container acca-hero-container">
 					<div class="hero-left">
-						<h1 class="hero-title">
-							Accelerate your <br />
-							journey to <span class="text-blue"
-								>Career <br />
-								Excellence With <br />
-								ACCA.</span
-							>
-						</h1>
+						<h1 class="hero-title" set:html={heroTitle} {...edit.hero_heading} />
 
 						<div class="stats-row">
 							<div class="accreditations-badges">
@@ -63,13 +144,7 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 								/>
 							</div>
 							<div class="student-proof">
-								<p class="proof-label">
-									TRUSTED BY OVER <span class="highlight-blue"
-										>25,000</span
-									>
-									<br />
-									STUDENTS GLOBALLY FOR EXCELLENCE!
-								</p>
+								<p class="proof-label" set:html={proofLabel} {...edit.proof_label} />
 								<div class="avatar-stack">
 									<img
 										src="/images/Ajsal-E.webp"
@@ -379,26 +454,12 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 		<!-- ===================== STATS CARDS SECTION ===================== -->
 		<section class="stats-cards-section">
 			<div class="section-container stats-cards-container">
-				<div class="stat-card-box">
-					<div class="stat-num">7+</div>
-					<div class="stat-label">Years</div>
-				</div>
-				<div class="stat-card-box">
-					<div class="stat-num">53</div>
-					<div class="stat-label">World Ranks</div>
-				</div>
-				<div class="stat-card-box">
-					<div class="stat-num">80</div>
-					<div class="stat-label">National Ranks</div>
-				</div>
-				<div class="stat-card-box">
-					<div class="stat-num">5000+</div>
-					<div class="stat-label">Affiliates</div>
-				</div>
-				<div class="stat-card-box">
-					<div class="stat-num">25000+</div>
-					<div class="stat-label">Students</div>
-				</div>
+				{stats.map((stat) => (
+					<div class="stat-card-box">
+						<div class="stat-num" set:html={stat.num} {...stat.editNum} />
+						<div class="stat-label" {...stat.editLabel}>{stat.label}</div>
+					</div>
+				))}
 			</div>
 		</section>
 
@@ -406,13 +467,7 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 		<section class="professional-world-section">
 			<div class="section-container professional-world-container">
 				<div class="world-left">
-					<h2 class="world-title">
-						Be the <span class="highlight-slate">Professional</span> the
-						<br />
-						World Is <span class="highlight-slate"
-							>Looking For!</span
-						>
-					</h2>
+					<h2 class="world-title" set:html={worldTitle} {...edit.world_title} />
 					<div class="world-logos">
 						<img
 							src="/images/ACCA-Platinum.png"
@@ -428,138 +483,32 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 				</div>
 				<div class="world-right">
 					<ul class="world-list">
-						<li class="world-list-item">
-							<span class="icon-wrap">
-								<svg
-									class="check-icon"
-									viewBox="0 0 24 24"
-									width="26"
-									height="26"
-								>
-									<circle
-										cx="12"
-										cy="12"
-										r="10"
-										fill="#e0effe"></circle>
-									<path
-										d="M8.5 12.5l2 2 5-5"
-										stroke="#2e80ec"
-										stroke-width="2.2"
-										stroke-linecap="round"
-										stroke-linejoin="round"
-										fill="none"></path>
-								</svg>
-							</span>
-							<span class="item-text"
-								>Recognition in over 180 countries globally.</span
-							>
-						</li>
-						<li class="world-list-item">
-							<span class="icon-wrap">
-								<svg
-									class="check-icon"
-									viewBox="0 0 24 24"
-									width="26"
-									height="26"
-								>
-									<circle
-										cx="12"
-										cy="12"
-										r="10"
-										fill="#e0effe"></circle>
-									<path
-										d="M8.5 12.5l2 2 5-5"
-										stroke="#2e80ec"
-										stroke-width="2.2"
-										stroke-linecap="round"
-										stroke-linejoin="round"
-										fill="none"></path>
-								</svg>
-							</span>
-							<span class="item-text"
-								>Access to a network of 200,000+ members.</span
-							>
-						</li>
-						<li class="world-list-item">
-							<span class="icon-wrap">
-								<svg
-									class="check-icon"
-									viewBox="0 0 24 24"
-									width="26"
-									height="26"
-								>
-									<circle
-										cx="12"
-										cy="12"
-										r="10"
-										fill="#e0effe"></circle>
-									<path
-										d="M8.5 12.5l2 2 5-5"
-										stroke="#2e80ec"
-										stroke-width="2.2"
-										stroke-linecap="round"
-										stroke-linejoin="round"
-										fill="none"></path>
-								</svg>
-							</span>
-							<span class="item-text"
-								>Fuel your career growth with eligibility to
-								join top MNCs.</span
-							>
-						</li>
-						<li class="world-list-item">
-							<span class="icon-wrap">
-								<svg
-									class="check-icon"
-									viewBox="0 0 24 24"
-									width="26"
-									height="26"
-								>
-									<circle
-										cx="12"
-										cy="12"
-										r="10"
-										fill="#e0effe"></circle>
-									<path
-										d="M8.5 12.5l2 2 5-5"
-										stroke="#2e80ec"
-										stroke-width="2.2"
-										stroke-linecap="round"
-										stroke-linejoin="round"
-										fill="none"></path>
-								</svg>
-							</span>
-							<span class="item-text"
-								>High earning potential from ₹6 LPA to ₹20 LPA.</span
-							>
-						</li>
-						<li class="world-list-item">
-							<span class="icon-wrap">
-								<svg
-									class="check-icon"
-									viewBox="0 0 24 24"
-									width="26"
-									height="26"
-								>
-									<circle
-										cx="12"
-										cy="12"
-										r="10"
-										fill="#e0effe"></circle>
-									<path
-										d="M8.5 12.5l2 2 5-5"
-										stroke="#2e80ec"
-										stroke-width="2.2"
-										stroke-linecap="round"
-										stroke-linejoin="round"
-										fill="none"></path>
-								</svg>
-							</span>
-							<span class="item-text"
-								>Stay in demand with skills valued
-								internationally.</span
-							>
-						</li>
+						{worldItems.map((item) => (
+							<li class="world-list-item">
+								<span class="icon-wrap">
+									<svg
+										class="check-icon"
+										viewBox="0 0 24 24"
+										width="26"
+										height="26"
+									>
+										<circle
+											cx="12"
+											cy="12"
+											r="10"
+											fill="#e0effe"></circle>
+										<path
+											d="M8.5 12.5l2 2 5-5"
+											stroke="#2e80ec"
+											stroke-width="2.2"
+											stroke-linecap="round"
+											stroke-linejoin="round"
+											fill="none"></path>
+									</svg>
+								</span>
+								<span class="item-text" {...item.edit}>{item.text}</span>
+							</li>
+						))}
 					</ul>
 				</div>
 			</div>
@@ -568,11 +517,9 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 		<!-- ===================== TOP PERFORMERS SECTION ===================== -->
 		<section class="performers-section">
 			<div class="section-container performers-container">
-				<h2 class="performers-title">
-					Our Top <span class="text-blue">Performers</span>
-				</h2>
-				<p class="performers-subtitle">
-					Raising the Bar, Setting the Standard
+				<h2 class="performers-title" set:html={performersTitle} {...edit.performers_title} />
+				<p class="performers-subtitle" {...edit.performers_subtitle}>
+					{performersSubtitle}
 				</p>
 
 				<div class="carousel-wrapper">
@@ -598,284 +545,69 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 
 					<div class="carousel-track-container">
 						<div class="carousel-track" id="performers-track">
-							<!-- Card 1: Shahanaz Sainudin -->
-							<div class="performer-card">
-								<div class="card-image-wrapper">
-									<img
-										src="/images/topstudents/Students-Website-Template-36-1024x768-1.jpg"
-										alt="Shahanaz Sainudin"
-										class="student-photo"
-									/>
-								</div>
-								<div class="card-info">
-									<div class="card-name-row">
-										<h3 class="student-name">
-											Shahanaz Sainudin
-										</h3>
-										<svg
-											class="medal-icon"
-											viewBox="0 0 24 24"
-											width="24"
-											height="24"
-										>
-											<path
-												d="M9 11v7l3-2 3 2v-7H9z"
-												fill="#ef4444"></path>
-											<path
-												d="M12 11v7l1.5-1 1.5 1v-7h-3z"
-												fill="#3b82f6"
-												opacity="0.8"></path>
-											<circle
-												cx="12"
-												cy="9"
-												r="6"
-												fill="#fbbf24"
-												stroke="#f59e0b"
-												stroke-width="1.2"></circle>
-											<circle
-												cx="12"
-												cy="9"
-												r="4.5"
-												fill="#f59e0b"></circle>
-											<polygon
-												points="12,6.5 13.2,8.8 15.8,9 13.8,10.7 14.5,13.2 12,11.8 9.5,13.2 10.2,10.7 8.2,9 10.8,8.8"
-												fill="#ffffff"></polygon>
-										</svg>
+							{performers.map((p) => (
+								<div class="performer-card">
+									<div class="card-image-wrapper">
+										<img
+											src={p.photo}
+											alt={p.name}
+											class="student-photo"
+											{...p.editPhoto}
+										/>
 									</div>
-									<p class="exam-tag">((AFM)Dec 2020)</p>
-									<hr class="card-divider" />
-									<div class="rank-row">
-										<div class="rank-item">
-											Global Rank <strong>1</strong>
+									<div class="card-info">
+										<div class="card-name-row">
+											<h3 class="student-name" {...p.editName}>
+												{p.name}
+											</h3>
+											<svg
+												class="medal-icon"
+												viewBox="0 0 24 24"
+												width="24"
+												height="24"
+											>
+												<path
+													d="M9 11v7l3-2 3 2v-7H9z"
+													fill="#ef4444"></path>
+												<path
+													d="M12 11v7l1.5-1 1.5 1v-7h-3z"
+													fill="#3b82f6"
+													opacity="0.8"></path>
+												<circle
+													cx="12"
+													cy="9"
+													r="6"
+													fill="#fbbf24"
+													stroke="#f59e0b"
+													stroke-width="1.2"></circle>
+												<circle
+													cx="12"
+													cy="9"
+													r="4.5"
+													fill="#f59e0b"></circle>
+												<polygon
+													points="12,6.5 13.2,8.8 15.8,9 13.8,10.7 14.5,13.2 12,11.8 9.5,13.2 10.2,10.7 8.2,9 10.8,8.8"
+													fill="#ffffff"></polygon>
+											</svg>
+										</div>
+										<p class="exam-tag" {...p.editExam}>{p.exam}</p>
+										<hr class="card-divider" />
+										<div class="rank-row">
+											{p.globalRank && (
+												<div class="rank-item" {...p.editGlobalRank}>
+													Global Rank <strong>{p.globalRank}</strong>
+												</div>
+											)}
+											{p.globalRank && p.indiaRank && <div class="rank-divider"></div>}
+											{p.indiaRank && (
+												<div class="rank-item" {...p.editIndiaRank}>
+													India Rank <strong>{p.indiaRank}</strong>
+												</div>
+											)}
 										</div>
 									</div>
 								</div>
-							</div>
-
-							<!-- Card 2: Mohammed Nafih -->
-							<div class="performer-card">
-								<div class="card-image-wrapper">
-									<img
-										src="/images/topstudents/Students-Website-Template-39-1024x768-1.jpg"
-										alt="Zinsil Shan"
-										class="student-photo"
-									/>
-								</div>
-								<div class="card-info">
-									<div class="card-name-row">
-										<h3 class="student-name">
-											Zinsil Shan
-										</h3>
-										<svg
-											class="medal-icon"
-											viewBox="0 0 24 24"
-											width="24"
-											height="24"
-										>
-											<path
-												d="M9 11v7l3-2 3 2v-7H9z"
-												fill="#ef4444"></path>
-											<path
-												d="M12 11v7l1.5-1 1.5 1v-7h-3z"
-												fill="#3b82f6"
-												opacity="0.8"></path>
-											<circle
-												cx="12"
-												cy="9"
-												r="6"
-												fill="#fbbf24"
-												stroke="#f59e0b"
-												stroke-width="1.2"></circle>
-											<circle
-												cx="12"
-												cy="9"
-												r="4.5"
-												fill="#f59e0b"></circle>
-											<polygon
-												points="12,6.5 13.2,8.8 15.8,9 13.8,10.7 14.5,13.2 12,11.8 9.5,13.2 10.2,10.7 8.2,9 10.8,8.8"
-												fill="#ffffff"></polygon>
-										</svg>
-									</div>
-									<p class="exam-tag">((FM)Dec 2022)</p>
-									<hr class="card-divider" />
-									<div class="rank-row">
-										<div class="rank-item">
-											Global Rank <strong>1</strong>
-										</div>
-										<div class="rank-divider"></div>
-										<div class="rank-item">
-											India Rank <strong>1</strong>
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<!-- Card 3: Siya Sabu -->
-							<div class="performer-card">
-								<div class="card-image-wrapper">
-									<img
-										src="/images/topstudents/Students-Website-Template-35-1024x768-1.jpg"
-										alt="Shafnas"
-										class="student-photo"
-									/>
-								</div>
-								<div class="card-info">
-									<div class="card-name-row">
-										<h3 class="student-name">Shafnas</h3>
-										<svg
-											class="medal-icon"
-											viewBox="0 0 24 24"
-											width="24"
-											height="24"
-										>
-											<path
-												d="M9 11v7l3-2 3 2v-7H9z"
-												fill="#ef4444"></path>
-											<path
-												d="M12 11v7l1.5-1 1.5 1v-7h-3z"
-												fill="#3b82f6"
-												opacity="0.8"></path>
-											<circle
-												cx="12"
-												cy="9"
-												r="6"
-												fill="#fbbf24"
-												stroke="#f59e0b"
-												stroke-width="1.2"></circle>
-											<circle
-												cx="12"
-												cy="9"
-												r="4.5"
-												fill="#f59e0b"></circle>
-											<polygon
-												points="12,6.5 13.2,8.8 15.8,9 13.8,10.7 14.5,13.2 12,11.8 9.5,13.2 10.2,10.7 8.2,9 10.8,8.8"
-												fill="#ffffff"></polygon>
-										</svg>
-									</div>
-									<p class="exam-tag">((ATX)Mar 2023)</p>
-									<hr class="card-divider" />
-									<div class="rank-row">
-										<div class="rank-divider"></div>
-										<div class="rank-item">
-											India Rank <strong>3</strong>
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<!-- Card 4: Vaishnav Unny -->
-							<div class="performer-card">
-								<div class="card-image-wrapper">
-									<img
-										src="/images/topstudents/Students-Website-Template-38-1024x768-1.jpg"
-										alt="Vaishnav Unny"
-										class="student-photo"
-									/>
-								</div>
-								<div class="card-info">
-									<div class="card-name-row">
-										<h3 class="student-name">
-											Vaishnav Unny
-										</h3>
-										<svg
-											class="medal-icon"
-											viewBox="0 0 24 24"
-											width="24"
-											height="24"
-										>
-											<path
-												d="M9 11v7l3-2 3 2v-7H9z"
-												fill="#ef4444"></path>
-											<path
-												d="M12 11v7l1.5-1 1.5 1v-7h-3z"
-												fill="#3b82f6"
-												opacity="0.8"></path>
-											<circle
-												cx="12"
-												cy="9"
-												r="6"
-												fill="#fbbf24"
-												stroke="#f59e0b"
-												stroke-width="1.2"></circle>
-											<circle
-												cx="12"
-												cy="9"
-												r="4.5"
-												fill="#f59e0b"></circle>
-											<polygon
-												points="12,6.5 13.2,8.8 15.8,9 13.8,10.7 14.5,13.2 12,11.8 9.5,13.2 10.2,10.7 8.2,9 10.8,8.8"
-												fill="#ffffff"></polygon>
-										</svg>
-									</div>
-									<p class="exam-tag">((AAA)Sep 2023)</p>
-									<hr class="card-divider" />
-									<div class="rank-row">
-										<div class="rank-item">
-											Global Rank <strong>5</strong>
-										</div>
-										<div class="rank-divider"></div>
-										<div class="rank-item">
-											India Rank <strong>2</strong>
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<!-- Card 5: Zinsil Shan -->
-							<div class="performer-card">
-								<div class="card-image-wrapper">
-									<img
-										src="/images/topstudents/Students-Website-Template-37-1024x768-1.jpg"
-										alt="Siya Sabu"
-										class="student-photo"
-									/>
-								</div>
-								<div class="card-info">
-									<div class="card-name-row">
-										<h3 class="student-name">Siya Sabu</h3>
-										<svg
-											class="medal-icon"
-											viewBox="0 0 24 24"
-											width="24"
-											height="24"
-										>
-											<path
-												d="M9 11v7l3-2 3 2v-7H9z"
-												fill="#ef4444"></path>
-											<path
-												d="M12 11v7l1.5-1 1.5 1v-7h-3z"
-												fill="#3b82f6"
-												opacity="0.8"></path>
-											<circle
-												cx="12"
-												cy="9"
-												r="6"
-												fill="#fbbf24"
-												stroke="#f59e0b"
-												stroke-width="1.2"></circle>
-											<circle
-												cx="12"
-												cy="9"
-												r="4.5"
-												fill="#f59e0b"></circle>
-											<polygon
-												points="12,6.5 13.2,8.8 15.8,9 13.8,10.7 14.5,13.2 12,11.8 9.5,13.2 10.2,10.7 8.2,9 10.8,8.8"
-												fill="#ffffff"></polygon>
-										</svg>
-									</div>
-									<p class="exam-tag">((SBR)SEP 2020)</p>
-									<hr class="card-divider" />
-									<div class="rank-row">
-										<div class="rank-item">
-											Global Rank <strong>4</strong>
-										</div>
-										<div class="rank-divider"></div>
-										<div class="rank-item">
-											India Rank <strong>1</strong>
-										</div>
-									</div>
-								</div>
-							</div>
+							))}
 						</div>
 					</div>
 
@@ -927,11 +659,11 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 
 		<CareerAndWhyElance />
 
-		<AccaFaculties />
+		<AccaFaculties entry={accaPage} />
 
-		<AccaLearningAndSyllabus />
+		<AccaLearningAndSyllabus entry={accaPage} />
 
-		<AccaFaq />
+		<AccaFaq entry={accaPage} />
 
 		<FeaturedOn />
 

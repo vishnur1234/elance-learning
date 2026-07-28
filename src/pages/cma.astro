@@ -5,6 +5,17 @@ import StudentPlacements from "../components/StudentPlacements.astro";
 import CareerAndWhyElance from "../components/CareerAndWhyElance.astro";
 import CmaFaculties from "../components/CmaFaculties.astro";
 import CmaLearningAndSyllabus from "../components/CmaLearningAndSyllabus.astro";
+import { getEmDashEntry } from "../lib/cms.js";
+
+// Fetch the CMA page's dynamic content from EmDash CMS (same "pages"
+// collection the home/acca pages use, with slug "cma").
+const { entry: cmaPage } = await getEmDashEntry("pages", "cma").catch(() => ({
+	entry: null,
+}));
+const cmaData = (cmaPage?.data as Record<string, any>) || {};
+const edit = cmaPage?.edit || ({} as Record<string, any>);
+
+const bannerText = String(cmaData.banner_text || "Enrollment closes soon");
 ---
 
 <html lang="en">
@@ -29,7 +40,7 @@ import CmaLearningAndSyllabus from "../components/CmaLearningAndSyllabus.astro";
 
 		<!-- ===================== TOP BANNER ===================== -->
 		<div class="enrollment-banner">
-			<div class="banner-badge">Enrollment closes soon</div>
+			<div class="banner-badge" {...edit.banner_text}>{bannerText}</div>
 		</div>
 
 		<!-- ===================== CMA HERO – STICKY SCROLL (MORPHING VIDEO) ===================== -->
